@@ -46,6 +46,12 @@ group :development, :test do
   gem 'rubocop', '0.29.1'
 end
 
+group :development do
+  gem 'guard'
+  gem 'guard-rubocop', '~> 1.1.0'
+  gem 'guard-rspec', '~> 4.5.2'
+end
+
 group :test do
   gem 'sqlite3', '~> 1.3.9'
   gem 'activerecord-nulldb-adapter'
