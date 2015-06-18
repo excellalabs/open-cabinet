@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/drs0ffic3/sample-app.svg?branch=master)](https://travis-ci.org/drs0ffic3/sample-app)
-[![Coverage Status](https://coveralls.io/repos/drs0ffic3/sample-app/badge.svg?branch=master)](https://coveralls.io/r/drs0ffic3/sample-app?branch=master)
-[![Code Climate](https://codeclimate.com/github/drs0ffic3/sample-app/badges/gpa.svg)](https://codeclimate.com/github/drs0ffic3/sample-app)
+[![Build Status](https://magnum.travis-ci.com/excellaco/fda-skeleton-app.svg?token=ztW2D3QGwNvKdJWTdpNu)](https://magnum.travis-ci.com/excellaco/fda-skeleton-app)
+[![Code Climate](https://codeclimate.com/repos/5582a4ef695680215a031469/badges/876970494b7eba49266f/gpa.svg)](https://codeclimate.com/repos/5582a4ef695680215a031469/feed)
 
 # sample-app
