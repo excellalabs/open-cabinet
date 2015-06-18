@@ -41,6 +41,6 @@ Capybara.default_selector = :css
 Capybara.default_wait_time = 15
 
 Before do
-  page.driver.basic_authorize(Rails.application.secrets[:BASIC_AUTH_USERNAME],
-                              Rails.application.secrets[:BASIC_AUTH_PASSWORD])
+  page.driver.basic_authorize(Rails.configuration.basic_auth_user,
+                              Rails.configuration.basic_auth_pass)
 end

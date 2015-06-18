@@ -13,7 +13,6 @@ branches:
   only:
     - master
 before_script:
-- cp config/secrets.yml.sample config/secrets.yml
 - rake db:create db:migrate
 - rake db:create db:migrate RAILS_ENV=travis
 script:
