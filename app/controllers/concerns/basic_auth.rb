@@ -13,7 +13,7 @@ module BasicAuth
 
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      username == Rails.application.secrets[:BASIC_AUTH_USERNAME] && password == Rails.application.secrets[:BASIC_AUTH_PASSWORD]
+      username == Rails.configuration.basic_auth_user && password == Rails.configuration.basic_auth_pass
     end
   end
 
