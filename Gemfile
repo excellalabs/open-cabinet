@@ -29,7 +29,6 @@ gem 'puma'
 # gem 'capistrano-rails', group: :development
 
 gem 'travis'
-gem 'coveralls', require: false
 gem 'bourbon'
 gem 'neat'
 gem 'autoprefixer-rails'
