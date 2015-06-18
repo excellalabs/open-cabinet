@@ -9,7 +9,11 @@ notifications:
   slack: excella-4th:D0zR7CRDJdhg07kKkO2Axq9Y
 rvm:
 - 2.2.2
+branches:
+  only:
+    - master
 before_script:
+- cp config/secrets.yml.sample config/secrets.yml
 - rake db:create db:migrate
 - rake db:create db:migrate RAILS_ENV=travis
 script:
