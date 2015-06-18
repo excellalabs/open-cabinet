@@ -55,6 +55,7 @@ end
 group :test do
   gem 'sqlite3', '~> 1.3.9'
   gem 'activerecord-nulldb-adapter'
+  gem "codeclimate-test-reporter", group: :test, require: nil
 end
 
 group :acceptance, :travis do
