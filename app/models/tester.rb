@@ -8,4 +8,8 @@ class Tester
   def self.return_hello
     'hello'
   end
+
+  def self.return_goodbye
+    'goodbye'
+  end
 end
