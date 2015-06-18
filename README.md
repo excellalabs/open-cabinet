@@ -2,6 +2,12 @@
 [![Code Climate](https://codeclimate.com/repos/5582a4ef695680215a031469/badges/876970494b7eba49266f/gpa.svg)](https://codeclimate.com/repos/5582a4ef695680215a031469/feed)
 [![Test Coverage](https://codeclimate.com/repos/5582a4ef695680215a031469/badges/876970494b7eba49266f/coverage.svg)](https://codeclimate.com/repos/5582a4ef695680215a031469/coverage) 
 
+##### Getting Started
+[Download VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+[Download Vagrant](http://www.vagrantup.com/downloads)
+After installing, navigate to the repo directory and run:
+```vagrant up```
+
 ##### To keep guard running in the background with Rubocop and Rspec simply run:
 ```ruby
 bundle exec guard

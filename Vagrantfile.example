@@ -1,0 +1,82 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+localpath = '~/misc'
+guestpath = '/misc'
+
+Vagrant.configure('2') do |config|
+  # Ubuntu 14.04
+  config.vm.box = "ubuntu/trusty64"
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:9080" will access port 80 on the guest machine.
+  config.vm.network "forwarded_port", guest: 80, host:9080
+  config.vm.network "forwarded_port", guest: 443, host:9443
+  config.vm.network "forwarded_port", guest: 9200, host: 9200
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network :private_network, ip: "192.168.33.10"
+
+  config.vm.synced_folder localpath, guestpath, type: 'nfs'
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ['modifyvm', :id, '--memory', '4096']
+    vb.customize ['modifyvm', :id, '--cpus', '2']
+    vb.customize ['modifyvm', :id, '--ioapic', 'on']
+  end
+
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = ["cookbooks"]
+
+    # custom JSON attributes:
+    chef.json = {
+      "apt" => {
+        "compile_time_update" => true
+      },
+      "postgresql" => {
+        "version" => "9.4",
+        "apt_distribution" => "trusty",
+        "conf" => {
+          "listen_addresses" => "*",
+          "log_error_verbosity" => "verbose",
+          "log_connections" => "on",
+          "log_min_error_statement" => "info",
+          "log_min_duration_statement" => "0"
+        },
+        "pg_hba" =>[
+          { "type" => "local", "db" => "all", "user" => "postgres", "addr" => nil, "method" => "ident"},
+          { "type" => "local", "db" => "all", "user" => "all", "addr" => nil, "method" => "ident"},
+          { "type" => "host", "db" => "all", "user" => "all", "addr" => "0.0.0.0/0", "method" => "md5"},
+          { "type" => "host", "db" => "all", "user" => "all", "addr" => "::1/128", "method" => "md5"},
+          { "type" => "local", "db" => "all", "user" => "all", "addr" => nil, "method" => "ident"},
+        ],
+        "users" => [
+          {"username" => "dev_db_user", "password" => "super_secret", "superuser" => true, "createdb" => false, "login" => true}
+          ]
+      },
+      "rvm" => {
+        "default_ruby" => "ruby-2.2.2",
+        "global_gems" => [
+          { "name" => "bundler" }
+        ]
+      }
+    }
+
+    chef.add_recipe "apt"
+    chef.add_recipe "build-essential"
+    chef.add_recipe "git"
+    chef.add_recipe "libqt4::dev"
+    chef.add_recipe "libsasl2_dev"
+    chef.add_recipe "nodejs"
+    chef.add_recipe "phantomjs"
+    chef.add_recipe "ruby_dev"
+    chef.add_recipe "postgresql::client"
+    chef.add_recipe "postgresql::server"
+    chef.add_recipe "rvm::system"
+    chef.add_recipe "rvm::vagrant"
+  end
+
+  config.ssh.forward_agent = true
+end
