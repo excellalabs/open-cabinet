@@ -27,7 +27,7 @@ default: &default
 
 development:
   <<: *default
-  database: fda_dev
+  database: open_cabinet_dev
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -72,7 +72,7 @@ travis:
 
 acceptance:
   <<: *default
-  database: sample_app_acceptance
+  database: open_cabinet_acceptance
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -94,9 +94,9 @@ acceptance:
 #
 production:
   <<: *default
-  database: sample_app_production
-  username: sample-app
-  password: <%= ENV['SAMPLE_APP_DATABASE_PASSWORD'] %>
+  database: open_cabinet_production
+  username: open-cabinet
+  password: <%= ENV['open_cabinet_DATABASE_PASSWORD'] %>
 
 cucumber:
   <<: *test

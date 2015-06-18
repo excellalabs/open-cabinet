@@ -22,6 +22,6 @@ script:
 deploy:
   provider: heroku
   app:
-    master: fda-skeleton-app
+    master: open-cabinet
   api_key:
     secure: Y92r08hX+/UQq0szjmiY6RXRiUU+Xq0NYLUlMRdd4K+yemFPQwwnr27EiaKASqh6npJoiyG+pzM/iZrJ/ofvaQHEnAeaVB3qy64HLQGXIVCng6g+frciYkR12gPuOsJ1EGwbXEtOQMPPpqN/ddZ8Q5yHmwJE5l2rJ40xLN1WT0vI3odA8VxfnuzSD+Q4BfrDYLOs7lVdMfW+XS4AaJ4/IYrpq26qjZ5/W6DSDQ+CSVT7a9xcQV0WFRjKyyxlRzMLaxMGLm4daA3CbLjXo9SKCEm1fHiY2P1gPewvefQc0QwcipDH/fuDf/hf3q7v0Niza7ClGrrrtGqsIVMg8dtUQpHji/C9CWm0qCZd+4bcd7uOiCTFy7wB/lqgVATG/Z7jhnq2UUtjszoPjrhIInr67KzFgAPp8NnVB5CcNx+tc3UWhnCyXifZpmw4UprZ4Uafg53cwpuBNPyBplrAuR/BY5PS4I4zXK+AF9Vuq5r3cFwU0ukM0EWelkdN+WW9TinUL/Ut3xi6WSehZSZRze/Ek3uJtcyclahX6BKk0WigJAQYoMtsDAmgPaO+wo97vi+3IPYr7igmnvzjxkvVJ8AbMTvKz4F1wacjsuN7yGZBOAUw+w6KrJu60aVOcYgwB86ZegT1L/WIVtuSZOu8bZUxiX4IYIFmNb5oQKib4LIJ86w=
