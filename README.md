@@ -5,7 +5,8 @@
 ##### Getting Started
 [Download VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 [Download Vagrant](http://www.vagrantup.com/downloads)
-After installing, navigate to the repo directory and run:
+After installing, navigate to the repo directory and create a Vagrantfile using the Vagrantfile.example as an example.
+After you create the Vagrantfile run:
 ```vagrant up```
 
 ##### To keep guard running in the background with Rubocop and Rspec simply run:
