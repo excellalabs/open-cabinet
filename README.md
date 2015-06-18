@@ -14,11 +14,4 @@ After you create the Vagrantfile run:
 bundle exec guard
 ```
 
-##### Logging
-[view logs](https://logentries.com/app/cacec443#id=9c562ff3-3cee-4162-a461-2fb7b3270b74&r=d&s=log_sets)
-
-To use logging with LE 
-```ruby
-Rails.logger.warn("Look at me, I'm a warning")
-```
 

@@ -80,5 +80,4 @@ Rails.application.configure do
   config.secret_key_base = ENV['SECRET_KEY_BASE']
   config.basic_auth_user = ENV['BASIC_AUTH_USERNAME']
   config.basic_auth_pass = ENV['BASIC_AUTH_PASSWORD']
-  Rails.logger = Le.new('633f6db7-ae80-47cb-8f48-7e3c5300ecd5', :debug => true, :local => true)
 end
