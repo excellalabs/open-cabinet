@@ -1,0 +1,24 @@
+//*--
+//*-- toolbox - useful mix-ins
+//*--
+
+//*-- border mix-in
+//*-- usage: @include border-radius(5px);
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;
+}
+
+//*-- clearfix extension
+//*-- usage: @extend %clearfix;
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

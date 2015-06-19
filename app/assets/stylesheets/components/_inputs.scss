@@ -1,0 +1,23 @@
+//*--
+//*-- form elements
+//*--
+
+//*-- global input styles
+select, textarea, input {
+  @extend .primary-font;
+  color: $dark-gray;
+  display: block;
+  border-radius: 4px;
+  text-align: left;
+  box-shadow: none;
+  border: 1px solid $light-gray;
+  padding: 10px;
+
+  &:focus, &:hover, &:active {
+    box-shadow: none;
+  }
+}
+
+input:focus::placeholder {
+  color: transparent;
+}

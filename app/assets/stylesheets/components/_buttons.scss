@@ -1,0 +1,15 @@
+//*--
+//*-- buttons
+//*--
+
+//*-- base button
+button, .base-button {
+  @include border-radius(4px);
+  @extend .primary-font;
+  padding: 10px 15px;
+  border: 0;
+  color: $white;
+  background: $gold;
+  border: 1px solid $gold;
+  cursor: pointer;
+}
