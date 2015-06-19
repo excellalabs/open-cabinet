@@ -50,9 +50,11 @@ bower.json
 .powenv
 .idea/
 
+# Vagrant
 Vagrantfile
+/.vagrant
 
 .DS_Store
 
-.vagrant/*
+
 

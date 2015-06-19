@@ -33,6 +33,9 @@ gem 'bourbon'
 gem 'neat'
 gem 'autoprefixer-rails'
 
+
+gem 'faraday'
+
 # monitoring
 gem 'newrelic_rpm'
 
