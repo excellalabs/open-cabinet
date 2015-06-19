@@ -2,6 +2,6 @@ $(document).ready(init_cabinet);
 $(document).on('page:load', init_cabinet);
 
 function init_cabinet() {
-  $('#t3_container').attr('data-module', 'hello');
+  $('#search_wrapper').attr('data-module', 'autocomplete_search');
   Box.Application.init(); 
 }
