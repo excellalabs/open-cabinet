@@ -1,8 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-localpath = '~/misc'
-guestpath = '/misc'
 
 Vagrant.configure('2') do |config|
   # Ubuntu 14.04
@@ -19,7 +17,7 @@ Vagrant.configure('2') do |config|
   # using a specific IP.
   config.vm.network :private_network, ip: "192.168.33.10"
 
-  config.vm.synced_folder localpath, guestpath, type: 'nfs'
+  config.vm.synced_folder '.', '/vagrant/open-cabinet'
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ['modifyvm', :id, '--memory', '4096']
