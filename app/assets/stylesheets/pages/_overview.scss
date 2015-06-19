@@ -1,16 +1,55 @@
 .overview {
-  height: 90%;
+  min-height: 100%;
+  padding-top: 150px;
   background: $light-blue;
   color: $white;
-  text-align: center;
   background-image: radial-gradient(farthest-corner, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+  
+  .search-area {
+    @include row();
 
-  .header {
-    position: relative;
-    top: 35%;
+    .wrapper {
+      text-align: center;
+    }
 
     h1 {
       display: inline-block;
     }
   }
+
+  .search-results {
+    @include row();
+    margin-top: 45px;
+
+    .medicine-item {
+      @include span-columns(4);
+      @include shift(4);
+      @include media($tablet-and-down) {
+        @include span-columns(10);
+        @include shift(1);
+      }
+
+      @include clearfix();
+      @include border-radius(4px);
+      background-color: $white;
+
+      .medicine-item-info {
+        float:left;
+        width: 60%;
+        padding: 8px 10px;
+        h3 {
+          color: $black;
+        }
+        .medicine-brand-info {
+          color: $dark-gray;
+        }
+      }
+      
+      .add-to-cabinet {
+        float:right;
+        margin: 8px 10px;
+      }
+    }
+  }
+  
 }

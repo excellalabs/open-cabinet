@@ -13,3 +13,14 @@ button, .base-button {
   border: 1px solid $gold;
   cursor: pointer;
 }
+
+.link-button {
+  @extend .base-button;
+  background: $dark-blue;
+  display: inline-block;
+  text-decoration: none;
+
+  &:hover, &:focus, &:active {
+    text-decoration: none;
+  }
+}
