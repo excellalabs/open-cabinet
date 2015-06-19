@@ -46,6 +46,8 @@ group :development, :test do
   gem 'spring'
   gem 'pry'
   gem 'rubocop', '0.29.1'
+  gem 'teaspoon-mocha'
+  gem 'chai-jquery-rails'
 end
 
 group :development do
