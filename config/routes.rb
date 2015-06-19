@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root 'hello#index'
+  root 'drug_search#index'
 end
