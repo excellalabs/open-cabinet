@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619175051) do
+ActiveRecord::Schema.define(version: 20150619200126) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "cabinets", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150619175051) do
     t.datetime "updated_at"
   end
 
-  add_index "cabinets", ["user_id"], name: "index_cabinets_on_user_id"
+  add_index "cabinets", ["user_id"], name: "index_cabinets_on_user_id", using: :btree
 
   create_table "medicines", force: :cascade do |t|
     t.integer  "cabinet_id"
@@ -29,17 +32,17 @@ ActiveRecord::Schema.define(version: 20150619175051) do
     t.datetime "updated_at"
   end
 
-  add_index "medicines", ["cabinet_id"], name: "index_medicines_on_cabinet_id"
-  add_index "medicines", ["name"], name: "index_medicines_on_name"
-  add_index "medicines", ["set_id"], name: "index_medicines_on_set_id"
+  add_index "medicines", ["cabinet_id"], name: "index_medicines_on_cabinet_id", using: :btree
+  add_index "medicines", ["name"], name: "index_medicines_on_name", using: :btree
+  add_index "medicines", ["set_id"], name: "index_medicines_on_set_id", using: :btree
 
-  create_table "searchable_drugs", force: :cascade do |t|
+  create_table "searchable_medicines", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "searchable_drugs", ["name"], name: "index_searchable_drugs_on_name", unique: true
+  add_index "searchable_medicines", ["name"], name: "index_searchable_medicines_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -51,7 +54,9 @@ ActiveRecord::Schema.define(version: 20150619175051) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "cabinets", "users"
+  add_foreign_key "medicines", "cabinets"
 end
