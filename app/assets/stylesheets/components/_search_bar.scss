@@ -1,0 +1,21 @@
+//*--
+//*-- search bar
+//*--
+
+.search-bar {
+  position: relative;
+  margin-top: 30px;
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    @include border-left-radius(0);
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}

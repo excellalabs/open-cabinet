@@ -1,0 +1,27 @@
+//*--
+//*-- neat breakpoints
+//*--
+
+$grid-cols: 12;
+
+$mobile-small-max: 480px;
+
+
+$mobile-large-min: 481px;
+$mobile-large-max: 600px;
+
+$tablet-min: 601px;
+$tablet-max: 850px;
+
+$mobile: new-breakpoint(max-width $mobile-large-max $grid-cols);
+$mobile-small: new-breakpoint(max-width $mobile-small-max $grid-cols);
+$mobile-large: new-breakpoint(min-width $mobile-large-min max-width $mobile-large-max $grid-cols);
+
+
+$tablet: new-breakpoint(min-width $tablet-min max-width $tablet-max $grid-cols);
+$tablet-and-down: new-breakpoint(max-width $tablet-max $grid-cols);
+$tablet-and-up: new-breakpoint(min-width $tablet-min $grid-cols);
+
+$desktop-auto-min: new-breakpoint(max-width $max-width $grid-cols);
+$desktop: new-breakpoint(min-width $tablet-max $grid-cols);
+

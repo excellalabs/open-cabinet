@@ -1,0 +1,94 @@
+.wrapper {
+  @include outer-container;
+
+  &:after {
+    @extend %clearfix;
+  }
+}
+
+.row {
+  @include row
+}
+
+//*-- remove auto margins for displays less than the max-width
+@include media($desktop-auto-min) {
+  .wrapper {
+    @include margin(null 15px);
+  }
+}
+
+@include media($mobile) {
+  .hidden-mobile, .visible-tablet {
+    display: none !important;
+  }
+}
+
+@include media($tablet) {
+  .hidden-tablet, .visible-mobile {
+    display: none !important;
+  }
+}
+
+@include media($tablet-and-up) {
+  .hidden-tablet-and-up {
+    display: none !important;
+  }
+}
+
+@include media($tablet-and-down) {
+  .hidden-tablet-and-down, .visible-desktop {
+    display: none !important;
+  }
+}
+
+@include media($desktop) {
+  .hidden-desktop, .visible-mobile, .visible-tablet {
+    display: none !important;
+  }
+}
+
+//*-- grid cols:
+//*--   .col-span-1
+//*--   .col-span-2
+//*--   .col-span-3
+//*--   .col-span-4
+//*--   .col-span-5
+//*--   .col-span-6
+//*--   .col-span-7
+//*--   .col-span-8
+//*--   .col-span-9
+//*--   .col-span-10
+//*--   .col-span-11
+//*--   .col-span-12
+
+//*-- grid offsets:
+//*--   .col-offset-1
+//*--   .col-offset-2
+//*--   .col-offset-3
+//*--   .col-offset-4
+//*--   .col-offset-5
+//*--   .col-offset-6
+//*--   .col-offset-7
+//*--   .col-offset-8
+//*--   .col-offset-9
+//*--   .col-offset-10
+//*--   .col-offset-11
+$cols: 12;
+@while $cols > 0 {
+
+  .col-offset-#{$cols} {
+    @include shift($cols);
+  }
+
+  .col-span-#{$cols} {
+    @include span-columns($cols);
+  }
+
+  $cols: $cols - 1
+}
+
+//*-- omega reset for neat
+@mixin omega-reset($nth) {
+  &:nth-child(#{$nth}) { margin-right: flex-gutter($grid-columns, $gutter); }
+  &:nth-child(#{$nth}+1) { clear: none }
+}

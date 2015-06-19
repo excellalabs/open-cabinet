@@ -1,0 +1,16 @@
+.overview {
+  height: 90%;
+  background: $light-blue;
+  color: $white;
+  text-align: center;
+  background-image: radial-gradient(farthest-corner, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+
+  .header {
+    position: relative;
+    top: 35%;
+
+    h1 {
+      display: inline-block;
+    }
+  }
+}
