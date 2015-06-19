@@ -16,10 +16,10 @@ describe 'OpenFda::Client' do
     context 'with class configuration' do
       before do
         @config = {
-          :api_key    => 'ak',
-          :format     => 'of',
-          :endpoint   => 'ep',
-          :user_agent => 'ua'
+          api_key: 'ak',
+          format: 'of',
+          endpoint: 'ep',
+          user_agent: 'ua'
         }
       end
 

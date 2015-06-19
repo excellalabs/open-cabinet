@@ -4,9 +4,9 @@ module OpenFda
   class Client
     include OpenFda::Configuration
 
-    attr_accessor *Configuration::VALID_CONFIG_KEYS
+    attr_accessor(*Configuration::VALID_CONFIG_KEYS)
 
-    def initialize(opts={})
+    def initialize(opts = {})
       merged_options = options.merge(opts)
 
       Configuration::VALID_CONFIG_KEYS.each do |key|

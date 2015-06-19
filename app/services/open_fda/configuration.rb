@@ -5,14 +5,14 @@ module OpenFda
     VALID_CONFIG_KEYS     = VALID_CONNECTION_KEYS + VALID_OPTIONS_KEYS
 
     DEFAULT_ENDPOINT    = 'https://api.fda.gov'
-    DEFAULT_USER_AGENT  = "OpenFDA API Ruby Service".freeze
+    DEFAULT_USER_AGENT  = 'OpenFDA API Ruby Service'.freeze
 
     DEFAULT_API_KEY      = nil
     DEFAULT_FORMAT       = :json
 
     # Build accessor methods for every config options so we can do this, for example:
     #   Awesome.format = :xml
-    attr_accessor *VALID_CONFIG_KEYS
+    attr_accessor(*VALID_CONFIG_KEYS)
 
     # Make sure we have the default values set when we get 'extended'
     def self.extended(base)
@@ -32,7 +32,7 @@ module OpenFda
     end
 
     def options
-      Hash[ * VALID_CONFIG_KEYS.map { |key| [key, send(key)] }.flatten ]
+      Hash[* VALID_CONFIG_KEYS.map { |key| [key, send(key)] }.flatten]
     end
   end
 end
