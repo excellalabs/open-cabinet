@@ -1,0 +1,10 @@
+<div class='overview'>
+  <div class='header'>
+    <div class="wrapper" id="search_wrapper">
+      <h1>Welcome to your Medicine Cabinet!</h1>
+      <% @cabinet.medicines.each do |medicine| %>
+        <p><%= medicine.name %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

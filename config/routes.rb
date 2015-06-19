@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root 'medicine#index'
 
   get 'lookup', to: 'medicine#search'
-  get 'search', to: 'drug_search#search'
+  get 'cabinet', to: 'medicine#cabinet'
 end
