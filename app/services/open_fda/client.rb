@@ -15,15 +15,29 @@ module OpenFda
       end
     end
 
-    def query(search = nil, count = nil, limit = 15, skip = 0)
+    def query_label(search = nil, count = nil, limit = 15, skip = 0)
+      query('/drug/label.json', search, count, limit, skip)
+    end
+
+    def query_by_med_name(name, limit = 15, skip = 0)
+      query('/drug/label.json', "brand_name:#{name} active_ingredient:#{name} generic_name:#{name}", nil, limit, skip)
+    end
+
+    private
+
+    def query(endpoint, search = nil, count = nil, limit = 15, skip = 0)
       connection.get do |req|
-        req.url '/drug/label.json'
+        req.url endpoint
         req.params[:api_key] = api_key if api_key
-        req.params[:search] = search if search
-        req.params[:count] = count if count
+        req.params[:search] = prepare_query(search) if search
+        req.params[:count] = prepare_query(count) if count
         req.params[:limit] = limit
         req.params[:skip] = skip
       end
+    end
+
+    def prepare_query(words)
+      words.strip.squeeze(' ')
     end
 
     def connection
