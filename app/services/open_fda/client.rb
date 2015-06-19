@@ -7,6 +7,7 @@ module OpenFda
     attr_accessor(*Configuration::VALID_CONFIG_KEYS)
 
     def initialize(opts = {})
+      reset
       merged_options = options.merge(opts)
 
       Configuration::VALID_CONFIG_KEYS.each do |key|
@@ -14,11 +15,14 @@ module OpenFda
       end
     end
 
-    def find_by(field, term)
+    def query(search = nil, count = nil, limit = 15, skip = 0)
       connection.get do |req|
         req.url '/drug/label.json'
         req.params[:api_key] = api_key if api_key
-        req.params[:search] = "#{field}:#{term}"
+        req.params[:search] = search if search
+        req.params[:count] = count if count
+        req.params[:limit] = limit
+        req.params[:skip] = skip
       end
     end
 
