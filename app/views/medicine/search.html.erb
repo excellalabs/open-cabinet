@@ -1,12 +1,12 @@
-<div class='overview'>
-  <div class='header'>
-    <div class="wrapper" id="search_wrapper">
+<div class="overview">
+  <div class="search-area">
+    <div class="wrapper">
       <h1><span class='primary-font bold'>OPEN</span><span class='primary-font light'>CABINET</span></h1>
       <%= form_tag({controller: 'medicine', action: 'search'}, method: 'get')  do %>
-          <div class='search-bar col-span-8 col-offset-2'>
-            <%= text_field_tag(:search_input, nil, placeholder: "Type a medicine name here..." ) %>
-            <button type="submit">Search</button>
-          </div>
+        <div class='search-bar col-span-8 col-offset-2'>
+          <%= text_field_tag(:search_input, nil, placeholder: "Type a medicine name here..." ) %>
+          <button type="submit">Search</button>
+        </div>
       <% end %>
     </div>
   </div>
