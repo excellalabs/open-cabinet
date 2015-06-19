@@ -16,6 +16,26 @@ ActiveRecord::Schema.define(version: 20150619175051) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cabinets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cabinets", ["user_id"], name: "index_cabinets_on_user_id", using: :btree
+
+  create_table "medicines", force: :cascade do |t|
+    t.integer  "cabinet_id"
+    t.string   "set_id",     default: "", null: false
+    t.string   "name",       default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "medicines", ["cabinet_id"], name: "index_medicines_on_cabinet_id", using: :btree
+  add_index "medicines", ["name"], name: "index_medicines_on_name", using: :btree
+  add_index "medicines", ["set_id"], name: "index_medicines_on_set_id", using: :btree
+
   create_table "searchable_drugs", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -37,4 +57,6 @@ ActiveRecord::Schema.define(version: 20150619175051) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "cabinets", "users"
+  add_foreign_key "medicines", "cabinets"
 end
