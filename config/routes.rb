@@ -3,5 +3,4 @@ Rails.application.routes.draw do
   root 'drug_search#index'
 
   get 'search', to: 'drug_search#search'
-  get 'secure', to: 'drug_search#secure'
 end
