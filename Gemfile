@@ -33,8 +33,12 @@ gem 'bourbon'
 gem 'neat'
 gem 'autoprefixer-rails'
 
+# monitoring
 gem 'newrelic_rpm'
 
+
+# security
+gem 'secure_headers'
 gem 'devise'
 
 group :development, :test do
