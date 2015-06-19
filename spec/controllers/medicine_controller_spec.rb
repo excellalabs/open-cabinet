@@ -1,7 +1,7 @@
 require 'rails_helper'
 include AuthHelper
 
-RSpec.describe DrugSearchController, type: :controller do
+RSpec.describe MedicineController, type: :controller do
   before(:each) do
     http_login
   end
