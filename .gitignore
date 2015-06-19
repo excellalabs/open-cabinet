@@ -53,3 +53,6 @@ bower.json
 Vagrantfile
 
 .DS_Store
+
+.vagrant/*
+
