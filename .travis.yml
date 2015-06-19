@@ -18,6 +18,7 @@ before_script:
 script:
 - bundle exec rubocop -Dc .rubocop.yml
 - bundle exec rspec
+- bundle exec rake teaspoon
 - rake cucumber RAILS_ENV=travis
 deploy:
   provider: heroku

@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require t3.min
+//= require open_cabinet
 //= require turbolinks
 //= require_tree .
