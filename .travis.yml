@@ -22,6 +22,9 @@ script:
 - rake cucumber RAILS_ENV=travis
 deploy:
   provider: heroku
+  run:
+    - "rake db:create db:migrate db:seed"
+    - restart
   app:
     master: open-cabinet
   api_key:
