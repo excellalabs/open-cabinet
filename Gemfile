@@ -39,7 +39,6 @@ gem 'faraday'
 # monitoring
 gem 'newrelic_rpm'
 
-
 # security
 gem 'secure_headers'
 gem 'devise'
