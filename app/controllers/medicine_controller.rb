@@ -10,6 +10,10 @@ class MedicineController < ApplicationController
     @display_results = results.map { |med| med['openfda']['brand_name'] }.flatten
   end
 
+  def autocomplete
+    render json: SearchableMedicine.all.map(&:name)
+  end
+
   def cabinet
   end
 
