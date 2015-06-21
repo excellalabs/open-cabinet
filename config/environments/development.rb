@@ -42,4 +42,5 @@ Rails.application.configure do
   config.web_console.whitelisted_ips = '192.168.33.1'
   config.basic_auth_user = Rails.application.secrets[:BASIC_AUTH_USERNAME]
   config.basic_auth_pass = Rails.application.secrets[:BASIC_AUTH_PASSWORD]
+  config.open_fda_import_key = Rails.application.secrets[:open_fda_import_key]
 end

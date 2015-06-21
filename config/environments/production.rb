@@ -80,4 +80,5 @@ Rails.application.configure do
   config.secret_key_base = ENV['SECRET_KEY_BASE']
   config.basic_auth_user = ENV['BASIC_AUTH_USERNAME']
   config.basic_auth_pass = ENV['BASIC_AUTH_PASSWORD']
+  config.open_fda_import_key = ENV["OPEN_FDA_IMPORT_KEY"]
 end

@@ -57,7 +57,6 @@ group :development, :test do
   gem 'teaspoon-mocha'
   gem 'chai-jquery-rails'
   gem 'vcr'
-  gem 'webmock'
 end
 
 group :development do
@@ -71,6 +70,7 @@ group :test do
   gem 'activerecord-nulldb-adapter'
   gem 'simplecov', :require => false
   gem "codeclimate-test-reporter", group: :test, require: nil
+  gem 'webmock'
 end
 
 group :acceptance, :travis do
