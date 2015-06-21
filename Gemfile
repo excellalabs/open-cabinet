@@ -56,6 +56,8 @@ group :development, :test do
   gem 'rubocop', '0.29.1'
   gem 'teaspoon-mocha'
   gem 'chai-jquery-rails'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do
@@ -67,6 +69,7 @@ end
 group :test do
   gem 'sqlite3', '~> 1.3.9'
   gem 'activerecord-nulldb-adapter'
+  gem 'simplecov', :require => false
   gem "codeclimate-test-reporter", group: :test, require: nil
 end
 

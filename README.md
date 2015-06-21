@@ -6,10 +6,17 @@ https://opencabi.net
 
 ##### Getting Started
 [Download VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+
 [Download Vagrant](http://www.vagrantup.com/downloads)
+
 After installing, navigate to the repo directory and create a Vagrantfile using the Vagrantfile.example as an example.
 After you create the Vagrantfile run:
 ```vagrant up```
+
+To download a fresh set of searchable medicines (takes a while), run:
+```rake searchable_medicines:download['path to file']```
+Then run:
+```rake searchable_medicines:import```
 
 ##### To keep guard running in the background with Rubocop and Rspec simply run:
 ```ruby
