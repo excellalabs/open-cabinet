@@ -23,7 +23,7 @@ script:
 deploy:
   provider: heroku
   run:
-    - "rake db:create db:migrate db:seed"
+    - "rake db:migrate"
     - restart
   app:
     master: open-cabinet
