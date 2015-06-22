@@ -11,7 +11,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
    $(context.getElement()).find('#search_input').typeahead({
       hint: true,
       highlight: true,
-      minLength: 3
+      minLength: 1
     },
     {
       name: 'medicines',

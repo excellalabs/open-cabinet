@@ -24,13 +24,35 @@ module OpenFda
       query('/drug/label.json', "brand_name:#{name} active_ingredient:#{name} generic_name:#{name}", nil, limit, skip)
     end
 
-    def query_by_time_period(start_time, end_time, limit = 15, skip = 0)
+    def query_all_records_by_time_period(start_time, end_time)
       start_time_s = start_time.strftime('%Y-%m-%d')
       end_time_s = end_time.strftime('%Y-%m-%d')
-      query('/drug/label.json', "effective_time:[#{start_time_s}+TO+#{end_time_s}]", nil, limit, skip)
+      include_delay = true
+      query_json_for_all_records('/drug/label.json', "effective_time:[#{start_time_s}+TO+#{end_time_s}]", include_delay)
     end
 
     private
+
+    def query_json_for_all_records(endpoint, search, include_delay = false)
+      accumulated_data = empty_results
+      skip = 0
+      loop do
+        sleep 1 if include_delay
+        data = query_as_json(endpoint, search, nil, MAX_LIMIT, skip)
+        accumulated_data['results'].push(*(data['results']))
+        skip += MAX_LIMIT
+        break if data['results'].length < OpenFda::Client::MAX_LIMIT
+      end
+      accumulated_data
+    end
+
+    def query_as_json(endpoint, search, count = nil, limit = 15, skip = 0)
+      response = query(endpoint, search, count, limit, skip)
+      data = empty_results
+      data = JSON.parse(response.body) if response.success?
+      data['status'] = response.status
+      data
+    end
 
     def query(endpoint, search = nil, count = nil, limit = 15, skip = 0)
       connection(search).get do |req|
@@ -44,6 +66,10 @@ module OpenFda
 
     def prepare_query(words)
       words.strip.squeeze(' ')
+    end
+
+    def empty_results
+      { 'results' => [] }
     end
 
     def connection(search)

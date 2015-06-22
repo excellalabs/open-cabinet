@@ -1,15 +1,14 @@
 require 'rails_helper'
 
-describe 'SearchableMedicineParser' do
+describe 'SearchableMedicines' do
   context 'mocked data' do
     before do
-      allow_any_instance_of(SearchableMedicineParser).to receive(:sleep)
+      allow_any_instance_of(OpenFda::SearchableMedicines).to receive(:sleep)
       @mock_writer = double('Writer')
       @mock_client = double('FdaClient')
       key = '12345'
-      expect(OpenFda::Client).to receive(:new).with(api_key: key) { @mock_client }
       @start_time = Time.now
-      @class_under_test = SearchableMedicineParser.new(key, @mock_writer)
+      @class_under_test = OpenFda::SearchableMedicines.new(key, @mock_writer)
     end
 
     context 'parsing remote label data' do
@@ -18,21 +17,6 @@ describe 'SearchableMedicineParser' do
         expect_client_call(time_iterations(0), json_data)
 
         create_write_expectation(['Imipramine Hydrochloride', 'Ibuprofen', 'Tylenol'])
-
-        @class_under_test.pull_searchable_medicines(@start_time, time_iterations(1))
-      end
-
-      it 'paginates through the data if necessary' do
-        first_pass_data = build_json(OpenFda::Client::MAX_LIMIT, 0)
-        expect_client_call(time_iterations(0), first_pass_data)
-        second_pass_data = build_json(1, OpenFda::Client::MAX_LIMIT)
-        expect_client_call(time_iterations(0), second_pass_data, OpenFda::Client::MAX_LIMIT)
-        expected_array = []
-        (OpenFda::Client::MAX_LIMIT + 1).times do |i|
-          expected_array << 'Name' + i.to_s
-        end
-
-        create_write_expectation(expected_array)
 
         @class_under_test.pull_searchable_medicines(@start_time, time_iterations(1))
       end
@@ -58,28 +42,24 @@ describe 'SearchableMedicineParser' do
     end
 
     def time_iterations(times)
-      @start_time + (times * SearchableMedicineParser::TIME_STEP)
+      @start_time + (times * OpenFda::SearchableMedicines::TIME_STEP)
     end
 
-    def expect_client_call(time_start, json_data, skip = 0)
-      response = double('response')
-      expect(response).to receive(:status) { 200 }
-      expect(response).to receive(:body) { json_data }
-      expect(@mock_client).to receive(:query_by_time_period).with(time_start,
-                                                                  time_start + SearchableMedicineParser::TIME_STEP,
-                                                                  OpenFda::Client::MAX_LIMIT,
-                                                                  skip) { response }
+    def expect_client_call(time_start, json_data)
+      response = JSON.parse(json_data)
+      expect(@class_under_test).to receive(:query_all_records_by_time_period).with(time_start,
+                                                                                   time_start + OpenFda::SearchableMedicines::TIME_STEP) { response }
     end
   end
 
   context 'VCR data' do
     it 'should parse VCR data correctly' do
       @mock_writer = double('Writer')
-      allow_any_instance_of(SearchableMedicineParser).to receive(:sleep)
+      allow_any_instance_of(OpenFda::SearchableMedicines).to receive(:sleep)
       expected = read_support_file('expected_vcr_data.txt').split("\n")
       create_write_expectation(expected)
 
-      parser = SearchableMedicineParser.new(nil, @mock_writer)
+      parser = OpenFda::SearchableMedicines.new(nil, @mock_writer)
       start_time = Time.new(2009, 2, 21)
       end_time = Time.new(2009, 6, 21)
       VCR.use_cassette 'searchable_medicine_parser/fda_response' do
