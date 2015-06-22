@@ -2,9 +2,14 @@
   <div class='header'>
     <div class="wrapper" id="search_wrapper">
       <h1>Welcome to your Medicine Cabinet!</h1>
-      <% @cabinet.medicines.each do |medicine| %>
-        <p><%= medicine.name %></p>
-      <% end %>
+      <div class="row">
+        <div class='col-span-6' id="cabinet">
+          <%= collection_check_boxes(:post, :set_ids, @cabinet.medicines, :set_id, :name) %>
+        </div>
+        <div class='col-span-6' id='interactions'>
+          Placeholder for interactions data.
+        </div>
+      </div>
     </div>
   </div>
 </div>
