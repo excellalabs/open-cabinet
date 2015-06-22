@@ -41,4 +41,5 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.basic_auth_user = ENV['BASIC_AUTH_USERNAME']
   config.basic_auth_pass = ENV['BASIC_AUTH_PASSWORD']
+  config.secret_key_base = ENV['SECRET_KEY_BASE']
 end
