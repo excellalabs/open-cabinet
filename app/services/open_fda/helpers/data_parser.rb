@@ -2,10 +2,7 @@ module OpenFda
   module Helpers
     module DataParser
       def sanitize(str)
-        str.strip!
-        str.upcase!
-        str.slice!('AND ') if str.start_with?('AND ')
-        str.titleize
+        str.strip.gsub(/\Aand\s/i, '').downcase.titleize
       end
 
       def split_names(names)
