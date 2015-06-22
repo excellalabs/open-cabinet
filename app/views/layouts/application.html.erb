@@ -7,8 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render :partial => 'shared/authentication' %>
-<%= yield %>
+
+  <div class='nav'>
+    <div class='wrapper'>
+
+      <div class='col-span-10 logo'>
+        <span class='primary-font bold'>OPEN</span><span class='primary-font light'>CABINET</span>
+      </div>
+
+      <div class='col-span-2 t-right'>
+        <%= render :partial => 'shared/authentication' %>
+      </div>
+    </div>
+  </div>
+
+  <%= content_for?(:content) ? yield(:content) : yield %>
 
 </body>
 </html>

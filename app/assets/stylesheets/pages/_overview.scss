@@ -1,16 +1,13 @@
 .overview {
-  min-height: 100%;
-  padding-top: 150px;
+  position: relative;
+  height: 90%;
   background: $light-blue;
   color: $white;
-  background-image: radial-gradient(farthest-corner, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+  overflow: hidden;
   
   .search-area {
-    @include row();
-
-    .wrapper {
-      text-align: center;
-    }
+    position: relative;
+    top: 30%;
 
     h1 {
       display: inline-block;
@@ -51,5 +48,4 @@
       }
     }
   }
-  
 }
