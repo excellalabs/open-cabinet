@@ -22,4 +22,20 @@
     padding-left: 30px;
     padding-right: 30px;
   }
+
+  .tt-menu {
+    width: 100%;
+    background: $white;
+    color: $dark-gray;
+
+    .tt-suggestion {
+      padding: 5px 15px;
+      border-bottom: 1px solid $light-gray;
+      cursor: pointer;
+    }
+
+    .tt-highlight {
+      font-weight: bold;
+    }
+  }
 }
