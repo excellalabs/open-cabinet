@@ -4,5 +4,4 @@
   config.x_content_type_options = 'nosniff'
   config.x_xss_protection = { :value => 1, :mode => 'block' }
   config.x_download_options = 'noopen'
-  config.x_permitted_cross_domain_policies = 'none'
 end

@@ -23,4 +23,25 @@ Then run:
 bundle exec guard
 ```
 
+##### Approach
+* 750 words max on approach used to create the prototype
+* FDA dataset endpoints used
+* Team:
+  * Accountable leader assigned
+  * Multidisciplinary and collaborative team
+  * Pool one (design) min 3 of: Product Manager, Interaction Designer/User Researcher/Usability Tester, Writer/Content Designer/Content Strategist, Visual Designer, Front End Web Designer
+  * Pool two (dev) min 2 of: Technical Architect, Front End Web Developer, Backend Web Developer, DevOps Engineer
+  * Pool three (full) min 5 of: above plus Security Engineer, Delivery Manager, Agile Coach, Business Analyst, Digital Performance Analyst
+* Understanding of people need in the design process
+* Min 3 human centered design techniques
+* Design style guide and/or pattern library
+* Min 5 open source web techs: Ruby on Rails, rspec
+* Usability tests
+* Interactive, user feedback informed subsequent prototype versions
+* Responsive design
+* Deployed to PaaS - Heroku
+* Unit tests written with rspec
+* Continuous Integration with Travis CI, continuous deployment to Heroku
+* Continuous monitoring with New Relic
+* Local development with Vagrant
 

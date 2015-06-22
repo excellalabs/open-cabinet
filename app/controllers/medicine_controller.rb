@@ -4,10 +4,16 @@ class MedicineController < ApplicationController
   end
 
   def search
-    search = OpenFda::Client.new
-    query = search.query_by_med_name(params[:search_input])
-    results = JSON.parse(query.body)['results']
-    @display_results = results.map { |med| med['openfda']['brand_name'] }.flatten
+    query = OpenFda::Client.new.query_by_med_name(params[:search_input])
+    results = JSON.parse(query.body)['results'].to_a
+    @display_results = !results.any? ? [] : results.map do |med|
+      { brand_name: med['openfda']['brand_name'].first.titleize, set_id: med['set_id'] }
+    end.flatten
+
+    respond_to do |format|
+      format.json { render json: @display_results.to_json }
+      format.html { @display_results }
+    end
   end
 
   def autocomplete
@@ -17,7 +23,7 @@ class MedicineController < ApplicationController
   def cabinet
   end
 
-  def add_to_cabinet(_params)
+  def add_to_cabinet
     @cabinet.add_to_cabinet(medicine_params)
   end
 
