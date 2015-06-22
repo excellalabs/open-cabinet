@@ -7,7 +7,7 @@ class MedicineController < ApplicationController
     query = OpenFda::Client.new.query_by_med_name(params[:search_input])
     results = JSON.parse(query.body)['results'].to_a
     @display_results = !results.any? ? [] : results.map do |med|
-      { brand_name: med['openfda']['brand_name'], set_id: med['set_id'] }
+      { brand_name: med['openfda']['brand_name'].first.titleize, set_id: med['set_id'] }
     end.flatten
 
     respond_to do |format|

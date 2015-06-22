@@ -10,11 +10,16 @@
       <% end %>
     </div>
   </div>
+  <div class="search-results">
+    <% @display_results.each do |result| %>
+      <div class="medicine-item">
+        <div class="medicine-item-info">
+          <h3 class="medicine-brand-name"><%= result[:brand_name] %></h3>
+        </div>
+        <a class="add-to-cabinet link-button">Add</a>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<div class="seach-results">
-  <% @display_results.each do |result| %>
-      <p><%= result.to_s %></p>
-  <% end %>
-</div>
 
