@@ -8,9 +8,9 @@ module OpenFda
       def split_names(names)
         return {} if names.nil?
         result = {}
-        all_names = []
-        names.each { |name| all_names.push(*name.split(',')) }
-        all_names.each { |name| result[sanitize(name)] = sanitize(name) }
+        names.each do |name|
+          name.split(',').each { |n| result[sanitize(n)] = sanitize(n) }
+        end
         result
       end
 
