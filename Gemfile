@@ -69,7 +69,6 @@ group :test do
   gem 'sqlite3', '~> 1.3.9'
   gem 'activerecord-nulldb-adapter'
   gem 'simplecov', :require => false
-  gem 'webmock'
   gem "codeclimate-test-reporter", group: :test, require: nil
 end
 
@@ -84,6 +83,7 @@ end
 
 group :acceptance, :test, :travis do
   gem 'rspec-rails'
+  gem 'webmock'
 end
 
 gem 'rails_12factor', group: :production
