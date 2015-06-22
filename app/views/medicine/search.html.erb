@@ -19,6 +19,9 @@
         <a class="add-to-cabinet link-button">Add</a>
       </div>
     <% end %>
+    <div class="footer">
+      <%= paginate(Kaminari.paginate_array(@display_results).page(params[:page])) %>
+    </div>
   </div>
 </div>
 

@@ -4,11 +4,12 @@ class MedicineController < ApplicationController
   end
 
   def search
-    query = OpenFda::Client.new.query_by_med_name(params[:search_input])
-    results = JSON.parse(query.body)['results'].to_a
+    response = OpenFda::Client.new.query_by_med_name(params[:search_input], 100, skip_per_page(params[:page].to_i)).body
+    results = JSON.parse(response)['results'].to_a
     @display_results = !results.any? ? [] : results.map do |med|
+      next if med['openfda']['brand_name'].nil?
       { brand_name: med['openfda']['brand_name'].first.titleize, set_id: med['set_id'] }
-    end.flatten
+    end.flatten.compact
 
     respond_to do |format|
       format.json { render json: @display_results.to_json }
@@ -31,6 +32,10 @@ class MedicineController < ApplicationController
 
   def medicine_params
     params.require(:medicine).permit(:name, :set_id)
+  end
+
+  def skip_per_page(page = 0)
+    page * Kaminari.config.default_per_page
   end
 
   def find_or_create_cabinet
