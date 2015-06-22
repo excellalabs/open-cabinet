@@ -17,7 +17,7 @@ before_script:
 - rake db:create db:migrate RAILS_ENV=travis
 script:
 - bundle exec rubocop -Dc .rubocop.yml
-- bundle exec rspec RAILS_ENV=travis
+- RAILS_ENV=travis bundle exec rspec
 - bundle exec rake teaspoon
 - rake cucumber RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE
 deploy:
