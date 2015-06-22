@@ -57,20 +57,12 @@ group :development, :test do
   gem 'rubocop', '0.29.1'
   gem 'teaspoon-mocha'
   gem 'chai-jquery-rails'
-  gem 'vcr'
 end
 
 group :development do
   gem 'guard'
   gem 'guard-rubocop', '~> 1.1.0'
   gem 'guard-rspec', '~> 4.5.2'
-end
-
-group :test do
-  gem 'sqlite3', '~> 1.3.9'
-  gem 'activerecord-nulldb-adapter'
-  gem 'simplecov', :require => false
-  gem "codeclimate-test-reporter", group: :test, require: nil
 end
 
 group :acceptance, :travis do
@@ -85,6 +77,10 @@ end
 group :acceptance, :test, :travis do
   gem 'rspec-rails'
   gem 'webmock'
+  gem 'activerecord-nulldb-adapter'
+  gem 'simplecov', :require => false
+  gem "codeclimate-test-reporter", group: :test, require: nil
+  gem 'vcr'
 end
 
 gem 'rails_12factor', group: :production
