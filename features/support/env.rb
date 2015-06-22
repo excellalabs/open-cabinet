@@ -12,6 +12,7 @@ require 'capybara-screenshot/cucumber'
 require 'rack_session_access/capybara'
 
 ActionController::Base.allow_rescue = false
+WebMock.allow_net_connect!
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
