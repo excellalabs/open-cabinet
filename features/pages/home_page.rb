@@ -3,6 +3,7 @@ class HomePage
 
   def visit_home_page
     visit(root_path)
+    puts page.body
   end
 
   def type_search_characters(characters)
