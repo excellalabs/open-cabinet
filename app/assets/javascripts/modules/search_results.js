@@ -24,6 +24,8 @@ Box.Application.addModule('search_results_component', function(context) {
       current_window.forEach(function(element, index) {
         var $result_item = $med_item.clone();
         $result_item.find('.medicine-brand-name').text(element.brand_name);
+        $result_item.find('.add-to-cabinet').attr('data-set-id', element.set_id);
+        $result_item.find('.add-to-cabinet').attr('data-active-ingredient', element.active_ingredient);
         $results_list.append($result_item.show());
       });
       last_result += 10;
@@ -42,6 +44,18 @@ Box.Application.addModule('search_results_component', function(context) {
       if (event === 'search_results') {
         results = data.results;
         display_results();
+      }
+    },
+
+    onclick: function(event, element, elementType) {
+      if (elementType === 'add-medicine') {
+        event.preventDefault();
+        var params = { name: $(element).closest('.medicine-item').find('.medicine-brand-name').text(),
+                       set_id: $(element).attr('data-set-id'),
+                       active_ingredient: $(element).attr('data-active-ingredient') };
+        $.post('/add_to_cabinet', { medicine: params }).done(function(data) {
+          window.location.href = '/cabinet';
+        });
       }
     }
   }
