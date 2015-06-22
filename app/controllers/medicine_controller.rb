@@ -6,10 +6,7 @@ class MedicineController < ApplicationController
   def search
     response = OpenFda::Client.new.query_by_med_name(params[:search_input], 100).body
     results = JSON.parse(response)['results'].to_a
-    @display_results = !results.any? ? [] : results.map do |med|
-      next if med['openfda']['brand_name'].nil?
-      { brand_name: med['openfda']['brand_name'].first.titleize, set_id: med['set_id'] }
-    end.flatten.compact
+    @display_results = build_results(results)
 
     respond_to do |format|
       format.json { render json: @display_results.to_json }
@@ -25,7 +22,7 @@ class MedicineController < ApplicationController
   end
 
   def add_to_cabinet
-    @cabinet.add_to_cabinet(medicine_params)
+    render json: {}, status: @cabinet.add_to_cabinet(medicine_params) ? :ok : :not_found
   end
 
   private
@@ -41,5 +38,15 @@ class MedicineController < ApplicationController
     else
       @cabinet = Cabinet.find_by_id(session[:cabinet_id])
     end
+  end
+
+  def build_results(results)
+    checked_results = !results.any? ? [] : results
+    checked_results.map do |med|
+      next if med['openfda']['brand_name'].nil?
+      { brand_name: med['openfda']['brand_name'].first.titleize,
+        set_id: med['set_id'],
+        active_ingredient: med['active_ingredient'].nil? ? '' : med['active_ingredient'].first }
+    end.flatten.compact
   end
 end
