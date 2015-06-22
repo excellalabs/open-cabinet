@@ -17,7 +17,7 @@ class MedicineController < ApplicationController
   def cabinet
   end
 
-  def add_to_cabinet(_params)
+  def add_to_cabinet
     @cabinet.add_to_cabinet(medicine_params)
   end
 
