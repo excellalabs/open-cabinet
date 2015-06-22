@@ -31,6 +31,10 @@ module OpenFda
       query_json_for_all_records('/drug/label.json', "effective_time:[#{start_time_s}+TO+#{end_time_s}]", include_delay)
     end
 
+    def query_for_interactions(primary)
+      query('/drug/label.json', "set_id:#{primary.set_id} AND _exists_:drug_interactions")
+    end
+
     private
 
     def query_json_for_all_records(endpoint, search, include_delay = false)

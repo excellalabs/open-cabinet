@@ -57,7 +57,6 @@ group :development, :test do
   gem 'rubocop', '0.29.1'
   gem 'teaspoon-mocha'
   gem 'chai-jquery-rails'
-  gem 'vcr'
   gem 'brakeman'
 end
 

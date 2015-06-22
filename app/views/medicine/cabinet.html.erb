@@ -6,16 +6,17 @@
       <input type="text" id="search_input" placeholder="Type a drug name here..." />
     </div>
 
-    <div class='shelves'>
-      <% 3.times do %>
+    <div class='shelves' data-module='cabinet'>
+      <% @cabinet.medicines.in_groups_of(3, false) do |group| %>
       <div class='shelf-wrapper'>
         <div class='shelf'>
-          <% 3.times do |x| %>
-            <div class='pill-container <%= "active" if x == 1 %> <%= "disabled" if x == 2 %>'>
+          <% group.each do |medicine| %>
+            <div class='pill-container'>
               <i class="fa fa-times"></i>
               <div class='pill-wrapper'>
                 <div class='pill-bottle'><%= image_tag("pills-0#{rand(1..7)}.png") %></div>
-                <div class='pill-name'>Medicine NameMedicine NameMedicine NameMedicine Name</div>
+                <%= hidden_field_tag medicine.set_id %>
+                <div class='pill-name'><%= medicine.name %></div>
               </div>
             </div>
           <% end %>
@@ -25,10 +26,9 @@
       <% end %>
     </div>
   </div>
-
   <div class='right-column c-menu c-menu--push-right'>
     <div class='row'>
-      <div class='col-span-10'>
+      <div class='col-span-10' id='interactions'>
         <h1 class='primary-font green'>ADD YOUR DRUGS TO YOUR MEDICINE CABINET.</h1>
         <p>Then compare your drugs to make sure there are no known interactions between them.</p>
       </div>
