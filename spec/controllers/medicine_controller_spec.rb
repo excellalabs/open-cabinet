@@ -20,6 +20,29 @@ RSpec.describe MedicineController, type: :controller do
     end
   end
 
+  describe 'GET #search' do
+    before do
+      @query = 'advil'
+    end
+
+    it 'assigns @display_results' do
+      VCR.use_cassette('search') do
+        get :search, search_input: @query
+        expect(response).to render_template('search')
+        expect(assigns(:display_results)).to be_a(Array)
+      end
+    end
+
+    it 'renders json' do
+      VCR.use_cassette('search') do
+        first_element = 'Advil Liquigels'
+        get :search, search_input: @query, format: 'json'
+        results = JSON.parse(response.body)
+        expect(results.first['brand_name']).to eq(first_element)
+      end
+    end
+  end
+
   describe 'GET #index' do
     it 'responds successfully with an HTTP 200 status code' do
       get :index
