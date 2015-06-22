@@ -6,9 +6,8 @@ class HomePage
   end
 
   def type_search_characters(characters)
-    page.execute_script(%{ $('#search_input').trigger('focus') })
+    find('#search_input').trigger(:focus)
     fill_in('search_input', with: characters)
-    page.execute_script(%{ $('#search_input').trigger('keydown') })
   end
 
   def autocomplete_text
