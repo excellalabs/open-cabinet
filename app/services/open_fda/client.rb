@@ -41,7 +41,7 @@ module OpenFda
         data = query_as_json(endpoint, search, nil, MAX_LIMIT, skip)
         accumulated_data['results'].push(*(data['results']))
         skip += MAX_LIMIT
-        break if data['results'].length < OpenFda::Client::MAX_LIMIT
+        break if data['results'].length < MAX_LIMIT
       end
       accumulated_data
     end
