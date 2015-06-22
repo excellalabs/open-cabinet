@@ -1,20 +1,21 @@
 <div class="overview">
   <div class="search-area">
-      <div class="wrapper">
-        <h1><span class='primary-font bold'>OPEN</span><span class='primary-font light'>CABINET</span></h1>
-        <div class='search-bar col-span-8 col-offset-2'>
-          <input type="text" id="search_input" placeholder="Type a drug name here..." />
-        <button>Search</button>
-      </div>
+    <div class="wrapper">
+      <h1><span class="primary-font bold">OPEN</span><span class="primary-font light">CABINET</span></h1>
+      <div class="search-bar col-span-8 col-offset-2">
+        <input type="text" id="search_input" placeholder="Type a drug name here..." />
+      <button data-type="search-medicine">Search</button>
     </div>
-    <div class="search-results" style="display: none;">
-      <div class="medicine-item">
-        <div class="medicine-item-info">
-          <h3 class="medicine-brand-name">Brand Name</h3>
-          <p class="medicine-brand-info">Other Meta Info</p>
-        </div>
-        <a href class="add-to-cabinet link-button">Add</a>
+  </div>
+  <div class="search-results" data-module="search_results_component">
+    <div class="medicine-item" style="display:none;">
+      <div class="medicine-item-info">
+        <h3 class="medicine-brand-name">Brand Name</h3>
+        <p class="medicine-brand-info">Other Meta Info</p>
       </div>
+      <a href class="add-to-cabinet link-button">Add</a>
+    </div>
+    <div class="results-list">
     </div>
   </div>
 </div>

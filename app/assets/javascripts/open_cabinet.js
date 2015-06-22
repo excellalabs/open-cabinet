@@ -1,7 +1,4 @@
-$(document).ready(init_cabinet);
-$(document).on('page:load', init_cabinet);
-
-function init_cabinet() {
+$(document).on('ready page:load', function() {
   $('.search-area').attr('data-module', 'autocomplete_search');
   Box.Application.init();
-}
+});
