@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'can contain a cabinet' do
-    User.create!(email: 'test@test.com', password: 'password', cabinet: Cabinet.new)
+    cabinet = Cabinet.create!
+    User.create!(email: 'test@test.com', password: 'password', cabinet: cabinet)
 
-    expect(User.first.cabinet.id).to eq(1)
+    expect(User.first.cabinet.id).to eq(cabinet.id)
   end
 end

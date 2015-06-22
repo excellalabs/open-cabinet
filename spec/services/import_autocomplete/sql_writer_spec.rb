@@ -6,7 +6,7 @@ describe 'ImportAutocomplete::SqlWriter' do
   end
 
   context 'saving data' do
-    xit 'deletes the data and inserts new data' do
+    it 'deletes the data and inserts new data' do
       data = %w(thing1 thing2)
       sql_writer = ImportAutocomplete::SqlWriter.new
 
