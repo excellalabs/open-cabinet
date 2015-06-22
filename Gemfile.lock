@@ -301,7 +301,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sqlite3 (1.3.10)
     teaspoon (1.0.2)
       railties (>= 3.2.5, < 5)
     teaspoon-mocha (2.2.4)
@@ -386,7 +385,6 @@ DEPENDENCIES
   secure_headers
   simplecov
   spring
-  sqlite3 (~> 1.3.9)
   teaspoon-mocha
   travis
   turbolinks
