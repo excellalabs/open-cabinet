@@ -1,0 +1,17 @@
+
+<% content_for :content do %>
+
+  <div class='registration'>
+    <div class='wrapper'>
+      <div class='col-offset-3 col-span-6 registration-container'>
+
+        <%= yield %>
+        <%= render "devise/shared/links" %>
+
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+<%= render template: "layouts/application" %>

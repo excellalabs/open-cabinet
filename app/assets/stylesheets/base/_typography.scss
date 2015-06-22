@@ -24,9 +24,14 @@ p {
 //*-- links
 a {
   text-decoration: underline;
+  color: $dark-gray;
 
   &:hover, &:focus {
     text-decoration: none;
+  }
+
+  &:visited {
+    color: $dark-gray;
   }
 }
 
