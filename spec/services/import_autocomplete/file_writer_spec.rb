@@ -13,7 +13,7 @@ describe 'ImportAutocomplete::FileWriter' do
 
       file_writer.write(data)
 
-      expect("thing1\nthing2").to eq(File.read(@test_file))
+      expect("[\"thing1\", \"thing2\"]").to eq(File.read(@test_file))
     end
   end
 end

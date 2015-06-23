@@ -16,7 +16,9 @@ describe 'SearchableMedicines' do
         json_data = read_support_file('sanitizes_label_data.json')
         expect_client_call(time_iterations(0), json_data)
 
-        create_write_expectation(['Imipramine Hydrochloride', 'Ibuprofen', 'Tylenol'])
+        create_write_expectation([['Ibuprofen', { set_id: nil }],
+                                  ['Imipramine Hydrochloride', { set_id: nil }],
+                                  ['Tylenol', { set_id: nil }]])
 
         @class_under_test.pull_searchable_medicines(@start_time, time_iterations(1))
       end
@@ -27,7 +29,7 @@ describe 'SearchableMedicines' do
         second_step_data = build_json(1, 1)
         expect_client_call(time_iterations(1), second_step_data)
 
-        create_write_expectation(%w(Name0 Name1))
+        create_write_expectation([['Name0', { set_id: nil }], ['Name1', { set_id: nil }]])
 
         @class_under_test.pull_searchable_medicines(@start_time, time_iterations(2))
       end
@@ -56,7 +58,8 @@ describe 'SearchableMedicines' do
     it 'should parse VCR data correctly' do
       @mock_writer = double('Writer')
       allow_any_instance_of(OpenFda::SearchableMedicines).to receive(:sleep)
-      expected = read_support_file('expected_vcr_data.txt').split("\n")
+      expected = read_support_file('expected_vcr_data.txt')
+      expected = Array.class_eval(expected)
       create_write_expectation(expected)
 
       parser = OpenFda::SearchableMedicines.new(nil, @mock_writer)
