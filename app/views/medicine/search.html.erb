@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="search-results">
-    <% @display_results.each do |result| %>
+    <% (@display_results || []).each do |result| %>
       <div class="medicine-item">
         <div class="medicine-item-info">
           <h3 class="medicine-brand-name"><%= result[:brand_name] %></h3>

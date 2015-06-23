@@ -52,7 +52,7 @@ RSpec.describe MedicineController, type: :controller do
 
     it 'renders the index template' do
       get :index
-      expect(response).to render_template('index')
+      expect(response).to render_template('search')
       expect(assigns(:cabinet)).to be_a(Cabinet)
     end
   end
