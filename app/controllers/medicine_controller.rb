@@ -16,14 +16,15 @@ class MedicineController < ApplicationController
   # end
 
   def autocomplete
-    render json: SearchableMedicine.all.to_json
+    render json: SearchableMedicine.all.map(&:name)
   end
 
   def cabinet
   end
 
   def add_to_cabinet
-    render json: {}, status: @cabinet.add_to_cabinet(medicine_params) ? :ok : :not_found
+    med = SearchableMedicine.find_by(name: medicine_params['name'])
+    render json: {}, status: @cabinet.add_to_cabinet(name: med.name, set_id: med.set_id) ? :ok : :not_found
   end
 
   def destroy
