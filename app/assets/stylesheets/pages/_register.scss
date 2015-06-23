@@ -5,9 +5,26 @@
   background-size: cover;
   height: 100%;
 
+  .call-to-action {
+    position: relative;
+    top: 15%;
+
+    h1 {
+      color: $white;
+      font-size: 131px;
+      line-height: 110px;
+    }
+
+    h3 {
+      color: $bright-green;
+      font-weight: bold;
+      font-size: 56px;
+    }
+  }
+
   .registration-container {
     position: relative;
-    top: 20%;
+    top: 23%;
     padding: 0 30px;
 
     .registration-wrapper {
