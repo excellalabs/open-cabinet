@@ -26,6 +26,12 @@ class MedicineController < ApplicationController
     render json: {}, status: @cabinet.add_to_cabinet(medicine_params) ? :ok : :not_found
   end
 
+  def destroy
+    @cabinet.medicines.find { |medicine| medicine.id.to_s == params['id'] }.destroy
+    @cabinet.reload
+    render 'shelves', layout: false
+  end
+
   def query_for_all_interactions
     render json: InteractionService.fetch_all_interactions(params[:medicine_id], @cabinet)
   end
@@ -41,7 +47,7 @@ class MedicineController < ApplicationController
       @cabinet = Cabinet.create!
       session[:cabinet_id] = @cabinet.id
     else
-      @cabinet = Cabinet.find_by_id(session[:cabinet_id])
+      @cabinet = Cabinet.includes(:medicines).find_by_id(session[:cabinet_id])
     end
   end
 

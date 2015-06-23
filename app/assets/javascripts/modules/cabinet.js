@@ -3,6 +3,7 @@ Box.Application.addModule('cabinet', function(context) {
   var $context = $(context.getElement());
 
   function interaction_listener(bottle_div) {
+    $(bottle_div).parents('.pill-container').toggleClass('active disabled');
     var $set_id = bottle_div.next('input').attr('id');
     $('.o-wrapper').addClass('is-active');
     $('.c-menu--push-right').addClass('is-active');
@@ -24,6 +25,16 @@ Box.Application.addModule('cabinet', function(context) {
     });
   }
 
+  function delete_medicine(delete_elm) {
+    $.ajax({
+      url: '/destroy/' + $(delete_elm).attr('data-set-id'),
+      method: 'DELETE',
+      success: function(data) {
+        $context.html(data);
+      }
+    });
+  }
+
   function highlight_keywords(keywords, text) {
     var html = ''
     $.each(keywords, function(key, values) {
@@ -38,11 +49,15 @@ Box.Application.addModule('cabinet', function(context) {
     messages: [ ],
 
     init: function() {
+      
     },
 
     onclick: function(event, element, elementType) {
-      if ($(event.target).parents('.pill-bottle').length > 0) {
-        event.preventDefault();
+      event.preventDefault();
+      if ($(event.target).hasClass('pill-delete')) {
+        delete_medicine(event.target);
+      }
+      else if ($(event.target).parents('.pill-bottle').length > 0) {
         interaction_listener($(event.target).parents('.pill-bottle'));
       }
     }
