@@ -1,15 +1,33 @@
-<div class='overview'>
-  <div class='header'>
-    <div class="wrapper" id="search_wrapper">
-      <h1>Welcome to your Medicine Cabinet!</h1>
-      <div class="row">
-        <div class='col-span-6' id="cabinet">
-          <%= collection_check_boxes(:post, :set_ids, @cabinet.medicines, :set_id, :name) %>
-        </div>
-        <div class='col-span-6' id='interactions'>
-          Placeholder for interactions data.
-        </div>
-      </div>
+<div class='cabinet'>
+  <div class="left-column o-wrapper">
+
+    <div class="search-bar">
+      <i class="fa fa-search"></i>
+      <input type="text" id="search_input" placeholder="Type a drug name here..." />
     </div>
+
+    <div class='shelves'>
+      <% 3.times do %>
+      <div class='shelf-wrapper'>
+        <div class='shelf'>
+          <% 3.times do %>
+            <div class='pill-container'>
+              <i class="fa fa-times"></i>
+              <div class='pill-wrapper'>
+                <div class='pill-bottle'><%= image_tag("pills-0#{rand(1..6)}.png") %></div>
+                <div class='pill-name'>Medicine Name</div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class='border-overlay'>&nbsp;</div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='right-column c-menu c-menu--push-right'>
+    <h1 class='primary-font green'>ADD YOUR DRUGS TO YOUR MEDICINE CABINET.</h1>
+    <p>The compare your drugs to make sure there are no known interactions between them.</p>
   </div>
 </div>

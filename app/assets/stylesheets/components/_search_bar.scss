@@ -4,10 +4,20 @@
 
 .search-bar {
   position: relative;
-  margin-top: 30px;
+
+  .fa {
+    position: absolute;
+    left: 10px;
+    top: 7px;
+    color: $dark-gray;
+    font-size: 24px;
+    z-index: 101;
+  }
 
   input {
     width: 100%;
+    border-radius: 0;
+    padding-left: 50px;
   }
 
   .twitter-typeahead {

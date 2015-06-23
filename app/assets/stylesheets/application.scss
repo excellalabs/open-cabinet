@@ -13,11 +13,13 @@
 
 @import "layout/grid";
 @import "layout/header";
+@import "layout/footer";
 
 @import "components/inputs";
 @import "components/buttons";
 @import "components/search_bar";
+@import "components/layout";
 
-@import "pages/overview";
+@import "pages/cabinet";
 @import "pages/register";
 
