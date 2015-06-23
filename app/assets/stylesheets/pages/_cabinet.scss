@@ -3,18 +3,33 @@
   height: 100%;
 
   .search-bar {
-    input {
-      padding-left: 100px;
-      padding-right: 60px;
-    }
-
-    .fa {
-      left: 60px;
-    }
+    margin: 30px 45px 0 45px;
   }
 
   .right-column {
-    padding: 60px;
+    padding: 30px 60px 30px 30px;
+
+    h2 {
+      font-weight: bold;
+      border-bottom: 5px solid $dark-blue;
+      color: $dark-blue;
+      margin-bottom: 30px;
+    }
+
+    section {
+      border-bottom: 1px solid $bright-green;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      h3 {
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+    }
   }
 
   .shelves {
@@ -114,7 +129,7 @@
 
           .pill-bottle {
             img {
-              opacity: .3;
+              opacity: .2;
             }
           }
         }
