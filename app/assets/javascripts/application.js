@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require vendor/owl.carousel.min
 //= require t3.min
 //= require typeahead.min
 //= require open_cabinet

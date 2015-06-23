@@ -5,8 +5,6 @@ Box.Application.addModule('cabinet', function(context) {
   function interaction_listener(bottle_div) {
     $(bottle_div).parents('.pill-container').toggleClass('active disabled');
     var $set_id = bottle_div.next('input').attr('id');
-    $('.o-wrapper').addClass('is-active');
-    $('.c-menu--push-right').addClass('is-active');
 
     $.ajax({
       url: '/interactions',
