@@ -43,11 +43,16 @@ Box.Application.addModule('cabinet', function(context) {
     return html
   }
 
+  function make_last_active() {
+    var $last_med = $('.shelf-wrapper').last().find('.pill-container').last().find('.pill-bottle');
+    interaction_listener($last_med);
+  }
+
   return {
     messages: [ ],
 
     init: function() {
-      
+      make_last_active();
     },
 
     onclick: function(event, element, elementType) {
