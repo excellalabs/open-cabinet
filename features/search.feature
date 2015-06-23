@@ -1,4 +1,5 @@
 @search
+@wip
 Feature: View Search Results
   In order to view medicines I use
   As a Open Cabinet user
