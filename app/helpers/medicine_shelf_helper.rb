@@ -1,21 +1,32 @@
 module MedicineShelfHelper
   MEDICINES_IN_ROW = 3
   NUM_IMAGES = 7
+  MIN_ROWS = 3
   def show_shelves(cabinet)
-    return empty_shelf.html_safe if !cabinet || cabinet.medicines.empty?
     result = ''
     cabinet.medicines.each_with_index do |medicine, i|
       result += shelf_start_html if new_shelf?(i)
       result += medicine_html(medicine)
       result += shelf_end_html if end_shelf?(cabinet.medicines, i)
     end
+    result += add_empty_shelves(cabinet.medicines)
     result.html_safe
   end
 
   private
 
+  def add_empty_shelves(medicines)
+    result = ''
+    num_rows = (medicines.length / MEDICINES_IN_ROW) + (medicines.length % MEDICINES_IN_ROW)
+    while num_rows < MIN_ROWS
+      result += empty_shelf
+      num_rows += 1
+    end
+    result
+  end
+
   def empty_shelf
-    (shelf_start_html + shelf_end_html).html_safe
+    (shelf_start_html + '<div class="empty-shelf">&nbsp;</div>' + shelf_end_html).html_safe
   end
 
   def  new_shelf?(index)
