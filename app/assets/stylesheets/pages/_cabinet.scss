@@ -124,11 +124,18 @@
       &:after {
         @extend %clearfix;
       }
+      
+      $shelf-height: 150px;
+      
+      .empty-shelf {
+        position: relative;
+        height: $shelf-height;
+      }
 
       .pill-container {
         @include span-columns(4 of 12, block-collapse);
         position: relative;
-        height: 150px;
+        height: $shelf-height;
         cursor: pointer;
 
         .fa-times {
