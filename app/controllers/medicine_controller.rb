@@ -24,7 +24,8 @@ class MedicineController < ApplicationController
 
   def add_to_cabinet
     med = SearchableMedicine.find_by(name: medicine_params['name'])
-    render json: {}, status: @cabinet.add_to_cabinet(name: med.name, set_id: med.set_id) ? :ok : :not_found
+    @cabinet.add_to_cabinet(name: med.name, set_id: med.set_id)
+    render 'shelves', layout: false
   end
 
   def destroy
