@@ -1,0 +1,11 @@
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
+  </div>
+
+  <div class="field">
+    <%= f.submit "Send Me Reset Password Instructions" %>
+  </div>
+<% end %>
