@@ -4,7 +4,9 @@ class Cabinet < ActiveRecord::Base
 
   def add_to_cabinet(params)
     med = Medicine.find_or_create_by(set_id: params[:set_id])
-    med.name = params[:name] if med.name.empty?
+    return if medicines.any? { |medicine| medicine.set_id == med.set_id }
+    med.name = params[:name]
+    med.active_ingredient = params[:active_ingredient]
     medicines << med
     save!
   end

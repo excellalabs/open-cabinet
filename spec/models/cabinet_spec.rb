@@ -15,12 +15,10 @@ RSpec.describe Cabinet, type: :model do
     expect(cabinet.medicines[0].name).to eq('Advil')
   end
 
-  it 'can add find an existing medicine and add it disregarding name param' do
-    cabinet = Cabinet.create!
-    Medicine.create!(set_id: '1234', name: 'Advil')
+  it 'does not add duplicate medicines based on set_id' do
+    cabinet = Cabinet.create!(medicines: [Medicine.create!(set_id: '1234', name: 'Advil')])
 
     cabinet.add_to_cabinet(set_id: '1234', name: 'Tylenol')
     expect(cabinet.medicines.length).to eq(1)
-    expect(cabinet.medicines[0].name).to eq('Advil')
   end
 end

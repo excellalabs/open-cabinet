@@ -26,10 +26,14 @@ class MedicineController < ApplicationController
     render json: {}, status: @cabinet.add_to_cabinet(medicine_params) ? :ok : :not_found
   end
 
+  def query_for_all_interactions
+    render json: InteractionService.fetch_all_interactions(params[:medicine_id], @cabinet)
+  end
+
   private
 
   def medicine_params
-    params.require(:medicine).permit(:name, :set_id)
+    params.require(:medicine).permit(:name, :set_id, :active_ingredient)
   end
 
   def find_or_create_cabinet
