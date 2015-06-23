@@ -15,7 +15,7 @@ module MedicineShelfHelper
   private
 
   def empty_shelf
-    'You have no medicines in your cabinet, search for some to get started.'
+    (shelf_start_html + shelf_end_html).html_safe
   end
 
   def  new_shelf?(index)
