@@ -35,6 +35,10 @@ module OpenFda
       query('/drug/label.json', "set_id:#{primary.set_id} AND _exists_:drug_interactions")
     end
 
+    def query_by_set_id(set_id)
+      query('/drug/label.json', "set_id:#{set_id}")
+    end
+
     private
 
     def query_json_for_all_records(endpoint, search, include_delay = false)
