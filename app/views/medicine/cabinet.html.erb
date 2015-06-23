@@ -1,5 +1,6 @@
 <div class='cabinet'>
 
+  <div class='item'>
     <div class="search-bar">
       <i class="fa fa-search"></i>
       <input type="text" id="search_input" placeholder="Type a drug name here..." />
@@ -7,18 +8,18 @@
     <div class='shelves' data-module='cabinet'>
       <%= render :template => 'medicine/shelves' -%>
     </div>
+  </div>
 
-    <div class='item description-view'>
-    
-      <!-- show this when nothing is selected -->
+  <div class='item description-view'>
+
+    <% if cabinet.medicines.empty? %>
       <div class='row'>
         <div class='col-span-10' id='interactions'>
           <h1 class='primary-font green'>ADD YOUR DRUGS TO YOUR MEDICINE CABINET.</h1>
           <p>Then compare your drugs to make sure there are no known interactions between them.</p>
         </div>
-      </div>    
-
-      <!-- show this when something is selected -->
+      </div>
+    <% else %>
       <div class='row'>
         <h2>
           <div>Tylenol</div>
@@ -39,35 +40,35 @@
           <p>Lorem ipsum dolor sit amet, an quo noster principes, et cum fuisset partiendo voluptatum. Sanctus tincidunt sea no. Probo dicunt mel no, dicam audire id pro, affert verear euripidis ea usu. Eu habeo tation pro, ad qui dicta probatus invenire. His at primis noster delenit, ea euismod efficiantur duo. Et viris choro ius.
           </p>
         </section>
+      </div>
+    <% end %>
+  </div>
 
-      </div>
+  <div class='item reaction-list'>
+    <div class='back-to-cabinet' onclick="owl.trigger('owl.goTo', 0);">
+      <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back to Cabinet
     </div>
+    
+    <div class='row'>
+      <ul>
+        <li>Medicine 1 + Medicine 2</li>
+        <li>Medicine 1 + Medicine 2</li>
+        <li>Medicine 1 + Medicine 2</li>
+        <li>Medicine 1 + Medicine 2</li>
+        <li>Medicine 1 + Medicine 2</li>
+      </ul>
+    </div>
+  </div>
 
-    <div class='item reaction-list'>
-      <div class='back-to-cabinet' onclick="owl.trigger('owl.goTo', 0);">
-        <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back to Cabinet
-      </div>
-      
-      <div class='row'>
-        <ul>
-          <li>Medicine 1 + Medicine 2</li>
-          <li>Medicine 1 + Medicine 2</li>
-          <li>Medicine 1 + Medicine 2</li>
-          <li>Medicine 1 + Medicine 2</li>
-          <li>Medicine 1 + Medicine 2</li>
-        </ul>
-      </div>
+  <div class='item description-view'>
+    <div class='row'>
+      <section>
+        <h3>General Information</h3>
+        <p>Lorem ipsum dolor sit amet, an quo noster principes, et cum fuisset partiendo voluptatum. Sanctus tincidunt sea no. Probo dicunt mel no, dicam audire id pro, affert verear euripidis ea usu. Eu habeo tation pro, ad qui dicta probatus invenire. His at primis noster delenit, ea euismod efficiantur duo. Et viris choro ius.
+        </p>
+      </section>
     </div>
-
-    <div class='item description-view'>
-      <div class='row'>
-        <section>
-          <h3>General Information</h3>
-          <p>Lorem ipsum dolor sit amet, an quo noster principes, et cum fuisset partiendo voluptatum. Sanctus tincidunt sea no. Probo dicunt mel no, dicam audire id pro, affert verear euripidis ea usu. Eu habeo tation pro, ad qui dicta probatus invenire. His at primis noster delenit, ea euismod efficiantur duo. Et viris choro ius.
-          </p>
-        </section>
-      </div>
-    </div>
+  </div>
 
 
 </div>
