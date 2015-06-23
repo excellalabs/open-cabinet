@@ -1,0 +1,13 @@
+.main-content {
+  height: calc(100% - 100px);
+
+  .left-column, .right-column {
+    @extend .col-span-6;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .left-column {
+    background: $light-gray;
+  }
+}

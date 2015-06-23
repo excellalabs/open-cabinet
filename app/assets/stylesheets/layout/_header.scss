@@ -3,20 +3,38 @@
 //*-- 
 
 .nav {
-  background: $light-blue;
+  background: $dark-gray;
   color: $white;
-  padding: 30px 0;
-
-  .logo {
-    font-size: 32px;
-  }
+  padding: 15px 60px;
 
   a {
     text-decoration: none;
     color: $white;
+  }
 
-    &:visited {
+  .logo {
+    font-size: 32px;
+
+    img {
+      width: 50px;
+      margin-right: 2px;
+    }
+  }
+
+  .links {
+    line-height: 50px;
+
+    a {
+      text-decoration: none;
       color: $white;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:visited {
+        color: $white;
+      }
     }
   }
 }

@@ -1,0 +1,107 @@
+.cabinet {
+  position: relative;
+  height: 100%;
+
+  .search-bar {
+    input {
+      padding-left: 100px;
+      padding-right: 60px;
+    }
+
+    .fa {
+      left: 60px;
+    }
+  }
+
+  .right-column {
+    padding: 60px;
+  }
+
+  .shelves {
+    position: relative;
+    padding: 30px 60px 60px;
+
+    .shelf-wrapper {
+      position: relative;
+    }
+
+    .border-overlay {
+      position: absolute;
+      width: 0;
+      height: 0;
+      right: 0;
+      bottom: 0;
+      border-style: solid;
+      border-width: 0 0 15px 500px;
+      border-color: transparent transparent rgba(237, 237, 237, .2) transparent;   
+    }
+
+    .shelf {
+      position: relative;
+      border-bottom: 30px solid $dark-gray;
+
+      &:after {
+        @extend %clearfix;
+      }
+
+      .pill-container {
+        @extend .col-span-4;
+        position: relative;
+        height: 150px;
+
+        .fa-times {
+          position: absolute;
+          display: none;
+          right: 0;
+          top: 30px;
+          background: $bright-orange;
+          color: $white;
+          padding: 3px 5px;
+        }
+
+        &:hover {
+          .fa-times {
+            display: inline-block;
+          }
+        }
+
+        .pill-wrapper {
+          position: absolute;
+          bottom: -26px;
+          width: 100%;
+          text-align: center;
+
+          .pill-bottle {
+            img {
+              width: 50px;
+              position: relative;
+              bottom: -4px;
+            }
+          }
+
+          .pill-name {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+
+  .c-menu {
+    position: relative;
+    z-index: 200;
+    transition: transform 0.3s;
+    transform: translateX(0);
+
+    &.is-active {
+      transform: translateX(-60%);
+    }
+  }
+
+  .o-wrapper {
+    transition: transform 0.3s;
+    &.is-active {
+      transform: translateX(-60%);
+    }
+  }
+}

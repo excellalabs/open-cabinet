@@ -1,6 +1,7 @@
 class MedicineController < ApplicationController
   before_action :find_or_create_cabinet, except: :search
   def index
+    render 'search'
   end
 
   def search

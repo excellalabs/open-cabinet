@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'medicine/index', type: :view do
+RSpec.describe 'medicine/search', type: :view do
   it 'renders search' do
     render
     expect(rendered).to include('OPEN')

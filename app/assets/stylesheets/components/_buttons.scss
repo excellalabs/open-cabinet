@@ -9,14 +9,13 @@ button, .base-button {
   padding: 10px 15px;
   border: 0;
   color: $white;
-  background: $gold;
-  border: 1px solid $gold;
+  background: $bright-orange;
+  border: 1px solid $bright-orange;
   cursor: pointer;
 }
 
 .link-button {
   @extend .base-button;
-  background: $dark-blue;
   display: inline-block;
   text-decoration: none;
 

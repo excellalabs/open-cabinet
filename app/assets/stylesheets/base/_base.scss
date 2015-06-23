@@ -4,10 +4,15 @@ html, body {
   background-repeat: repeat;
   height: 100%;
   font-family: $primary_font;
-  font-size: 1em;
+  font-size: 18px;
   line-height: 24px;
   margin: 0;
   padding: 0;
+  color: $dark-gray;
+}
+
+body {
+  overflow: hidden;
 }
 
 .t-right {
