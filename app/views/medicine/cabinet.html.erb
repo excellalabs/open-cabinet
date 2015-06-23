@@ -5,25 +5,8 @@
       <i class="fa fa-search"></i>
       <input type="text" id="search_input" placeholder="Type a drug name here..." />
     </div>
-
     <div class='shelves' data-module='cabinet'>
-      <% @cabinet.medicines.in_groups_of(3, false) do |group| %>
-      <div class='shelf-wrapper'>
-        <div class='shelf'>
-          <% group.each do |medicine| %>
-            <div class='pill-container'>
-              <i class="fa fa-times"></i>
-              <div class='pill-wrapper'>
-                <div class='pill-bottle'><%= image_tag("pills-0#{rand(1..7)}.png") %></div>
-                <%= hidden_field_tag medicine.set_id %>
-                <div class='pill-name'><%= medicine.name %></div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-        <div class='border-overlay'>&nbsp;</div>
-      </div>
-      <% end %>
+      <%= render :template => 'medicine/shelves' -%>
     </div>
   </div>
   <div class='right-column c-menu c-menu--push-right'>
