@@ -8,15 +8,15 @@ RSpec.describe MedicineController, type: :controller do
 
   describe 'GET #autocomplete' do
     it 'returns list of searchable medicines' do
-      expect(SearchableMedicine).to receive(:all).and_return([SearchableMedicine.new(name: 'Tylenol', set_id: '123'),
-                                                              SearchableMedicine.new(name: 'Ibuprofen', set_id: '123')])
+      expect(SearchableMedicine).to receive(:all).and_return([double('SearchableMedicine', name: 'Tylenol'),
+                                                              double('SearchableMedicine', name: 'Ibuprofen')])
 
       get :autocomplete
 
       parsed_body = JSON.parse(response.body)
       expect(response).to be_success
-      expect(parsed_body.first['name'].include?('Tylenol')).to be true
-      expect(parsed_body.last['name'].include?('Ibuprofen')).to be true
+      expect(parsed_body.include?('Tylenol')).to be true
+      expect(parsed_body.include?('Ibuprofen')).to be true
     end
   end
 
