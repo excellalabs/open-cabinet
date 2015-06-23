@@ -16,7 +16,7 @@ class MedicineController < ApplicationController
   # end
 
   def autocomplete
-    render json: SearchableMedicine.all.map(&:name)
+    render json: SearchableMedicine.all.to_json
   end
 
   def cabinet
