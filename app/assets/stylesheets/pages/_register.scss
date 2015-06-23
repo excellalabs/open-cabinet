@@ -1,15 +1,51 @@
 
 .registration {
+  position: relative;
   background: image-url('overview-splash.png') no-repeat;
   background-size: cover;
   height: 100%;
-  
+
   .registration-container {
     position: relative;
-    background: $white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 30px;
-    margin-top: 90px;
+    top: 20%;
+    padding: 0 30px;
+
+    .registration-wrapper {
+      background: $white;
+      border: 1px solid $black;
+      width: 100%;
+      border-radius: 4px;
+      padding: 15px 30px;
+    }
+
+    .field {
+      input {
+        width: 100%;
+        margin: 30px auto;
+      }
+
+      input[type="email"], input[type="password"] {
+        background: #fafafa;
+        border: 1px solid $light-gray;
+      }
+
+      input[type='submit'] {
+        background: $bright-green;
+        color: $white;
+        text-align: center;
+        font-weight: bold;
+
+        &:hover {
+          background: darken($bright-green, 10%);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .links {
+      text-align: center;
+      font-size: 14px;
+      margin: 5px;
+    }
   }
 }
