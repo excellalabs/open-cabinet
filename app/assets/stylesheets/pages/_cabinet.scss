@@ -37,29 +37,38 @@
     }
 
     .shelf {
+      @include fill-parent();
+      @include row(table);
       position: relative;
       border-bottom: 30px solid $dark-gray;
+      margin-bottom: 15px;
 
       &:after {
         @extend %clearfix;
       }
 
       .pill-container {
-        @extend .col-span-4;
+        @include span-columns(4 of 12, block-collapse);
         position: relative;
         height: 150px;
+        cursor: pointer;
 
         .fa-times {
           position: absolute;
           display: none;
           right: 0;
           top: 30px;
-          background: $bright-orange;
+          background: $bright-blue;
           color: $white;
           padding: 3px 5px;
         }
 
         &:hover {
+
+          border-radius: 4px;
+          @include border-bottom-radius(0px);
+          background: rgba(65, 70, 82, .2);
+
           .fa-times {
             display: inline-block;
           }
@@ -67,20 +76,46 @@
 
         .pill-wrapper {
           position: absolute;
-          bottom: -26px;
+          bottom: -35px;
           width: 100%;
           text-align: center;
 
           .pill-bottle {
             img {
-              width: 50px;
+              width: 70px;
               position: relative;
-              bottom: -4px;
+              bottom: -8px;
             }
           }
 
           .pill-name {
+            @include ellipsis(100%);
             color: $white;
+            line-height: 30px;
+            width: 100%;
+            padding: 0 15px;
+          }
+        }
+
+        &.active {
+          border-radius: 4px;
+          @include border-bottom-radius(0px);
+          background: rgba(65, 70, 82, .2);
+
+          .pill-name {
+            background: $dark-red;
+          }
+        }
+
+        &.disabled {
+          .pill-name {
+            background: rgba(237, 237, 237, .2);
+          }
+
+          .pill-bottle {
+            img {
+              opacity: .3;
+            }
           }
         }
       }

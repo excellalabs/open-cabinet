@@ -10,12 +10,12 @@
       <% 3.times do %>
       <div class='shelf-wrapper'>
         <div class='shelf'>
-          <% 3.times do %>
-            <div class='pill-container'>
+          <% 3.times do |x| %>
+            <div class='pill-container <%= "active" if x == 1 %> <%= "disabled" if x == 2 %>'>
               <i class="fa fa-times"></i>
               <div class='pill-wrapper'>
-                <div class='pill-bottle'><%= image_tag("pills-0#{rand(1..6)}.png") %></div>
-                <div class='pill-name'>Medicine Name</div>
+                <div class='pill-bottle'><%= image_tag("pills-0#{rand(1..7)}.png") %></div>
+                <div class='pill-name'>Medicine NameMedicine NameMedicine NameMedicine Name</div>
               </div>
             </div>
           <% end %>
@@ -27,7 +27,11 @@
   </div>
 
   <div class='right-column c-menu c-menu--push-right'>
-    <h1 class='primary-font green'>ADD YOUR DRUGS TO YOUR MEDICINE CABINET.</h1>
-    <p>The compare your drugs to make sure there are no known interactions between them.</p>
+    <div class='row'>
+      <div class='col-span-10'>
+        <h1 class='primary-font green'>ADD YOUR DRUGS TO YOUR MEDICINE CABINET.</h1>
+        <p>Then compare your drugs to make sure there are no known interactions between them.</p>
+      </div>
+    </div>
   </div>
 </div>
