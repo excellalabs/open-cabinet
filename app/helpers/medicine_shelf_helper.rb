@@ -2,7 +2,7 @@ module MedicineShelfHelper
   MEDICINES_IN_ROW = 3
   NUM_IMAGES = 7
   def show_shelves(cabinet)
-    return empty_shelf.html_safe if cabinet.medicines.empty?
+    return empty_shelf.html_safe if !cabinet || cabinet.medicines.empty?
     result = ''
     cabinet.medicines.each_with_index do |medicine, i|
       result += shelf_start_html if new_shelf?(i)
