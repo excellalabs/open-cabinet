@@ -12,28 +12,32 @@ class MedicineController < ApplicationController
   end
 
   def cabinet
+    gon.meds = @cabinet.medicines
+    gon.images = (1..MedicineShelfHelper::NUM_IMAGES).map { |num| ActionController::Base.helpers.asset_path("pills-0#{num}.png") }
+  end
+
+  def refresh_shelves
+    render 'shelves', layout: false if request.xhr?
   end
 
   def add_to_cabinet
-    med = SearchableMedicine.find_by(name: medicine_params['name'])
+    med = SearchableMedicine.find_by(name: medicine_params)
     @cabinet.add_to_cabinet(name: med.name, set_id: med.set_id)
-    render 'shelves', layout: false
+    render json: { name: med.name, set_id: med.set_id }, status: :ok
   end
 
   def destroy
-    @cabinet.medicines.find { |medicine| medicine.id.to_s == params['id'] }.destroy
-    @cabinet.reload
-    render 'shelves', layout: false
+    render json: nil, status: :ok if @cabinet.medicines.find_by(name: medicine_params).destroy
   end
 
-  def query_for_all_interactions
-    render json: InteractionService.fetch_all_interactions(params[:medicine_id], @cabinet)
+  def query_for_information
+    render json: MedicineInformationService.fetch_information(params[:medicine_id], @cabinet)
   end
 
   private
 
   def medicine_params
-    params.require(:medicine).permit(:name, :set_id, :active_ingredient)
+    params.require(:medicine)
   end
 
   def find_or_create_cabinet

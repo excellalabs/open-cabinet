@@ -1,0 +1,18 @@
+<div class='interactions' data-module='interactions'>
+  <div class="left-column">
+
+    <div class='shelves' >
+      <% @interactions['interactions'].each do |set_id, medicine| %>
+        <%= button_tag "#{@interactions['primary']['name']} & #{medicine['name']}", class: 'test-button', data: { primary: @interactions['primary']['set_id'], interacting: set_id } %>
+      <% end %>
+    </div>
+  </div>
+  <div class='right-column c-menu c-menu--push-right'>
+    <div class='row'>
+      <div class='col-span-10' id='interactions'>
+        <h1 class='primary-font green'>ADD YOUR DRUGS TO YOUR MEDICINE CABINET.</h1>
+        <p>Then compare your drugs to make sure there are no known interactions between them.</p>
+      </div>
+    </div>
+  </div>
+</div>

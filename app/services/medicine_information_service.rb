@@ -1,8 +1,24 @@
 class MedicineInformationService
   extend FdaClientHelper
-  def self.fetch_general_information(set_id)
-    response, data = OpenFda::Client.new.query_by_set_id(set_id), {}
-    %w(indications_and_usage dosage_and_administration warnings).each { |info| data[info] = fetch_from_response(response, info) }
+  def self.fetch_information(set_id, cabinet)
+    @primary, response, client = Medicine.find_by_set_id(set_id), {}, OpenFda::Client.new, 0
+    response[:primary] = @primary.name
+    response[:interactions_text] = fetch_from_response(client.query_for_interactions(@primary), 'drug_interactions')
+    %w(indications_and_usage dosage_and_administration warnings).each do |info|
+      response[info.to_sym] = fetch_from_response(client.query_by_set_id(set_id), info)
+    end
+    response[:interactions] = build_interactions(cabinet.medicines, response[:interactions_text])
+    response
+  end
+
+  def self.build_interactions(medicines, interaction_text)
+    data = {}
+    medicines.each do |medicine|
+      next if @primary.set_id == medicine.set_id
+      keywords = [medicine.name, medicine.active_ingredient].map { |name| name.try(:downcase) }.uniq
+      binding.pry
+      data[medicine.name.to_sym] = keywords if interaction_text =~ /#{keywords.join("|")}/
+    end
     data
   end
 end

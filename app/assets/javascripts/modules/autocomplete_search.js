@@ -1,7 +1,9 @@
 Box.Application.addModule('autocomplete_search', function(context) {
   'use strict';
   var $component = $(context.getElement()),
-      $search_input = null;
+      $search_input = null,
+      cabinet_db,
+      module_el;
 
   var medicines = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -22,13 +24,8 @@ Box.Application.addModule('autocomplete_search', function(context) {
       name: 'medicines',
       source: medicines
     }).bind('typeahead:selected', function(obj, medicine){
-      var params = { name: medicine };
-      $.post('/add_to_cabinet', { medicine: params }, function(data) {
-        context.broadcast('refresh_shelves', {
-          html: data
-        });
-        $search_input.val('');
-      });
+      cabinet_db.add(medicine);
+      $search_input.val('');
     });
   }
 
@@ -38,6 +35,9 @@ Box.Application.addModule('autocomplete_search', function(context) {
     init: function() {
       $search_input = $component.find('#search_input');
       setup_autocomplete();
+      cabinet_db = context.getService('cabinet-db');
+      cabinet_db.load(gon.meds);
+      module_el = context.getElement();
     },
 
     onclick: function(event, element, elementType) {
