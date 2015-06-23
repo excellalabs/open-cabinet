@@ -1,10 +1,9 @@
 
 .registration {
-  position: relative;
+  background: image-url('overview-splash.png') no-repeat;
+  background-size: cover;
   height: 100%;
-  overflow: hidden;
-  background: $light-gray;
-
+  
   .registration-container {
     position: relative;
     background: $white;
