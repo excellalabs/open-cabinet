@@ -4,7 +4,7 @@ namespace :searchable_medicines do
     raise 'Please enter a file path for the downloaded file' unless args.arg1
     parser = OpenFda::SearchableMedicines.new(Rails.configuration.open_fda_import_key,
                                           ImportAutocomplete::FileWriter.new(args.arg1))
-    start_time = Time.new(1990, 6, 1)
+    start_time = Time.new(2015, 1, 1)
     finish_time = Time.new
     # finish_time = Time.new(1995, 1, 1)
     parser.pull_searchable_medicines(start_time, finish_time)
@@ -14,7 +14,7 @@ namespace :searchable_medicines do
   task :import => :environment do
     parser = OpenFda::SearchableMedicines.new(Rails.configuration.open_fda_import_key,
                                           ImportAutocomplete::SqlWriter.new)
-    start_time = Time.new(1990, 6, 1)
+    start_time = Time.new(2015, 1, 1)
     finish_time = Time.new
     # finish_time = Time.new(1995, 1, 1)
     parser.pull_searchable_medicines(start_time, finish_time)

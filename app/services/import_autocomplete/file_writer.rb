@@ -6,7 +6,7 @@ module ImportAutocomplete
 
     def write(data)
       Rails.logger.info "Writing #{data.length} rows to #{@file_path}"
-      File.write(@file_path, data.join("\n"))
+      File.write(@file_path, data.to_a)
     end
   end
 end

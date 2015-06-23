@@ -12,8 +12,7 @@ module OpenFda
     def pull_searchable_medicines(start_time, finish_time)
       Rails.logger.info 'Beginning import...'
       names = pull_for_time_period(start_time, finish_time)
-      data = names.keys.select { |key| key.length > 0 }
-      @output_writer.write(data)
+      @output_writer.write(names)
     end
 
     private
