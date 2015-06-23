@@ -23,8 +23,11 @@ Box.Application.addModule('autocomplete_search', function(context) {
       source: medicines
     }).bind('typeahead:selected', function(obj, medicine){
       var params = { name: medicine };
-      $.post('/add_to_cabinet', { medicine: params }).done(function() {
-        location.reload(true);
+      $.post('/add_to_cabinet', { medicine: params }, function(data) {
+        context.broadcast('refresh_shelves', {
+          html: data
+        });
+        $search_input.val('');
       });
     });
   }

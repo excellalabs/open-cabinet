@@ -28,9 +28,13 @@ Box.Application.addModule('cabinet', function(context) {
       url: '/destroy/' + $(delete_elm).attr('data-set-id'),
       method: 'DELETE',
       success: function(data) {
-        $context.html(data);
+        redraw_shelf(data);
       }
     });
+  }
+
+  function redraw_shelf(html_data) {
+    $context.html(html_data);
   }
 
   function highlight_keywords(keywords, text) {
@@ -49,10 +53,16 @@ Box.Application.addModule('cabinet', function(context) {
   }
 
   return {
-    messages: [ ],
+    messages: ['refresh_shelves'],
 
     init: function() {
       make_last_active();
+    },
+
+    onmessage: function (name, data) {
+      if (name == 'refresh_shelves') {
+        redraw_shelf(data.html);
+      }
     },
 
     onclick: function(event, element, elementType) {
