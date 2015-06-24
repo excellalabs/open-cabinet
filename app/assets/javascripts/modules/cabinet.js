@@ -48,8 +48,10 @@ Box.Application.addModule('cabinet', function(context) {
   }
 
   function make_last_active() {
-    var $last_med = $('.shelf-wrapper').last().find('.pill-container').last().find('.pill-bottle');
-    interaction_listener($last_med);
+    var $last_med = $context.find('.pill-bottle').last();
+    if ($last_med.length > 0) {
+      interaction_listener($last_med);
+    }
   }
 
   return {
@@ -62,6 +64,7 @@ Box.Application.addModule('cabinet', function(context) {
     onmessage: function (name, data) {
       if (name == 'refresh_shelves') {
         redraw_shelf(data.html);
+        make_last_active();
       }
     },
 
