@@ -27,7 +27,7 @@ class MedicineController < ApplicationController
   end
 
   def destroy
-    render json: nil, status: :ok if @cabinet.medicines.find_by(name: medicine_params).destroy
+    render json: nil, status: :ok if @cabinet.medicines.find { |medicine| medicine.name == medicine_params }.destroy
   end
 
   def query_for_information

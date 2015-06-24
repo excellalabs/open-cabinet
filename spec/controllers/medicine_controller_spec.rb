@@ -34,9 +34,10 @@ RSpec.describe MedicineController, type: :controller do
 
   describe 'destroy' do
     it 'deletes the medicine' do
-      cabinet = create_cabinet_with_one_medicine
+      med_name = 'Tylenol'
+      cabinet = create_cabinet_with_one_medicine(med_name)
 
-      delete :destroy, id: cabinet.medicines.first.id.to_s
+      delete :destroy, medicine: cabinet.medicines.first.name
 
       cabinet.reload
       expect(0).to eq cabinet.medicines.length
@@ -50,7 +51,7 @@ RSpec.describe MedicineController, type: :controller do
     end
 
     it 'finds the cabinet if set in the session' do
-      cabinet = create_cabinet_with_one_medicine
+      cabinet = create_cabinet_with_one_medicine 'test'
 
       get :cabinet
 
@@ -80,10 +81,10 @@ RSpec.describe MedicineController, type: :controller do
     end
   end
 
-  def create_cabinet_with_one_medicine
+  def create_cabinet_with_one_medicine(medicine_name = nil)
     cabinet = Cabinet.create
     session[:cabinet_id] = cabinet.id
-    Medicine.create(cabinet: cabinet)
+    Medicine.create(cabinet: cabinet, name: medicine_name)
     cabinet
   end
 end
