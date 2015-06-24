@@ -8,7 +8,7 @@
   padding: 15px 60px;
 
   @include media($mobile) {
-    padding: 7px 15px 2px;
+    padding: 15px;
   }
 
   a {
@@ -35,6 +35,10 @@
 
   .links {
     line-height: 50px;
+
+    @include media($mobile) {
+      font-size: 22px;
+    }
 
     a {
       position: relative;
@@ -81,7 +85,7 @@
 
     .mobile-menu {
       position: absolute;
-      top: -10px;
+      top: 0;
       right: 15px;
     }
 
@@ -91,8 +95,14 @@
       list-style-type: none;
       text-align: center;  
 
-      li {
-        display: inline;
+      @include media($mobile) {
+        text-align: left;
+      }
+
+      @include media($tablet-and-up) {
+        li {
+          display: inline;
+        }
       }
     }
   }
@@ -102,7 +112,7 @@
   position: fixed;
   width: 240px;
   height: 100%;
-  top: 0;
+  top: -5px;
   z-index: 9999;
   background: $dark-gray;
   right: -240px;
