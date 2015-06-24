@@ -3,9 +3,11 @@ var owl;
 $(document).on('ready page:load', function() {
   $('.search-bar').attr('data-module', 'autocomplete_search');
   Box.Application.init();
-  $('.shelves').attr('data-module', 'cabinet');
-  var elm = document.getElementById('shelves');
-  Box.Application.start(elm);
+  if ($('.shelves').length > 0) {
+    $('.shelves').attr('data-module', 'cabinet');
+    var elm = document.getElementById('shelves');
+    Box.Application.start(elm);
+  }
 
   owl = $(".cabinet");
 
