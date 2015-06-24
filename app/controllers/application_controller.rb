@@ -10,11 +10,6 @@ class ApplicationController < ActionController::Base
     cabinet_path
   end
 
-  def sign_out_and_redirect(_user)
-    reset_sesion
-    root_path
-  end
-
   def current_user
     @current_user ||= super && User.includes(cabinet: [:medicines]).find(@current_user.id)
   end
