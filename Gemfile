@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.0'
 # Use Puma as the app server
 gem 'puma'
 
+gem 'actionpack-action_caching'
+gem 'dalli'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

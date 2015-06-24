@@ -77,6 +77,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  if ENV['MEMCACHEDCLOUD_SERVERS']
+    config.cache_store = :mem_cache_store, ENV['MEMCACHEDCLOUD_SERVERS'].split(','), { :username => ENV['MEMCACHEDCLOUD_USERNAME'], :password => ENV['MEMCACHEDCLOUD_PASSWORD'] }
+  end
+
   config.secret_key_base = ENV['SECRET_KEY_BASE']
   config.basic_auth_user = ENV['BASIC_AUTH_USERNAME']
   config.basic_auth_pass = ENV['BASIC_AUTH_PASSWORD']
