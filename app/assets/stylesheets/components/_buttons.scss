@@ -30,6 +30,10 @@ button, .base-button, input[type='submit'] {
   text-decoration: none;
   font-weight: bold;
   font-size: 18px;
+
+  @include media($mobile) {
+    font-size: 16px;
+  }
 }
 
 //*-- color buttons:
