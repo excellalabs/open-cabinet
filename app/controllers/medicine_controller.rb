@@ -1,5 +1,6 @@
 class MedicineController < ApplicationController
   before_action :find_or_create_cabinet, except: :search
+  caches_action :autocomplete
 
   def autocomplete
     ary = []
