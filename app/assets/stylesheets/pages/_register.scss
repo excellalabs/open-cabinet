@@ -4,13 +4,15 @@
   background: image-url('overview-splash.png') no-repeat;
   background-size: cover;
   height: 100%;
+
   .call-to-action {
     position: relative;
     top: 15%;
 
     @include media($mobile) {
       top: 0;
-      padding: 30px;
+      padding: 15px;
+      margin-top: 15px;
     }
 
     h1 {
@@ -19,7 +21,7 @@
       line-height: 110px;
 
       @include media($mobile) {
-        font-size: 50px;
+        font-size: 32px;
         line-height: 1em;
       }
     }
@@ -42,6 +44,8 @@
 
     @include media($mobile) {
       top: 0;
+      padding: 0 15px;
+      margin-top: 15px;
     }
 
     .has-account {
@@ -55,17 +59,35 @@
       width: 100%;
       border-radius: 4px;
       padding: 15px 30px;
+
+      @include media($mobile) {
+        padding: 15px;
+      }
     }
 
     .field {
+      margin: 15px auto;
+
+      @include media($mobile) {
+        margin: 0;
+
+        &:last-child {
+          margin-top: 15px;
+        }
+      }
+
       input {
         width: 100%;
-        margin: 15px auto;
       }
 
       input[type="email"], input[type="password"] {
         background: #efefef;
         border: 1px solid $light-gray;
+
+        @include media($mobile) {
+          border-radius: 0;
+          border: 1px solid $white;
+        }
       }
 
       input[type='submit'] {
