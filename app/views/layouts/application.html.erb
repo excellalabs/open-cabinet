@@ -57,4 +57,16 @@
   ga('send', 'pageview');
 </script>
 <% end %>
+<script type=”text/javascript”>
+  window.onbeforeunload = function (){
+    $.ajax({
+      url: '<%=session_clear_url%>',
+      type: “POST”,
+      data: {},
+      contentType: “application/json; charset=utf-8″,
+      dataType: “json”
+    });
+
+  };
+</script>
 </html>
