@@ -20,7 +20,8 @@ script:
 - bundle exec rubocop -Dc .rubocop.yml
 - RAILS_ENV=travis bundle exec rspec
 - bundle exec rake teaspoon
-- rake cucumber RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE
+- rake cucumber:non_exterior RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE
+- rake cucumber:exterior_integration RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE
 deploy:
   provider: heroku
   run:
