@@ -44,6 +44,6 @@ Before do
   page.driver.basic_authorize(Rails.configuration.basic_auth_user,
                               Rails.configuration.basic_auth_pass)
 
-  @home_page ||= HomePage.new
+  @cabinet_page ||= CabinetPage.new
   @login_page ||= LoginPage.new
 end
