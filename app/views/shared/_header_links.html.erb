@@ -1,0 +1,7 @@
+<ul>
+  <li><%= link_to('home', root_path, class: ("active" if current_page?(root_path))) %></li>
+  <li class='hidden-mobile'>|</li>
+  <li><%= link_to('cabinet', cabinet_path, class: ("active" if current_page?(cabinet_path))) %></li>
+  <li class='hidden-mobile'>|</li>
+  <li><%= render :partial => 'shared/authentication' %></li>
+</ul>

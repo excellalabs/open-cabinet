@@ -1,0 +1,20 @@
+  <div class='nav row'>
+    <div class='col-span-8 logo'>
+      <%= image_tag('logo.png') %><a href='/'><span class='primary-font bold'>PEN</span><span class='primary-font bold green'>CABINET</span></a>
+    </div>
+
+    <div class='col-span-4 t-right links'>
+      <div class='hidden-mobile'>
+        <%= render :template => 'shared/_header_links' -%>
+      </div>
+
+      <div class='mobile-menu visible-mobile'>
+        <button class='x lines-button' title='open all sections'><span class='lines'></span></button>
+      </div>
+
+      <div class='mobile-side-menu'>
+        <%= render :template => 'shared/_header_links' -%>
+      </div>
+
+    </div>
+  </div>

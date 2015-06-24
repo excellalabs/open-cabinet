@@ -1,13 +1,18 @@
-var owl; 
+var owl;
 
 $(document).on('ready page:load', function() {
   $('.search-bar').attr('data-module', 'autocomplete_search');
   Box.Application.init();
+  if ($('.shelves').length > 0) {
+    $('.shelves').attr('data-module', 'cabinet');
+    var elm = document.getElementById('shelves');
+    Box.Application.start(elm);
+  }
 
   owl = $(".cabinet");
-  
+
   owl.owlCarousel({
-    items: 2, 
+    items: 2,
     autoHeight: true,
     navigation : false,
     slideSpeed: 800,

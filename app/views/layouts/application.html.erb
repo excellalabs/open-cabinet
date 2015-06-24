@@ -10,34 +10,15 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
+  <%= include_gon %>
 </head>
 <body class='mobile-menu-push'>
 
-  <div class='nav row'>
-    <div class='col-span-10 logo'>
-      <%= image_tag('logo.png') %><a href='/'><span class='primary-font bold'>PEN</span><span class='primary-font bold green'>CABINET</span></a>
-    </div>
-
-    <div class='col-span-2 t-right links'>
-      <div class='hidden-mobile'>
-        <%= render :partial => 'shared/authentication' %>
-      </div>
-
-      <div class='mobile-menu visible-mobile'>
-        <button class='x lines-button' title='open all sections'><span class='lines'></span></button>
-      </div>
-
-      <div class='mobile-side-menu'>
-        <p>links</p>
-      </div>
-
-    </div>
-  </div>
+  <%= render :template => 'shared/_header' %>
 
   <div class='main-content'>
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
-
 
   <div class='footer'>
     &nbsp;
@@ -46,6 +27,7 @@
   </div>
 
 </body>
+
 <% if Rails.env.production? %>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

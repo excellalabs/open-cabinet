@@ -13,12 +13,12 @@
       <i class="fa fa-search"></i>
       <input type="text" id="search_input" placeholder="Type a drug name here..." />
     </div>
-    <div class='shelves' data-module='cabinet'>
+    <div id="shelves" class='shelves'>
       <%= render :template => 'medicine/shelves' -%>
     </div>
   </div>
 
-  <div class='item description-view'>
+  <div class='item description-view' data-module="information">
 
     <% if @cabinet.medicines.empty? %>
       <div class='row'>
@@ -33,29 +33,31 @@
           <div class='back-nav hidden-desktop' onclick="owl_to(0);">
             <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
          </div>
-          <div class='name'>Tylenol</div>
-          <div class='interactions row' onclick="owl_to(2);">
-            <div class='col-span-11'>4 medications in your cabinet interact with Tylenol.</div>
-            <div class='col-span-1'><i class="fa fa-arrow-right"></i></div>
+          <div class='name'><span class="primary-name">Tylenol</span></div>
+          <div class='interactions row' data-type="interactions-warning" onclick="owl_to(2);">
+            <div class='col-span-11' id="potential-interactions"><span id="interactions-count">4</span> medication<span class="plural">s</span> in your cabinet interact<span class="singular">s</span> with <span class="primary-name">Tylenol</span>.</div>
+            <div class="col-span-1"><i class="fa fa-arrow-right"></i></div>
           </div>
         </h2>
 
         <section>
           <h3>General Information</h3>
-          <p>Lorem ipsum dolor sit amet, an quo noster principes, et cum fuisset partiendo voluptatum. Sanctus tincidunt sea no. Probo dicunt mel no, dicam audire id pro, affert verear euripidis ea usu. Eu habeo tation pro, ad qui dicta probatus invenire. His at primis noster delenit, ea euismod efficiantur duo. Et viris choro ius.
+          <p id="indications-and-usage">Lorem ipsum dolor sit amet, an quo noster principes, et cum fuisset partiendo voluptatum. Sanctus tincidunt sea no. Probo dicunt mel no, dicam audire id pro, affert verear euripidis ea usu. Eu habeo tation pro, ad qui dicta probatus invenire. His at primis noster delenit, ea euismod efficiantur duo. Et viris choro ius.
+          </p>
+          <p id="dosage-and-administration">orem ipsum dolor sit amet, an quo noster principes, et cum fuisset partiendo voluptatum. Sanctus tincidunt sea no. Probo dicunt mel no, dicam audire id pro, affert verear euripidis ea usu. Eu habeo tation pro, ad qui dicta probatus invenire. His at primis noster delenit, ea euismod efficiantur duo. Et viris choro ius.
           </p>
         </section>
 
         <section>
-          <h3>Tylenol Warnings</h3>
-          <p>Lorem ipsum dolor sit amet, an quo noster principes, et cum fuisset partiendo voluptatum. Sanctus tincidunt sea no. Probo dicunt mel no, dicam audire id pro, affert verear euripidis ea usu. Eu habeo tation pro, ad qui dicta probatus invenire. His at primis noster delenit, ea euismod efficiantur duo. Et viris choro ius.
+          <h3><span class="primary-name">Tylenol</span> Warnings</h3>
+          <p id="warnings">Lorem ipsum dolor sit amet, an quo noster principes, et cum fuisset partiendo voluptatum. Sanctus tincidunt sea no. Probo dicunt mel no, dicam audire id pro, affert verear euripidis ea usu. Eu habeo tation pro, ad qui dicta probatus invenire. His at primis noster delenit, ea euismod efficiantur duo. Et viris choro ius.
           </p>
         </section>
       </div>
     <% end %>
   </div>
 
-  <div class='item reaction-list'>
+  <div class='item reaction-list' data-module="interactions-list">
     <div class='back-nav visible-desktop' onclick="owl_to(0);">
       <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back to Cabinet
     </div>
@@ -64,11 +66,11 @@
       <div class='back-nav' onclick="owl_to(1);">
         <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
       </div>
-      <div class='name'>Tylenol Interactions</div>
+      <div class='name'><span class="primary-name">Tylenol</span> Interactions</div>
     </h2>
-    
+
     <div class='row'>
-      <ul>
+      <ul id="interactions">
         <li>Medicine 1 + Medicine 2</li>
         <li>Medicine 1 + Medicine 2</li>
         <li>Medicine 1 + Medicine 2</li>
@@ -78,7 +80,7 @@
     </div>
   </div>
 
-  <div class='item description-view'>
+  <div class='item description-view' data-module="interactions-info">
 
     <h2 class='reaction-title hidden-desktop'>
       <div class='back-nav' onclick="owl_to(2);">
@@ -86,11 +88,11 @@
        </div>
       <div class='name'>Medicine 1 + Medicine 2</div>
     </h2>
-    
+
     <div class='row'>
       <section>
         <h3>General Information</h3>
-        <p>Lorem ipsum dolor sit amet, an quo noster principes, et cum fuisset partiendo voluptatum. Sanctus tincidunt sea no. Probo dicunt mel no, dicam audire id pro, affert verear euripidis ea usu. Eu habeo tation pro, ad qui dicta probatus invenire. His at primis noster delenit, ea euismod efficiantur duo. Et viris choro ius.
+        <p id="interactions-text">Lorem ipsum dolor sit amet, an quo noster principes, et cum fuisset partiendo voluptatum. Sanctus tincidunt sea no. Probo dicunt mel no, dicam audire id pro, affert verear euripidis ea usu. Eu habeo tation pro, ad qui dicta probatus invenire. His at primis noster delenit, ea euismod efficiantur duo. Et viris choro ius.
         </p>
       </section>
     </div>
