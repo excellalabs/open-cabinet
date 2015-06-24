@@ -1,9 +1,9 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   
-  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-    <div class='has-account'><%= link_to "Forgot Password?", new_password_path(resource_name) %></div> 
-  <% end -%>
+  <%# if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    <!-- <div class='has-account'><%# link_to "Forgot Password?", new_password_path(resource_name) %></div>  -->
+  <%# end -%>
 
   <div class="field">
     <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
