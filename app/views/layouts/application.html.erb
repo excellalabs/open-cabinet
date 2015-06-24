@@ -4,12 +4,13 @@
   <title>Open Cabinet</title>
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class='mobile-menu-push'>
 
   <div class='nav row'>
     <div class='col-span-10 logo'>
@@ -17,7 +18,18 @@
     </div>
 
     <div class='col-span-2 t-right links'>
-      <%= render :partial => 'shared/authentication' %>
+      <div class='hidden-mobile'>
+        <%= render :partial => 'shared/authentication' %>
+      </div>
+
+      <div class='mobile-menu visible-mobile'>
+        <button class='x lines-button' title='open all sections'><span class='lines'></span></button>
+      </div>
+
+      <div class='mobile-side-menu'>
+        <p>links</p>
+      </div>
+
     </div>
   </div>
 
@@ -25,8 +37,11 @@
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
 
+
   <div class='footer'>
     &nbsp;
+    <div class='tablet-view visible-tablet'><!-- --></div>
+    <div class='tablet-and-down-view visible-tablet-and-down'><!-- --></div>
   </div>
 
 </body>

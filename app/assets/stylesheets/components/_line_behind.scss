@@ -1,0 +1,28 @@
+//*--
+//*-- create a line behind text
+//*--
+.line-behind {
+ overflow: hidden;
+ text-align: center;
+}
+
+.line-behind:before,
+.line-behind:after {
+  background-color: $dark-gray;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.line-behind:before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.line-behind:after {
+  left: 0.5em;
+  margin-right: -50%;
+}

@@ -39,7 +39,7 @@ module MedicineShelfHelper
 
   def medicine_html(medicine)
     <<-eos
-    <div class='pill-container disabled'>
+    <div class='pill-container'>
       <i class="fa fa-times pill-delete" data-set-id="#{medicine.id}"></i>
       <div class='pill-wrapper'>
         <div class='pill-bottle'>#{pill_image(medicine)}</div>
@@ -65,7 +65,7 @@ module MedicineShelfHelper
   def shelf_end_html
     <<-eos
         </div>
-        <div class='border-overlay'>&nbsp;</div>
+        <div class='border-overlay hidden-mobile'>&nbsp;</div>
       </div>
     eos
   end

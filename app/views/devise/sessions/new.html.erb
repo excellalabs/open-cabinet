@@ -1,6 +1,10 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   
+  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    <div class='has-account'><%= link_to "Forgot Password?", new_password_path(resource_name) %></div> 
+  <% end -%>
+
   <div class="field">
     <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
   </div>
@@ -10,7 +14,7 @@
   </div>
 
   <div class="field">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Sign In", class: 'button-bright-green' %>
   </div>
 
 <% end %>

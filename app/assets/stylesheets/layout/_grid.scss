@@ -77,11 +77,17 @@ $cols: 12;
 @while $cols > 0 {
 
   .col-offset-#{$cols} {
-    @include shift($cols);
+    @include media($tablet-and-up) {
+      @include shift($cols);
+    }
   }
 
   .col-span-#{$cols} {
     @include span-columns($cols);
+
+    @include media($mobile) {
+      @include span-columns(12);
+    }
   }
 
   $cols: $cols - 1
