@@ -1,6 +1,14 @@
 <div class='cabinet'>
 
   <div class='item'>
+
+    <div class='row visible-mobile cabinet-directions'>
+      <div class='col-span-12'>
+        <h3 class='primary-font bold green'>ADD YOUR DRUGS TO YOUR MEDICINE CABINET.</h3>
+        <p>Then compare your drugs to make sure there are no known interactions between them.</p>
+      </div>
+    </div>
+
     <div class="search-bar">
       <i class="fa fa-search"></i>
       <input type="text" id="search_input" placeholder="Type a drug name here..." />
@@ -22,8 +30,11 @@
     <% else %>
       <div class='row'>
         <h2>
-          <div>Tylenol</div>
-          <div class='interactions row' onclick="owl.trigger('owl.goTo', 2);">
+          <div class='back-nav visible-tablet-and-down' onclick="owl_to(0);">
+            <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
+         </div>
+          <div class='name'>Tylenol</div>
+          <div class='interactions row' onclick="owl_to(2);">
             <div class='col-span-11'>4 medications in your cabinet interact with Tylenol.</div>
             <div class='col-span-1'><i class="fa fa-arrow-right"></i></div>
           </div>
@@ -45,9 +56,16 @@
   </div>
 
   <div class='item reaction-list'>
-    <div class='back-to-cabinet' onclick="owl.trigger('owl.goTo', 0);">
+    <div class='back-nav visible-desktop' onclick="owl_to(0);">
       <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back to Cabinet
     </div>
+
+    <h2 class='reaction-title visible-tablet-and-down'>
+      <div class='back-nav' onclick="owl_to(1);">
+        <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
+      </div>
+      <div class='name'>Tylenol Interactions</div>
+    </h2>
     
     <div class='row'>
       <ul>
@@ -61,6 +79,14 @@
   </div>
 
   <div class='item description-view'>
+
+    <h2 class='reaction-title visible-tablet-and-down'>
+      <div class='back-nav visible-tablet-and-down' onclick="owl_to(2);">
+          <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
+       </div>
+      <div class='name'>Medicine 1 + Medicine 2</div>
+    </h2>
+    
     <div class='row'>
       <section>
         <h3>General Information</h3>

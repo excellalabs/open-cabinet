@@ -3,23 +3,97 @@
 //*--
 
 //*-- base button
-button, .base-button {
+button, .base-button, input[type='submit'] {
   @include border-radius(4px);
   @extend .primary-font;
   padding: 10px 15px;
   border: 0;
-  color: $white;
-  background: $dark-blue;
-  border: 1px solid $dark-blue;
+  color: $black;
+  background: $light-gray;
   cursor: pointer;
+  box-shadow: 0px 3px 0px 0px darken($light-gray, 20%);
+  @include transition(all .5s);
+
+  &:hover, &:focus, &:active {
+    text-decoration: none;
+    background: darken($light-gray, 10%);
+  }
+
+  &:visited {
+    color: $black;
+  }
 }
 
 .link-button {
   @extend .base-button;
   display: inline-block;
   text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}
 
-  &:hover, &:focus, &:active {
-    text-decoration: none;
+//*-- color buttons:
+//*--   button-dark-gray
+//*--   button-bright-green
+//*--   button-bright-blue
+//*--   button-dark-red
+//*--   button-dark-blue
+//*--
+//*-- color link buttons:
+//*--   link-button-dark-gray
+//*--   link-button-bright-green
+//*--   link-button-bright-blue
+//*--   link-button-dark-red
+//*--   link-button-dark-blue
+
+$button_colors: (
+  'dark-gray': (
+    'inactive': $dark-gray,
+    'text': $white
+  ),
+  'bright-green': (
+    'inactive': $bright-green,
+    'text': $white
+  ),
+  'bright-blue': (
+    'inactive': $bright-blue,
+    'text': $white
+  ),
+  'dark-red': (
+    'inactive': $dark-red,
+    'text': $white
+  ),
+  'green': (
+    'inactive': $dark-blue,
+    'text': $white
+  )
+);
+
+@each $key, $color in $button_colors {
+
+  $b_color: map-get($color, inactive);
+
+  .button-#{$key} {
+    @extend .base-button;
+    color: map-get($color, text) !important;
+    background: $b_color !important;
+    box-shadow: 0px 3px 0px 0px darken($b_color, 20%) !important;
+
+    &:hover, &:focus, &:active {
+      color: map-get($color, text);
+      background: darken($b_color, 10%) !important;
+    }
+  }
+
+  .link-button-#{$key} {
+    @extend .link-button;
+    color: map-get($color, text) !important;
+    background: map-get($color, inactive) !important;
+    box-shadow: 0px 3px 0px 0px darken($b_color, 20%);
+
+    &:hover, &:focus, &:active {
+      color: map-get($color, text) !important;
+      background: darken($b_color, 10%) !important;
+    }
   }
 }

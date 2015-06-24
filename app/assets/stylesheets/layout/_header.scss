@@ -7,6 +7,10 @@
   color: $white;
   padding: 15px 60px;
 
+  @include media($mobile) {
+    padding: 15px;
+  }
+
   a {
     text-decoration: none;
     color: $white;
@@ -15,9 +19,18 @@
   .logo {
     font-size: 32px;
 
+    @include media($mobile) {
+      font-size: 22px;
+    }
+
     img {
       width: 50px;
       margin-right: 2px;
+
+      @include media($mobile) {
+        width: 34px;
+      }
+
     }
   }
 
@@ -37,4 +50,45 @@
       }
     }
   }
+
+  .mobile-menu {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+  }
+}
+
+.mobile-side-menu {
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  top: 0;
+  z-index: 9999;
+  background: $dark-gray;
+  right: -240px;
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  text-align: left;
+  padding: 15px;
+
+  &.open {
+    right: 0px;
+  }
+}
+
+.mobile-menu-push {
+  overflow-x: hidden;
+  position: relative;
+  left: 0;
+}
+
+.mobile-menu-push-to-left {
+  left: -240px;
+}
+
+.mobile-side-menu.open,
+.mobile-menu-push {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }

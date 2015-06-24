@@ -3,7 +3,7 @@ Box.Application.addModule('cabinet', function(context) {
   var $context = $(context.getElement());
 
   function interaction_listener(bottle_div) {
-    $(bottle_div).parents('.pill-container').toggleClass('active disabled');
+    $(bottle_div).parents('.pill-container').toggleClass('active');
     var $set_id = bottle_div.next('input').attr('id');
 
     $.ajax({

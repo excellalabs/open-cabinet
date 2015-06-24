@@ -7,25 +7,48 @@
 
   .call-to-action {
     position: relative;
-    top: 14%;
+    top: 15%;
+
+    @include media($mobile) {
+      top: 0;
+      padding: 30px;
+    }
 
     h1 {
       color: $white;
-      font-size: 131px;
+      font-size: 121px;
       line-height: 110px;
+
+      @include media($mobile) {
+        font-size: 50px;
+        line-height: 1em;
+      }
     }
 
     h3 {
       color: $bright-green;
       font-weight: bold;
-      font-size: 56px;
+      font-size: 50px;
+
+      @include media($mobile) {
+        font-size: 20px;
+      }
     }
   }
 
   .registration-container {
     position: relative;
-    top: 23%;
+    top: 15%;
     padding: 0 30px;
+
+    @include media($mobile) {
+      top: 0;
+    }
+
+    .has-account {
+      text-align: right;
+      font-size: 14px;
+    }
 
     .registration-wrapper {
       background: $white;
@@ -38,24 +61,25 @@
     .field {
       input {
         width: 100%;
-        margin: 30px auto;
+        margin: 15px auto;
       }
 
       input[type="email"], input[type="password"] {
-        background: #fafafa;
+        background: #efefef;
         border: 1px solid $light-gray;
       }
 
       input[type='submit'] {
-        background: $bright-green;
-        color: $white;
         text-align: center;
         font-weight: bold;
+      }
 
-        &:hover {
-          background: darken($bright-green, 10%);
-          cursor: pointer;
-        }
+      .link-button {
+        width: 100%;
+      }
+
+      .line-behind {
+        margin: 15px 0;
       }
     }
 

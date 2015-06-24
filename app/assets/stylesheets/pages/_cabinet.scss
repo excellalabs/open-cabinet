@@ -3,7 +3,18 @@
   height: 100%;
 
   .search-bar {
-    margin: 30px 45px 0 45px;
+    margin: 30px 0 0 0;
+
+    @include media($mobile) {
+      background: $light-gray;
+      margin: 0;
+      padding: 15px 30px;
+
+      .fa {
+        top: 22px;
+        left: 45px;
+      }
+    }
   }
 
   .owl-wrapper-outer {
@@ -15,25 +26,52 @@
       .owl-item {
         height: 100%;
         padding: 30px 60px;
+        overflow-y: auto;
+
+        @include media($mobile) {
+          padding: 15px 0;
+        }
 
         &:nth-child(odd) {
           background: $light-gray;
+
+          @include media($mobile) {
+            background: $white;
+          }
         }
       }
+    }
+  }
+
+  @include media($mobile) {
+    .cabinet-directions {
+      padding: 0 15px;
+      h3 {
+        font-size: 36px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .back-nav {
+    color: $dark-red;
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-size: 16px;
+
+    @include media($mobile) {
+      padding: 0 15px;
     }
   }
 
   .reaction-list {
     padding-top: 15px;
 
-    .back-to-cabinet {
-      color: $dark-red;
-      cursor: pointer;
-      margin-bottom: 5px;
-      font-size: 16px;
-    }
-
     .row {
+      @include media($mobile) {
+        margin: 0 15px;
+      }
+
       box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
     }
 
@@ -44,6 +82,7 @@
       border-bottom: 1px solid $dark-blue;
 
       li {
+        cursor: pointer;
         padding: 15px;
         border-bottom: 1px solid $light-gray;
       }
@@ -54,28 +93,53 @@
     display: none;
   }
 
+  h2 {
+    font-weight: bold;
+    color: $dark-blue;
+    margin-bottom: 30px;
+
+    @include media($mobile) {
+      font-size: 40px;
+
+      .name {
+        padding: 0 15px;
+      }
+    }
+  }
+
+
   .description-view {
     padding: 30px 60px 30px 30px;
 
-    h2 {
-      font-weight: bold;
-      
-      color: $dark-blue;
-      margin-bottom: 30px;
+    @include media($mobile) {
+      padding: 0;
+    }
 
-      .interactions {
-        cursor: pointer;
-        border: 1px solid $dark-blue;
-        border-top: 10px solid $dark-blue;
-        background: $light-gray;
-        color: $dark-red;
-        font-size: 16px;
-        padding: 15px;
-        line-height: 18px;
+    .interactions {
+      cursor: pointer;
+      border: 1px solid $dark-blue;
+      border-top: 10px solid $dark-blue;
+      background: $light-gray;
+      color: $dark-red;
+      font-size: 16px;
+      padding: 15px;
+      line-height: 18px;
 
-        .fa {
-          text-align: right;
+      @include media($mobile) {
+        border-left: 0;
+        border-right: 0;
+
+        .col-span-11 {
+          @include span-columns(11);
         }
+
+        .col-span-1 {
+          @include span-columns(1);
+        }
+      }
+
+      .fa {
+        text-align: right;
       }
     }
 
@@ -83,6 +147,11 @@
       border-bottom: 1px solid $bright-green;
       padding-bottom: 15px;
       margin-bottom: 30px;
+
+      @include media($mobile) {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
 
       &:last-child {
         border-bottom: 0;
@@ -97,7 +166,11 @@
 
   .shelves {
     position: relative;
-    padding: 30px 60px 60px;
+    padding: 30px 0 60px;
+
+    @include media($mobile) {
+      padding-top: 0;
+    }
 
     .shelf-wrapper {
       position: relative;
@@ -121,11 +194,17 @@
       border-bottom: 30px solid $dark-gray;
       margin-bottom: 15px;
 
+      @include media($mobile) {
+        @include row();
+        border: 0;
+        margin: 0;
+      }
+
       &:after {
         @extend %clearfix;
       }
       
-      $shelf-height: 150px;
+      $shelf-height: 130px;
       
       .empty-shelf {
         position: relative;
@@ -138,24 +217,32 @@
         height: $shelf-height;
         cursor: pointer;
 
+        @include media($mobile) {
+          @include span-columns(12 of 12, block-collapse);
+          border-bottom: 1px solid $light-gray;
+          height: 50px;
+        }
+
         .fa-times {
+          border-radius: 4px;
           position: absolute;
           display: none;
           right: 0;
-          top: 30px;
-          background: $bright-blue;
+          top: 0px;
+          background: $dark-red;
           color: $white;
           padding: 3px 5px;
         }
 
         &:hover {
-
           border-radius: 4px;
           @include border-bottom-radius(0px);
-          background: rgba(65, 70, 82, .2);
+          background: rgba(255, 255, 255, 0.4);
 
-          .fa-times {
-            display: inline-block;
+          @include media($tablet-and-up) {
+            .fa-times {
+              display: inline-block;
+            }
           }
         }
 
@@ -165,11 +252,31 @@
           width: 100%;
           text-align: center;
 
+          @include media($mobile) {
+            position: relative;
+            bottom: 0;
+            text-align: left;
+
+            &:after {
+              @include clearfix;
+            }
+          }
+
           .pill-bottle {
             img {
-              width: 70px;
               position: relative;
+              width: 70px;
               bottom: -8px;
+
+              @include media($mobile) {
+                width: auto;
+                height: 30px;
+              }
+            }
+
+            @include media($mobile) {
+              @include span-columns(2 of 12, block-collapse);
+              text-align: center;
             }
           }
 
@@ -179,16 +286,31 @@
             line-height: 30px;
             width: 100%;
             padding: 0 15px;
+            font-size: 14px !important;
+
+            @include media($mobile) {
+              @include span-columns(10 of 12, block-collapse);
+              color: $dark-gray;
+              line-height: 50px;
+            }
           }
         }
 
         &.active {
           border-radius: 4px;
           @include border-bottom-radius(0px);
-          background: rgba(65, 70, 82, .2);
+          background: rgba(255, 255, 255, 0.9);
 
           .pill-name {
             background: $dark-red;
+            color: $white;
+          }
+
+          @include media($mobile) {
+            .pill-bottle {
+              background: $light-gray;
+              line-height: 50px;
+            }
           }
         }
 
