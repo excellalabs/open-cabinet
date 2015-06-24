@@ -1,22 +1,12 @@
 class MedicineController < ApplicationController
   before_action :find_or_create_cabinet, except: :search
 
-  # def index
-  # end
-
-  # def search
-  #   response = OpenFda::Client.new.query_by_med_name(params[:search_input], 100).body
-  #   results = JSON.parse(response)['results'].to_a
-  #   @display_results = build_results(results)
-
-  #   respond_to do |format|
-  #     format.json { render json: @display_results.to_json }
-  #     format.html { @display_results }
-  #   end
-  # end
-
   def autocomplete
-    render json: SearchableMedicine.all.map(&:name)
+    ary = []
+    SearchableMedicine.find_in_batches(batch_size: 2000) do |group|
+      ary.push(*group)
+    end
+    render json: ary.map(&:name)
   end
 
   def cabinet
