@@ -3,7 +3,7 @@ class MedicineController < ApplicationController
 
   def autocomplete
     ary = []
-    SearchableMedicine.find_in_batches(batch_size: 2000) do |group|
+    SearchableMedicine.find_in_batches(batch_size: 5000) do |group|
       ary.push(*group)
     end
     render json: ary.map(&:name)
