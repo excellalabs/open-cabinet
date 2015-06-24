@@ -39,6 +39,7 @@ gem 'autoprefixer-rails'
 gem 'kaminari'
 
 gem 'faraday'
+gem 'gon'
 
 # monitoring
 gem 'newrelic_rpm'

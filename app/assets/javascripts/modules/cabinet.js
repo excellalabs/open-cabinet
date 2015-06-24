@@ -1,80 +1,80 @@
 Box.Application.addModule('cabinet', function(context) {
   'use strict';
-  var $context = $(context.getElement());
 
-  function interaction_listener(bottle_div) {
-    $(bottle_div).parents('.pill-container').toggleClass('active');
-    var $set_id = bottle_div.next('input').attr('id');
-
-    $.ajax({
-      url: '/interactions',
-      method: 'POST',
-      dataType: "json",
-      data: {medicine_id: $set_id},
-      success: function(data) {
-        var text = '';
-        if (data['interactions_text']) {
-          text = highlight_keywords(data.interactions, data.interactions_text)
-        } else {
-          text = 'There is no interaction information for this medicine.'
-        }
-        $('#interactions > p').html(text);
-      }
-    });
-  }
-
-  function delete_medicine(delete_elm) {
-    $.ajax({
-      url: '/destroy/' + $(delete_elm).attr('data-set-id'),
-      method: 'DELETE',
-      success: function(data) {
-        redraw_shelf(data);
-      }
-    });
-  }
+  var cabinet_db,
+    module_el,
+    imgs = [];
 
   function redraw_shelf(html_data) {
-    $context.html(html_data);
+    $(module_el).empty().append(html_data);
   }
 
-  function highlight_keywords(keywords, text) {
+  function highlight_keywords(meds, text) {
     var html = ''
-    $.each(keywords, function(key, values) {
-      var reg = new RegExp(values.join('|'), 'gi');
-      html = text.replace(reg, '<span class="' + key + '-highlight">$&</span>')
+    $.each(meds, function(key, med) {
+      var reg = new RegExp(med.keywords.join('|'), 'gi');
+      html = text.replace(reg, '<span class="' + key + ' highlight">$&</span>')
     });
 
     return html
   }
 
-  function make_last_active() {
-    var $last_med = $context.find('.pill-bottle').last();
-    if ($last_med.length > 0) {
-      interaction_listener($last_med);
+  function make_first_active() {
+    var elm = module_el.querySelector('.pill-name');
+    if (elm) {
+      $(elm).closest('.pill-container').toggleClass('active');
+      context.broadcast('medicine_active', elm.textContent);
     }
   }
 
   return {
-    messages: ['refresh_shelves'],
+    messages: ['medicine_added', 'data_loaded', 'medicine_deleted'],
 
     init: function() {
-      make_last_active();
+      cabinet_db = context.getService('cabinet-db');
+      cabinet_db.load(gon.meds);
+      module_el = context.getElement();
+      imgs = gon.images;
+      make_first_active();
+    },
+
+    destroy: function() {
+      cabinet_db = null;
+      module_el = null;
+      imgs = null;
     },
 
     onmessage: function (name, data) {
-      if (name == 'refresh_shelves') {
-        redraw_shelf(data.html);
-        make_last_active();
+      switch(name) {
+        case 'medicine_added':
+        case 'medicine_deleted':
+          cabinet_db.refresh_shelves().done(function(html){
+            redraw_shelf(html);
+          });
+          break;
       }
     },
 
     onclick: function(event, element, elementType) {
-      event.preventDefault();
-      if ($(event.target).hasClass('pill-delete')) {
-        delete_medicine(event.target);
+      if (elementType === 'pill-bottle') {
+        var $element = $(element);
+        $element.toggleClass('active');
+        $(module_el).find('.pill-container').not($element).removeClass('active')
+        var name = $element.find('.pill-name').text();
+        if ($element.hasClass('active')) {
+          context.broadcast('medicine_active', name);
+        } else {
+          context.broadcast('medicine_inactive', name);
+        }
+
+        event.preventDefault();
+
       }
-      else if ($(event.target).parents('.pill-bottle').length > 0) {
-        interaction_listener($(event.target).parents('.pill-bottle'));
+
+      if ($(event.target).hasClass('pill-delete')) {
+        var $element = $(event.target);
+        var name = $element.closest('.pill-container').find('.pill-name').text();
+        cabinet_db.remove(name);
       }
     }
   }
