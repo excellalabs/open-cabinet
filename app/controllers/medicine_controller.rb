@@ -1,11 +1,12 @@
 class MedicineController < ApplicationController
   before_action :find_or_create_cabinet, except: :search
-  caches_action :autocomplete
 
   def autocomplete
     ary = []
-    SearchableMedicine.find_in_batches(batch_size: 5000) do |group|
-      ary.push(*group)
+    Rails.cache.fetch('autocomplete', expires_in: 6.hour) do
+      SearchableMedicine.find_in_batches(batch_size: 5000) do |group|
+        ary.push(*group)
+      end
     end
     render json: ary.map(&:name)
   end

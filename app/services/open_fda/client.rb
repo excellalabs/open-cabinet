@@ -32,11 +32,15 @@ module OpenFda
     end
 
     def query_for_interactions(primary)
-      query('/drug/label.json', "set_id:#{primary.set_id} AND _exists_:drug_interactions")
+      Rails.cache.fetch("query_interactions_#{primary.set_id}", expires_in: 2.hour) do
+        query('/drug/label.json', "set_id:#{primary.set_id} AND _exists_:drug_interactions")
+      end
     end
 
     def query_by_set_id(set_id)
-      query('/drug/label.json', "set_id:#{set_id}")
+      Rails.cache.fetch("query_set_id_#{set_id}", expires_in: 2.hour) do
+        query('/drug/label.json', "set_id:#{set_id}")
+      end
     end
 
     private
