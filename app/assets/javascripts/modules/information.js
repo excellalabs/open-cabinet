@@ -25,7 +25,7 @@ Box.Application.addModule('information', function(context) {
     $module_el.find('#warnings').text(med.warnings);
   }
 
-  function clear_information(med) {
+  function clear_information() {
     var $module_el = $(module_el);
     $module_el.find('.primary-name').empty();
     $module_el.find('#interactions-count').text('0');
@@ -47,7 +47,7 @@ Box.Application.addModule('information', function(context) {
   }
 
   return {
-    messages: ['medicine_active', 'medicine_inactive', 'data_loaded'],
+    messages: ['medicine_active', 'medicine_inactive', 'data_loaded', 'medicine_deleted'],
 
     init: function() {
       $ = context.getGlobal('jQuery');
@@ -67,15 +67,15 @@ Box.Application.addModule('information', function(context) {
           cabinet_db.get_information(data);
           break;
 
-        case 'medicine_inactive':
-          clear_information();
-          break;
-
         case 'data_loaded':
           fill_information(cabinet_db.get(data));
           break;
-      }
 
+        case 'medicine_deleted':
+          if(cabinet_db.getList().length < 1){
+            clear_information();
+          }
+      }
 
       if (name == 'refresh_shelves') {
         redraw_shelf(data.html);

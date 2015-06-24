@@ -63,8 +63,6 @@ Box.Application.addModule('cabinet', function(context) {
         var name = $element.find('.pill-name').text();
         if ($element.hasClass('active')) {
           context.broadcast('medicine_active', name);
-        } else {
-          context.broadcast('medicine_inactive', name);
         }
 
         event.preventDefault();
