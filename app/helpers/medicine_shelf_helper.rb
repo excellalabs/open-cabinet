@@ -17,7 +17,8 @@ module MedicineShelfHelper
 
   def add_empty_shelves(medicines)
     result = ''
-    num_rows = (medicines.length / MEDICINES_IN_ROW) + (medicines.length % MEDICINES_IN_ROW)
+    num_rows = (medicines.length / MEDICINES_IN_ROW)
+    num_rows += 1 if (medicines.length % MEDICINES_IN_ROW) > 0
     while num_rows < MIN_ROWS
       result += empty_shelf
       num_rows += 1
