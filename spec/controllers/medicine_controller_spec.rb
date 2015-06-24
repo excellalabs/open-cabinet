@@ -83,7 +83,7 @@ RSpec.describe MedicineController, type: :controller do
   def create_cabinet_with_one_medicine
     cabinet = Cabinet.create
     session[:cabinet_id] = cabinet.id
-    medicine = Medicine.create(cabinet: cabinet)
+    Medicine.create(cabinet: cabinet)
     cabinet
   end
 end
