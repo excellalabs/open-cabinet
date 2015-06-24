@@ -1,5 +1,5 @@
 class MedicineController < ApplicationController
-  before_action :find_or_create_cabinet, except: :search
+  before_action :find_or_create_cabinet, except: [:search, :autocomplete]
 
   def autocomplete
     ary = []
@@ -37,21 +37,13 @@ class MedicineController < ApplicationController
   end
 
   def find_or_create_cabinet
-    if session[:cabinet_id].nil?
-      @cabinet = Cabinet.create!
-      session[:cabinet_id] = @cabinet.id
+    return @cabinet = Cabinet.includes(:medicines).find_by_id(session[:cabinet_id]) if session[:cabinet_id]
+    user = current_user
+    if user && user.cabinet
+      @cabinet = user.cabinet
     else
-      @cabinet = Cabinet.includes(:medicines).find_by_id(session[:cabinet_id])
+      @cabinet = Cabinet.create!(user: user)
     end
-  end
-
-  def build_results(results)
-    checked_results = !results.any? ? [] : results
-    checked_results.map do |med|
-      next if med['openfda']['brand_name'].nil?
-      { brand_name: med['openfda']['brand_name'].first.titleize,
-        set_id: med['set_id'],
-        active_ingredient: med['active_ingredient'].nil? ? '' : med['active_ingredient'].first }
-    end.flatten.compact
+    session[:cabinet_id] = @cabinet.id
   end
 end
