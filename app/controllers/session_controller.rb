@@ -1,5 +1,5 @@
 class SessionController < ApplicationController
   def session_clear
-    session[:cabinet_id] = nil
+    session.delete(:cabinet_id)
   end
 end
