@@ -9,8 +9,9 @@ RSpec.describe MedicineController, type: :controller do
   describe 'GET #autocomplete' do
     it 'returns list of searchable medicines' do
       Rails.cache.clear
-      expect(SearchableMedicine).to receive(:find_in_batches).with(hash_including(batch_size: 5000)).and_yield([SearchableMedicine.new(name: 'Tylenol'),
-                                                              SearchableMedicine.new(name: 'Ibuprofen')])
+      expect(SearchableMedicine).to receive(:find_in_batches).with(hash_including(batch_size: 5000))
+        .and_yield([SearchableMedicine.new(name: 'Tylenol'),
+                    SearchableMedicine.new(name: 'Ibuprofen')])
 
       get :autocomplete
 

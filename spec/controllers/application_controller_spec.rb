@@ -13,7 +13,7 @@ RSpec.describe ApplicationController do
   before(:each) do
     http_login
   end
-  
+
   it 'clears the session cabinet_id' do
     session[:cabinet_id] = 4
 
