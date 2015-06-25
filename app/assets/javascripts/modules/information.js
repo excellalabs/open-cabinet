@@ -9,6 +9,8 @@ Box.Application.addModule('information', function(context) {
   function fill_information(med) {
     var $module_el = $(module_el);
     $module_el.find('#unselected-content').remove();
+    $module_el.find('.read-more').remove();
+    $module_el.find('.read-less').remove();
     $module_el.find('.primary-name').text(med.name);
     $module_el.find('#interactions-count').text(Object.keys(med.interactions).length);
 
@@ -67,8 +69,6 @@ Box.Application.addModule('information', function(context) {
     $module_el.find('#dosage-and-administration').empty();
     $module_el.find('#warnings').empty();
     $module_el.find('#interactions-text').empty();
-    $module_el.find('.read-more').remove();
-    $module_el.find('.read-less').remove();
 
     $module_el.prepend(
       '<div class="row" id="unselected-content"> \
