@@ -32,21 +32,30 @@ RSpec.describe MedicineController, type: :controller do
     end
   end
 
+  describe 'destroy' do
+    it 'deletes the medicine' do
+      med_name = 'Tylenol'
+      cabinet = create_cabinet_with_one_medicine(med_name)
+
+      delete :destroy, medicine: cabinet.medicines.first.name
+
+      cabinet.reload
+      expect(0).to eq cabinet.medicines.length
+      expect(assigns(:cabinet)).to eq(cabinet)
+    end
+  end
+
   describe 'User session' do
     before do
       @test_cabinet_id = 4
     end
 
     it 'finds the cabinet if set in the session' do
-      session[:cabinet_id] = @test_cabinet_id
-      includes_result = double('Cabinet')
-      query_result = Cabinet.new
-      expect(Cabinet).to receive(:includes).with(:medicines).and_return(includes_result)
-      expect(includes_result).to receive(:find_by_id).with(@test_cabinet_id).and_return(query_result)
+      cabinet = create_cabinet_with_one_medicine 'test'
 
       get :cabinet
 
-      expect(assigns(:cabinet)).to eq(query_result)
+      expect(assigns(:cabinet)).to eq(cabinet)
     end
 
     it 'uses the user cabinet if it exists' do
@@ -70,5 +79,12 @@ RSpec.describe MedicineController, type: :controller do
       expect(assigns(:cabinet)).to eq(created_cabinet)
       expect(session[:cabinet_id]).to eq(created_cabinet.id)
     end
+  end
+
+  def create_cabinet_with_one_medicine(medicine_name = nil)
+    cabinet = Cabinet.create
+    session[:cabinet_id] = cabinet.id
+    Medicine.create(cabinet: cabinet, name: medicine_name)
+    cabinet
   end
 end
