@@ -4,7 +4,8 @@ Box.Application.addModule('cabinet', function(context) {
   var module_el;
 
   function primary_med_name() {
-    $(module_el).find('.pill-container .active').find('.pill-name').text();
+    return $(module_el).find('.pill-container .active').find('.pill-name').text() ||
+            $(module_el).find('.pill-container').first().find('.pill-name').text();
   }
 
   function add_to_cabinet(name) {
@@ -31,7 +32,7 @@ Box.Application.addModule('cabinet', function(context) {
     return $.ajax({
       url: '/destroy/',
       method: 'DELETE',
-      data: {medicine: name, primary_name: primary_med_name}
+      data: { medicine: name, primary_name: primary_med_name}
     });
   }
 
