@@ -27,6 +27,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
   $("#add_medicine").click(function() {
     var medicine = $component.find('#search_input').val();
     cabinet_db.add(medicine);
+    $component.find('#search_input').val("");
   });
 
   return {
