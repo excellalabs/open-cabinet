@@ -134,251 +134,245 @@
     }
   }
 
-    .interactions {
-      cursor: pointer;
-      border: 1px solid $dark-blue;
-      border-top: 10px solid $dark-blue;
-      background: $light-gray;
-      color: $dark-red;
-      font-size: 16px;
-      padding: 15px;
-      line-height: 18px;
-      margin: 0 30px;
+  .interactions {
+    cursor: pointer;
+    border: 1px solid $dark-blue;
+    border-top: 10px solid $dark-blue;
+    background: $light-gray;
+    color: $dark-red;
+    font-size: 16px;
+    padding: 15px;
+    line-height: 18px;
+    margin: 0 30px;
 
-      @include media($mobile) {
-        border-left: 0;
-        border-right: 0;
+    @include media($mobile) {
+      border-left: 0;
+      border-right: 0;
 
-        .col-span-11 {
-          @include span-columns(11);
-        }
-
-        .col-span-1 {
-          @include span-columns(1);
-        }
+      .col-span-11 {
+        @include span-columns(11);
       }
 
-      .fa {
-        text-align: right;
+      .col-span-1 {
+        @include span-columns(1);
       }
     }
 
-    section {
-      border-bottom: 1px solid $bright-green;
-      margin: 30px;
-      padding-bottom: 30px;
-
-      @include media($mobile) {
-        padding-left: 15px;
-        padding-right: 15px;
-      }
-
-      &:last-child {
-        border-bottom: 0;
-      }
-
-      h3 {
-        font-weight: bold;
-        margin-bottom: 15px;
-      }
+    .fa {
+      text-align: right;
     }
   }
 
-  .shelves {
-    position: relative;
-    padding: 30px 0 60px;
+  section {
+    border-bottom: 1px solid $bright-green;
+    margin: 30px;
+    padding-bottom: 30px;
 
     @include media($mobile) {
-      padding-top: 0;
+      padding-left: 15px;
+      padding-right: 15px;
     }
 
-    .shelf-wrapper {
-      position: relative;
+    &:last-child {
+      border-bottom: 0;
     }
 
-    .border-overlay {
-      position: absolute;
-      width: 0;
-      height: 0;
-      right: 0;
-      bottom: 0;
-      border-style: solid;
-      border-width: 0 0 15px 500px;
-      border-color: transparent transparent rgba(237, 237, 237, .2) transparent;
-    }
-
-    .shelf {
-      @include fill-parent();
-      @include row(table);
-      position: relative;
-      border-bottom: 30px solid $dark-gray;
+    h3 {
+      font-weight: bold;
       margin-bottom: 15px;
+    }
+  }
+}
+
+.shelves {
+  position: relative;
+  padding: 30px 0 60px;
+
+  @include media($mobile) {
+    padding-top: 0;
+  }
+
+  .shelf-wrapper {
+    position: relative;
+  }
+
+  .border-overlay {
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: 0;
+    bottom: 0;
+    border-style: solid;
+    border-width: 0 0 15px 500px;
+    border-color: transparent transparent rgba(237, 237, 237, .2) transparent;
+  }
+
+  .shelf {
+    @include fill-parent();
+    @include row(table);
+    position: relative;
+    border-bottom: 30px solid $dark-gray;
+    margin-bottom: 15px;
+
+    @include media($mobile) {
+      @include row();
+      border: 0;
+      margin: 0;
+    }
+
+    &:after {
+      @extend %clearfix;
+    }
+
+    $shelf-height: 130px;
+
+    .empty-shelf {
+      position: relative;
+      height: $shelf-height;
+    }
+
+    .pill-container {
+      @include span-columns(4 of 12);
+      position: relative;
+      height: $shelf-height;
+      cursor: pointer;
 
       @include media($mobile) {
-        @include row();
-        border: 0;
-        margin: 0;
+        @include span-columns(12 of 12, block-collapse);
+        border-bottom: 1px solid $light-gray;
+        height: 50px;
+        width: 100%;
       }
 
-      &:after {
-        @extend %clearfix;
+      .fa-times {
+        border-radius: 4px;
+        position: absolute;
+        display: none;
+        right: 0;
+        top: 0px;
+        background: $dark-red;
+        color: $white;
       }
 
-      $shelf-height: 130px;
+      &:hover {
+        border-radius: 4px;
+        @include border-bottom-radius(0px);
+        background: rgba(255, 255, 255, 0.4);
 
-      .empty-shelf {
-        position: relative;
-        height: $shelf-height;
+        @include media($tablet-and-up) {
+          .fa-times {
+            display: inline-block;
+            padding: 3px 5px;
+            z-index: 9999;
+          }
+        }
       }
 
-      .pill-container {
-        @include span-columns(4 of 12);
-        position: relative;
-        height: $shelf-height;
-        cursor: pointer;
+      .pill-wrapper {
+        position: absolute;
+        bottom: -30px;
+        width: 100%;
+        text-align: center;
 
         @include media($mobile) {
-          @include span-columns(12 of 12, block-collapse);
-          border-bottom: 1px solid $light-gray;
-          height: 50px;
-          width: 100%;
+          position: relative;
+          bottom: 0;
+          text-align: left;
+
+          &:after {
+            @include clearfix;
+          }
         }
 
-        .fa-times {
-          border-radius: 4px;
-          position: absolute;
-          display: none;
-          right: 0;
-          top: 0px;
+        .pill-bottle {
+          img {
+            position: relative;
+            width: 70px;
+            bottom: -8px;
+
+            @include media($mobile) {
+              width: auto;
+              height: 30px;
+              opacity: .2;
+
+              &.delete {
+                opacity: 1;
+              }
+            }
+          }
+
+          @include media($mobile) {
+            @include span-columns(2 of 12, block-collapse);
+            text-align: center;
+          }
+        }
+
+        .pill-name {
+          @include ellipsis(100%);
+          display: block;
+          color: $white;
+          line-height: 30px;
+          width: 100%;
+          padding: 0 15px;
+          font-size: 14px !important;
+
+          @include media($mobile) {
+            @include span-columns(10 of 12);
+            color: $dark-gray;
+            line-height: 49px;
+          }
+        }
+      }
+
+      .pill-next {
+        position: absolute;
+        right: 15px;
+        line-height: 49px;
+        color: $bright-green;
+      }
+
+      &.active {
+        border-radius: 4px;
+        @include border-bottom-radius(0px);
+        background: rgba(255, 255, 255, 0.9);
+
+        .pill-name {
           background: $dark-red;
           color: $white;
 
-        }
-
-        &:hover {
-          border-radius: 4px;
-          @include border-bottom-radius(0px);
-          background: rgba(255, 255, 255, 0.4);
-
-          @include media($tablet-and-up) {
-            .fa-times {
-              display: inline-block;
-              padding: 3px 5px;
-              z-index: 9999;
-            }
+          @include media($mobile) {
+            background: $white;
+            color: $dark-gray;
           }
         }
+      }
 
-        .pill-wrapper {
-          position: absolute;
-          bottom: -30px;
-          width: 100%;
-          text-align: center;
+      &.interact {
+        border-radius: 4px;
+        @include border-bottom-radius(0px);
+        background: rgba(255, 255, 255, 0.9);
+
+        .pill-name {
+          background: $dark-blue;
+          color: $white;
+        }
+      }
+
+      &.disabled {
+        .pill-name {
+          background: rgba(237, 237, 237, .4);
 
           @include media($mobile) {
-            position: relative;
-            bottom: 0;
-            text-align: left;
-
-            &:after {
-              @include clearfix;
-            }
-          }
-
-          .pill-bottle {
-            img {
-              position: relative;
-              width: 70px;
-              bottom: -8px;
-
-              @include media($mobile) {
-                width: auto;
-                height: 30px;
-              }
-            }
-
-            @include media($mobile) {
-              @include span-columns(2 of 12, block-collapse);
-              text-align: center;
-            }
-          }
-
-          .pill-name {
-            @include ellipsis(100%);
-            display: block;
-            color: $white;
-            line-height: 30px;
-            width: 100%;
-            padding: 0 15px;
-            font-size: 14px !important;
-
-            @include media($mobile) {
-              @include span-columns(10 of 12, block-collapse);
-              color: $dark-gray;
-              line-height: 50px;
-            }
+            background: $white;
           }
         }
 
-        .pill-next {
-          position: absolute;
-          right: 15px;
-          line-height: 50px;
-          color: $bright-green;
-        }
-
-        &.active {
-          border-radius: 4px;
-          @include border-bottom-radius(0px);
-          background: rgba(255, 255, 255, 0.9);
-
-          .pill-name {
-            background: $dark-red;
-            color: $white;
-
-            @include media($mobile) {
-              background: $white;
-              color: $dark-gray;
-              border-bottom: 1px solid $light-gray;
-            }
-          }
-
-          @include media($mobile) {
-            .pill-bottle {
-              line-height: 50px;
-            }
-          }
-        }
-
-        &.interact {
-          border-radius: 4px;
-          @include border-bottom-radius(0px);
-          background: rgba(255, 255, 255, 0.9);
-
-          .pill-name {
-            background: $dark-blue;
-            color: $white;
-          }
-
-          @include media($mobile) {
-            .pill-bottle {
-              background: $light-gray;
-              line-height: 50px;
-            }
-          }
-        }
-
-        &.disabled {
-          .pill-name {
-            background: rgba(237, 237, 237, .2);
-          }
-
-          .pill-bottle {
-            img {
-              opacity: .2;
-            }
+        .pill-bottle {
+          img {
+            opacity: .2;
           }
         }
       }
     }
+  }
 }

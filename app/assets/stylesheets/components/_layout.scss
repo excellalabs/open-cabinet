@@ -2,6 +2,6 @@
   height: calc(100% - 100px);
 
   @include media($mobile) {
-    height: calc(100% - 50px);
+    height: calc(100% - 80px);
   }
 }

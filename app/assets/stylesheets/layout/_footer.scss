@@ -1,4 +1,27 @@
 .footer {
   border-bottom: 30px solid $bright-green;
   line-height: 0;
+
+  &.active {
+    border-bottom: 0;
+  }
+
+  .mobile-footer {
+    @include transition(all 0.3s ease-in-out);
+    position: fixed;
+    color: $white;
+    bottom: 0;
+    font-size: 24px;
+    width: 100%;
+    padding: 15px 0;
+    display: none;
+    background: $bright-green;
+    opacity: .8;
+
+    .fa {
+      margin-left: 25px;
+      cursor: pointer
+    }
+  }
+
 }

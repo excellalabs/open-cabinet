@@ -108,13 +108,31 @@ Box.Application.addModule('cabinet', function(context) {
     },
 
     onclick: function(event, element, elementType) {
+
       event.preventDefault();
-      var ev_target = $(event.target);
-      if ($(ev_target).hasClass('pill-delete')) {
-        var name = $(ev_target).closest('.pill-container').find('.pill-name').text();
-        delete_medicine(name, primary_med_name());
-      } else if ($(ev_target).closest('.pill-container')) {
-        click_primary($(ev_target).closest('.pill-container')[0]);
+      
+      if ($(event.target).hasClass('pill-delete')) {
+        var $element = $(event.target);
+        var name = $element.closest('.pill-container').find('.pill-name').text();
+        cabinet_db.remove(name);
+      } else if (is_tablet_and_down()) {
+        if($(event.target).is('img')) {
+          $(event.target).toggleClass('delete');
+
+          if($('.cabinet img.delete').length == 0) {
+            $('.mobile-footer').slideUp();
+            $('.footer').removeClass('active');
+          } else {
+            $('.mobile-footer').slideDown();
+            $('.footer').addClass('active');
+          }
+
+        } else {
+          context.broadcast('go_to', 1);
+          $('.mobile-footer').hide();
+        }
+      } else { 
+        activate(element);
       }
     }
   }
