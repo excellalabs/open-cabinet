@@ -23,13 +23,31 @@ Box.Application.addModule('cabinet', function(context) {
     });
   }
 
-  function make_first_active(primary_medicine_info) {
-    var elm = module_el.querySelector('.pill-name');
-    if (elm) {
-      activate($(elm).closest('.pill-container'), primary_medicine_info)
+  function delete_medicine(name) {
+    return $.ajax({
+      url: '/destroy/',
+      method: 'DELETE',
+      data: {medicine: name}
+    });
+  }
+
+  function activate_primary_med(primary_medicine_info) {
+    var primary;
+    if(primary_medicine_info) {
+      primary = $(module_el).find('.pill-name:contains(' + primary_medicine_info.primary + ')').closest('.pill-container');
+    } else {
+      primary = $(module_el).find('.pill-container:first');
+    }
+    if(primary.length) {
+      make_primary(primary[0]);
     }
   }
 
+  function make_primary(elm) {
+    $(elm).removeClass('disabled interact').addClass('active');
+    $(module_el).find('.pill-container').not($(elm)).removeClass('active interact').addClass('disabled');
+  }
+/*
   function activate(element, primary_medicine_info) {
     var $element = $(element);
     var name = $element.find('.pill-name').text();
@@ -39,39 +57,32 @@ Box.Application.addModule('cabinet', function(context) {
       return $.inArray($(this).text().trim(), Object.keys(primary_medicine_info.interactions)) >= 0;
     }).toggleClass('interact disabled');
   }
-
+*/
   return {
     messages: ['medicine_added'],
     behaviors: [ 'navigation' ],
 
     init: function() {
       module_el = context.getElement();
-      make_first_active();
+      refresh_shelves();
+      activate_primary_med();
     },
 
     onmessage: function (name, medicine_name) {
       add_to_cabinet(medicine_name).done(function(primary_medicine_info) {
         context.broadcast('reload_data', primary_medicine_info);
         refresh_shelves();
-        make_first_active(primary_medicine_info);
+        activate_primary_med(primary_medicine_info);
       });
     },
 
     onclick: function(event, element, elementType) {
-      /*
       event.preventDefault();
-      if ($(event.target).hasClass('pill-delete')) {
-        var $element = $(event.target);
-        var name = $element.closest('.pill-container').find('.pill-name').text();
+      var ev_target = $(event.target);
+      if ($(ev_target).hasClass('pill-delete')) {
+        var name = $(ev_target).closest('.pill-container').find('.pill-name').text();
+        delete_medicine(name);
       }
-      else if (elementType === 'pill-bottle') {
-        activate(element);
-
-        if (is_tablet_and_down()) {
-          context.broadcast('go_to', 1);
-        }
-      }
-      */
     }
   }
 });
