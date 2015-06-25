@@ -22,8 +22,28 @@ Box.Application.addModule('information', function(context) {
     }
 
     $module_el.find('#indications-and-usage').text(med.indications_and_usage);
+    read_more($module_el.find('#indications-and-usage'), med.indications_and_usage);
     $module_el.find('#dosage-and-administration').text(med.dosage_and_administration);
+    read_more($module_el.find('#dosage-and-administration'), med.dosage_and_administration);
     $module_el.find('#warnings').text(med.warnings);
+    read_more($module_el.find('#warnings'), med.warnings);
+  }
+
+  function read_more(element, text) {
+    if (text.length > 450 ) {
+      element.after("<a class='read-more'>Read More</a><a class='read-less' style='display: none;'>Read Less</a>")
+    }
+  }
+
+  function toggle_ellipsis(element) {
+    if (element.hasClass('read-more')) {
+      element.siblings('p').removeClass('multiline-ellipsis');
+      element.siblings('.read-less').show();
+    } else {
+      element.siblings('p').addClass('multiline-ellipsis');
+      element.siblings('.read-more').show();
+    }
+    element.hide(); 
   }
 
   function display_medicine_wordage(count){
@@ -47,6 +67,8 @@ Box.Application.addModule('information', function(context) {
     $module_el.find('#dosage-and-administration').empty();
     $module_el.find('#warnings').empty();
     $module_el.find('#interactions-text').empty();
+    $module_el.find('.read-more').remove();
+    $module_el.find('.read-less').remove();
 
     $module_el.prepend(
       '<div class="row" id="unselected-content"> \
@@ -98,6 +120,8 @@ Box.Application.addModule('information', function(context) {
     onclick: function(event, element, elementType) {
       if (elementType === 'interactions-warning') {
         owl.trigger('owl.goTo', 2);
+      } else if (event.target.className == 'read-more' || event.target.className == 'read-less') {
+        toggle_ellipsis($(event.target));
       }
     }
   }
