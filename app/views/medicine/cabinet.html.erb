@@ -1,4 +1,4 @@
-<div class='cabinet'>
+<div class='cabinet' data-module='navigation'>
 
   <div class='item'>
 
@@ -32,11 +32,11 @@
     <% else %>
       <div class='row'>
         <h2>
-          <div class='back-nav hidden-desktop' onclick="owl_to(0);">
+          <div class='back-nav hidden-desktop owl-navigation-cabinet'>
             <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
          </div>
           <div class='name'><span class="primary-name">Tylenol</span></div>
-          <div id="interactions-count-container" class='interactions row' data-type="interactions-warning" onclick="owl_to(2);">
+          <div id="interactions-count-container" class='interactions row owl-navigation-interaction' data-type="interactions-warning">
             <div class='col-span-11' id="potential-interactions"><span id="interactions-count">4</span> medication<span class="plural">s</span> in your cabinet interact<span class="singular">s</span> with <span class="primary-name">Tylenol</span>.</div>
             <div class="col-span-1"><i class="fa fa-arrow-right"></i></div>
           </div>
@@ -61,12 +61,12 @@
   </div>
 
   <div class='item reaction-list' data-module="interactions-list">
-    <div class='back-nav visible-desktop' onclick="owl_to(0);">
+    <div class='back-nav visible-desktop owl-navigation-cabinet'>
       <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back to Cabinet
     </div>
 
     <h2 class='reaction-title hidden-desktop'>
-      <div class='back-nav' onclick="owl_to(1);">
+      <div class='back-nav owl-navigation-information'>
         <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
       </div>
       <div class='name'><span class="primary-name">Tylenol</span> Interactions</div>
@@ -86,7 +86,7 @@
   <div class='item description-view' data-module="interactions-info">
 
     <h2 class='reaction-title hidden-desktop'>
-      <div class='back-nav' onclick="owl_to(2);">
+      <div class='back-nav owl-navigation-interaction'>
           <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
        </div>
       <div class='name'>Medicine 1 + Medicine 2</div>

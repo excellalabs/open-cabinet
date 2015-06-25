@@ -9,24 +9,8 @@ $(document).on('ready page:load', function() {
     Box.Application.start(elm);
   }
 
-  owl = $(".cabinet");
-
-  owl.owlCarousel({
-    items: 2,
-    autoHeight: true,
-    navigation : false,
-    slideSpeed: 800,
-    mouseDrag: false,
-    itemsCustom : [
-        [0, 1],
-        [850, 2]
-      ]
-  });
-
   toggle_responsiveness();
   $(window).on('resize', toggle_responsiveness);
-
-
 });
 
 function toggle_responsiveness() {
@@ -38,23 +22,11 @@ function toggle_responsiveness() {
       $('.mobile-menu-push').toggleClass('mobile-menu-push-to-left');
     });
 
-    $('.pill-container').on('click', function() {
-      owl_to(1);
-    });
-
-    $('.reaction-list li').on('click', function() {
-      owl_to(3);
-    });
-
   } else {
     $('.mobile-menu .lines-button').off('click');
     $('.pill-container').off('click');
     $('.reaction-list li').iff('click');
   }
-}
-
-function owl_to(page) {
-  owl.trigger('owl.goTo', page);
 }
 
 function is_mobile() {

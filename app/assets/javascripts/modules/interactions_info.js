@@ -35,6 +35,7 @@ Box.Application.addModule('interactions-info', function(context) {
 
   return {
     messages: ['medicine_active', 'medicine_inactive', 'data_loaded'],
+    behaviors: [ 'navigation' ],
 
     init: function() {
       $ = context.getGlobal('jQuery');
