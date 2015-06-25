@@ -36,9 +36,11 @@ RSpec.describe MedicineController, type: :controller do
     it 'deletes the medicine' do
       med_name = 'Tylenol'
       cabinet = create_cabinet_with_one_medicine(med_name)
+      MedicineController.any_instance.stub(:fetch_info).and_return(primary: 'info')
+      delete :destroy, medicine: cabinet.medicines.first.name, primary_name: 'some_name'
 
-      delete :destroy, medicine: cabinet.medicines.first.name
-
+      parsed_body = JSON.parse(response.body)
+      expect(parsed_body).to eq('primary' => 'info')
       cabinet.reload
       expect(0).to eq cabinet.medicines.length
       expect(assigns(:cabinet)).to eq(cabinet)
