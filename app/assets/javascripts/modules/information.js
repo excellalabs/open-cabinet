@@ -12,17 +12,29 @@ Box.Application.addModule('information', function(context) {
     $module_el.find('.primary-name').text(med.name);
     $module_el.find('#interactions-count').text(Object.keys(med.interactions).length);
 
-    if (Object.keys(med.interactions).length > 1) {
-      $module_el.find('.plural').show();
-      $module_el.find('.singular').hide();
+    var interaction_count = Object.keys(med.interactions).length;
+
+    if (interaction_count >= 1) {
+      display_medicine_wordage(interaction_count);
+      $module_el.find('#interactions-count-container').slideDown();
     } else {
-      $module_el.find('.singular').show();
-      $module_el.find('.plural').hide();
+      $module_el.find('#interactions-count-container').slideUp();
     }
 
     $module_el.find('#indications-and-usage').text(med.indications_and_usage);
     $module_el.find('#dosage-and-administration').text(med.dosage_and_administration);
     $module_el.find('#warnings').text(med.warnings);
+  }
+
+  function display_medicine_wordage(count){
+    var $module_el = $(module_el);
+    if (count > 1){
+      $module_el.find('.plural').show();
+      $module_el.find('.singular').hide();
+    } else {
+      $module_el.find('.plural').hide();
+      $module_el.find('.singular').show();
+    }
   }
 
   function clear_information() {
