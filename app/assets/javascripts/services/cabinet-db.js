@@ -82,28 +82,26 @@ Box.Application.addService('cabinet-db', function(application) {
     get: function(name) {
       if (!meds[name]) { return null; }
 
-      if (!('interactions' in meds[name])) {
-        $.ajax({
-          url: '/information',
-          method: 'POST',
-          dataType: "json",
-          async: false,
-          data: {medicine_id: meds[name].set_id},
-          beforeSend: function() {
-            meds[name].information_ajax = true;
-            meds[name].retrieved_info = false;
-          },
-          success: function(data) {
-            meds[data.primary].indications_and_usage = text_or_default(data.indications_and_usage);
-            meds[data.primary].dosage_and_administration = text_or_default(data.dosage_and_administration);
-            meds[data.primary].warnings = text_or_default(data.warnings);
-            meds[data.primary].interactions = data.interactions;
-            meds[data.primary].interactions_text = data.interactions_text;
-            meds[data.primary].retrieved_info = true;
-            meds[data.primary].information_ajax = false;
-          }
-        });
-      }
+      $.ajax({
+        url: '/information',
+        method: 'POST',
+        dataType: "json",
+        async: false,
+        data: {medicine_id: meds[name].set_id},
+        beforeSend: function() {
+          meds[name].information_ajax = true;
+          meds[name].retrieved_info = false;
+        },
+        success: function(data) {
+          meds[data.primary].indications_and_usage = text_or_default(data.indications_and_usage);
+          meds[data.primary].dosage_and_administration = text_or_default(data.dosage_and_administration);
+          meds[data.primary].warnings = text_or_default(data.warnings);
+          meds[data.primary].interactions = data.interactions;
+          meds[data.primary].interactions_text = data.interactions_text;
+          meds[data.primary].retrieved_info = true;
+          meds[data.primary].information_ajax = false;
+        }
+      });
 
       return meds[name] || null;
     },
@@ -134,16 +132,19 @@ Box.Application.addService('cabinet-db', function(application) {
             set_id: med.set_id
           };
 
-          ajax_information(name).done(function(data) {
-            meds[data.primary].indications_and_usage = text_or_default(data.indications_and_usage);
-            meds[data.primary].dosage_and_administration = text_or_default(data.dosage_and_administration);
-            meds[data.primary].warnings = text_or_default(data.warnings);
-            meds[data.primary].interactions_text = text_or_default(meds.interactions_text);
-            meds[data.primary].interactions = meds.interactions;
-            meds[data.primary].retrieved_info = true
-            meds[data.primary].information_ajax = false;
-            application.broadcast('medicine_added', data.primary)
-          });
+          application.broadcast('medicine_added', med.name)
+
+
+          // ajax_information(name).done(function(data) {
+          //   meds[data.primary].indications_and_usage = text_or_default(data.indications_and_usage);
+          //   meds[data.primary].dosage_and_administration = text_or_default(data.dosage_and_administration);
+          //   meds[data.primary].warnings = text_or_default(data.warnings);
+          //   meds[data.primary].interactions_text = text_or_default(meds.interactions_text);
+          //   meds[data.primary].interactions = meds.interactions;
+          //   meds[data.primary].retrieved_info = true
+          //   meds[data.primary].information_ajax = false;
+          //   application.broadcast('medicine_added', data.primary)
+          // });
         });
       }
     },
