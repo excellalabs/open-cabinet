@@ -97,6 +97,14 @@ Box.Application.addService('cabinet-db', function(application) {
       return medsList;
     },
 
+    interactions_length: function(med_name) {
+      if('interactions' in meds[med_name]){
+      return Object.keys(meds[med_name].interactions).length
+      } else {
+        return 0;
+      }
+    },
+
     add: function(name) {
       if (!(name in meds)) {
         add_to_cabinet(name).then(function(med) {
