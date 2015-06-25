@@ -32,7 +32,12 @@ Box.Application.addModule('cabinet', function(context) {
     return $.ajax({
       url: '/destroy/',
       method: 'DELETE',
-      data: { medicine: name, primary_name: primary_med_name}
+      data: { medicine: name, primary_name: primary_med_name },
+      success: function(data) {
+        refresh_shelves();
+        activate_primary_med(data);
+        context.broadcast('reload_data', data);
+      }
     });
   }
 
