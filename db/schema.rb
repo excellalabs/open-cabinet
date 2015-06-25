@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623141431) do
+ActiveRecord::Schema.define(version: 20150625142654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cabinet_medicines", force: :cascade do |t|
+    t.integer  "cabinet_id"
+    t.integer  "medicine_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cabinets", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,7 +32,6 @@ ActiveRecord::Schema.define(version: 20150623141431) do
   add_index "cabinets", ["user_id"], name: "index_cabinets_on_user_id", using: :btree
 
   create_table "medicines", force: :cascade do |t|
-    t.integer  "cabinet_id"
     t.string   "set_id",            default: "", null: false
     t.string   "name",              default: "", null: false
     t.datetime "created_at"
@@ -33,7 +39,6 @@ ActiveRecord::Schema.define(version: 20150623141431) do
     t.string   "active_ingredient"
   end
 
-  add_index "medicines", ["cabinet_id"], name: "index_medicines_on_cabinet_id", using: :btree
   add_index "medicines", ["name"], name: "index_medicines_on_name", using: :btree
   add_index "medicines", ["set_id"], name: "index_medicines_on_set_id", using: :btree
 
@@ -60,5 +65,4 @@ ActiveRecord::Schema.define(version: 20150623141431) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "cabinets", "users"
-  add_foreign_key "medicines", "cabinets"
 end
