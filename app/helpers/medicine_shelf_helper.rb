@@ -47,6 +47,7 @@ module MedicineShelfHelper
         #{ hidden_field_tag medicine.set_id }
         <div class='pill-name'>#{medicine.name}</div>
       </div>
+      <div class="pill-next visible-mobile"><i class="fa fa-arrow-right"></i></div>
     </div>
     eos
   end
