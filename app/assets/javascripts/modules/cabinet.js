@@ -12,13 +12,12 @@ Box.Application.addModule('cabinet', function(context) {
   }
 
   function highlight_keywords(meds, text) {
-    var html = ''
     $.each(meds, function(key, med) {
       var reg = new RegExp(med.keywords.join('|'), 'gi');
-      html = text.replace(reg, '<span class="' + key + ' highlight">$&</span>')
+      text = text.replace(reg, '<span class="' + key + ' highlight">$&</span>')
     });
 
-    return html
+    return text
   }
 
   function make_first_active() {

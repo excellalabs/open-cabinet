@@ -24,16 +24,16 @@ Box.Application.addModule('interactions-info', function(context) {
   }
 
   function highlight_keywords(meds, text) {
-    var html = '';
     $.each(meds, function(key, med) {
       var reg = new RegExp(med.filter(Boolean).join('|'), 'gi');
-      html = text.replace(reg, '<span class="' + key + ' highlight">$&</span>')
+      text = text.replace(reg, '<span class="' + key + ' highlight">$&</span>')
     });
 
-    return html;
+    return text;
   }
 
   function highlight_interactions(element) {
+    $('.neon').removeClass('neon');
     $('.' + element + '.highlight').each(function (index, span) {
       $(span).addClass('neon');
     })
