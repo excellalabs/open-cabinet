@@ -128,7 +128,7 @@ Box.Application.addService('cabinet-db', function(application) {
     },
 
     get_information: function(name) {
-      if ('retrieved_info' in meds[name] && meds[name]['retrieved_info'] && !medsmeds[name]['information_ajax']) {
+      if ('retrieved_info' in meds[name] && meds[name]['retrieved_info'] && !meds[name]['information_ajax']) {
         application.broadcast('data_loaded', name);
         return;
       }
