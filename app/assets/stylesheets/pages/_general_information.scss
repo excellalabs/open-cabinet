@@ -1,0 +1,14 @@
+@mixin ellipsis ($max-height, $lines: 2) {
+  overflow: hidden;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;  
+  
+  text-overflow: -o-ellipsis-lastline;
+}
+
+.multiline-ellipsis {
+  width: 100%;
+  @include ellipsis(2rem, 5);
+}
