@@ -12,8 +12,9 @@
   }
 
   .fa-search {
+    position: absolute;
     left: 15px;
-    top: 34px;
+    top: 8px;
   }
 
   input {
@@ -30,11 +31,17 @@
 
   button {
     @include border-left-radius(0);
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
     position: absolute;
     right: 0;
-    top: 27px;
-    padding: 9px 20px;
+    top: 0px;
+    padding: 10px 20px 9px;
     box-shadow: none !important;
+
+    .fa-cog {
+      color: $dark-gray;
+    }
   }
 
   .tt-menu {
@@ -43,7 +50,7 @@
     color: $dark-gray;
 
     .tt-suggestion {
-      padding: 5px 15px;
+      padding: 15px;
       border-bottom: 1px solid $light-gray;
       cursor: pointer;
     }

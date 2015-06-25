@@ -1,108 +1,21 @@
 <div class='cabinet' data-module='navigation'>
-
+  
   <div class='item'>
+    <%= render :template => 'medicine/shared/_medicine_cabinet' -%>
+  </div>
 
-    <div class='row visible-mobile cabinet-directions'>
-      <div class='col-span-12'>
-        <h3 class='primary-font bold green'>ADD MEDICINES TO YOUR CABINET</h3>
-        <p>to view potential interactions between medications.</p>
-      </div>
-    </div>
-
-    <div class='search-bar-container'>
-      <div class="search-bar">
-        <i class="fa fa-search"></i>
-        <input type="text" id="search_input" placeholder="Type a drug name here..." />
-        <button id='add_medicine' class='button-dark-red'><i class="fa fa-plus"></i></button>
-        <button id="add_medicine_wait" style="display: none;"><i class="fa fa-spinner fa-spin"></i></button>
-      </div>
-    </div>
-
-    <div id="shelves" class='shelves'>
-      <%= render :template => 'medicine/shelves' -%>
+  <div id='medicine_interactions' class='item' data-module="information">
+    <i class="fa fa-refresh fa-spin"></i>
+    <div class='content'>
+      <%= render :template => 'medicine/shared/_medicine_interactions' -%>
     </div>
   </div>
 
-  <div class='item description-view' data-module="information">
-
-    <% if @cabinet.medicines.empty? %>
-      <div class='row'>
-        <div class='col-span-12' id='interactions'>
-          <h1 class='primary-font green'>ADD MEDICINES TO YOUR CABINET.</h1>
-          <p>Then compare your drugs to make sure there are no known interactions between them.</p>
-        </div>
-      </div>
-    <% else %>
-      <div class='row'>
-        <h2>
-          <div class='back-nav hidden-desktop owl-navigation-cabinet'>
-            <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
-         </div>
-          <div class='name'><span class="primary-name">Tylenol</span></div>
-          <div id="interactions-count-container" class='interactions row owl-navigation-interaction' data-type="interactions-warning">
-            <div class='col-span-11' id="potential-interactions"><span id="interactions-count">4</span> medication<span class="plural">s</span> in your cabinet interact<span class="singular">s</span> with <span class="primary-name">Tylenol</span>.</div>
-            <div class="col-span-1"><i class="fa fa-arrow-right"></i></div>
-          </div>
-        </h2>
-
-        <section>
-          <h3>General Information</h3>
-          <div>
-            <p id="indications-and-usage" class="multiline-ellipsis"></p>
-          </div>
-          <div>
-            <p id="dosage-and-administration" class="multiline-ellipsis"></p>
-          </div>
-        </section>
-
-        <section>
-          <h3><span class="primary-name">Tylenol</span> Warnings</h3>
-          <p id="warnings" class="multiline-ellipsis"></p>
-        </section>
-      </div>
-    <% end %>
+  <div class='item interactions-list' data-module="interactions-list">
+    <%= render :template => 'medicine/shared/_interaction_pairs' -%>
   </div>
 
-  <div class='item reaction-list' data-module="interactions-list">
-    <div class='back-nav visible-desktop owl-navigation-cabinet'>
-      <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back to Cabinet
-    </div>
-
-    <h2 class='reaction-title hidden-desktop'>
-      <div class='back-nav owl-navigation-information'>
-        <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
-      </div>
-      <div class='name'><span class="primary-name">Tylenol</span> Interactions</div>
-    </h2>
-
-    <div class='row'>
-      <ul id="interactions">
-        <li>Medicine 1 + Medicine 2</li>
-        <li>Medicine 1 + Medicine 2</li>
-        <li>Medicine 1 + Medicine 2</li>
-        <li>Medicine 1 + Medicine 2</li>
-        <li>Medicine 1 + Medicine 2</li>
-      </ul>
-    </div>
+  <div class='item' data-module="interactions-info">
+    <%= render :template => 'medicine/shared/_medicine_details' -%>
   </div>
-
-  <div class='item description-view' data-module="interactions-info">
-
-    <h2 class='reaction-title hidden-desktop'>
-      <div class='back-nav owl-navigation-interaction'>
-          <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
-       </div>
-      <div class='name'>Medicine 1 + Medicine 2</div>
-    </h2>
-
-    <div class='row'>
-      <section>
-        <h3>General Information</h3>
-        <p id="interactions-text">Lorem ipsum dolor sit amet, an quo noster principes, et cum fuisset partiendo voluptatum. Sanctus tincidunt sea no. Probo dicunt mel no, dicam audire id pro, affert verear euripidis ea usu. Eu habeo tation pro, ad qui dicta probatus invenire. His at primis noster delenit, ea euismod efficiantur duo. Et viris choro ius.
-        </p>
-      </section>
-    </div>
-  </div>
-
-
 </div>

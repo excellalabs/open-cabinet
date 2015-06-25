@@ -29,6 +29,9 @@ Box.Application.addModule('information', function(context) {
     read_more($module_el.find('#dosage-and-administration'), med.dosage_and_administration);
     $module_el.find('#warnings').text(med.warnings);
     read_more($module_el.find('#warnings'), med.warnings);
+
+    $('#medicine_interactions .content').show();
+    $('#medicine_interactions .fa-refresh').hide();
   }
 
   function read_more(element, text) {
@@ -99,11 +102,14 @@ Box.Application.addModule('information', function(context) {
     onmessage: function (name, data) {
       switch(name) {
         case 'medicine_active':
+          $('#medicine_interactions .content').hide();
+          $('#medicine_interactions .fa-refresh').show();
           cabinet_db.get_information(data);
           break;
 
         case 'data_loaded':
           fill_information(cabinet_db.get(data));
+
           break;
 
         case 'medicine_deleted':
