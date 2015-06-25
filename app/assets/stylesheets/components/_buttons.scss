@@ -87,6 +87,10 @@ $button_colors: (
       color: map-get($color, text);
       background: darken($b_color, 10%) !important;
     }
+
+    &:disabled {
+      background: lighten($b_color, 50%) !important;
+    }
   }
 
   .link-button-#{$key} {
@@ -98,6 +102,10 @@ $button_colors: (
     &:hover, &:focus, &:active {
       color: map-get($color, text) !important;
       background: darken($b_color, 10%) !important;
+    }
+
+    &:disabled {
+      background: lighten($b_color, 50%) !important;
     }
   }
 }
