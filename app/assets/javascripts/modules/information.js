@@ -35,7 +35,7 @@ Box.Application.addModule('information', function(context) {
 
   function read_more(element) {
     $(module_el).append(element.clone().attr('id', 'delete-this'));
-    if ($('#delete-this').height() > 110 ) {
+    if ($('#delete-this').height() > 130 ) {
       element.after("<a class='read-more'>Read More</a><a class='read-less' style='display: none;'>Read Less</a>")
     }
     $('#delete-this').remove();
