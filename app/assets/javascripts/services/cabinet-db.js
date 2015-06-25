@@ -38,21 +38,6 @@ Box.Application.addService('cabinet-db', function(application) {
     });
   }
 
-  function add_to_cabinet(name) {
-    return $.ajax({
-      url: '/add_to_cabinet',
-      method: 'POST',
-      dataType: 'json',
-      data: { medicine: name },
-      beforeSend: function(){
-        application.broadcast('add_ajax_initiated');
-      },
-      error: function() {
-        application.broadcast('invalid_medicine');
-      }
-    });
-  }
-
   function ajax_refresh_shelves() {
 
   }
@@ -172,14 +157,6 @@ Box.Application.addService('cabinet-db', function(application) {
         meds[data.primary].retrieved_info = true;
         meds[data.primary].information_ajax = false;
         application.broadcast('data_loaded', data.primary);
-      });
-    },
-
-    refresh_shelves: function() {
-      return $.ajax({
-        url: '/refresh_shelves',
-        method: 'POST',
-        dataType: 'html'
       });
     },
 
