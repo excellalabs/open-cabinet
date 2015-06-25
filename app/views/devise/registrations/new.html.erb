@@ -1,6 +1,7 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   
+
   <%- if controller_name != 'sessions' %>
     <div class='has-account'>Have an account?&nbsp;&nbsp;<%= link_to "Sign In", new_session_path(resource_name) %></div>
   <% end -%>
@@ -17,11 +18,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Password Confirmation' %>
   </div>
 
+  <%= devise_error_messages! %>
+
   <div class="field">
     <%= f.submit "Sign Up", class: 'button-bright-green' %>
   </div>
 
-  <%= devise_error_messages! %>
+  
 <% end %>
 
 

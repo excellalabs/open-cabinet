@@ -1,4 +1,19 @@
 
+#error_explanation {
+  h2 {
+    display: none;
+  }
+
+  ul {
+    list-style-type: none;
+    color: $dark-red;
+
+    @include media($mobile) {
+      padding-top: 10px;
+    }
+  }
+}
+
 .registration {
   position: relative;
   background: image-url('overview-splash.png') no-repeat;
