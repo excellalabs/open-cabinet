@@ -30,7 +30,7 @@ class MedicineController < ApplicationController
   end
 
   def query_for_information
-    render json: fetch_info(params[:medicine_id]), status: :ok
+    render json: fetch_info(determine_primary), status: :ok
   end
 
   private
