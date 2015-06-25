@@ -7,7 +7,7 @@ Box.Application.addModule('information', function(context) {
     module_el;
 
   function med_interaction_length(med) {
-    if(interactions in med){
+    if('interactions' in med){
       return Object.keys(med.interactions).length
     } else {
       return 0;

@@ -23,7 +23,7 @@ rescue NameError
 end
 
 Capybara.register_driver :poltergeist do |app|
-  options = { js_errors: true, timeout: 30, phantomjs_logger: StringIO.new, logger: nil,
+  options = { js_errors: false, timeout: 30, phantomjs_logger: StringIO.new, logger: nil,
               phantomjs_options: ['--load-images=no', '--ignore-ssl-errors=yes',
                                   '--proxy-type=socks5', '--proxy=0.0.0.0:0',
                                   '--ssl-protocol=any']
