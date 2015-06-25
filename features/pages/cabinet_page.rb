@@ -21,7 +21,44 @@ class CabinetPage
   end
 
   def press_add_button
-    click_button 'add_medicine'
+    page.find('#add_medicine').trigger('click')
+  end
+
+  def active_pill_container
+    '.pill-container.active'
+  end
+
+  def interact_pill_container
+    '.pill-container.interact'
+  end
+
+  def disabled_pill_container
+    '.pill-container.disabled'
+  end
+
+  def pill_name_text
+    '.pill-name-text'
+  end
+
+  def add_medicine(medicine)
+    type_search_characters(medicine)
+    select_autocomplete_text(autocomplete_text)
+    press_add_button
+    wait_for_ajax
+    assert_selector '.pill-name', text: medicine
+    assert_selector '.primary-name', text: medicine
+  end
+
+  def med_description
+    page.find_by_id('indications-and-usage')
+  end
+
+  def med_dosage
+    page.find_by_id('dosage-and-administration')
+  end
+
+  def med_warnings
+    page.find_by_id('warnings')
   end
 
   def create_session_cabinet_with_medicines(medicines)
@@ -31,5 +68,13 @@ class CabinetPage
 
   def select_medicine(medicine_name)
     find('.pill-name-text', text: medicine_name, match: :prefer_exact).trigger('click')
+  end
+
+  def interaction_tiles
+    tiles = ''
+    within('#interactions') do
+      tiles = all('li')
+    end
+    tiles
   end
 end

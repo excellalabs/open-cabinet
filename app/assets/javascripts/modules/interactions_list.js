@@ -21,8 +21,8 @@ Box.Application.addModule('interactions-list', function(context) {
 
     if(is_tablet_and_down()) {
       $module_el.find('#interactions-text-mobile').html(load_interaction_text(med));
-    }   
-    
+    }
+
     $module_el.find('.primary-name').text(med.primary);
   }
 
@@ -54,12 +54,12 @@ Box.Application.addModule('interactions-list', function(context) {
     },
 
     onclick: function (event, element, elementType) {
-      if ($(event.target).is('li')) {     
+      if ($(event.target).is('li')) {
 
         if(is_mobile()) {
           $('.scroll-to-top').show();
         }
-        
+
         context.broadcast('highlight_interactions', event);
       }
     }

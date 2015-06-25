@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <%= link_to('sign out', destroy_user_session_path, :method => :delete, class: ("active" if current_page?(destroy_user_session_path))) %>
+  <%= link_to('sign out', destroy_user_session_path, :method => :delete, class: ("active" if current_page?(destroy_user_session_path)), id: mobile ? 'mobile-sign-out-link' : 'sign-out-link') %>
 <% else %>
-  <%= link_to('sign in', new_user_session_path, class: ("active" if current_page?(new_user_session_path)))  %>
+  <%= link_to('sign in', new_user_session_path, class: ("active" if current_page?(new_user_session_path)), id: mobile ? 'mobile-sign-in-link' : 'sign-in-link') %>
 <% end %>

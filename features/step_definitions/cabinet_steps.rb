@@ -16,7 +16,24 @@ When(/^I select that medication$/) do
 end
 
 Then(/^I should see the medication in my cabinet$/) do
-  expect(find('.pill-name', text: @medication).visible?).to be true
+  assert_selector '.pill-name', text: @medication
+end
+
+When(/^I add a medicine to my cabinet$/) do
+  @cabinet_page.add_medicine(@medication)
+end
+
+Then(/^I see the medicine's description$/) do
+  expect(@med_description.has_text?).to be_truthy
+end
+
+And(/^I see dosage information for the medicine$/) do
+  expect(@med_dosage.has_text?).to be_truthy
+end
+
+And(/^I see warning information for the medicine$/) do
+  wait_for_ajax
+  expect(@med_warnings.has_text?).to be_truthy
 end
 
 When(/^I enter an incorrect search term$/) do

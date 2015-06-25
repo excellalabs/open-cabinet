@@ -22,3 +22,12 @@ end
 Then(/^the user will no longer be authenticated$/) do
   expect(page.has_selector?('form.new_user')).to be_truthy
 end
+
+When(/^I select to continue as guest$/) do
+  @login_page.continue_as_guest
+end
+
+Then(/^I am taken to a fresh medicine cabinet$/) do
+  assert_selector '.cabinet'
+  assert_no_selector '.pill-container'
+end
