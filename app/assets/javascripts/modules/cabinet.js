@@ -3,6 +3,10 @@ Box.Application.addModule('cabinet', function(context) {
 
   var module_el;
 
+  function primary_med_name() {
+    $(module_el).find('.pill-container .active').find('.pill-name').text();
+  }
+
   function add_to_cabinet(name) {
     return $.ajax({
       url: '/add_to_cabinet',
@@ -23,11 +27,11 @@ Box.Application.addModule('cabinet', function(context) {
     });
   }
 
-  function delete_medicine(name) {
+  function delete_medicine(name, primary_med_name) {
     return $.ajax({
       url: '/destroy/',
       method: 'DELETE',
-      data: {medicine: name}
+      data: {medicine: name, primary_name: primary_med_name}
     });
   }
 
@@ -81,7 +85,7 @@ Box.Application.addModule('cabinet', function(context) {
       var ev_target = $(event.target);
       if ($(ev_target).hasClass('pill-delete')) {
         var name = $(ev_target).closest('.pill-container').find('.pill-name').text();
-        delete_medicine(name);
+        delete_medicine(name, primary_med_name());
       }
     }
   }
