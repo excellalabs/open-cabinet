@@ -16,12 +16,16 @@ Box.Application.addModule('interactions-info', function(context) {
     }
     $module_el.find('#interactions-text').html(text);
     $module_el.find('.primary-name').text(med.primary);
+
+    $('.' + $("#interactions").children().first().attr('class')).each(function (index, span) {
+      $(span).addClass('neon');
+    });
   }
 
   function highlight_keywords(meds, text) {
     $.each(meds, function(key, med) {
       var reg = new RegExp(med.filter(Boolean).join('|'), 'gi');
-      text = text.replace(reg, '<span class="' + key + ' highlight">$&</span>')
+      text = text.replace(reg, '<span class="' + class_name(key) + ' highlight">$&</span>')
     });
 
     return text;
@@ -31,7 +35,12 @@ Box.Application.addModule('interactions-info', function(context) {
     $('.neon').removeClass('neon');
     $('.' + element + '.highlight').each(function (index, span) {
       $(span).addClass('neon');
-    })
+      $(span).attr('id', 'scroll-to-' + index);
+    });
+
+    $('.owl-item').animate({
+      scrollTop: $('#scroll-to-0').offset().top
+     }, 'slow');
   }
 
   return {
@@ -47,7 +56,7 @@ Box.Application.addModule('interactions-info', function(context) {
       module_el = null;
     },
 
-    onmessage: function (name, data) {
+    onmessage: function(name, data) {
       switch(name) {
 
         case 'reload_data':
