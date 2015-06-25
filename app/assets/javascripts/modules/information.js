@@ -8,7 +8,7 @@ Box.Application.addModule('information', function(context) {
     $module_el.find('#unselected-content').remove();
     $module_el.find('.read-more').remove();
     $module_el.find('.read-less').remove();
-    $module_el.find('.primary-name').text(med.name);
+    $module_el.find('.primary-name').text(med.primary);
     var interaction_count = interactions_length(med);
     $module_el.find('#interactions-count').text(interaction_count);
 
