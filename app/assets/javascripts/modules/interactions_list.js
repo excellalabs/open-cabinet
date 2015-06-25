@@ -21,6 +21,7 @@ Box.Application.addModule('interactions-list', function(context) {
 
   return {
     messages: ['medicine_inactive', 'data_loaded'],
+    behaviors: [ 'navigation' ],
 
     init: function() {
       $ = context.getGlobal('jQuery');
@@ -45,5 +46,6 @@ Box.Application.addModule('interactions-list', function(context) {
           break;
       }
     }
+
   }
 });

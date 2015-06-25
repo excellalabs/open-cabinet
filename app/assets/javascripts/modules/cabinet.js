@@ -29,6 +29,7 @@ Box.Application.addModule('cabinet', function(context) {
 
   return {
     messages: ['medicine_added', 'data_loaded', 'medicine_deleted'],
+    behaviors: [ 'navigation' ],
 
     init: function() {
       cabinet_db = context.getService('cabinet-db');
@@ -56,23 +57,21 @@ Box.Application.addModule('cabinet', function(context) {
     },
 
     onclick: function(event, element, elementType) {
-      if (elementType === 'pill-bottle') {
+      event.preventDefault();
+      if ($(event.target).hasClass('pill-delete')) {
+        var $element = $(event.target);
+        var name = $element.closest('.pill-container').find('.pill-name').text();
+        cabinet_db.remove(name);
+      }
+      else if (elementType === 'pill-bottle') {
         var $element = $(element);
         $element.toggleClass('active');
         $(module_el).find('.pill-container').not($element).removeClass('active')
         var name = $element.find('.pill-name').text();
         if ($element.hasClass('active')) {
           context.broadcast('medicine_active', name);
+          context.broadcast('go_to', 1);
         }
-
-        event.preventDefault();
-
-      }
-
-      if ($(event.target).hasClass('pill-delete')) {
-        var $element = $(event.target);
-        var name = $element.closest('.pill-container').find('.pill-name').text();
-        cabinet_db.remove(name);
       }
     }
   }

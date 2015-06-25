@@ -82,6 +82,7 @@ Box.Application.addModule('information', function(context) {
 
   return {
     messages: ['medicine_active', 'medicine_inactive', 'data_loaded', 'medicine_deleted'],
+    behaviors: [ 'navigation' ],
 
     init: function() {
       $ = context.getGlobal('jQuery');
@@ -119,7 +120,7 @@ Box.Application.addModule('information', function(context) {
 
     onclick: function(event, element, elementType) {
       if (elementType === 'interactions-warning') {
-        owl.trigger('owl.goTo', 2);
+        context.broadcast('go_to', 2);
       } else if (event.target.className == 'read-more' || event.target.className == 'read-less') {
         toggle_ellipsis($(event.target));
       }
