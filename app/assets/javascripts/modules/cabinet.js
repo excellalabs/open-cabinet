@@ -51,6 +51,7 @@ Box.Application.addModule('cabinet', function(context) {
         case 'medicine_deleted':
           cabinet_db.refresh_shelves().done(function(html){
             redraw_shelf(html);
+            make_first_active();
           });
           break;
       }
