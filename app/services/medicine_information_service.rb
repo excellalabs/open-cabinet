@@ -16,7 +16,7 @@ class MedicineInformationService
     medicines.each do |medicine|
       next if @primary.set_id == medicine.set_id
       keywords = [medicine.name, medicine.active_ingredient].map { |name| name.try(:downcase) }.uniq
-      data[medicine.name.to_sym] = keywords if interaction_text =~ /#{keywords.join("|")}/
+      data[medicine.name.to_sym] = keywords if interaction_text =~ /#{keywords.compact.join("|")}/
     end
     data
   end

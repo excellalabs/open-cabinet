@@ -26,15 +26,21 @@ Box.Application.addModule('interactions-info', function(context) {
   function highlight_keywords(meds, text) {
     var html = '';
     $.each(meds, function(key, med) {
-      var reg = new RegExp(med.join('|'), 'gi');
+      var reg = new RegExp(med.filter(Boolean).join('|'), 'gi');
       html = text.replace(reg, '<span class="' + key + ' highlight">$&</span>')
     });
 
     return html;
   }
 
+  function highlight_interactions(element) {
+    $('.' + element + '.highlight').each(function (index, span) {
+      $(span).addClass('neon');
+    })
+  }
+
   return {
-    messages: ['medicine_active', 'medicine_inactive', 'data_loaded'],
+    messages: ['medicine_active', 'medicine_inactive', 'data_loaded', 'highlight_interactions'],
     behaviors: [ 'navigation' ],
 
     init: function() {
@@ -57,7 +63,11 @@ Box.Application.addModule('interactions-info', function(context) {
 
         case 'data_loaded':
           fill_information(cabinet_db.get(data));
-          break
+          break;
+
+        case 'highlight_interactions':
+          highlight_interactions(data);
+          break;
       }
 
 

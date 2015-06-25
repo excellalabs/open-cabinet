@@ -59,16 +59,6 @@ Box.Application.addService('cabinet-db', function(application) {
     });
   }
 
-  function highlight_keywords(meds, text) {
-    var html = ''
-    $.each(meds, function(key, med) {
-      var reg = new RegExp(med.keywords.join('|'), 'gi');
-      html = text.replace(reg, '<span class="' + key + ' highlight">$&</span>')
-    });
-
-    return html
-  }
-
   function text_or_default(text) {
     if (!text) {
       text = 'No information was found for this section on this medicine.';
@@ -117,7 +107,7 @@ Box.Application.addService('cabinet-db', function(application) {
             meds[data.primary].indications_and_usage = text_or_default(data.indications_and_usage);
             meds[data.primary].dosage_and_administration = text_or_default(data.dosage_and_administration);
             meds[data.primary].warnings = text_or_default(data.warnings);
-            meds[data.primary].interactions_text = meds.interactions_text;
+            meds[data.primary].interactions_text = text_or_default(meds.interactions_text);
             meds[data.primary].interactions = meds.interactions;
             meds[data.primary].retrieved_info = true
             meds[data.primary].information_ajax = false;
