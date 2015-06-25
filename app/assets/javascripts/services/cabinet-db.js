@@ -39,7 +39,20 @@ Box.Application.addService('cabinet-db', function(application) {
   }
 
   function add_to_cabinet(name) {
-    return $.post('/add_to_cabinet', { medicine: name })
+    return $.ajax({
+      url: '/add_to_cabinet',
+      method: 'POST',
+      dataType: 'json',
+      data: { medicine: name },
+      beforeSend: function() {
+        $("#add_medicine").hide();
+        $("#add_medicine_wait").show();
+      },
+      success: function() {
+        $("#add_medicine").show();
+        $("#add_medicine_wait").hide();
+      }
+    });
   }
 
   function ajax_refresh_shelves() {

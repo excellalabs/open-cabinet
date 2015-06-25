@@ -7,8 +7,8 @@ Box.Application.addModule('autocomplete_search', function(context) {
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     prefetch: {
-      url: '/autocomplete',
       ttl: 3600000, // cache requests for one hour
+      url: '/autocomplete',
     }
   });
 
@@ -21,11 +21,13 @@ Box.Application.addModule('autocomplete_search', function(context) {
     }, {
       name: 'medicines',
       source: medicines
-    }).bind('typeahead:selected', function(obj, medicine){
-      cabinet_db.add(medicine);
-      $search_input.val('');
     });
   }
+
+  $("#add_medicine").click(function() {
+    var medicine = $component.find('#search_input').val();
+    cabinet_db.add(medicine);
+  });
 
   return {
     init: function() {

@@ -99,7 +99,7 @@
     margin-bottom: 30px;
 
     @include media($mobile) {
-      font-size: 40px;
+      font-size: 36px;
 
       .name {
         padding: 0 15px;
@@ -109,7 +109,7 @@
 
 
   .description-view {
-    padding: 30px 60px 30px 30px;
+    padding: 30px;
 
     @include media($mobile) {
       padding: 0;

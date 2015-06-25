@@ -6,12 +6,14 @@
   position: relative;
 
   .fa {
-    position: absolute;
-    left: 15px;
-    top: 8px;
-    color: $dark-gray;
+    position: relative;
     font-size: 24px;
     z-index: 101;
+  }
+
+  .fa-search {
+    left: 15px;
+    top: 34px;
   }
 
   input {
@@ -20,7 +22,6 @@
     padding-left: 50px;
     padding-right: 45px;
     border: 1px solid #ddd;
-
   }
 
   .twitter-typeahead {
@@ -31,9 +32,9 @@
     @include border-left-radius(0);
     position: absolute;
     right: 0;
-    top: 0;
-    padding-left: 30px;
-    padding-right: 30px;
+    top: 27px;
+    padding: 9px 20px;
+    box-shadow: none !important;
   }
 
   .tt-menu {
