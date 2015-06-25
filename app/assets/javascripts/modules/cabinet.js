@@ -57,6 +57,12 @@ Box.Application.addModule('cabinet', function(context) {
     $(elm).removeClass('disabled interact').addClass('active');
     $(module_el).find('.pill-container').not($(elm)).removeClass('active interact').addClass('disabled');
   }
+
+  function set_interaction_count(primary_medicine_info) {
+    console.log(primary_medicine_info);
+    var count = Object.keys(primary_medicine_info.interactions).length;
+    $("div.pill-container.active").find('span').first().data("interactions", count);
+  }
 /*
   function activate(element, primary_medicine_info) {
     var $element = $(element);
@@ -70,12 +76,13 @@ Box.Application.addModule('cabinet', function(context) {
 */
   return {
     messages: ['medicine_added'],
-    behaviors: [ 'navigation' ],
+    behaviors: ['navigation'],
 
     init: function() {
       module_el = context.getElement();
       refresh_shelves();
       activate_primary_med();
+      set_interaction_count(primary_medicine_info);
     },
 
     onmessage: function (name, medicine_name) {
@@ -83,6 +90,7 @@ Box.Application.addModule('cabinet', function(context) {
         context.broadcast('reload_data', primary_medicine_info);
         refresh_shelves();
         activate_primary_med(primary_medicine_info);
+        set_interaction_count(primary_medicine_info);
       });
     },
 
