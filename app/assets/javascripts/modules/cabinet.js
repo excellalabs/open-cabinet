@@ -24,9 +24,20 @@ Box.Application.addModule('cabinet', function(context) {
   function make_first_active() {
     var elm = module_el.querySelector('.pill-name');
     if (elm) {
-      $(elm).closest('.pill-container').toggleClass('active');
-      context.broadcast('medicine_active', elm.textContent);
+      activate($(elm).closest('.pill-container'))
     }
+  }
+
+  function activate(element) {
+    var $element = $(element);
+    var name = $element.find('.pill-name').text();
+    $element.removeClass('disabled interact').addClass('active');
+    $(module_el).find('.pill-container').not($element).removeClass('active interact').addClass('disabled');
+    var med = cabinet_db.get(name);
+    $(module_el).find('.pill-container').filter(function() {
+      return $.inArray($(this).text().trim(), Object.keys(med.interactions)) >= 0;
+    }).toggleClass('interact disabled');
+    context.broadcast('medicine_active', name);
   }
 
   return {
@@ -68,16 +79,10 @@ Box.Application.addModule('cabinet', function(context) {
         cabinet_db.remove(name);
       }
       else if (elementType === 'pill-bottle') {
-        var $element = $(element);
-        $element.toggleClass('active');
-        $(module_el).find('.pill-container').not($element).removeClass('active')
-        var name = $element.find('.pill-name').text();
-        if ($element.hasClass('active')) {
-          context.broadcast('medicine_active', name);
+        activate(element);
 
-          if(is_tablet_and_down()) {
-            context.broadcast('go_to', 1);
-          }
+        if (is_tablet_and_down()) {
+          context.broadcast('go_to', 1);
         }
       }
     }
