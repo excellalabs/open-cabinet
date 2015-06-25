@@ -37,7 +37,7 @@ class MedicineController < ApplicationController
   private
 
   def determine_primary_from_delete
-    params[:primary_name] == params[:medicine] ? @cabinet.medicines.first.name : params[:primary_name]
+    params[:primary_name] == params[:medicine] ? @cabinet.medicines.first.try(:name) : params[:primary_name]
   end
 
   def determine_primary
@@ -45,6 +45,7 @@ class MedicineController < ApplicationController
   end
 
   def fetch_info(medicine)
+    return {} unless medicine
     MedicineInformationService.fetch_information(medicine, @cabinet)
   end
 
