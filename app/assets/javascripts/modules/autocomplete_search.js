@@ -24,6 +24,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
   }
 
   function reset_typeahead() {
+    $('#search_input').blur();
     $component.find('#search_input').val("");
     $("#add_medicine").show();
     $("#add_medicine_wait").hide();
@@ -40,6 +41,15 @@ Box.Application.addModule('autocomplete_search', function(context) {
 
     init: function() {
       setup_autocomplete();
+    },
+
+    onkeydown: function(event, element, elementType){
+      if (event.keyCode == 13) {
+        var medicine = $(".tt-suggestion:first-child").text();
+        if(!medicine) return;
+        reset_typeahead();
+        context.broadcast('medicine_added', medicine);
+      }
     }
   }
 });
