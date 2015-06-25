@@ -83,13 +83,13 @@ $button_colors: (
     background: $b_color !important;
     box-shadow: 0px 3px 0px 0px darken($b_color, 20%) !important;
 
+    &:disabled {
+      background: lighten($b_color, 10%) !important;
+    }
+
     &:hover, &:focus, &:active {
       color: map-get($color, text);
       background: darken($b_color, 10%) !important;
-    }
-
-    &:disabled {
-      background: lighten($b_color, 50%) !important;
     }
   }
 
@@ -99,13 +99,13 @@ $button_colors: (
     background: map-get($color, inactive) !important;
     box-shadow: 0px 3px 0px 0px darken($b_color, 20%);
 
+    &:disabled {
+      background: lighten($b_color, 10%) !important;
+    }
+
     &:hover, &:focus, &:active {
       color: map-get($color, text) !important;
       background: darken($b_color, 10%) !important;
-    }
-
-    &:disabled {
-      background: lighten($b_color, 50%) !important;
     }
   }
 }

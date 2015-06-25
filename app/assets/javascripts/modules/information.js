@@ -6,15 +6,22 @@ Box.Application.addModule('information', function(context) {
   var cabinet_db,
     module_el;
 
+  function med_interaction_length(med) {
+    if(interactions in med){
+      return Object.keys(med.interactions).length
+    } else {
+      return 0;
+    }
+  }
+
   function fill_information(med) {
     var $module_el = $(module_el);
     $module_el.find('#unselected-content').remove();
     $module_el.find('.read-more').remove();
     $module_el.find('.read-less').remove();
     $module_el.find('.primary-name').text(med.name);
-    $module_el.find('#interactions-count').text(Object.keys(med.interactions).length);
-
-    var interaction_count = Object.keys(med.interactions).length;
+    var interaction_count = med_interaction_length(med);
+    $module_el.find('#interactions-count').text(interaction_count);
 
     if (interaction_count >= 1) {
       display_medicine_wordage(interaction_count);
@@ -29,6 +36,9 @@ Box.Application.addModule('information', function(context) {
     read_more($module_el.find('#dosage-and-administration'), med.dosage_and_administration);
     $module_el.find('#warnings').text(med.warnings);
     read_more($module_el.find('#warnings'), med.warnings);
+
+    $('#medicine_interactions .content').show();
+    $('#medicine_interactions .fa-refresh').hide();
   }
 
   function read_more(element, text) {
@@ -99,11 +109,14 @@ Box.Application.addModule('information', function(context) {
     onmessage: function (name, data) {
       switch(name) {
         case 'medicine_active':
+          $('#medicine_interactions .content').hide();
+          $('#medicine_interactions .fa-refresh').show();
           cabinet_db.get_information(data);
           break;
 
         case 'data_loaded':
           fill_information(cabinet_db.get(data));
+
           break;
 
         case 'medicine_deleted':

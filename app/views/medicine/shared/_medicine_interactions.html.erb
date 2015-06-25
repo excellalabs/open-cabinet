@@ -1,0 +1,40 @@
+<% if @cabinet.medicines.empty? %>
+  <div class='row'>
+    <div class='col-span-12' id='interactions'>
+      <h1 class='primary-font green'>ADD MEDICINES TO YOUR CABINET.</h1>
+      <p>Then compare your drugs to make sure there are no known interactions between them.</p>
+    </div>
+  </div>
+<% else %>
+  <div class='row'>
+    <h2>
+      <div class='back-nav hidden-desktop owl-navigation-cabinet'>
+        <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
+     </div>
+      <div class='title'>
+        <span class="primary-name"></span>
+      </div>
+      <div id="interactions-count-container" class='interactions row owl-navigation-interaction' data-type="interactions-warning" style='display: none'>
+        <div class='col-span-11' id="potential-interactions">
+          <span id="interactions-count">4</span> medication<span class="plural">s</span> in your cabinet interact<span class="singular">s</span> with <span class="primary-name"></span>.
+        </div>
+        <div class="col-span-1"><i class="fa fa-arrow-right"></i></div>
+      </div>
+    </h2>
+
+    <section>
+      <h3>General Information</h3>
+      <div>
+        <p id="indications-and-usage" class="multiline-ellipsis"></p>
+      </div>
+      <div>
+        <p id="dosage-and-administration" class="multiline-ellipsis"></p>
+      </div>
+    </section>
+
+    <section>
+      <h3><span class="primary-name"></span></h3>
+      <p id="warnings" class="multiline-ellipsis"></p>
+    </section>
+  </div>
+<% end %>

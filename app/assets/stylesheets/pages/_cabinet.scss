@@ -2,54 +2,70 @@
   position: relative;
   height: 100%;
 
-  @include media($mobile) {
-    .search-bar-container {
-      position: relative;
-      background: $light-gray;
-      padding-bottom: 25px;
+  //*-- global
+  .padding-30-all {
+    padding: 30px;
+
+    @include media($mobile) {
+      padding: 15px 0;
     }
+  }
 
-    .search-bar {
-      position: relative;
-      margin: 0;
-      padding: 0 30px;
+  .title {
+    @extend .padding-30-all;
 
-      .fa-search {
-        top: 34px;
-        left: 15px;
-      }
+    @include media($mobile) {
+      padding: 15px 30px;
+    }
+  }
 
-      button {
-        right: 30px;
-        top: 27px;
-        padding: 8px 15px;
+  //*-- loading icon
+  .fa-refresh {
+    display: none;
+    color: $light-gray;
+    font-size: 200px;
+    position: absolute;
+    left: 35%;
+    top: 35%;
+  }
+
+  //*-- carousal
+  .owl-wrapper-outer, .owl-wrapper, .owl-item {
+    height: 100% !important;
+  }
+
+  .owl-item {
+    overflow-y: auto;
+
+    &:nth-child(odd) {
+      background: $light-gray;
+
+      @include media($mobile) {
+        background: $white;
       }
     }
   }
 
+  .owl-pagination {
+    display: none;
+  }
 
-  .owl-wrapper-outer {
-    height: 100% !important;
+  @include media($mobile) {
+    .search-bar {
+      position: relative;
+      margin: 0;
+      padding: 15px;
+      background: $light-gray;
 
-    .owl-wrapper {
-      height: 100%;
+      .fa-search {
+        top: 20px;
+        left: 30px;
+      }
 
-      .owl-item {
-        height: 100%;
-        padding: 30px 60px;
-        overflow-y: auto;
-
-        @include media($mobile) {
-          padding: 15px 0;
-        }
-
-        &:nth-child(odd) {
-          background: $light-gray;
-
-          @include media($mobile) {
-            background: $white;
-          }
-        }
+      button {
+        right: 15px;
+        top: 15px;
+        padding: 8px 15px;
       }
     }
   }
@@ -75,8 +91,8 @@
     }
   }
 
-  .reaction-list {
-    padding-top: 15px;
+  .interactions-list {
+    padding: 30px;
 
     .row {
       @include media($mobile) {
@@ -100,10 +116,6 @@
     }
   }
 
-  .owl-pagination {
-    display: none;
-  }
-
   h2 {
     font-weight: bold;
     color: $dark-blue;
@@ -118,9 +130,6 @@
     }
   }
 
-
-  .description-view {
-
     .interactions {
       cursor: pointer;
       border: 1px solid $dark-blue;
@@ -130,6 +139,7 @@
       font-size: 16px;
       padding: 15px;
       line-height: 18px;
+      margin: 0 30px;
 
       @include media($mobile) {
         border-left: 0;
@@ -151,8 +161,8 @@
 
     section {
       border-bottom: 1px solid $bright-green;
-      padding-bottom: 15px;
-      margin-bottom: 30px;
+      margin: 30px;
+      padding-bottom: 30px;
 
       @include media($mobile) {
         padding-left: 15px;
@@ -218,7 +228,7 @@
       }
 
       .pill-container {
-        @include span-columns(4 of 12, block-collapse);
+        @include span-columns(4 of 12);
         position: relative;
         height: $shelf-height;
         cursor: pointer;
@@ -349,5 +359,4 @@
         }
       }
     }
-  }
 }

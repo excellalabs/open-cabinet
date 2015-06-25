@@ -38,10 +38,11 @@ module MedicineShelfHelper
     (index % MEDICINES_IN_ROW == (MEDICINES_IN_ROW - 1)) || (medicines.length - 1 == index)
   end
 
+  # RP deleted -- data-module='delete-icon'
   def medicine_html(medicine)
     <<-eos
     <div class='pill-container' data-type='pill-bottle'>
-      <i class="fa fa-times pill-delete" data-module='delete-icon' data-set-id="#{medicine.id}"></i>
+      <i class="fa fa-times pill-delete" data-set-id="#{medicine.id}"></i>
       <div class='pill-wrapper'>
         <div class='pill-bottle'>#{pill_image(medicine)}</div>
         #{ hidden_field_tag medicine.set_id }

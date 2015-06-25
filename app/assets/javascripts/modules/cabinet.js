@@ -1,6 +1,8 @@
 Box.Application.addModule('cabinet', function(context) {
   'use strict';
 
+  var $;
+
   var cabinet_db,
     module_el,
     imgs = [];
@@ -32,6 +34,7 @@ Box.Application.addModule('cabinet', function(context) {
     behaviors: [ 'navigation' ],
 
     init: function() {
+      $ = context.getGlobal('jQuery');
       cabinet_db = context.getService('cabinet-db');
       cabinet_db.load(gon.meds);
       module_el = context.getElement();
@@ -71,7 +74,10 @@ Box.Application.addModule('cabinet', function(context) {
         var name = $element.find('.pill-name').text();
         if ($element.hasClass('active')) {
           context.broadcast('medicine_active', name);
-          context.broadcast('go_to', 1);
+
+          if(is_tablet_and_down()) {
+            context.broadcast('go_to', 1);
+          }
         }
       }
     }

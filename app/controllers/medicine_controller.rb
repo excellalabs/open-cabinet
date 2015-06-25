@@ -17,7 +17,7 @@ class MedicineController < ApplicationController
   end
 
   def refresh_shelves
-    render 'shelves', layout: false if request.xhr?
+    render 'medicine/shared/_shelves', layout: false if request.xhr?
   end
 
   def add_to_cabinet
