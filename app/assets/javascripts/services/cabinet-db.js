@@ -44,14 +44,6 @@ Box.Application.addService('cabinet-db', function(application) {
       method: 'POST',
       dataType: 'json',
       data: { medicine: name },
-      beforeSend: function() {
-        $("#add_medicine").hide();
-        $("#add_medicine_wait").show();
-      },
-      success: function() {
-        $("#add_medicine").show();
-        $("#add_medicine_wait").hide();
-      }
     });
   }
 
