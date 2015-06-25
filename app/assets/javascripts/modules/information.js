@@ -31,20 +31,22 @@ Box.Application.addModule('information', function(context) {
     }
 
     $module_el.find('#indications-and-usage').text(med.indications_and_usage);
-    read_more($module_el.find('#indications-and-usage'), med.indications_and_usage);
+    read_more($module_el.find('#indications-and-usage'));
     $module_el.find('#dosage-and-administration').text(med.dosage_and_administration);
-    read_more($module_el.find('#dosage-and-administration'), med.dosage_and_administration);
+    read_more($module_el.find('#dosage-and-administration'));
     $module_el.find('#warnings').text(med.warnings);
-    read_more($module_el.find('#warnings'), med.warnings);
+    read_more($module_el.find('#warnings'));
 
     $('#medicine_interactions .content').show();
     $('#medicine_interactions .fa-refresh').hide();
   }
 
-  function read_more(element, text) {
-    if (text.length > 450 ) {
+  function read_more(element) {
+    $(module_el).append(element.clone().attr('id', 'delete-this'));
+    if ($('#delete-this').height() > 110 ) {
       element.after("<a class='read-more'>Read More</a><a class='read-less' style='display: none;'>Read Less</a>")
     }
+    $('#delete-this').remove();
   }
 
   function toggle_ellipsis(element) {
