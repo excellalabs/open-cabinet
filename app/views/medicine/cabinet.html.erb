@@ -4,17 +4,20 @@
 
     <div class='row visible-mobile cabinet-directions'>
       <div class='col-span-12'>
-        <h3 class='primary-font bold green'>ADD MEDICINES TO YOUR CABINET.</h3>
-        <p>Then compare your drugs to make sure there are no known interactions between them.</p>
+        <h3 class='primary-font bold green'>ADD MEDICINES TO YOUR CABINET</h3>
+        <p>to view potential interactions between medications.</p>
       </div>
     </div>
 
-    <div class="search-bar">
-      <i class="fa fa-search"></i>
-      <input type="text" id="search_input" placeholder="Type a drug name here..." />
-      <button id='add_medicine' class='button-dark-red'><i class="fa fa-plus"></i></button>
-      <button id="add_medicine_wait" style="display: none;"><i class="fa fa-spinner fa-spin"></i></button>
+    <div class='search-bar-container'>
+      <div class="search-bar">
+        <i class="fa fa-search"></i>
+        <input type="text" id="search_input" placeholder="Type a drug name here..." />
+        <button id='add_medicine' class='button-dark-red'><i class="fa fa-plus"></i></button>
+        <button id="add_medicine_wait" style="display: none;"><i class="fa fa-spinner fa-spin"></i></button>
+      </div>
     </div>
+
     <div id="shelves" class='shelves'>
       <%= render :template => 'medicine/shelves' -%>
     </div>
