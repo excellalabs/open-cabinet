@@ -26,11 +26,15 @@ Box.Application.addModule('autocomplete_search', function(context) {
 
   $("#add_medicine").click(function() {
     var medicine = $component.find('#search_input').val();
+    $("#add_medicine").hide();
+    $("#add_medicine_wait").show();
     cabinet_db.add(medicine);
     $component.find('#search_input').val("");
   });
 
   return {
+    messages: ['medicine_added'],
+
     init: function() {
       this.setup_autocomplete_public();
       this.setup_storage();
@@ -43,6 +47,15 @@ Box.Application.addModule('autocomplete_search', function(context) {
     setup_storage: function() {
       cabinet_db = context.getService('cabinet-db');
       cabinet_db.load(gon.meds);
+    },
+
+    onmessage: function(name ,data){
+      switch(name) {
+        case 'medicine_added':
+          $("#add_medicine").show();
+          $("#add_medicine_wait").hide();
+          break;
+      }
     }
   }
 });
