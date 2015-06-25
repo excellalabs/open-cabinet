@@ -41,7 +41,8 @@ class MedicineController < ApplicationController
   end
 
   def determine_primary
-    params[:primary_name] ? @cabinet.medicines.first.name : params[:primary_name]
+    return nil if @cabinet.medicines.blank?
+    params[:primary_name].blank? ? @cabinet.medicines.first.name : params[:primary_name]
   end
 
   def fetch_info(medicine)
