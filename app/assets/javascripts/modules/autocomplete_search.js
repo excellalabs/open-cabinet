@@ -24,16 +24,21 @@ Box.Application.addModule('autocomplete_search', function(context) {
     });
   }
 
+  function reset_typeahead() {
+    $component.find('#search_input').val("");
+    $("#add_medicine").show();
+    $("#add_medicine_wait").hide();
+  }
+
   $("#add_medicine").click(function() {
     var medicine = $component.find('#search_input').val();
-    $("#add_medicine").hide();
-    $("#add_medicine_wait").show();
+    if(!medicine) return;
     cabinet_db.add(medicine);
     $component.find('#search_input').val("");
   });
 
   return {
-    messages: ['medicine_added'],
+    messages: ['medicine_added', 'add_ajax_initiated', 'invalid_medicine'],
 
     init: function() {
       this.setup_autocomplete_public();
@@ -51,9 +56,17 @@ Box.Application.addModule('autocomplete_search', function(context) {
 
     onmessage: function(name ,data){
       switch(name) {
+        case 'add_ajax_initiated':
+          $("#add_medicine").hide();
+          $("#add_medicine_wait").show();
+          break;
+
+        case 'invalid_medicine':
+          reset_typeahead();
+          break;
+
         case 'medicine_added':
-          $("#add_medicine").show();
-          $("#add_medicine_wait").hide();
+          reset_typeahead();
           break;
       }
     }
