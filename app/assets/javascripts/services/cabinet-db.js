@@ -44,6 +44,12 @@ Box.Application.addService('cabinet-db', function(application) {
       method: 'POST',
       dataType: 'json',
       data: { medicine: name },
+      beforeSend: function(){
+        application.broadcast('add_ajax_initiated');
+      },
+      error: function() {
+        application.broadcast('invalid_medicine');
+      }
     });
   }
 
