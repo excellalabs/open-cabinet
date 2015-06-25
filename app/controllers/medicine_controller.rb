@@ -26,7 +26,8 @@ class MedicineController < ApplicationController
   end
 
   def destroy
-    render json: fetch_info(determine_primary_from_delete), status: @cabinet.destroy_medicine(params) ? :ok : :not_found
+    status = @cabinet.destroy_medicine(params[:medicine])
+    render json: fetch_info(determine_primary_from_delete), status: status ? :ok : :not_found
   end
 
   def query_for_information

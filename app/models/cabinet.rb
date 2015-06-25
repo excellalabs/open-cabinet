@@ -13,5 +13,6 @@ class Cabinet < ActiveRecord::Base
 
   def destroy_medicine(med_name)
     medicines.find { |medicine| medicine.name == med_name }.destroy
+    reload
   end
 end
