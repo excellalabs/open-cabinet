@@ -43,12 +43,15 @@ Box.Application.addModule('interactions-list', function(context) {
 
         case 'data_loaded':
           fill_information(cabinet_db.get(data));
+          $("#interactions").children().first().css("background-color", '#ececec');
           break;
       }
     },
 
     onclick: function (event, element, elementType) {
       if ($(event.target).is('li')) {
+        $("#interactions").children().css("background-color", "");
+        $(event.target).css("background-color", '#ececec');
         context.broadcast('highlight_interactions', event.target.className);
       }
     }
