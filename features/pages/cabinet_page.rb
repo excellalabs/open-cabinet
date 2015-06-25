@@ -19,4 +19,8 @@ class CabinetPage
     script = %{ $('.tt-suggestion:contains("#{text}")').mouseenter().click() }
     page.execute_script(script)
   end
+
+  def press_add_button
+    click_button 'add_medicine'
+  end
 end

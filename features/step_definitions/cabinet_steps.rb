@@ -12,6 +12,7 @@ end
 
 When(/^I select that medication$/) do
   @cabinet_page.select_autocomplete_text(@autocomplete_text)
+  @cabinet_page.press_add_button
 end
 
 Then(/^I should see the medication in my cabinet$/) do
