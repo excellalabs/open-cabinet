@@ -38,7 +38,7 @@ module MedicineShelfHelper
     (index % MEDICINES_IN_ROW == (MEDICINES_IN_ROW - 1)) || (medicines.length - 1 == index)
   end
 
-  # RP deleted -- data-module='delete-icon' 
+  # RP deleted -- data-module='delete-icon'
   def medicine_html(medicine)
     <<-eos
     <div class='pill-container' data-type='pill-bottle'>
