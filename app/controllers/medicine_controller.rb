@@ -36,7 +36,7 @@ class MedicineController < ApplicationController
   private
 
   def determine_primary
-    params[:primary_name] == medicine_params ? @cabinet.medicines.first.name : params[:primary_name]
+    params[:primary_name] ? @cabinet.medicines.first.name : params[:primary_name]
   end
 
   def fetch_info(medicine)
