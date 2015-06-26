@@ -43,14 +43,18 @@ module MedicineShelfHelper
   def medicine_html(medicine)
     <<-eos
     <div class='pill-container' data-type='pill-bottle'>
-      <span data-interactions=''></span>
       <i class="fa fa-times pill-delete" data-set-id="#{medicine.id}"></i>
       <div class='pill-wrapper'>
         <div class='pill-bottle'>#{pill_image(medicine)}</div>
         #{ hidden_field_tag medicine.set_id }
-        <div class='pill-name'>#{medicine.name}</div>
+        <div class='pill-name'>
+          <div>#{medicine.name}</div>
+          <div data-interactions='' class='pill-badge visible-mobile'>3 interactions</div>
+        </div>
       </div>
-      <div class="pill-next visible-mobile"><i class="fa fa-arrow-right"></i></div>
+      <div class="pill-next visible-mobile">
+        <i class="fa fa-arrow-right"></i>
+      </div>
     </div>
     eos
   end
