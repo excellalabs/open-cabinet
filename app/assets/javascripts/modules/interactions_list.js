@@ -12,6 +12,8 @@ Box.Application.addModule('interactions-list', function(context) {
     for (var k in med.interactions) {
       $module_el.find('#interactions').append('<li class="' + k + '">' + med.primary + ' & ' + k + '</li>' )
     }
+
+    $module_el.find('.primary-name').text(med.primary);
   }
 
   return {
