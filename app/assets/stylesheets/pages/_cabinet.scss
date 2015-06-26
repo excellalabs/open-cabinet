@@ -35,6 +35,11 @@
     position: absolute;
     left: 35%;
     top: 35%;
+
+    @include media($mobile) {
+      left: 29%;
+      top: 30%;
+    }   
   }
 
   //*-- carousal
@@ -50,6 +55,12 @@
 
       @include media($mobile) {
         background: $white;
+      }
+    }
+
+    @include media($mobile) {
+      &:nth-child(3n) {
+        background: $light-gray;
       }
     }
   }
@@ -91,6 +102,8 @@
   .owl-navigation-cabinet {
     color: $white;
     background: $bright-blue;
+    text-align: center;
+
     .primary-name {
       @include ellipsis();
       font-size: 20px;
@@ -101,6 +114,9 @@
 
     .fa {
       margin-right: 5px;
+      position: absolute;
+      left: 15px;
+      top: 10px;
     }
   }
 
@@ -109,12 +125,24 @@
     cursor: pointer;
     font-size: 24px;
     padding: 5px 15px;
+    text-align: left;
+
+    &.hidden-desktop {
+      text-align: center;
+    }
 
     &.visible-desktop {
       background: transparent;
       color: $dark-red;
       font-size: 16px;
       padding: 5px 0;
+
+      .fa {
+        position: relative;
+        margin-right: 5px;
+        left: 0;
+        top: 0;
+      }
     }
   }
 
@@ -328,8 +356,9 @@
           }
 
           @include media($mobile) {
-            @include span-columns(2 of 12, block-collapse);
+            @include span-columns(2 of 12);
             text-align: center;
+            padding-left: 25px;
           }
         }
 
@@ -345,7 +374,16 @@
           @include media($mobile) {
             @include span-columns(10 of 12);
             color: $dark-gray;
-            line-height: 49px;
+            line-height: 18px;
+            margin-top: 6px;
+            margin-left: -5px;
+            font-weight: bold;
+
+            .pill-badge {
+              color: $dark-red;
+              font-weight: normal !important;
+              font-size: 12px;
+            }
           }
         }
       }
@@ -355,6 +393,15 @@
         right: 15px;
         line-height: 49px;
         color: $bright-green;
+
+        .pill-badge {
+          background: $bright-green;
+          color: $white;
+          border-radius: 8px;
+          margin: 0 5px;
+          padding: 2px 10px;
+          font-size: 12px;
+        }
       }
 
       &.active {
