@@ -48,7 +48,7 @@ module MedicineShelfHelper
         <div class='pill-bottle'>#{pill_image(medicine)}</div>
         #{ hidden_field_tag medicine.set_id }
         <div class='pill-name'>
-          <div>#{medicine.name}</div>
+          <div class='pill-name-text'>#{medicine.name}</div>
           <div data-interactions='' class='pill-badge visible-mobile'>3 interactions</div>
         </div>
       </div>
