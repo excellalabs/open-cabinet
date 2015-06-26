@@ -110,11 +110,10 @@ Box.Application.addModule('cabinet', function(context) {
     onclick: function(event, element, elementType) {
 
       event.preventDefault();
-      
-      if ($(event.target).hasClass('pill-delete')) {
-        var $element = $(event.target);
-        var name = $element.closest('.pill-container').find('.pill-name').text();
-        cabinet_db.remove(name);
+      var ev_target = $(event.target);
+      if (ev_target.hasClass('pill-delete')) {
+        var name = ev_target.closest('.pill-container').find('.pill-name').text();
+        delete_medicine(name, primary_med_name());
       } else if (is_tablet_and_down()) {
         if($(event.target).is('img')) {
           $(event.target).toggleClass('delete');
@@ -131,8 +130,9 @@ Box.Application.addModule('cabinet', function(context) {
           context.broadcast('go_to', 1);
           $('.mobile-footer').hide();
         }
-      } else { 
-        activate(element);
+      }
+      else if (ev_target.closest('.pill-container')) {
+        click_primary($(ev_target).closest('.pill-container')[0]);
       }
     }
   }
