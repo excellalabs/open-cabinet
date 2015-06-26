@@ -88,8 +88,8 @@ Box.Application.addModule('information', function(context) {
     $module_el.find('#dosage-and-administration').empty();
     $module_el.find('#warnings').empty();
     $module_el.find('#interactions-text').empty();
-    $('#medicine_information .content').hide();
     $('#medicine_information .fa-refresh').hide();
+    $('#medicine_information .content').show();
 
     $module_el.find('#empty-message-row').html(
       '<div class="row" id="unselected-content"> \
