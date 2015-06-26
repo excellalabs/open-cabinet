@@ -55,6 +55,11 @@ Box.Application.addModule('cabinet', function(context) {
     make_primary(primary, primary_medicine_info);
   }
 
+  function set_interaction_count(primary_medicine_info) {
+    var count = Object.keys(primary_medicine_info.interactions).length;
+    $("div.pill-container.active").find('span').first().data("interactions", count);
+  }
+
   function make_primary(elm, primary_medicine_info) {
     $(elm).removeClass('disabled interact').addClass('active');
     $(module_el).find('.pill-container').not($(elm)).removeClass('active interact').addClass('disabled');
@@ -85,6 +90,7 @@ Box.Application.addModule('cabinet', function(context) {
         refresh_shelves().done(function(data) {
           $(module_el).html(data);
           activate_primary_med(primary_medicine_info);
+          set_interaction_count(primary_medicine_info);
         });
       });
     },
@@ -95,6 +101,7 @@ Box.Application.addModule('cabinet', function(context) {
         refresh_shelves().done(function(data) {
           $(module_el).html(data);
           activate_primary_med(primary_medicine_info);
+          set_interaction_count(primary_medicine_info);
         });
       });
     },
