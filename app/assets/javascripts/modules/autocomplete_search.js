@@ -30,25 +30,41 @@ Box.Application.addModule('autocomplete_search', function(context) {
     $("#add_medicine_wait").hide();
   }
 
+  function reset_typeahead_animation(){
+    $('#search_input').blur();
+    $component.find('#search_input').val("");
+    $("#add_medicine").hide();
+    $("#add_medicine_wait").show();
+  }
+
+  function submit_typeahead(medicine){
+    if(!medicine) return;
+    reset_typeahead_animation();
+    context.broadcast('medicine_added', medicine);
+  }
+
   $("#add_medicine").click(function() {
     var medicine = $component.find('#search_input').val();
-    if(!medicine) return;
-    reset_typeahead();
-    context.broadcast('medicine_added', medicine);
+    submit_typeahead(medicine);
   });
 
   return {
+
+    messages: ['reload_data'],
 
     init: function() {
       setup_autocomplete();
     },
 
+    onmessage: function(name){
+      $("#add_medicine").show();
+      $("#add_medicine_wait").hide();
+    },
+
     onkeydown: function(event, element, elementType){
       if (event.keyCode == 13) {
         var medicine = $(".tt-suggestion:first-child").text();
-        if(!medicine) return;
-        reset_typeahead();
-        context.broadcast('medicine_added', medicine);
+        submit_typeahead(medicine);
       }
     }
   }
