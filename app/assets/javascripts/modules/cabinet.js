@@ -56,6 +56,7 @@ Box.Application.addModule('cabinet', function(context) {
   }
 
   function set_interaction_count(primary_medicine_info) {
+    if($.isEmptyObject(primary_medicine_info)) { return; }
     var count = Object.keys(primary_medicine_info.interactions).length;
     $("div.pill-container.active").find('span').first().data("interactions", count);
   }
