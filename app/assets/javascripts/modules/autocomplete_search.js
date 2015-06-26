@@ -63,7 +63,16 @@ Box.Application.addModule('autocomplete_search', function(context) {
 
     onkeydown: function(event, element, elementType){
       if (event.keyCode == 13) {
-        var medicine = $(".tt-suggestion:first-child").text();
+        var array = $.grep($(".tt-suggestion"), function(suggestion) {
+            return $(suggestion).text() == $(".tt-input").val();
+        });
+
+        if (array.length) {
+          var medicine = array[0].innerText;
+        } else {
+          var medicine = $(".tt-suggestion:first-child").text();
+        }
+
         submit_typeahead(medicine);
       }
     }
