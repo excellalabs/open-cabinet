@@ -39,9 +39,11 @@ module MedicineShelfHelper
   end
 
   # RP deleted -- data-module='delete-icon'
+  # rubocop:disable Metrics/MethodLength
   def medicine_html(medicine)
     <<-eos
     <div class='pill-container' data-type='pill-bottle'>
+      <span data-interactions=''></span>
       <i class="fa fa-times pill-delete" data-set-id="#{medicine.id}"></i>
       <div class='pill-wrapper'>
         <div class='pill-bottle'>#{pill_image(medicine)}</div>
