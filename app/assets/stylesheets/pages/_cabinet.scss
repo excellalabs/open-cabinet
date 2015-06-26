@@ -13,12 +13,16 @@
     @include media($mobile) {
       padding: 15px 0;
     }
+
+    @include media($tablet) {
+      padding: 15px;
+    }
   }
 
   .title {
     @extend .padding-30-all;
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
       padding: 15px 30px;
     }
   }
@@ -36,7 +40,7 @@
     left: 35%;
     top: 35%;
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
       left: 29%;
       top: 30%;
     }   
@@ -58,7 +62,7 @@
       }
     }
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
       &:nth-child(3n) {
         background: $light-gray;
       }
@@ -89,7 +93,7 @@
     }
   }
 
-  @include media($mobile) {
+  @include media($tablet-and-down) {
     .cabinet-directions {
       padding: 0 15px;
       h3 {
@@ -149,12 +153,12 @@
   .interactions-list {
     padding: 30px;
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
       padding: 0;
     }
 
     .row.with-shadow {
-      @include media($mobile) {
+      @include media($tablet-and-down) {
         margin: 0 15px;
       }
 
@@ -180,7 +184,7 @@
     color: $dark-blue;
     margin-bottom: 30px;
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
       font-size: 36px;
 
       .name {
@@ -200,7 +204,7 @@
     line-height: 18px;
     margin: 0 30px;
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
       border: 0;
       margin: 0;
 
@@ -223,7 +227,7 @@
     margin: 30px;
     padding-bottom: 30px;
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
       margin: 15px;
     }
 

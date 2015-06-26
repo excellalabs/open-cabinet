@@ -1,7 +1,7 @@
 .main-content {
   height: calc(100% - 100px);
 
-  @include media($tablet) {
+  @include media($tablet-and-down) {
     height: calc(100% - 80px);
   }
 }
