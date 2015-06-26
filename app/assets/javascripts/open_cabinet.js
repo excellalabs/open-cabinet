@@ -44,3 +44,7 @@ function is_tablet() {
 function is_tablet_and_down() {
   return $('.tablet-and-down-view').is(':visible');
 }
+
+function class_name(str) {
+  return str.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-')
+}
