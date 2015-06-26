@@ -4,8 +4,8 @@ Box.Application.addModule('cabinet', function(context) {
   var module_el;
 
   function primary_med_name() {
-    return $(module_el).find('.pill-container .active').find('.pill-name').text() ||
-            $(module_el).find('.pill-container').first().find('.pill-name').text();
+    return $(module_el).find('.pill-container .active').find('.pill-name-text').text() ||
+            $(module_el).find('.pill-container').first().find('.pill-name-text').text();
   }
 
   function get_information(name) {
@@ -50,7 +50,7 @@ Box.Application.addModule('cabinet', function(context) {
   }
 
   function activate_primary_med(primary_medicine_info) {
-    var primary = $(module_el).find('.pill-name').filter(function() {
+    var primary = $(module_el).find('.pill-name-text').filter(function() {
       return $(this).text().toLowerCase() === primary_medicine_info.primary.toLowerCase();
     }).closest('.pill-container');
 
@@ -73,7 +73,7 @@ Box.Application.addModule('cabinet', function(context) {
   }
 
   function click_primary(elm) {
-    var name = $(elm).find('.pill-name').text();
+    var name = $(elm).find('.pill-name-text').text();
     get_information(name).done(function(primary_medicine_info) {
       context.broadcast('reload_data', primary_medicine_info);
       refresh_shelves().done(function(data) {
@@ -117,7 +117,7 @@ Box.Application.addModule('cabinet', function(context) {
           var deletes = $('.delete');
           var names = {};
           for (var i = 0; i < deletes.length; i++ ) {
-            names[i] = $(deletes[i]).closest('.pill-container').find('.pill-name').text();
+            names[i] = $(deletes[i]).closest('.pill-container').find('.pill-name-text').text();
           }
           delete_medicine(names, primary_med_name());
           $('.mobile-footer').hide();
@@ -135,7 +135,7 @@ Box.Application.addModule('cabinet', function(context) {
       var $ev_target = $(event.target);
 
       if ($ev_target.hasClass('pill-delete')) {
-        var name = $ev_target.closest('.pill-container').find('.pill-name').text();
+        var name = $ev_target.closest('.pill-container').find('.pill-name-text').text();
         delete_medicine(name, primary_med_name());
       } else if (is_tablet_and_down()) {
         if($ev_target.is('img')) {
