@@ -84,16 +84,34 @@
     }
   }
 
-  .back-nav {
-    color: $dark-red;
-    cursor: pointer;
-    margin-bottom: 5px;
-    font-size: 16px;
-
-    @include media($mobile) {
+  .owl-navigation-cabinet {
+    .primary-name {
+      font-size: 30px;
+      line-height: 28px;
       padding: 0 15px;
+      display: inline-block;
+      color: $bright-blue;
     }
   }
+
+  .back-nav {
+    position: relative;
+    color: $white;
+    background: $bright-blue;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 5px 15px;
+    top: -3px;
+
+    &.visible-desktop {
+      background: transparent;
+      color: $dark-red;
+      font-size: 16px;
+      padding: 5px 0;
+    }
+  }
+
+
 
   .interactions-list {
     padding: 30px;
@@ -169,8 +187,7 @@
     padding-bottom: 30px;
 
     @include media($mobile) {
-      padding-left: 15px;
-      padding-right: 15px;
+      margin: 15px;
     }
 
     &:last-child {
@@ -355,6 +372,11 @@
         .pill-name {
           background: $dark-blue;
           color: $white;
+
+          @include media($mobile) {
+            background: $white;
+            color: $dark-gray;
+          }
         }
       }
 

@@ -11,6 +11,7 @@ Box.Application.addModule('navigation', function(context) {
       navigation : false,
       slideSpeed: 800,
       mouseDrag: false,
+      touchDrag: false,
       itemsCustom : [
           [0, 1],
           [850, 2]
