@@ -7,7 +7,7 @@
   color: $white;
   padding: 15px 60px;
 
-  @include media($mobile) {
+  @include media($tablet-and-down) {
     padding: 15px;
   }
 
@@ -19,7 +19,7 @@
   .logo {
     font-size: 32px;
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
       font-size: 18px;
     }
 
@@ -27,7 +27,7 @@
       width: 50px;
       margin-right: 2px;
 
-      @include media($mobile) {
+      @include media($tablet-and-down) {
         width: 30px;
       }
     }
@@ -38,6 +38,11 @@
 
     @include media($mobile) {
       font-size: 22px;
+    }
+
+    @include media($tablet) {
+      font-size: 16px;
+      line-height: 24px;
     }
 
     a {
@@ -93,7 +98,7 @@
       margin: 0;
       padding: 0;
       list-style-type: none;
-      text-align: center;  
+      text-align: right;  
 
       @include media($mobile) {
         text-align: left;

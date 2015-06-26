@@ -8,7 +8,7 @@
     list-style-type: none;
     color: $dark-red;
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
       padding-top: 10px;
     }
   }
@@ -24,10 +24,16 @@
     position: relative;
     top: 15%;
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
+      @include span-columns(12);
+      @include shift(0);
       top: 0;
       padding: 15px;
       margin-top: 15px;
+    }
+
+    @include media($tablet) {
+      padding: 0 60px;
     }
 
     h1 {
@@ -35,9 +41,13 @@
       font-size: 121px;
       line-height: 110px;
 
-      @include media($mobile) {
+      @include media($tablet-and-down) {
         font-size: 32px;
         line-height: 1em;
+      }
+
+      @include media($tablet) {
+        font-size: 60px;
       }
     }
 
@@ -46,8 +56,12 @@
       font-weight: bold;
       font-size: 50px;
 
-      @include media($mobile) {
+      @include media($tablet-and-down) {
         font-size: 20px;
+      }
+
+      @include media($tablet) {
+        font-size: 36px;
       }
     }
   }
@@ -57,10 +71,16 @@
     top: 15%;
     padding: 0 30px;
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
+      @include span-columns(12);
+      @include shift(0);
       top: 0;
       padding: 0 15px;
       margin-top: 15px;
+    }
+
+    @include media($tablet) {
+      padding: 0 60px;
     }
 
     .has-account {
@@ -75,7 +95,7 @@
       border-radius: 4px;
       padding: 15px 30px;
 
-      @include media($mobile) {
+      @include media($tablet-and-down) {
         padding: 15px;
       }
     }
@@ -83,7 +103,7 @@
     .field {
       margin: 15px auto;
 
-      @include media($mobile) {
+      @include media($tablet-and-down) {
         margin: 0;
 
         &:last-child {
@@ -99,7 +119,7 @@
         background: #efefef;
         border: 1px solid $light-gray;
 
-        @include media($mobile) {
+        @include media($tablet-and-down) {
           border-radius: 0;
           border: 1px solid $white;
         }
