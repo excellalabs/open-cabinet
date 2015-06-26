@@ -110,8 +110,10 @@ Box.Application.addModule('cabinet', function(context) {
       });
     },
 
-    onclick: function(event, element, elementType) {
+    onclick: function(event, element, elementType) {      
 
+      $('#medicine_information .content').hide();
+      $('#medicine_information .fa-refresh').show();
       event.preventDefault();
       var ev_target = $(event.target);
       if (ev_target.hasClass('pill-delete')) {
