@@ -68,7 +68,7 @@ Box.Application.addModule('cabinet', function(context) {
     $(elm).removeClass('disabled interact').addClass('active');
     $(module_el).find('.pill-container').not($(elm)).removeClass('active interact').addClass('disabled');
     $(module_el).find('.pill-container').filter(function() {
-      return $.inArray($(this).text().trim(), Object.keys(primary_medicine_info.interactions)) >= 0;
+      return $.inArray($(this).find('.pill-name-text').text().trim(), Object.keys(primary_medicine_info.interactions)) >= 0;
     }).toggleClass('interact disabled');
   }
 
