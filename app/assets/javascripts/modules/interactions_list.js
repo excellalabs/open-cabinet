@@ -4,7 +4,7 @@ Box.Application.addModule('interactions-list', function(context) {
   var $;
 
   var cabinet_db,
-    module_el;
+      module_el;
 
   function fill_information(med) {
     var $module_el = $(module_el);
@@ -14,13 +14,8 @@ Box.Application.addModule('interactions-list', function(context) {
     }
   }
 
-  function clear_information(med) {
-    var $module_el = $(module_el);
-    $module_el.find('#interactions').empty();
-  }
-
   return {
-    messages: ['medicine_inactive', 'data_loaded'],
+    messages: ['reload_data'],
     behaviors: [ 'navigation' ],
 
     init: function() {
@@ -37,12 +32,8 @@ Box.Application.addModule('interactions-list', function(context) {
 
     onmessage: function (name, data) {
       switch(name) {
-        case 'medicine_inactive':
-          clear_information();
-          break;
-
-        case 'data_loaded':
-          fill_information(cabinet_db.get(data));
+        case 'reload_data':
+          fill_information(data);
           $("#interactions").children().first().css("background-color", '#ececec');
           break;
       }
