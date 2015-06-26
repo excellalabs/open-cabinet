@@ -5,6 +5,8 @@ Box.Application.addModule('information', function(context) {
 
   function fill_information(med) {
     var $module_el = $(module_el);
+    $module_el.find('#empty-message-row').html('');
+    $module_el.find('#medicine-general-info').show();
     $module_el.find('#unselected-content').remove();
     $module_el.find('.read-more').remove();
     $module_el.find('.read-less').remove();
@@ -78,6 +80,7 @@ Box.Application.addModule('information', function(context) {
   function clear_information() {
     var $module_el = $(module_el);
     $module_el.find('.primary-name').empty();
+    $module_el.find('#medicine-general-info').hide();
     $module_el.find('#interactions-count').text('0');
     $module_el.find('.plural').show();
     $module_el.find('.singular').hide();
@@ -86,9 +89,9 @@ Box.Application.addModule('information', function(context) {
     $module_el.find('#warnings').empty();
     $module_el.find('#interactions-text').empty();
 
-    $module_el.prepend(
+    $module_el.find('#empty-message-row').html(
       '<div class="row" id="unselected-content"> \
-        <div class="col-span-10" id="interactions"> \
+        <div class="col-span-12" id="interactions"> \
           <h1 class="primary-font green">ADD MEDICINES TO YOUR MEDICINE CABINET.</h1> \
           <p>Then compare your drugs to make sure there are no known interactions between them.</p> \
         </div> \
@@ -106,7 +109,7 @@ Box.Application.addModule('information', function(context) {
     },
 
     onmessage: function (name, data) {
-      if (data) {
+      if (Object.keys(data).length) {
         fill_information(data);
       } else {
         clear_information();
