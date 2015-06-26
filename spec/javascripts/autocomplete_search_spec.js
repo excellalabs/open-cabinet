@@ -19,7 +19,6 @@ describe("modules/autocomplete_search", function() {
     it('should call setup autocomplete', function() {
       var mock = sinon.mock(module);
       mock.expects('setup_autocomplete_public').once();
-      mock.expects('setup_storage').once();
       
       module.init();
       mock.verify();
