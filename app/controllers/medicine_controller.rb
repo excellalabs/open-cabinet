@@ -1,5 +1,5 @@
 class MedicineController < ApplicationController
-  before_action :find_or_create_cabinet, except: [:search, :autocomplete]
+  before_action :find_or_create_cabinet, except: [:autocomplete]
 
   def autocomplete
     ary = []
@@ -17,27 +17,37 @@ class MedicineController < ApplicationController
   end
 
   def refresh_shelves
-    render 'medicine/shared/_shelves', layout: false if request.xhr?
+    render 'medicine/shared/_shelves', layout: false
   end
 
   def add_to_cabinet
-    med = SearchableMedicine.find_by(name: medicine_params)
-    @cabinet.add_to_cabinet(name: med.name, set_id: med.set_id)
-    render json: { name: med.name, set_id: med.set_id }, status: :ok
+    outcome = @cabinet.add_to_cabinet(SearchableMedicine.find_by(name: params[:medicine]))
+    render json: fetch_info(params[:medicine]), status: outcome ? :ok : :not_found
   end
 
   def destroy
-    render json: nil, status: :ok if @cabinet.medicines.find { |medicine| medicine.name == medicine_params }.destroy
+    status = @cabinet.destroy_medicine(params[:medicine])
+    render json: fetch_info(determine_primary_from_delete), status: status ? :ok : :not_found
   end
 
   def query_for_information
-    render json: MedicineInformationService.fetch_information(params[:medicine_id], @cabinet)
+    render json: fetch_info(determine_primary), status: :ok
   end
 
   private
 
-  def medicine_params
-    params.require(:medicine)
+  def determine_primary_from_delete
+    params[:primary_name] == params[:medicine] ? @cabinet.medicines.first.try(:name) : params[:primary_name]
+  end
+
+  def determine_primary
+    return nil if @cabinet.medicines.blank?
+    params[:primary_name].blank? ? @cabinet.medicines.first.name : params[:primary_name]
+  end
+
+  def fetch_info(medicine)
+    return {} unless medicine
+    MedicineInformationService.fetch_information(medicine, @cabinet)
   end
 
   def find_or_create_cabinet
