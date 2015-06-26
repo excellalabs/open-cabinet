@@ -16,7 +16,7 @@ Box.Application.addModule('footer', function(context) {
       var $ev_target = $(event.target);
 
       if (is_tablet_and_down()) {
-        if ($ev_target.hasClass('.mobile-pill-delete')){
+        if ($ev_target.hasClass('mobile-pill-delete')){
           context.broadcast('mobile_delete');
         }
       }
