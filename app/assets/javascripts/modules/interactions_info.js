@@ -15,6 +15,7 @@ Box.Application.addModule('interactions-info', function(context) {
       text = 'There is no interaction information for this medicine.'
     }
     $module_el.find('#interactions-text').html(text);
+    $module_el.find('.primary-name').text(med.primary);
   }
 
   function highlight_keywords(meds, text) {
