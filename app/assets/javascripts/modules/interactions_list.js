@@ -10,7 +10,7 @@ Box.Application.addModule('interactions-list', function(context) {
     var $module_el = $(module_el);
     $module_el.find('#interactions').empty();
     for (var k in med.interactions) {
-      $module_el.find('#interactions').append('<li class="' + k + '">' + med.name + ' & ' + k + '</li>' )
+      $module_el.find('#interactions').append('<li class="' + k + '">' + med.primary + ' & ' + k + '</li>' )
     }
   }
 
