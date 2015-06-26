@@ -4,11 +4,17 @@ Box.Application.addBehavior('navigation', function(context) {
   return {
     onclick: function(event, element, elementType) {
 
+      if(is_tablet()) {
+        if($(event.target).hasClass('back-to-medicine-information') || $(event.target).is('img')) {
+          context.broadcast('go_to', 1);
+        }
+      } 
+
       if(is_tablet_and_down()) {
         if($(event.target).hasClass('back-to-medicine-cabinet')) {
           context.broadcast('go_to', 0);
         }
-        if($(event.target).hasClass('back-to-medicine-information')) {
+        if($(event.target).hasClass('back-to-medicine-information') ) {
           context.broadcast('go_to', 1);
         }
         if($(event.target).hasClass('back-to-interaction-pairs')) {
