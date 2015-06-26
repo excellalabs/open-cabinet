@@ -1,12 +1,10 @@
-<% if @cabinet.medicines.empty? %>
-  <div class='row'>
+  <div class='row' style="<%= @cabinet.medicines.empty? ? '': 'display: none;'%>" id='empty-message-row'>
     <div class='col-span-12' id='interactions'>
       <h1 class='primary-font green'>ADD MEDICINES TO YOUR CABINET.</h1>
       <p>Then compare your drugs to make sure there are no known interactions between them.</p>
     </div>
   </div>
-<% else %>
-  <div class='row'>
+  <div class='row' id='medicine-general-info'>
     <h2>
       <div class='back-nav hidden-desktop owl-navigation-cabinet'>
         <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back
@@ -37,4 +35,3 @@
       <p id="warnings" class="multiline-ellipsis"></p>
     </section>
   </div>
-<% end %>
