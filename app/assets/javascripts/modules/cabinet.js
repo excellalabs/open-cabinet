@@ -51,9 +51,9 @@ Box.Application.addModule('cabinet', function(context) {
 
   function activate_primary_med(primary_medicine_info) {
     var primary = $(module_el).find('.pill-name').filter(function() {
-      return $(this).text().toLowerCase() === primary_medicine_info.primary.toLowerCase(); 
+      return $(this).text().toLowerCase() === primary_medicine_info.primary.toLowerCase();
     }).closest('.pill-container');
-    
+
     if(!primary) { return; }
     make_primary(primary, primary_medicine_info);
   }
@@ -84,7 +84,7 @@ Box.Application.addModule('cabinet', function(context) {
   }
 
   return {
-    messages: ['medicine_added'],
+    messages: ['medicine_added', 'mobile_delete'],
     behaviors: [ 'navigation' ],
 
     init: function() {
@@ -100,26 +100,44 @@ Box.Application.addModule('cabinet', function(context) {
     },
 
     onmessage: function (name, medicine_name) {
-      add_to_cabinet(medicine_name).done(function(primary_medicine_info) {
-        context.broadcast('reload_data', primary_medicine_info);
-        refresh_shelves().done(function(data) {
-          $(module_el).html(data);
-          activate_primary_med(primary_medicine_info);
-          set_interaction_count(primary_medicine_info);
-        });
-      });
+      switch (name) {
+
+        case 'medicine_added':
+          add_to_cabinet(medicine_name).done(function(primary_medicine_info) {
+            context.broadcast('reload_data', primary_medicine_info);
+            refresh_shelves().done(function(data) {
+              $(module_el).html(data);
+              activate_primary_med(primary_medicine_info);
+              set_interaction_count(primary_medicine_info);
+            });
+          });
+          break;
+
+        case 'mobile_delete':
+          var deletes = $('.delete');
+          var names = {};
+          for (var i = 0; i < deletes.length; i++ ) {
+            names[i] = $(deletes[i]).closest('.pill-container').find('.pill-name').text();
+          }
+          delete_medicine(names, primary_med_name());
+          $('.mobile-footer').hide();
+          break;
+      }
+
     },
 
     onclick: function(event, element, elementType) {
 
       event.preventDefault();
-      var ev_target = $(event.target);
-      if (ev_target.hasClass('pill-delete')) {
-        var name = ev_target.closest('.pill-container').find('.pill-name').text();
+
+      var $ev_target = $(event.target);
+
+      if ($ev_target.hasClass('pill-delete')) {
+        var name = $ev_target.closest('.pill-container').find('.pill-name').text();
         delete_medicine(name, primary_med_name());
       } else if (is_tablet_and_down()) {
-        if($(event.target).is('img')) {
-          $(event.target).toggleClass('delete');
+        if($ev_target.is('img')) {
+          $ev_target.toggleClass('delete');
 
           if($('.cabinet img.delete').length == 0) {
             $('.mobile-footer').slideUp();
@@ -131,11 +149,11 @@ Box.Application.addModule('cabinet', function(context) {
 
         } else {
           context.broadcast('go_to', 1);
+          $('.delete').removeClass('delete');
           $('.mobile-footer').hide();
         }
-      }
-      else if (ev_target.closest('.pill-container')) {
-        click_primary($(ev_target).closest('.pill-container')[0]);
+      } else if ($ev_target.closest('.pill-container')) {
+        click_primary($ev_target.closest('.pill-container')[0]);
       }
     }
   }

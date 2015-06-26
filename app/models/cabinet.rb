@@ -12,7 +12,12 @@ class Cabinet < ActiveRecord::Base
   end
 
   def destroy_medicine(med_name)
-    medicines.find { |medicine| medicine.name == med_name }.destroy
+    if med_name.is_a? Hash
+      results = medicines.map { |medicine| medicine if med_name.values.include?(medicine.name) }
+      medicines.destroy(results.compact)
+    else
+      medicines.find { |medicine| medicine.name == med_name }.destroy
+    end
     reload
   end
 end

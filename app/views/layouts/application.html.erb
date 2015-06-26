@@ -20,9 +20,9 @@
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
 
-  <div class='footer'>
+  <div class='footer' data-module='footer'>
     <div class='mobile-footer visible-mobile'>
-      <i class="fa fa-trash-o"></i>
+      <i class="fa fa-trash-o mobile-pill-delete"></i>
     </div>
     <div class='tablet-view visible-tablet'><!-- --></div>
     <div class='tablet-and-down-view hidden-desktop'><!-- --></div>
