@@ -50,7 +50,10 @@ Box.Application.addModule('cabinet', function(context) {
   }
 
   function activate_primary_med(primary_medicine_info) {
-    var primary = $(module_el).find(':contains("' + primary_medicine_info.primary + '")').closest('.pill-container');
+    var primary = $(module_el).find('.pill-name').filter(function() {
+      return $(this).text().toLowerCase() === primary_medicine_info.primary.toLowerCase(); 
+    }).closest('.pill-container');
+    
     if(!primary) { return; }
     make_primary(primary, primary_medicine_info);
   }
