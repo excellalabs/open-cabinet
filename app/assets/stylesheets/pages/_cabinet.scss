@@ -85,23 +85,25 @@
   }
 
   .owl-navigation-cabinet {
+    color: $white;
+    background: $bright-blue;
     .primary-name {
-      font-size: 30px;
-      line-height: 28px;
-      padding: 0 15px;
-      display: inline-block;
-      color: $bright-blue;
+      @include ellipsis();
+      font-size: 20px;
+      line-height: 18px;
+      padding: 15px 15px 10px;
+    }
+
+    .fa {
+      margin-right: 15px;
     }
   }
 
   .back-nav {
     position: relative;
-    color: $white;
-    background: $bright-blue;
     cursor: pointer;
     font-size: 24px;
     padding: 5px 15px;
-    top: -3px;
 
     &.visible-desktop {
       background: transparent;
@@ -206,7 +208,7 @@
   padding: 30px 0 60px;
 
   @include media($mobile) {
-    padding-top: 0;
+    padding: 0;
   }
 
   .shelf-wrapper {
