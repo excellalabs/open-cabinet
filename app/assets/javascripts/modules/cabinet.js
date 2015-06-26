@@ -126,10 +126,7 @@ Box.Application.addModule('cabinet', function(context) {
 
     },
 
-    onclick: function(event, element, elementType) {      
-
-      $('#medicine_information .content').hide();
-      $('#medicine_information .fa-refresh').show();
+    onclick: function(event, element, elementType) {
       event.preventDefault();
 
       var $ev_target = $(event.target);
