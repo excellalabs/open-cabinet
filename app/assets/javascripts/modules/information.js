@@ -85,7 +85,7 @@ Box.Application.addModule('information', function(context) {
       text = count + ' medications in your cabinet interact with ' + name + '.';
     } 
 
-    return text;
+    $('#potential-interactions').text(text);
   }
 
   function clear_information() {

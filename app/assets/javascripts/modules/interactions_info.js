@@ -10,10 +10,6 @@ Box.Application.addModule('interactions-info', function(context) {
 
     $module_el.find('#interactions-text').html(load_interaction_text(med));
     $module_el.find('.primary-name').text(med.primary);
-
-    // $('.' + $("#interactions").children().first().attr('class')).each(function (index, span) {
-    //   $(span).addClass('neon');
-    // });
   }
 
   function highlight_interactions(element) {
