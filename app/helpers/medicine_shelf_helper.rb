@@ -2,11 +2,12 @@ module MedicineShelfHelper
   MEDICINES_IN_ROW = 3
   NUM_IMAGES = 7
   MIN_ROWS = 3
-  def show_shelves(cabinet)
+  def show_shelves(cabinet, primary_medicine, interactions)
     result = ''
     cabinet.medicines.each_with_index do |medicine, i|
       result += shelf_start_html if new_shelf?(i)
-      result += medicine_html(medicine)
+      interaction = interaction_class_name(medicine, primary_medicine, interactions)
+      result += medicine_html(medicine, interactions, interaction)
       result += shelf_end_html if end_shelf?(cabinet.medicines, i)
     end
     result += add_empty_shelves(cabinet.medicines)
@@ -38,18 +39,32 @@ module MedicineShelfHelper
     (index % MEDICINES_IN_ROW == (MEDICINES_IN_ROW - 1)) || (medicines.length - 1 == index)
   end
 
+  def interaction_class_name(curr_medicine, primary_medicine, interactions)
+    return 'active' if curr_medicine == primary_medicine
+    return 'interact' if primary_medicine && interactions[medicine_key(primary_medicine)] &&
+                         interactions[medicine_key(primary_medicine)][medicine_key(curr_medicine)]
+    'disabled'
+  end
+
+  def medicine_key(medicine)
+    medicine.name.to_sym
+  end
+
   # RP deleted -- data-module='delete-icon'
   # rubocop:disable Metrics/MethodLength
-  def medicine_html(medicine)
+  def medicine_html(medicine, interactions, interaction_class_name)
     <<-eos
-    <div class='pill-container' data-type='pill-bottle'>
+    <div class='pill-container #{interaction_class_name} clickable-pill-container' pill-name-text='#{medicine.name}'
+         data-type='pill-bottle'>
       <i class="fa fa-times pill-delete" data-set-id="#{medicine.id}"></i>
       <div class='pill-wrapper'>
         <div class='pill-bottle'>#{pill_image(medicine.name)}</div>
         #{ hidden_field_tag medicine.set_id }
         <div class='pill-name'>
           <div class='pill-name-text'>#{medicine.name}</div>
-          <div data-interactions='' class='pill-badge visible-mobile num-pill-interactions'></div>
+          <div data-interactions='' class='pill-badge visible-mobile num-pill-interactions'>
+            #{(interactions[medicine_key(medicine)] || {}).keys.length}
+          </div>
         </div>
       </div>
       <div class="pill-next visible-mobile">
@@ -57,6 +72,12 @@ module MedicineShelfHelper
       </div>
     </div>
     eos
+  end
+
+  def pill_interaction_image(medicine_name, is_primary_medicine_row)
+    options = { width: '20px' }
+    options[:class] = 'active' if is_primary_medicine_row
+    pill_image(medicine_name, options)
   end
 
   def pill_image(medicine_name, options = {})

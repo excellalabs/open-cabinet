@@ -1,5 +1,6 @@
 class MedicineController < ApplicationController
-  before_action :find_cabinet_interactions, except: [:autocomplete]
+  before_action :find_cabinet_interactions, except: [:autocomplete, :update_primary_medicine]
+  before_action :find_or_create_cabinet, only: [:update_primary_medicine]
 
   def autocomplete
     ary = []
@@ -16,42 +17,58 @@ class MedicineController < ApplicationController
     gon.images = (1..MedicineShelfHelper::NUM_IMAGES).map { |num| ActionController::Base.helpers.asset_path("pills-0#{num}.png") }
   end
 
-  def refresh_shelves
+  def update_primary_medicine
+    write_primary_medicine(params[:medicine])
+    find_primary_medicine
+    find_interactions
     render 'medicine/shared/_shelves', layout: false
   end
 
   def add_to_cabinet
-    outcome = @cabinet.add_to_cabinet(SearchableMedicine.find_by(name: params[:medicine]))
-    render json: fetch_info(params[:medicine]), status: outcome ? :ok : :not_found
+    @cabinet.add_to_cabinet(SearchableMedicine.find_by(name: params[:medicine]))
+    @cabinet.reload
+    write_primary_medicine(params[:medicine])
+    find_primary_medicine
+    find_interactions
+    render 'medicine/shared/_shelves', layout: false
   end
 
   def destroy
-    status = @cabinet.destroy_medicine(params[:medicine])
-    render json: fetch_info(determine_primary_from_delete), status: status ? :ok : :not_found
+    @cabinet.destroy_medicine(params[:medicine])
+    find_primary_medicine
+    find_interactions
+    render 'medicine/shared/_shelves', layout: false
   end
 
-  def query_for_information
-    render json: fetch_info(determine_primary), status: :ok
+  def information
+    render json: fetch_info(primary_medicine_name), status: :ok
   end
 
   private
-
-  def determine_primary_from_delete
-    params[:primary_name] == params[:medicine] ? @cabinet.medicines.first.try(:name) : params[:primary_name]
-  end
-
-  def determine_primary
-    return nil if @cabinet.medicines.blank?
-    params[:primary_name].blank? ? @cabinet.medicines.first.name : params[:primary_name]
-  end
 
   def fetch_info(medicine)
     return {} unless medicine
     MedicineInformationService.fetch_information(medicine, @cabinet)
   end
 
+  def write_primary_medicine(medicine_name)
+    medicine = @cabinet.find_medicine_by_name(medicine_name)
+    session[:primary_medicine_id] = medicine.id unless medicine.nil?
+  end
+
+  def find_primary_medicine
+    medicine = @cabinet.primary_medicine(session[:primary_medicine_id])
+    write_primary_medicine(medicine.name) unless medicine.nil?
+    @primary_medicine = medicine
+  end
+
+  def primary_medicine_name
+    @primary_medicine.try(:name)
+  end
+
   def find_cabinet_interactions
     find_or_create_cabinet
+    find_primary_medicine
     find_interactions
   end
 
