@@ -57,6 +57,7 @@ Box.Application.addModule('cabinet', function(context) {
 
     if(!primary) { return; }
     make_primary(primary, primary_medicine_info);
+    set_interaction_count(primary_medicine_info);
   }
 
   function set_interaction_count(primary_medicine_info) {
@@ -96,8 +97,10 @@ Box.Application.addModule('cabinet', function(context) {
 
     init: function() {
       module_el = context.getElement();
-      if(!is_tablet_and_down()) {
-        get_information('').done(function(primary_medicine_info) {
+      
+      get_information('').done(function(primary_medicine_info) {
+
+        if(!is_tablet_and_down()) {
           context.broadcast('reload_data', primary_medicine_info);
           
           refresh_shelves().done(function(data) {
@@ -105,8 +108,11 @@ Box.Application.addModule('cabinet', function(context) {
             activate_primary_med(primary_medicine_info);
             set_interaction_count(primary_medicine_info);
           });
-        });
-      }
+        } else {
+          set_interaction_count(primary_medicine_info);
+        }
+      });
+    
     },
 
     onmessage: function (name, medicine_name) {

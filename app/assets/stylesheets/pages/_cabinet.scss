@@ -119,15 +119,15 @@
 
   .owl-navigation-cabinet {
     color: $white;
-    background: $bright-blue;
+    background: $dark-gray;
     text-align: center;
 
     .primary-name {
       @include ellipsis();
       font-size: 20px;
       line-height: 18px;
-      padding: 15px 15px 10px;
-      display: inline
+      display: inline;
+      top: -2px;
     }
 
     .fa {
@@ -224,6 +224,7 @@
 
       .col-span-11 {
         @include span-columns(11);
+        font-size: 14px;
       }
 
       .col-span-1 {
@@ -405,17 +406,20 @@
             line-height: 8px;
             margin-left: -5px;
             font-weight: bold;
-            padding: 15px;
+            padding: 12px 15px;
 
             .pill-name-text {
               @include ellipsis(90%);
-              font-size: 18px;
+              font-size: 20px;
+              margin-bottom: 5px;
+              line-height: 26px;
             }
 
             .pill-badge {
               color: $dark-red;
               font-weight: normal !important;
               font-size: 14px;
+              line-height: 18px;
             }
           }
         }
