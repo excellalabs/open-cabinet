@@ -1,5 +1,5 @@
 class MedicineController < ApplicationController
-  before_action :get_cabinet_interactions, except: [:autocomplete]
+  before_action :find_cabinet_interactions, except: [:autocomplete]
 
   def autocomplete
     ary = []
@@ -50,9 +50,9 @@ class MedicineController < ApplicationController
     MedicineInformationService.fetch_information(medicine, @cabinet)
   end
 
-  def get_cabinet_interactions
+  def find_cabinet_interactions
     find_or_create_cabinet
-    get_interactions
+    find_interactions
   end
 
   def find_or_create_cabinet
@@ -66,8 +66,7 @@ class MedicineController < ApplicationController
     session[:cabinet_id] = @cabinet.id
   end
 
-  def get_interactions
+  def find_interactions
     @interactions = MedicineInformationService.find_cabinet_interactions(@cabinet)
-    puts @interactions.inspect
   end
 end
