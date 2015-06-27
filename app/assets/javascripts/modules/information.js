@@ -12,23 +12,34 @@ Box.Application.addModule('information', function(context) {
     $module_el.find('.read-less').remove();
     $module_el.find('.primary-name').text(med.primary);
     var interaction_count = interactions_length(med);
-    $module_el.find('#interactions-count').text(interaction_count);
 
     if (interaction_count >= 1) {
-      display_medicine_wordage(interaction_count);
+      display_medicine_wordage(interaction_count, med.primary);
       $module_el.find('#interactions-count-container').slideDown();
     } else {
       $module_el.find('#interactions-count-container').slideUp();
     }
 
-    $module_el.find('#indications-and-usage').text(text_or_default(med.indications_and_usage));
+    var html = '';
+    html += build_section('Description', 'indications-and-usage', med.indications_and_usage);
+    html += build_section('Dosage', 'dosage-and-administration', med.dosage_and_administration);
+    html += build_section('Warnings', 'warnings', med.warnings);
+    $('.medicine-details').html(html);
+
     read_more($module_el.find('#indications-and-usage'));
-    $module_el.find('#dosage-and-administration').text(text_or_default(med.dosage_and_administration));
     read_more($module_el.find('#dosage-and-administration'));
-    $module_el.find('#warnings').text(text_or_default(med.warnings));
     read_more($module_el.find('#warnings'));
 
     toggle_loader(false);
+  }
+
+  function build_section(name, id, text) {
+    return '<section>' + 
+           '<h3>' + name + '</h3>' +
+           '<div>' +
+           '  <p id="' + id + '" class="multiline-ellipsis">' + text_or_default(text) + '</p>' +
+           '</div>' +
+           '</section>';
   }
 
   function interactions_length(med) {
@@ -65,30 +76,25 @@ Box.Application.addModule('information', function(context) {
     element.hide(); 
   }
 
-  function display_medicine_wordage(count){
+  function display_medicine_wordage(count, name){
     var $module_el = $(module_el);
+
+    var text = count + ' medication in your cabinet interact with ' + name + '.';
+    
     if (count > 1){
-      $module_el.find('.plural').show();
-      $module_el.find('.singular').hide();
-    } else {
-      $module_el.find('.plural').hide();
-      $module_el.find('.singular').show();
-    }
+      text = count + ' medications in your cabinet interact with ' + name + '.';
+    } 
+
+    return text;
   }
 
   function clear_information() {
     var $module_el = $(module_el);
     $module_el.find('.primary-name').empty();
     $module_el.find('#medicine-general-info').hide();
-    $module_el.find('#interactions-count').text('0');
-    $module_el.find('.plural').show();
-    $module_el.find('.singular').hide();
-    $module_el.find('#indications-and-usage').empty();
-    $module_el.find('#dosage-and-administration').empty();
-    $module_el.find('#warnings').empty();
-    $module_el.find('#interactions-text').empty();
-    $('#medicine_information .fa-refresh').hide();
-    $('#medicine_information .content').show();
+    $module_el.find('#potential-interactions').empty();
+
+    toggle_loader(false);
 
     $module_el.find('#empty-message-row').html(
       '<div class="row" id="unselected-content"> \
