@@ -84,6 +84,6 @@ class MedicineController < ApplicationController
   end
 
   def find_interactions
-    @interactions = MedicineInformationService.find_cabinet_interactions(@cabinet)
+    @interactions = MedicineInformationService.build_bi_directional_interactions(@cabinet)
   end
 end
