@@ -7,11 +7,11 @@ class MedicineInformationService
       response[info.to_sym] = fetch_array_from_response(client.query_by_set_id(primary.set_id), info)
     end
     response[:interactions] = build_interactions(primary.set_id, cabinet.medicines, response[:interactions_text])
-    response[:all_interactions] = find_cabinet_interactions(client, cabinet)
+    response[:all_interactions] = find_cabinet_interactions(cabinet, client)
     response
   end
 
-  def self.find_cabinet_interactions(client, cabinet)
+  def self.find_cabinet_interactions(cabinet, client = OpenFda::Client.new)
     all_interactions = {}
     medicine_ary = [*cabinet.medicines]
     client.query_for_interactions(medicine_ary).each do |response|

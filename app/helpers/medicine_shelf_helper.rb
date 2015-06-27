@@ -45,7 +45,7 @@ module MedicineShelfHelper
     <div class='pill-container' data-type='pill-bottle'>
       <i class="fa fa-times pill-delete" data-set-id="#{medicine.id}"></i>
       <div class='pill-wrapper'>
-        <div class='pill-bottle'>#{pill_image(medicine)}</div>
+        <div class='pill-bottle'>#{pill_image(medicine.name)}</div>
         #{ hidden_field_tag medicine.set_id }
         <div class='pill-name'>
           <div class='pill-name-text'>#{medicine.name}</div>
@@ -59,9 +59,9 @@ module MedicineShelfHelper
     eos
   end
 
-  def pill_image(medicine)
-    image_num = (medicine.name.hash.abs % NUM_IMAGES) + 1
-    image_tag("pills-0#{image_num}.png")
+  def pill_image(medicine_name, options = {})
+    image_num = (medicine_name.hash.abs % NUM_IMAGES) + 1
+    image_tag("pills-0#{image_num}.png", options)
   end
 
   def shelf_start_html
