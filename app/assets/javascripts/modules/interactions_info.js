@@ -8,38 +8,30 @@ Box.Application.addModule('interactions-info', function(context) {
   function fill_information(med) {
     var $module_el = $(module_el);
 
-    var text = '';
-    if (med.interactions && med.interactions_text) {
-      text = highlight_keywords(med.interactions, med.interactions_text)
-    } else {
-      text = 'There is no interaction information for this medicine.'
-    }
-    $module_el.find('#interactions-text').html(text);
+    $module_el.find('#interactions-text').html(load_interaction_text(med));
     $module_el.find('.primary-name').text(med.primary);
 
-    $('.' + $("#interactions").children().first().attr('class')).each(function (index, span) {
-      $(span).addClass('neon');
-    });
-  }
-
-  function highlight_keywords(meds, text) {
-    $.each(meds, function(key, med) {
-      var reg = new RegExp(med.filter(Boolean).join('|'), 'gi');
-      text = text.replace(reg, '<span class="' + class_name(key) + ' highlight">$&</span>')
-    });
-
-    return text;
+    // $('.' + $("#interactions").children().first().attr('class')).each(function (index, span) {
+    //   $(span).addClass('neon');
+    // });
   }
 
   function highlight_interactions(element) {
     $('.neon').removeClass('neon');
+    $(".interaction-pair-mobile span[id^=scroll-to-]").removeAttr('id');
+
     $('.' + element + '.highlight').each(function (index, span) {
       $(span).addClass('neon');
       $(span).attr('id', 'scroll-to-' + index);
     });
 
+    var offset_height = 0;
+    if(is_tablet_and_down()) {
+      offset_height = $('ul#interactions').height();
+    }
+
     $('.owl-item').animate({
-      scrollTop: $('#scroll-to-0').offset().top
+      scrollTop: ($('#scroll-to-0').offset().top - offset_height)
      }, 'slow');
   }
 

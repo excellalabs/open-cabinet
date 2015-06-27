@@ -48,3 +48,33 @@ function is_tablet_and_down() {
 function class_name(str) {
   return str.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-')
 }
+
+function load_interaction_text(med) {
+  var text = '';
+  if (med.interactions && med.interactions_text) {
+    text = highlight_keywords(med.interactions, med.interactions_text)
+  } else {
+    text = 'There is no interaction information for this medicine.'
+  }
+
+  return text;
+}
+
+function highlight_keywords(meds, text) {
+  $.each(meds, function(key, med) {
+    var reg = new RegExp(med.filter(Boolean).join('|'), 'gi');
+    text = text.replace(reg, '<span class="' + class_name(key) + ' highlight">$&</span>')
+  });
+
+  return text;
+}
+
+function toggle_loader(show_loader) {
+  if(show_loader) {
+    $('#medicine_information .content').hide();
+    $('#medicine_information .fa-refresh').show();
+  } else {
+    $('#medicine_information .content').show();
+    $('#medicine_information .fa-refresh').hide();
+  }
+}

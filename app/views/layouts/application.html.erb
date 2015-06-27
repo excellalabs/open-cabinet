@@ -3,9 +3,16 @@
 <html>
 <head>
   <title>Open Cabinet</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <% if feature?(:alternate_cabinet) %>
+
+  <% end %>
+    
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag 'favicon.ico' %>
@@ -19,6 +26,8 @@
   <div class='main-content'>
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
+
+  <div class='scroll-to-top visible-mobile' style='display: none;'><i class="fa fa-arrow-up" data-module='scroll-to-top'></i></div>
 
   <div class='footer' data-module='footer'>
     <div class='mobile-footer visible-mobile'>

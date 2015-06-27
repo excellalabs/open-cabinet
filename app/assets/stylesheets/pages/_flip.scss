@@ -1,0 +1,147 @@
+.flip {
+  margin-top: -10px;
+  background-color: $white;
+
+  h1 {
+    margin-bottom: 15px;
+    font-size: 40px !important;
+  }
+
+  .content {
+    @extend .wrapper;
+    padding-top: 30px;
+    padding-bottom: 75px;
+  }
+
+  table {
+    background-color: $white;
+    width: 100%;
+    border: 1px solid $light-gray;
+    margin-top: 15px;
+  }
+
+  th, td {
+    padding: 15px;
+    border-bottom: 1px solid $light-gray;
+  }
+
+  th {
+    font-weight: bold;
+    background: $dark-blue;
+    color: $white;
+  }
+
+  td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 15px;
+  }
+
+  .button-delete {
+    display: none;
+  }
+
+  span.description {
+    display: none;
+  }
+
+  .description, .name {
+    text-align: left;
+  }
+
+  .strategy-wrapper {
+    text-align: center;
+    position: relative;
+    left: 25%;
+    top: 10px;
+    height: 50px;
+
+    form:last-child div:last-child button {
+      margin-bottom: 0;
+    }
+  }
+
+  .button-on {
+    @extend .button-bright-green;
+  }
+
+  .button-off {
+    @extend .button-bright-blue;
+  }
+
+  .button-delete {
+    margin-top: 15px;
+  }
+
+  .status {
+    margin-bottom: 15px;
+  }
+
+
+  .on, .off {
+    .status {
+      font-weight: 900;
+      font-size: 30px;
+      text-transform: uppercase;
+    }
+  }
+
+  .on {
+    .status {
+      color: $bright-green;
+    }
+  }
+
+  .off {
+    .status {
+      color: $dark-gray;
+    }
+  }
+
+  .onoffswitch {
+    position: relative; width: 93px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+  }
+  .onoffswitch-checkbox {
+      display: none;
+  }
+  .onoffswitch-label {
+      display: block; overflow: hidden; cursor: pointer;
+      border: 1px solid #999999; border-radius: 15px;
+  }
+  .onoffswitch-inner {
+      display: block; width: 200%; margin-left: -100%;
+      -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+      -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+  }
+  .onoffswitch-inner:before, .onoffswitch-inner:after {
+      display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+      font-size: 18px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+      -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+  }
+  .onoffswitch-inner:before {
+      content: "ON";
+      background-color: $dark-blue;; color: #FFFFFF;
+  }
+  .onoffswitch-inner:after {
+      content: "OFF";
+      padding-right: 16px;
+      background-color: #EEEEEE; color: #999999;
+      text-align: right;
+  }
+  .onoffswitch-switch {
+      display: block; width: 18px; margin: 7px;
+      background: #FFFFFF;
+      border: 1px solid #999999; border-radius: 15px;
+      position: absolute; top: 0; bottom: 0; right: 59px;
+      -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+      -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s;
+  }
+  .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+      margin-left: 0;
+  }
+  .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+      right: 0px;
+  }
+
+}
