@@ -7,11 +7,11 @@ class MedicineInformationService
       response[info.to_sym] = fetch_array_from_response(client.query_by_set_id(primary.set_id), info)
     end
     response[:interactions] = build_interactions(primary.set_id, cabinet.medicines, response[:interactions_text])
-    response[:all_interactions] = find_cabinet_interactions(cabinet, client)
+    response[:all_interactions] = build_bi_directional_interactions(cabinet, client)
     response
   end
 
-  def self.find_cabinet_interactions(cabinet, client = OpenFda::Client.new)
+  def self.find_cabinet_interactions(cabinet, client)
     all_interactions = {}
     medicine_ary = [*cabinet.medicines]
     client.query_for_interactions(medicine_ary).each do |response|
@@ -22,6 +22,19 @@ class MedicineInformationService
       all_interactions[medicine.name.to_sym] = build_interactions(set_id, cabinet.medicines, interaction_text)
     end
     all_interactions
+  end
+
+  def self.build_bi_directional_interactions(cabinet, client = OpenFda::Client.new)
+    cabinet_interactions = find_cabinet_interactions(cabinet, client)
+    result = cabinet_interactions.deep_dup
+    cabinet_interactions.each do |name_symbol, interactions_hash|
+      interactions_hash.each do |interaction_symbol, _data|
+        result[interaction_symbol] = {} unless result.key?(interaction_symbol)
+        next if result[interaction_symbol].key?(name_symbol)
+        result[interaction_symbol][name_symbol] = [name_symbol.to_s.downcase]
+      end
+    end
+    result
   end
 
   def self.build_interactions(primary_set_id, medicines, interaction_text)

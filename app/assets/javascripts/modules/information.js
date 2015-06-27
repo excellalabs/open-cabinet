@@ -43,8 +43,8 @@ Box.Application.addModule('information', function(context) {
   }
 
   function interactions_length(med) {
-    if('interactions' in med && med.interactions) {
-      return Object.keys(med.interactions).length
+    if(med.primary in med.all_interactions) {
+      return Object.keys(med.all_interactions[med.primary]).length
     } else {
       return 0;
     }
