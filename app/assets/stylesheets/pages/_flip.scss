@@ -8,9 +8,7 @@
   }
 
   .content {
-    @extend .wrapper;
-    padding-top: 30px;
-    padding-bottom: 75px;
+    padding: 30px 60px 75px;
   }
 
   table {
@@ -121,7 +119,7 @@
   }
   .onoffswitch-inner:before {
       content: "ON";
-      background-color: $dark-blue;; color: #FFFFFF;
+      background-color: $dark-blue; color: #FFFFFF;
   }
   .onoffswitch-inner:after {
       content: "OFF";
