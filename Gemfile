@@ -48,6 +48,9 @@ gem 'newrelic_rpm'
 gem 'secure_headers'
 gem 'devise'
 
+# a/b testing
+gem 'flip', git: 'git://github.com/jasonblalock/flip.git'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

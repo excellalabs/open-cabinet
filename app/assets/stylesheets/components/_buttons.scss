@@ -84,7 +84,8 @@ $button_colors: (
     box-shadow: 0px 3px 0px 0px darken($b_color, 20%) !important;
 
     &:disabled {
-      background: lighten($b_color, 10%) !important;
+      background: desaturate($b_color, 20%) !important;
+      color: map-get($color, text) !important;
     }
 
     &:hover, &:focus, &:active {
@@ -100,7 +101,7 @@ $button_colors: (
     box-shadow: 0px 3px 0px 0px darken($b_color, 20%);
 
     &:disabled {
-      background: lighten($b_color, 10%) !important;
+      background: desaturate($b_color, 10%) !important;
     }
 
     &:hover, &:focus, &:active {

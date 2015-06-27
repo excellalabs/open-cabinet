@@ -1,5 +1,19 @@
 .neon {
-  background-color: #FFFF00;
+  background-color: yellow;
+}
+
+//*-- scroll to top 
+.scroll-to-top {
+  position: fixed;
+  cursor: pointer;
+  bottom: 30px;
+  right: 30px;
+  background-color: $bright-green;
+  font-size: 24px;
+  color: $white;
+  border-radius: 50%;
+  padding: 10px;
+  opacity: .8;
 }
 
 .cabinet {
@@ -223,6 +237,7 @@
   }
 
   section {
+    position: relative;
     border-bottom: 1px solid $bright-green;
     margin: 30px;
     padding-bottom: 30px;
@@ -238,6 +253,12 @@
     h3 {
       font-weight: bold;
       margin-bottom: 15px;
+    }
+
+    &.interaction-pair-mobile {
+      margin: 15px;
+      background: white;
+      padding: 30px;
     }
   }
 }
@@ -370,7 +391,6 @@
         .pill-name {
           color: $white;
           width: 100%;
-          padding: 15px;
           font-size: 14px !important;
 
           .pill-name-text {
@@ -385,15 +405,17 @@
             line-height: 8px;
             margin-left: -5px;
             font-weight: bold;
+            padding: 15px;
 
             .pill-name-text {
               @include ellipsis(90%);
+              font-size: 18px;
             }
 
             .pill-badge {
               color: $dark-red;
               font-weight: normal !important;
-              font-size: 12px;
+              font-size: 14px;
             }
           }
         }
@@ -465,4 +487,35 @@
       }
     }
   }
+}
+
+div.medicine-tray {
+  position: absolute;
+  -moz-transform: scaleY(-1);
+  -o-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+  filter: FlipV;
+  -ms-filter: "FlipV";
+  right: 0;
+  bottom: 5px;
+}
+.medicine-tray img {
+  -moz-transform: scaleY(-1);
+  -o-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+  filter: FlipV;
+  -ms-filter: "FlipV";
+  opacity: .2;
+  -webkit-filter: grayscale(100%); 
+  filter: grayscale(100%); 
+
+
+}
+
+.medicine-tray img.active {
+  opacity: 1;
+  -webkit-filter: grayscale(0%); 
+    filter: grayscale(0%); 
 }

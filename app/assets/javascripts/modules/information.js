@@ -28,8 +28,7 @@ Box.Application.addModule('information', function(context) {
     $module_el.find('#warnings').text(text_or_default(med.warnings));
     read_more($module_el.find('#warnings'));
 
-    $('#medicine_information .content').show();
-    $('#medicine_information .fa-refresh').hide();
+    toggle_loader(false);
   }
 
   function interactions_length(med) {
@@ -108,8 +107,7 @@ Box.Application.addModule('information', function(context) {
     init: function() {
       $ = context.getGlobal('jQuery');
       module_el = context.getElement();
-      $('#medicine_information .content').hide();
-      $('#medicine_information .fa-refresh').show();
+      toggle_loader(true);
     },
 
     onmessage: function (name, data) {
