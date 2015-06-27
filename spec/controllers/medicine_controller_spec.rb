@@ -36,7 +36,8 @@ RSpec.describe MedicineController, type: :controller do
     it 'deletes the medicine' do
       med_name = 'Tylenol'
       cabinet = create_cabinet_with_one_medicine(med_name)
-      MedicineController.any_instance.stub(:fetch_info).and_return(primary: 'info')
+      allow_any_instance_of(MedicineController).to receive(:fetch_info).and_return(primary: 'info')
+      allow(MedicineInformationService).to receive(:find_cabinet_interactions).and_return({})
       delete :destroy, medicine: cabinet.medicines.first.name, primary_name: 'some_name'
 
       parsed_body = JSON.parse(response.body)
@@ -53,6 +54,7 @@ RSpec.describe MedicineController, type: :controller do
     end
 
     it 'finds the cabinet if set in the session' do
+      allow(MedicineInformationService).to receive(:find_cabinet_interactions).and_return({})
       cabinet = create_cabinet_with_one_medicine 'test'
 
       get :cabinet
