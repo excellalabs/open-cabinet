@@ -1,1 +1,43 @@
-<%= show_shelves(@cabinet) %>
+<% unless feature?(:alternate_cabinet) %>
+  <%= show_shelves(@cabinet) %>
+<% else %>
+  <div id="shelves" class="shelves" data-module="cabinet">
+    <div class="shelf-wrapper">
+      <div class="shelf">
+        <div class='medicine-bottle' style='margin: 0 30px;'>
+          <div class='col-span-9'>
+            <%= image_tag('pills-01', :height => '45px') %> 
+            <span style='margin-left: 5px; font-size: 60px; font-weight: bold; color: #005573'>MEDICINE 1</span>
+          </div>
+
+          <div class='col-span-3 medicine-tray'>
+          <% 1..6.times do |idx| %>
+            <%= image_tag("pills-0#{idx + 2}", :width => '20px', :class => 'active') %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="border-overlay hidden-mobile">&nbsp;</div>
+    </div>
+
+    <% 1..6.times do |shelf| %>
+      <div class="shelf-wrapper">
+        <div class="shelf">
+          <div class='medicine-bottle row' style='margin: 30px 30px 0;'>
+            <div class='col-span-9' style='opacity: .4'>
+              <%= image_tag("pills-0#{shelf + 1}", :height => '45px') %> 
+              <span style='font-size: 60px; font-weight: bold;'>MEDICINE <%= shelf + 2 %></span>
+            </div>
+            <div class='col-span-3 medicine-tray'>
+              <% 1..12.times do |idx| %>
+                <%= image_tag("pills-0#{((idx) % 7) + 1}", :width => '20px', :class => ("active" if idx == 7)) %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="border-overlay hidden-mobile">&nbsp;</div>
+      </div>
+    <% end %>
+
+    </div>
+<% end %>
