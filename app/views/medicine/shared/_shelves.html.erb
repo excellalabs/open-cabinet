@@ -1,19 +1,19 @@
 <% unless feature?(:alternate_cabinet) %>
-  <%= show_shelves(@cabinet) %>
+  <%= show_shelves(@cabinet, @primary_medicine, @interactions) %>
 <% else %>
-  <div id="shelves" class="shelves" data-module="cabinet">
   <% @cabinet.medicines.each do |medicine| %>
-    <div class="shelf-wrapper">
+    <div class="shelf-wrapper clickable-pill-container" pill-name-text='<%= medicine.name %>'>
       <div class="shelf">
         <div class='medicine-bottle' style='margin: 0 30px;'>
           <div class='col-span-9'>
             <%= pill_image(medicine.name, height: '45px') %> 
-            <span style='margin-left: 5px; font-size: 60px; font-weight: bold; color: #005573'><%=medicine.name %></span>
+            <span style='margin-left: 5px; font-size: 60px; font-weight: bold; color: #005573'>
+              <%=medicine.name %>
+            </span>
           </div>
-
           <div class='col-span-3 medicine-tray'>
-          <% (@interactions[medicine.name.to_sym] || {}).each do |key, value| %>
-            <%= pill_image(key.to_s, width: '20px') %>
+          <% (@interactions[medicine_key(medicine)] || {}).each do |key, value| %>
+            <%= pill_interaction_image(key.to_s, medicine == @primary_medicine) %>
           <% end %>
           </div>
         </div>
@@ -21,5 +21,4 @@
       <div class="border-overlay hidden-mobile">&nbsp;</div>
     </div>
   <% end %>
-  </div>
 <% end %>

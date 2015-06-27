@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get 'cabinet', to: 'medicine#cabinet'
   post 'add_to_cabinet', to: 'medicine#add_to_cabinet'
   delete 'destroy', to: 'medicine#destroy', as: 'destroy_medicine'
-  post 'information', to: 'medicine#query_for_information'
-  get 'refresh_shelves', to: 'medicine#refresh_shelves'
+  get 'information', to: 'medicine#information'
+  post 'update_primary_medicine', to: 'medicine#update_primary_medicine'
 
   mount Flip::Engine => '/features'
 end

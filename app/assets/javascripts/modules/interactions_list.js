@@ -3,8 +3,7 @@ Box.Application.addModule('interactions-list', function(context) {
 
   var $;
 
-  var cabinet_db,
-      module_el;
+  var module_el;
 
   function fill_information(med) {
     var $module_el = $(module_el);
@@ -26,13 +25,10 @@ Box.Application.addModule('interactions-list', function(context) {
 
     init: function() {
       $ = context.getGlobal('jQuery');
-      cabinet_db = context.getService('cabinet-db');
-      cabinet_db.load(gon.meds);
       module_el = context.getElement();
     },
 
     destroy: function() {
-      cabinet_db = null;
       module_el = null;
     },
 

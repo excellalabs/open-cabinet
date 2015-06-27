@@ -7,14 +7,14 @@
     </div>
   </div>
 
-  <div class="search-bar">
+  <div class="search-bar" data-module='autocomplete_search'>
     <i class="fa fa-search"></i>
     <input type="text" id="search_input" placeholder="Type a drug name here..." />
     <button id='add_medicine' class='button-dark-red'><i class="fa fa-plus"></i></button>
     <button id="add_medicine_wait" style="display: none;" class='button-dark-red'><i class="fa fa-cog fa-spin"></i></button>
   </div>
 
-  <div id="shelves" class='shelves'>
-  <%= render :template => 'medicine/shared/_shelves' -%>
+  <div id="shelves" class="shelves" data-module="cabinet">
+    <%= render :template => 'medicine/shared/_shelves' -%>
   </div>
 </div>

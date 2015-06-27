@@ -4,7 +4,6 @@ $(document).ready(open_cabinet);
 $(document).on('page:load', open_cabinet);
 
 function open_cabinet() {
-  $('.search-bar').attr('data-module', 'autocomplete_search');
   toggle_responsiveness();
   $(window).on('resize', toggle_responsiveness);
 
