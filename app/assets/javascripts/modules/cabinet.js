@@ -44,6 +44,7 @@ Box.Application.addModule('cabinet', function(context) {
         refresh_shelves().done(function(data) {
           $(module_el).html(data);
           activate_primary_med(primary_medicine_info);
+          set_interaction_count(primary_medicine_info);
         });
       }
     });
@@ -60,13 +61,19 @@ Box.Application.addModule('cabinet', function(context) {
 
   function set_interaction_count(primary_medicine_info) {
     if($.isEmptyObject(primary_medicine_info)) { return; }
-    var count = Object.keys(primary_medicine_info.interactions).length;
-    $("div.pill-container.active").find('span').first().data("interactions", count);
+    var all_interactions = primary_medicine_info.all_interactions;
+    $(module_el).find('.pill-name-text').each(function() {
+      var count = 0;
+      if(all_interactions.hasOwnProperty($(this).text())) {
+        count = Object.keys(all_interactions[$(this).text()]).length;
+      }
+      $(this).siblings('.num-pill-interactions').html(count + ' interaction(s)');
+    });
   }
 
   function make_primary(elm, primary_medicine_info) {
     $(elm).removeClass('disabled interact').addClass('active');
-    $(module_el).find('.pill-container').not($(elm)).removeClass('active interact').addClass('disabled');
+    $(module_el).find('.pill-container').not($(elm)).removeClass('active interact').addClass('disabled').find('.num-pill-interactions').html('');
     $(module_el).find('.pill-container').filter(function() {
       return $.inArray($(this).find('.pill-name-text').text().trim(), Object.keys(primary_medicine_info.interactions)) >= 0;
     }).toggleClass('interact disabled');
