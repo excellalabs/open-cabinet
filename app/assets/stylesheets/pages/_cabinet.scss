@@ -406,6 +406,26 @@
             line-height: 30px;
           }
 
+          @include media($tablet-and-up) {
+            .pill-badge {
+              position: absolute;
+              padding: 2px 12px;
+              font-size: 14px;
+              left: 0;
+              top: 0;
+              color: black;
+              font-weight: bold;
+              background: $dark-red;
+              color: $white;
+              border-radius: 4px;
+              @include border-left-radius(0px);
+
+              &.black {
+                background: $dark-gray;
+              }
+            }
+          }
+
           @include media($mobile) {
             @include span-columns(10 of 12);
             color: $dark-gray;
@@ -487,6 +507,10 @@
           @include media($mobile) {
             background: $white;
           }
+        }
+
+        .pill-badge {
+          opacity: .5;
         }
 
         .pill-bottle {
