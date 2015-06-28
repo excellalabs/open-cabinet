@@ -24,7 +24,7 @@ class MedicineController < ApplicationController
   end
 
   def add_to_cabinet
-    result = @cabinet.add_to_cabinet(SearchableMedicine.find_by(name: params[:medicine]))
+    result = @cabinet.add_to_cabinet(SearchableMedicine.where('lower(name) = ?', params[:medicine].downcase).first)
     @error_message = "Could not find results for \'#{params[:medicine]}\', please try again." unless result
     @cabinet.reload
     write_primary_medicine(params[:medicine])
