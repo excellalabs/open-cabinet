@@ -64,6 +64,11 @@ function load_interaction_text(med) {
   var text = '';
   if (med.interactions && med.interactions_text) {
     text = highlight_keywords(med.interactions, med.interactions_text)
+  } else if (interactions_length(med) > 0){
+    var interactions = med.all_interactions[med.primary];
+    for(var k in interactions){
+      text = med.all_interactions[k].interaction_text;
+    }
   } else {
     text = 'There is no interaction information for this medicine.'
   }
