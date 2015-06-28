@@ -3,7 +3,7 @@
 <% else %>
   <div class='alternate-cabinet'>
 
-  <% @cabinet.medicines.sort_by{ |m| m.name }.each do |medicine| %>
+  <% @cabinet.medicines.each do |medicine| %>
     <div class="shelf-wrapper clickable-pill-container <%= 'active' if @primary_medicine.name == medicine.name%>" pill-name-text='<%= medicine.name %>'>
       <div class="shelf">
         <div class='row medicine-bottle'>
