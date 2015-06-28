@@ -11,6 +11,7 @@ class MedicineInformationService
     response
   end
 
+  # rubocop:disable Metrics/MethodLength
   def self.find_cabinet_interactions(cabinet, client)
     all_interactions = {}
     medicine_ary = [*cabinet.medicines]

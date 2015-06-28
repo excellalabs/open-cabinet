@@ -42,14 +42,6 @@ Box.Application.addModule('information', function(context) {
            '</section>';
   }
 
-  // function interactions_length(med) {
-  //   if(med.primary in med.all_interactions) {
-  //     return Object.keys(med.all_interactions[med.primary]).length
-  //   } else {
-  //     return 0;
-  //   }
-  // }
-
   function text_or_default(text) {
     if (!text) {
       text = 'No information was found for this section on this medicine.';
