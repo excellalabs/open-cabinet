@@ -14,8 +14,6 @@ class MedicineController < ApplicationController
   end
 
   def cabinet
-    gon.meds = @cabinet.medicines
-    gon.images = (1..MedicineShelfHelper::NUM_IMAGES).map { |num| ActionController::Base.helpers.asset_path("pills-0#{num}.png") }
   end
 
   def update_primary_medicine
@@ -26,7 +24,8 @@ class MedicineController < ApplicationController
   end
 
   def add_to_cabinet
-    @cabinet.add_to_cabinet(SearchableMedicine.find_by(name: params[:medicine]))
+    result = @cabinet.add_to_cabinet(SearchableMedicine.where('lower(name) = ?', params[:medicine].downcase).first)
+    @error_message = "Could not find results for \'#{params[:medicine]}\', please try again." unless result
     @cabinet.reload
     write_primary_medicine(params[:medicine])
     find_primary_medicine

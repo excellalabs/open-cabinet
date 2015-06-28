@@ -18,3 +18,14 @@ end
 Then(/^I should see the medication in my cabinet$/) do
   expect(find('.pill-name', text: @medication).visible?).to be true
 end
+
+When(/^I enter an incorrect search term$/) do
+  @incorrect_term = 'not found'
+  @cabinet_page.type_search_characters(@incorrect_term)
+  @cabinet_page.press_add_button
+end
+
+Then(/^I receive an error message letting me know that I need to try a different search$/) do
+  error_message = "Could not find results for '#{@incorrect_term}', please try again."
+  expect(error_message).to eq(find('#error-message-container').text)
+end

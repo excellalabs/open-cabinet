@@ -16,9 +16,13 @@
   opacity: .8;
 }
 
-  #unselected-content {
-    padding: 30px;
-  }
+.error-container {
+  color: red;
+}
+
+#unselected-content {
+  padding: 30px;
+}
 
 .cabinet {
   position: relative;

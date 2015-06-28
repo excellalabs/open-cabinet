@@ -10,6 +10,7 @@ class Cabinet < ActiveRecord::Base
     med.update(name: searchable_medicine.name, active_ingredient: '')
     medicines << med
     save!
+    med
   end
 
   def find_medicine_by_name(med_name)
