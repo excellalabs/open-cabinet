@@ -9,7 +9,14 @@ Box.Application.addModule('interactions-list', function(context) {
     var $module_el = $(module_el);
     $module_el.find('#interactions').empty();
     for (var k in med.interactions) {
-      $module_el.find('#interactions').append('<li class="' + class_name(k) + '">' + med.primary + ' & ' + k + '</li>' )
+      build_interaction_li(med.primary, k);
+    }
+    
+    if(Object.keys(med.interactions).length == 0 && interactions_length(med) > 0){
+      var interactions = med.all_interactions[med.primary];
+      for(var k in interactions){
+        build_interaction_li(med.primary, k);
+      }
     }
 
     if(is_tablet_and_down()) {
@@ -17,6 +24,12 @@ Box.Application.addModule('interactions-list', function(context) {
     }   
     
     $module_el.find('.primary-name').text(med.primary);
+  }
+
+  function build_interaction_li(primary, interaction){
+    var $module_el = $(module_el);
+    $module_el.find('#interactions')
+              .append('<li class="' + class_name(interaction) + '">' + primary + ' & ' + interaction + '</li>' );
   }
 
   return {

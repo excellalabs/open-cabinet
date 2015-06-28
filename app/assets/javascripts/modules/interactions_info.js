@@ -19,6 +19,9 @@ Box.Application.addModule('interactions-info', function(context) {
     $("#interactions").children().removeClass("active");
     var element = event.target.className;
 
+    $("#interactions-text").children().hide();
+    $(".interaction-" + element).show();
+
     $('.' + element + '.highlight').each(function (index, span) {
       $(span).addClass('neon');
       $(span).attr('id', 'scroll-to-' + index);

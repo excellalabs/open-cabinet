@@ -64,11 +64,24 @@ function load_interaction_text(med) {
   var text = '';
   if (med.interactions && med.interactions_text) {
     text = highlight_keywords(med.interactions, med.interactions_text)
+  } else if (interactions_length(med) > 0){
+    var interactions = med.all_interactions[med.primary];
+    for(var k in interactions){
+      text += '<span class="interaction-'+ class_name(k) +'">' + med.all_interactions[k].interaction_text +' </span>'
+    }
   } else {
     text = 'There is no interaction information for this medicine.'
   }
 
   return text;
+}
+
+function interactions_length(med) {
+  if(med.primary in med.all_interactions) {
+    return Object.keys(med.all_interactions[med.primary]).length
+  } else {
+    return 0;
+  }
 }
 
 function highlight_keywords(meds, text) {
