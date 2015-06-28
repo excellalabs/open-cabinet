@@ -14,20 +14,20 @@ Box.Application.addModule('interactions-info', function(context) {
 
   function highlight_interactions(element) {
     $('.neon').removeClass('neon');
-    $(".interaction-pair-mobile span[id^=scroll-to-]").removeAttr('id');
+    $(".interaction-pair-mobile span, #interactions-text span").removeAttr('id');
 
     $('.' + element + '.highlight').each(function (index, span) {
       $(span).addClass('neon');
       $(span).attr('id', 'scroll-to-' + index);
     });
 
-    var offset_height = 0;
+    var offset_height = 80;
     if(is_tablet_and_down()) {
       offset_height = $('ul#interactions').height();
     }
 
     $('.owl-item').animate({
-      scrollTop: ($('#scroll-to-0').offset().top - offset_height)
+      scrollTop: ($('#scroll-to-0').position().top - offset_height)
      }, 'slow');
   }
 
