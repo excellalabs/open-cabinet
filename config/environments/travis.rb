@@ -39,6 +39,8 @@ Rails.application.configure do
 
   config.cache_store = :null_store
 
+  config.middleware.use RackSessionAccess::Middleware
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.basic_auth_user = ENV['BASIC_AUTH_USERNAME']

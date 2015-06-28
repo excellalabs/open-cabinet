@@ -38,6 +38,8 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
   config.cache_store = :null_store
 
+  config.middleware.use RackSessionAccess::Middleware
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.secret_key_base = ENV["SECRET_KEY_BASE"]

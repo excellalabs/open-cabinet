@@ -407,7 +407,7 @@ DEPENDENCIES
   poltergeist (~> 1.5.1)
   pry
   puma
-  rack_session_access (~> 0.1.1)
+  rack_session_access
   rails (= 4.2.2)
   rails_12factor
   rspec-rails

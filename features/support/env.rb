@@ -39,7 +39,7 @@ Capybara.default_driver = :poltergeist
 Capybara.raise_server_errors = false
 
 Capybara.default_selector = :css
-Capybara.default_wait_time = 15
+Capybara.default_wait_time = 30
 
 Before do
   Rails.cache.clear
