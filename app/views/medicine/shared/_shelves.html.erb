@@ -1,3 +1,6 @@
+<div id='error-message-container' class="error-container" style="<%= @error_message ? '':'display: none;' %>">
+<%= @error_message %>
+</div>
 <% unless feature?(:alternate_cabinet) %>
   <%= show_shelves(@cabinet, @primary_medicine, @interactions) %>
 <% else %>
