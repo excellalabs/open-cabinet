@@ -36,7 +36,6 @@ Box.Application.addModule('interactions-list', function(context) {
       switch(name) {
         case 'reload_data':
           fill_information(data);
-          // $("#interactions").children().first().css("background-color", '#ececec');
           break;
       }
     },

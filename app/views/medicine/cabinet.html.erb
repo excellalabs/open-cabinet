@@ -1,4 +1,20 @@
 <div class='cabinet' data-module='navigation'>
+  
+  <% if feature?(:visualization) %>
+  <div class='item'>
+    <div class='row' style='margin: 30px 0; font-weight: 900; text-align: center; text-transform: uppercase;text-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);'>
+      <div class='col-offset-1 col-span-10'>
+        <h3>Cabinet Interactions</h3>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-offset-1 col-span-10'>
+        <canvas id="canvas" width="400" height="400"></canvas>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
   <div class='item'>
     <%= render :template => 'medicine/shared/_medicine_cabinet' -%>
   </div>

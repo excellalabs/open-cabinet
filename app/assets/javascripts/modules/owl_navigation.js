@@ -12,6 +12,7 @@ Box.Application.addModule('navigation', function(context) {
       slideSpeed: 800,
       mouseDrag: false,
       touchDrag: false,
+      afterAction: scroll_to_top,
       itemsCustom : [
           [0, 1],
           [850, 2]
@@ -21,6 +22,10 @@ Box.Application.addModule('navigation', function(context) {
 
   function navigate(go_to) {
     $owl.trigger('owl.goTo', go_to);
+  }
+
+  function scroll_to_top() {
+    $('.owl-item').animate({ scrollTop: 0 }, 'slow');
   }
 
   return {

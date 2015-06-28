@@ -41,6 +41,13 @@ Box.Application.addModule('cabinet', function(context) {
   function load_data(html) {
     $(module_el).html(html);
     get_information().done(function(primary_medicine_info) {
+      $('.tooltip').tipso({
+        background: '#12a3d2',
+        border_color: '#0e7fa3'
+      });
+
+      load_chart(primary_medicine_info);
+
       context.broadcast('reload_data', primary_medicine_info);
     });
   }
@@ -52,6 +59,43 @@ Box.Application.addModule('cabinet', function(context) {
   function click_primary(elm) {
     var name = $(elm).attr('pill-name-text');
     set_primary(name).done(load_data);
+  }
+
+  function load_chart(primary_medicine_info) {
+
+    if($('#canvas').length > 0) {
+      var labels = [];
+      var data = [];
+
+      if(primary_medicine_info.all_interactions) {
+
+        $.each(primary_medicine_info.all_interactions, function(idx, elm) {
+          labels.push(idx);
+          data.push(Object.keys(elm).length);
+        });
+
+        var radarChartData = {
+          labels: labels,
+          datasets: [
+            {
+              label: "Interactions",
+              fillColor: "rgba(18,163,210,0.2)",
+              strokeColor: "rgba(18,163,210,1)",
+              pointColor: "rgba(18,163,210,1)",
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(151,187,205,1)",
+              data: data
+            }
+          ]
+        };
+
+        window.myRadar = new Chart(document.getElementById("canvas").getContext("2d")).Radar(radarChartData, {
+          responsive: true
+        });
+      }
+    }
+
   }
 
   return {

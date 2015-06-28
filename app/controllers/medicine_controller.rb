@@ -1,3 +1,4 @@
+
 class MedicineController < ApplicationController
   before_action :find_cabinet_interactions, except: [:autocomplete, :update_primary_medicine]
   before_action :find_or_create_cabinet, only: [:update_primary_medicine]
