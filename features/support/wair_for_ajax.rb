@@ -1,5 +1,5 @@
 def wait_for_ajax
-  Timeout.timeout(30) do
+  Timeout.timeout(Capybara.default_wait_time) do
     loop until finished_all_ajax_requests?
   end
 end
