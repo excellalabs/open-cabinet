@@ -1,11 +1,13 @@
 Box.Application.addModule('autocomplete_search', function(context) {
   'use strict';
   var $component = $(context.getElement());
+  var medicines;
 
   function load_medicines() {
-    var medicines = new Bloodhound({
+    medicines = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.whitespace,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
+      identify: function(obj) { return obj.toUpperCase(); },
       prefetch: {
         ttl: 3600000, // cache requests for one hour
         url: '/autocomplete',
@@ -41,8 +43,17 @@ Box.Application.addModule('autocomplete_search', function(context) {
     $("#add_medicine_wait").show();
   }
 
+  function value_in_autocomplete(medicine) {
+    return medicines.get(medicine.toUpperCase()).length > 0;
+  }
+
   function submit_typeahead(medicine){
     if(!medicine) return;
+    if(!value_in_autocomplete(medicine)) {
+      $('#error-message-container').show().html("Could not find results for '" + medicine + "', please try again.");
+      return;
+    }
+    $('#error-message-container').hide();
     reset_typeahead_animation();
     context.broadcast('medicine_added', medicine);
   }
