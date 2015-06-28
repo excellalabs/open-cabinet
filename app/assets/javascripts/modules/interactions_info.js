@@ -12,21 +12,26 @@ Box.Application.addModule('interactions-info', function(context) {
     $module_el.find('.primary-name').text(med.primary);
   }
 
-  function highlight_interactions(element) {
+  function highlight_interactions(event) {
     $('.neon').removeClass('neon');
     $(".interaction-pair-mobile span, #interactions-text span").removeAttr('id');
+
+    $("#interactions").children().removeClass("active");
+    var element = event.target.className;
 
     $('.' + element + '.highlight').each(function (index, span) {
       $(span).addClass('neon');
       $(span).attr('id', 'scroll-to-' + index);
     });
 
+    $(event.target).addClass("active");
+
     var offset_height = 80;
     if(is_tablet_and_down()) {
       offset_height = $('ul#interactions').height();
     }
 
-    $('.owl-item').animate({
+    $('#interactions-info').parent().animate({
       scrollTop: ($('#scroll-to-0').position().top - offset_height)
      }, 'slow');
   }

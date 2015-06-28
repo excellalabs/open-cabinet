@@ -47,9 +47,7 @@ Box.Application.addModule('interactions-list', function(context) {
           $('.scroll-to-top').show();
         }
         
-        $("#interactions").children().css("background-color", "");
-        $(event.target).css("background-color", '#ececec');
-        context.broadcast('highlight_interactions', event.target.className);
+        context.broadcast('highlight_interactions', event);
       }
     }
 
