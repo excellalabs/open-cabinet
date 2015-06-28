@@ -41,10 +41,13 @@ Box.Application.addModule('cabinet', function(context) {
   function load_data(html) {
     $(module_el).html(html);
     get_information().done(function(primary_medicine_info) {
-      $('.tooltip').tipso({
-        background: '#12a3d2',
-        border_color: '#0e7fa3'
-      });
+
+      if(!is_tablet_and_down()) {
+        $('.tooltip').tipso({
+          background: '#12a3d2',
+          border_color: '#0e7fa3'
+        });
+      }
 
       load_chart(primary_medicine_info);
 

@@ -50,9 +50,9 @@ module MedicineShelfHelper
     medicine.name.to_sym
   end
 
-  # RP deleted -- data-module='delete-icon'
   # rubocop:disable Metrics/MethodLength
   def medicine_html(medicine, interactions, interaction_class_name)
+    keys = (interactions[medicine_key(medicine)] || {}).keys
     <<-eos
     <div class='pill-container #{interaction_class_name} clickable-pill-container' pill-name-text='#{medicine.name}'
          data-type='pill-bottle'>
@@ -62,8 +62,8 @@ module MedicineShelfHelper
         #{ hidden_field_tag medicine.set_id }
         <div class='pill-name'>
           <div class='pill-name-text'>#{medicine.name}</div>
-          <div data-interactions='' class='pill-badge visible-mobile num-pill-interactions'>
-            #{(interactions[medicine_key(medicine)] || {}).keys.length} interactions
+          <div class='pill-badge num-pill-interactions  #{keys.length == 0 ? 'black' : 'tooltip'}' title='#{keys.join('<br/>')}' >
+            #{keys.length} <span class='visible-mobile'>interactions</span>
           </div>
         </div>
       </div>
