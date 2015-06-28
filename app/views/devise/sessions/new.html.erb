@@ -9,7 +9,16 @@
     <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
   </div>
 
-  <%= devise_error_messages! %>
+  <% if flash.count > 0 %>
+  <div id='error_explanation'>
+    <ul>
+    <%- flash.each do |name, msg| -%>
+      <li><%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %></li>
+    <%- end -%>  
+    </ul>
+  </div>
+  <% end %>
+
 
   <div class="field">
     <%= f.submit "Sign In", class: 'button-bright-green', id: 'sign_in' %>
