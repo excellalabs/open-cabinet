@@ -289,7 +289,6 @@
 
   .shelf {
     @include fill-parent();
-    @include row(table);
     position: relative;
     border-bottom: 30px solid $dark-gray;
     margin-bottom: 15px;
@@ -375,6 +374,7 @@
               height: 50px;
               bottom: -13px;
               opacity: .2;
+              @include transition(all 0.3s ease-in-out);
 
               &.delete {
                 opacity: 1;
@@ -493,33 +493,166 @@
   }
 }
 
-div.medicine-tray {
-  position: absolute;
-  -moz-transform: scaleY(-1);
-  -o-transform: scaleY(-1);
-  -webkit-transform: scaleY(-1);
-  transform: scaleY(-1);
-  filter: FlipV;
-  -ms-filter: "FlipV";
-  right: 0;
-  bottom: 5px;
+.alternate-cabinet {
+
+  .pill-delete {
+    position: absolute;
+    right: 0;
+    top: 0;  
+    padding: 5px;
+    color: $dark-red;
+    display: none;
+  }
+
+  .shelf {
+    &:hover {
+      background: #f5f5f5;
+
+      .pill-delete {
+        display: block;
+      }
+    }
+  }
+
+  .medicine-bottle {
+    min-height: 80px;
+    height: 1px;
+  }
+
+  .medicine-name, .medicine-tray {
+    height: 100%;
+  }
+
+  .medicine-name {
+    div:first-child {
+      @include ellipsis(100%);
+      font-size: 50px;
+      font-weight: bold;
+      line-height: 111px;
+      color: lighten($dark-gray, 50%);
+    }
+  }
+
+  .medicine-tray {
+    @include transform(scaleY(-1));
+    position: relative;
+    filter: FlipV;
+    -ms-filter: "FlipV";
+    right: 0;
+    bottom: 5px;
+
+    
+    img {
+      @include filter(grayscale(100%));
+      @include transform(scaleY(-1));
+      filter: FlipV;
+      -ms-filter: "FlipV";
+      opacity: .6 !important;
+      height: 30px;
+    
+      &.active {
+        opacity: 1 !important;
+        @include filter(grayscale(0%));
+      }
+    }
+  }
+
+  .clickable-pill-container {
+    cursor: pointer; 
+
+    img {
+      opacity: .3;
+    }
+
+    .pill-image {
+      position: relative;
+      bottom: -32px;
+      left: 15px;
+      height: 45px;
+    }
+
+    &.active {
+      .medicine-name div {
+        color: $dark-blue;
+      }
+
+      .shelf {
+        border-color: $dark-blue;
+      }
+
+      img {
+        @include media($tablet-and-up) {
+          @include filter(grayscale(60%));
+          opacity: .3 !important;
+
+          &.pill-image {
+            @include filter(grayscale(0%));
+            opacity: 1 !important;
+          }
+        }
+      }
+    }
+  }
+
+  @include media($mobile) {
+
+    .shelf {
+      position: relative;
+    }
+
+    .medicine-bottle {
+      border-bottom: 1px solid $light-gray;
+      margin-top: 15px;
+      min-height: 70px;
+    }
+
+    .pill-image-row {
+      position: absolute;
+    }
+
+    .medicine-name {
+      @include ellipsis(75%);
+      position: relative;
+      margin-bottom: 5px;
+      line-height: 26px;
+      margin-left: 70px;
+      font-size: 20px;
+    
+      div:first-child {
+        font-size: 20px;
+        line-height: 26px;
+        color: $dark-blue !important;
+      }
+    }
+
+    .pill-image {
+      width: auto;
+      height: 50px;
+      opacity: .2 !important;
+      bottom: 0 !important;
+
+      &.delete {
+        opacity: 1 !important;
+      }
+    }
+
+    .pill-badge {
+      color: $dark-red;
+      font-weight: normal !important;
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    .pill-next {
+      position: absolute;
+      right: 15px;
+      line-height: 74px;
+      font-size: 24px;
+      color: $bright-green;
+      top: -15px;
+    }
+           
+  }
 }
-.medicine-tray img {
-  -moz-transform: scaleY(-1);
-  -o-transform: scaleY(-1);
-  -webkit-transform: scaleY(-1);
-  transform: scaleY(-1);
-  filter: FlipV;
-  -ms-filter: "FlipV";
-  opacity: .2;
-  -webkit-filter: grayscale(100%); 
-  filter: grayscale(100%); 
 
 
-}
-
-.medicine-tray img.active {
-  opacity: 1;
-  -webkit-filter: grayscale(0%); 
-    filter: grayscale(0%); 
-}

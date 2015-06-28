@@ -2,14 +2,18 @@ Box.Application.addModule('autocomplete_search', function(context) {
   'use strict';
   var $component = $(context.getElement());
 
-  var medicines = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: {
-      ttl: 3600000, // cache requests for one hour
-      url: '/autocomplete',
-    }
-  });
+  function load_medicines() {
+    var medicines = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.whitespace,
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      prefetch: {
+        ttl: 3600000, // cache requests for one hour
+        url: '/autocomplete',
+      }
+    });
+
+    return medicines;
+  }
 
   function setup_autocomplete() {
     var $search_input = $component.find('#search_input');
@@ -19,7 +23,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
       minLength: 1
     }, {
       name: 'medicines',
-      source: medicines
+      source: load_medicines()
     });
   }
 
@@ -62,6 +66,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
     },
 
     onkeydown: function(event, element, elementType){
+
       if (event.keyCode == 13) {
         var array = $.grep($(".tt-suggestion"), function(suggestion) {
             return $(suggestion).text() == $(".tt-input").val();

@@ -63,7 +63,7 @@ module MedicineShelfHelper
         <div class='pill-name'>
           <div class='pill-name-text'>#{medicine.name}</div>
           <div data-interactions='' class='pill-badge visible-mobile num-pill-interactions'>
-            #{(interactions[medicine_key(medicine)] || {}).keys.length}
+            #{(interactions[medicine_key(medicine)] || {}).keys.length} interactions
           </div>
         </div>
       </div>
@@ -75,13 +75,13 @@ module MedicineShelfHelper
   end
 
   def pill_interaction_image(medicine_name, is_primary_medicine_row)
-    options = { width: '20px' }
-    options[:class] = 'active' if is_primary_medicine_row
+    options = { class: 'tooltip', title: medicine_name }
+    options[:class] = 'active tooltip' if is_primary_medicine_row
     pill_image(medicine_name, options)
   end
 
   def pill_image(medicine_name, options = {})
-    image_num = (medicine_name.hash.abs % NUM_IMAGES) + 1
+    image_num = (medicine_name.length.abs % NUM_IMAGES) + 1
     image_tag("pills-0#{image_num}.png", options)
   end
 

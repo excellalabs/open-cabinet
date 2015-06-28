@@ -25,10 +25,7 @@ Box.Application.addBehavior('navigation', function(context) {
         if($(event.target).hasClass('back-to-interaction-pairs')) {
           context.broadcast('go_to', 2);
         }
-        // if($(event.target).parent().attr('id') == 'interactions') {
-        //   context.broadcast('go_to', 3);
-        // }
-
+     
       } else {
         if ($(event.target).hasClass('owl-navigation-cabinet')) {
           context.broadcast('go_to', 0);

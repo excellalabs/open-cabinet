@@ -22,3 +22,14 @@
     clear: both;
   }
 }
+
+//*-- multi-line ellipses mix-in
+//*-- usage: @include multi-line-ellipsis(2rem, 5);
+@mixin multi-line-ellipsis ($max-height: 1em, $lines: 2, $width: 100%) {
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;  
+  text-overflow: -o-ellipsis-lastline;
+}

@@ -1,24 +1,35 @@
 <% unless feature?(:alternate_cabinet) %>
   <%= show_shelves(@cabinet, @primary_medicine, @interactions) %>
 <% else %>
-  <% @cabinet.medicines.each do |medicine| %>
-    <div class="shelf-wrapper clickable-pill-container" pill-name-text='<%= medicine.name %>'>
+  <div class='alternate-cabinet'>
+
+  <% @cabinet.medicines.sort_by{ |m| m.name }.each do |medicine| %>
+    <div class="shelf-wrapper clickable-pill-container <%= 'active' if @primary_medicine.name == medicine.name%>" pill-name-text='<%= medicine.name %>'>
       <div class="shelf">
-        <div class='medicine-bottle' style='margin: 0 30px;'>
-          <div class='col-span-9'>
-            <%= pill_image(medicine.name, height: '45px') %> 
-            <span style='margin-left: 5px; font-size: 60px; font-weight: bold; color: #005573'>
-              <%=medicine.name %>
-            </span>
+        <div class='row medicine-bottle'>
+          <div class='col-span-1 pill-image-row'>
+            <%= pill_image(medicine.name, class: 'pill-image') %> 
           </div>
-          <div class='col-span-3 medicine-tray'>
+          <div class='col-span-8 medicine-name'>
+            <div><%= medicine.name %> </div>
+            <div class='pill-badge visible-mobile num-pill-interactions'>
+              <%= "#{(@interactions[medicine_key(medicine)] || {}).keys.length} interactions" %>
+            </div>
+          </div>
+          <div class='col-span-3 medicine-tray hidden-mobile'>
           <% (@interactions[medicine_key(medicine)] || {}).each do |key, value| %>
-            <%= pill_interaction_image(key.to_s, medicine == @primary_medicine) %>
+            <%= pill_interaction_image(key.to_s, key.to_s == @primary_medicine.name) %>
           <% end %>
           </div>
+        </div> 
+        
+        <i class="fa fa-times pill-delete hidden-mobile" data-set-id="<%= medicine.id %>"></i>     
+        <div class="pill-next visible-mobile">
+          <i class="fa fa-arrow-right"></i>
         </div>
       </div>
       <div class="border-overlay hidden-mobile">&nbsp;</div>
     </div>
   <% end %>
+  </div>
 <% end %>

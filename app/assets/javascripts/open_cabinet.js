@@ -16,6 +16,18 @@ function open_cabinet() {
     var elm = document.getElementById('shelves');
     Box.Application.start(elm);
   }
+
+   fix_flip();
+}
+
+function fix_flip() {
+  $('.strategy-wrapper form').each(function(idx, elm) {
+
+    var $this = $(this);
+    $this.find('.onoffswitch-checkbox').attr('id', 'myonoffswitch' + idx);
+    $this.find('label').attr('for', 'myonoffswitch' + idx)
+
+  });
 }
 
 function toggle_responsiveness() {
