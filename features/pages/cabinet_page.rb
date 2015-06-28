@@ -30,6 +30,6 @@ class CabinetPage
   end
 
   def select_medicine(medicine_name)
-    find(".pill-name-text", text: medicine_name, match: :prefer_exact).trigger('click')
+    find('.pill-name-text', text: medicine_name, match: :prefer_exact).trigger('click')
   end
 end
