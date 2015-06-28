@@ -79,7 +79,7 @@ Box.Application.addModule('information', function(context) {
   function display_medicine_wordage(count, name){
     var $module_el = $(module_el);
 
-    var text = count + ' medication in your cabinet interact with ' + name + '.';
+    var text = count + ' medication in your cabinet interacts with ' + name + '.';
     
     if (count > 1){
       text = count + ' medications in your cabinet interact with ' + name + '.';
