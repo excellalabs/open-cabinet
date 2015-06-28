@@ -78,7 +78,6 @@ group :acceptance, :travis do
   gem 'capybara-screenshot', '~> 1.0.4'
   gem 'poltergeist', '~> 1.5.1'
   gem 'launchy', '~> 2.4.2'
-  gem 'rack_session_access', '~> 0.1.1'
 end
 
 group :acceptance, :test, :travis do
@@ -88,6 +87,7 @@ group :acceptance, :test, :travis do
   gem 'simplecov', :require => false
   gem "codeclimate-test-reporter", group: :test, require: nil
   gem 'vcr'
+  gem 'rack_session_access'
 end
 
 gem 'rails_12factor', group: :production

@@ -23,4 +23,13 @@ class CabinetPage
   def press_add_button
     click_button 'add_medicine'
   end
+
+  def create_session_cabinet_with_medicines(medicines)
+    cabinet = Cabinet.create(medicines: medicines)
+    page.set_rack_session(cabinet_id: cabinet.id)
+  end
+
+  def select_medicine(medicine_name)
+    find(".pill-name-text", text: medicine_name, match: :prefer_exact).trigger('click')
+  end
 end
