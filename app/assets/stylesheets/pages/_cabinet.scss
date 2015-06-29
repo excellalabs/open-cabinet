@@ -255,30 +255,31 @@
     }
   }
 
-  section {
-    position: relative;
-    border-bottom: 1px solid $bright-green;
-    margin: 30px;
-    padding-bottom: 30px;
+}
 
-    @include media($tablet-and-down) {
-      margin: 15px;
-    }
+section {
+  position: relative;
+  border-bottom: 1px solid $bright-green;
+  margin: 30px;
+  padding-bottom: 30px;
 
-    &:last-child {
-      border-bottom: 0;
-    }
+  @include media($tablet-and-down) {
+    margin: 15px;
+  }
 
-    h3 {
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
+  &:last-child {
+    border-bottom: 0;
+  }
 
-    &.interaction-pair-mobile {
-      margin: 15px;
-      background: white;
-      padding: 30px;
-    }
+  h3 {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  &.interaction-pair-mobile {
+    margin: 15px;
+    background: white;
+    padding: 30px;
   }
 }
 

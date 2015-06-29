@@ -1,0 +1,21 @@
+.about-page-wrapper {
+  height: 100%;
+}
+
+.about-page {
+  padding: 30px 60px 60px;
+  overflow-y: auto;
+  height: 100%;
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  h3 {
+    margin: 15px 0;
+  }
+
+  .question {
+    margin-bottom: 60px;
+  }
+}
