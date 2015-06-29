@@ -32,6 +32,7 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new app, options
 end
 
+
 caps = Selenium::WebDriver::Remote::Capabilities.firefox({
     'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER']
 })
