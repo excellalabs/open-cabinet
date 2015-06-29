@@ -18,6 +18,8 @@
           </div>
           <div class='col-span-3 medicine-tray hidden-mobile'>
           <% (@interactions[medicine_key(medicine)] || {}).each do |key, value| %>
+
+            <% next if key == MedicineInformationService.interactions_text_key %>
             <%= pill_interaction_image(key.to_s, key.to_s == @primary_medicine.name) %>
           <% end %>
           </div>

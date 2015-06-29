@@ -1,4 +1,8 @@
 class MedicineInformationService
+  def self.interactions_text_key
+    :interaction_text
+  end
+
   def self.fetch_information(name, cabinet)
     primary, response, client = Medicine.find_by_name(name), {}, OpenFda::Client.new, 0
     response[:primary] = primary.name
@@ -11,15 +15,17 @@ class MedicineInformationService
     response
   end
 
+  # rubocop:disable Metrics/MethodLength
   def self.find_cabinet_interactions(cabinet, client)
     all_interactions = {}
     medicine_ary = [*cabinet.medicines]
     client.query_for_interactions(medicine_ary).each do |response|
       next unless response.success?
       set_id = fetch_string_from_response(response, 'set_id')
-      interaction_text = fetch_array_from_response(response, 'drug_interactions')
+      interaction_text = fetch_array_from_response(response, 'drug_interactions') # interaction text for med
       medicine = medicine_ary.find { |med| med.set_id == set_id }
       all_interactions[medicine.name.to_sym] = build_interactions(set_id, cabinet.medicines, interaction_text)
+      all_interactions[medicine.name.to_sym][interactions_text_key] = interaction_text unless all_interactions[medicine.name.to_sym].empty?
     end
     all_interactions
   end
