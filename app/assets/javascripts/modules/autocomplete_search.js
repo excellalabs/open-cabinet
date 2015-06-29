@@ -50,7 +50,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
   function submit_typeahead(medicine){
     if(!medicine) return;
     if(!value_in_autocomplete(medicine)) {
-      $('#error-message-container').show().html("Could not find results for '" + medicine + "', please try again.");
+      $('#error-message-container').show().html("<div class='error-message'>Could not find results for '" + medicine + "', please try again.</div>");
       return;
     }
     $('#error-message-container').hide();
