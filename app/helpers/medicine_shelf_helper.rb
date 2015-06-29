@@ -52,7 +52,7 @@ module MedicineShelfHelper
 
   # rubocop:disable Metrics/MethodLength
   def medicine_html(medicine, interactions, interaction_class_name)
-    keys = (interactions[medicine_key(medicine)] || {}).keys
+    keys = (interactions[medicine_key(medicine)] || {}).keys.delete_if { |x| x == :interaction_text }
     <<-eos
     <div class='pill-container #{interaction_class_name} clickable-pill-container' pill-name-text='#{medicine.name}'
          data-type='pill-bottle'>
