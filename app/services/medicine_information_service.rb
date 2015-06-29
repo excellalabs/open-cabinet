@@ -4,7 +4,7 @@ class MedicineInformationService
   end
 
   def self.fetch_information(name, cabinet)
-    primary, response, client = Medicine.find_by_name(name), {}, OpenFda::Client.new, 0
+    primary, response, client = Medicine.find_by_name(name), {}, OpenFda::Client.new
     response[:primary] = primary.name
     response[:interactions_text] = fetch_array_from_response(client.query_for_interactions(primary), 'drug_interactions')
     %w(indications_and_usage dosage_and_administration warnings).each do |info|
@@ -29,6 +29,7 @@ class MedicineInformationService
     end
     all_interactions
   end
+  # rubocop:enable Metrics/MethodLength
 
   def self.build_bi_directional_interactions(cabinet, client = OpenFda::Client.new)
     cabinet_interactions = find_cabinet_interactions(cabinet, client)
