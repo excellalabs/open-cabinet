@@ -16,6 +16,9 @@ class MedicineController < ApplicationController
   def cabinet
   end
 
+  def about
+  end
+
   def update_primary_medicine
     write_primary_medicine(params[:medicine])
     find_primary_medicine
