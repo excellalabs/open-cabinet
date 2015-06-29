@@ -27,5 +27,5 @@ end
 
 Then(/^I receive an error message letting me know that I need to try a different search$/) do
   error_message = "Could not find results for '#{@incorrect_term}', please try again."
-  expect(error_message).to eq(find('#error-message-container').text)
+  expect(error_message).to eq(find('#error-message-container .error-message').text)
 end

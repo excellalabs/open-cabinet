@@ -17,7 +17,15 @@
 }
 
 .error-container {
-  color: red;
+  .error-message {
+    color: $dark-red;  
+    padding: 15px;
+    background: #fafafa;
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+  }
 }
 
 #unselected-content {
@@ -334,13 +342,12 @@
       }
 
       .fa-times {
-        border-radius: 4px;
         position: absolute;
         display: none;
-        right: 0;
-        top: 0px;
-        background: $dark-red;
-        color: $white;
+        right: 5px;
+        top: 5px;
+        color: $dark-gray;
+        font-size: 20px;
       }
 
       &:hover {
@@ -427,6 +434,12 @@
               &.black {
                 background: $dark-gray;
               }
+
+              &:not(.black):after {
+                font-family: FontAwesome;
+                content: "\f071";
+                margin-left: 5px;
+              }
             }
           }
 
@@ -478,7 +491,7 @@
         background: rgba(255, 255, 255, 0.9);
 
         .pill-name {
-          background: $dark-red;
+          background: $bright-blue;
           color: $white;
 
           @include media($mobile) {
