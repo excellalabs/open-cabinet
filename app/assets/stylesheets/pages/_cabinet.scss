@@ -2,7 +2,7 @@
   background-color: yellow;
 }
 
-//*-- scroll to top 
+//*-- scroll to top
 .scroll-to-top {
   position: fixed;
   cursor: pointer;
@@ -69,7 +69,7 @@
     @include media($tablet-and-down) {
       left: 29%;
       top: 30%;
-    }   
+    }
   }
 
   //*-- carousal
@@ -545,7 +545,7 @@
   .pill-delete {
     position: absolute;
     right: 0;
-    top: 0;  
+    top: 0;
     padding: 5px;
     color: $dark-red;
     display: none;
@@ -588,7 +588,7 @@
     right: 0;
     bottom: 5px;
 
-    
+
     img {
       @include filter(grayscale(100%));
       @include transform(scaleY(-1));
@@ -596,7 +596,7 @@
       -ms-filter: "FlipV";
       opacity: .6 !important;
       height: 30px;
-    
+
       &.active {
         opacity: 1 !important;
         @include filter(grayscale(0%));
@@ -605,7 +605,7 @@
   }
 
   .clickable-pill-container {
-    cursor: pointer; 
+    cursor: pointer;
 
     img {
       opacity: .3;
@@ -664,7 +664,7 @@
       line-height: 26px;
       margin-left: 70px;
       font-size: 20px;
-    
+
       div:first-child {
         font-size: 20px;
         line-height: 26px;
@@ -698,7 +698,7 @@
       color: $bright-green;
       top: -15px;
     }
-           
+
   }
 }
 
