@@ -32,9 +32,26 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new app, options
 end
 
+
+caps = Selenium::WebDriver::Remote::Capabilities.firefox({
+    'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER']
+})
+
+sauce_driver = Selenium::WebDriver.for(:remote, {
+  url: "http://#{ENV['SAUCE_USER_NAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com/wd/hub",
+  desired_capabilities: caps
+})
+
+if ENV['SAUCE_LABS']
+  Capybara.default_driver = sauce_driver
+  Capybara.javascript_driver = sauce_driver
+
+else
+  Capybara.javascript_driver = :poltergeist
+  Capybara.default_driver = :poltergeist
+end
+
 Capybara::Screenshot.prune_strategy = { keep: 30 }
-Capybara.javascript_driver = :poltergeist
-Capybara.default_driver = :poltergeist
 
 Capybara.raise_server_errors = false
 
