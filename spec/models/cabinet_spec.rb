@@ -27,11 +27,4 @@ RSpec.describe Cabinet, type: :model do
       expect(cabinet.medicines.length).to eq(1)
     end
   end
-
-  describe 'num_interactions_for_primary' do
-    it 'should return the number of medicines that interact with the primary' do
-      cabinet = Cabinet.new(medicines: [Medicine.new(is_interacted_with: true), Medicine.new(is_interacted_with: true)])
-      expect(cabinet.num_interactions_for_primary).to eq(2)
-    end
-  end
 end
