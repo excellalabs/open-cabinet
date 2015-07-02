@@ -10,4 +10,3 @@ RUN bundle install
 
 ADD . /myapp
 WORKDIR /myapp
-CMD ["rails","server","-b","0.0.0.0"]
