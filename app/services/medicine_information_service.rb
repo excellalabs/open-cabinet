@@ -15,10 +15,8 @@ class MedicineInformationService
     response
   end
 
-  # rubocop:disable Metrics/MethodLength
   def self.find_cabinet_interactions(cabinet, client)
-    all_interactions = {}
-    medicine_ary = [*cabinet.medicines]
+    all_interactions, medicine_ary = {}, [*cabinet.medicines]
     client.query_for_interactions(medicine_ary).each do |response|
       next unless response.success?
       set_id = fetch_string_from_response(response, 'set_id')
@@ -29,7 +27,6 @@ class MedicineInformationService
     end
     all_interactions
   end
-  # rubocop:enable Metrics/MethodLength
 
   def self.build_bi_directional_interactions(cabinet, client = OpenFda::Client.new)
     cabinet_interactions = find_cabinet_interactions(cabinet, client)
