@@ -73,6 +73,7 @@ module MedicineShelfHelper
     </div>
     eos
   end
+  # rubocop:enable Metrics/MethodLength
 
   def pill_interaction_image(medicine_name, is_primary_medicine_row)
     options = { class: 'tooltip', title: medicine_name }
