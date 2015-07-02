@@ -28,6 +28,9 @@ default: &default
 development:
   <<: *default
   database: open_cabinet_dev
+  username: postgres
+  password:
+  host: db
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
