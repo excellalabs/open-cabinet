@@ -1,4 +1,5 @@
 class Cabinet < ActiveRecord::Base
+  include OpenFdaExtractor
   belongs_to :user
   has_many :cabinet_medicines
   has_many :medicines, through: :cabinet_medicines
@@ -32,5 +33,41 @@ class Cabinet < ActiveRecord::Base
       medicines.find { |medicine| medicine.name == med_name }.destroy
     end
     reload
+  end
+
+  def self.find_cabinet_interactions
+    all_interactions, client = {}, OpenFda::Client.new
+    client.query_for_interactions(medicines).each do |response|
+      next unless response.success?
+      set_id = fetch_string_from_response(response, 'set_id')
+      interaction_text = fetch_array_from_response(response, 'drug_interactions') # interaction text for med
+      medicine = medicines.find { |med| med.set_id == set_id }
+      all_interactions[medicine.name.to_sym] = build_interactions(set_id, interaction_text)
+      all_interactions[medicine.name.to_sym][interactions_text_key] = interaction_text unless all_interactions[medicine.name.to_sym].empty?
+    end
+    all_interactions
+  end
+
+  def self.build_bi_directional_interactions
+    cabinet_interactions = find_cabinet_interactions
+    result = cabinet_interactions.deep_dup
+    cabinet_interactions.each do |name_symbol, interactions_hash|
+      interactions_hash.each do |interaction_symbol, _data|
+        result[interaction_symbol] = {} unless result.key?(interaction_symbol)
+        next if result[interaction_symbol].key?(name_symbol)
+        result[interaction_symbol][name_symbol] = [name_symbol.to_s.downcase]
+      end
+    end
+    result
+  end
+
+  def self.build_interactions(primary_set_id, interaction_text)
+    data = {}
+    medicines.each do |medicine|
+      next if primary_set_id == medicine.set_id
+      keywords = [medicine.name, medicine.active_ingredient].map { |name| name.try(:downcase) }.uniq
+      data[medicine.name.to_sym] = keywords if interaction_text =~ /#{keywords.reject(&:empty?).join("|")}/
+    end
+    data
   end
 end
