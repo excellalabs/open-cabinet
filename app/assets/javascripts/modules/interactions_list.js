@@ -12,7 +12,7 @@ Box.Application.addModule('interactions-list', function(context) {
       build_interaction_li(med.primary, k);
     }
     
-    if(Object.keys(med.interactions).length == 0 && interactions_length(med) > 0){
+    if(med.interactions && Object.keys(med.interactions).length == 0 && interactions_length(med) > 0){
       var interactions = med.all_interactions[med.primary];
       for(var k in interactions){
         build_interaction_li(med.primary, k);
