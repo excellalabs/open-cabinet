@@ -5,7 +5,7 @@ require 'sauce/cucumber'
 require 'sauce/capybara'
 
 Sauce.config do |config|
- # config[:application_host] = "http://#{ENV['STACK_URL']}"
+  # config[:application_host] = "http://#{ENV['STACK_URL']}"
   config[:start_tunnel] = ENV['SAUCE_LABS']
   config[:start_local_application] = true
   config[:browsers] = [
