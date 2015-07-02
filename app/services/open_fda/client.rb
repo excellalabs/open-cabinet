@@ -16,18 +16,8 @@ module OpenFda
       end
     end
 
-    def query_label(search = nil, count = nil, limit = 15, skip = 0)
-      query('/drug/label.json', search, count, limit, skip)
-    end
-
-    def query_by_med_name(name, limit = 15, skip = 0)
-      query('/drug/label.json', "brand_name:#{name}+active_ingredient:#{name}+generic_name:#{name}", nil, limit, skip)
-    end
-
     def query_all_records_by_time_period(start_time, end_time)
-      start_time_s = start_time.strftime('%Y-%m-%d')
-      end_time_s = end_time.strftime('%Y-%m-%d')
-      include_delay = true
+      start_time_s, end_time_s, include_delay = start_time.strftime('%Y-%m-%d'), end_time.strftime('%Y-%m-%d'), true
       query_json_for_all_records('/drug/label.json', "effective_time:[#{start_time_s}+TO+#{end_time_s}]", include_delay)
     end
 
@@ -47,11 +37,11 @@ module OpenFda
     private
 
     def query_json_for_all_records(api_endpoint, search, include_delay = false)
-      accumulated_data = empty_results
-      skip = 0
+      accumulated_data, skip = empty_results, 0
       loop do
         sleep 1 if include_delay
-        data = query_as_json(api_endpoint, search, nil, MAX_LIMIT, skip)
+        response = query(api_endpoint, search, nil, 100, skip)
+        data = response.success? ? JSON.parse(response.body) : empty_results
         accumulated_data['results'].push(*(data['results']))
         skip += MAX_LIMIT
         break if data['results'].length < MAX_LIMIT
@@ -59,18 +49,9 @@ module OpenFda
       accumulated_data
     end
 
-    def query_as_json(api_endpoint, search, count = nil, limit = 15, skip = 0)
-      response = query(api_endpoint, search, count, limit, skip)
-      data = empty_results
-      data = JSON.parse(response.body) if response.success?
-      data['status'] = response.code
-      data
-    end
-
     def query(api_endpoint, search = nil, count = nil, limit = 15, skip = 0)
+      Typhoeus::Config.cache, hydra = OpenFda::Cache::RequestCache.new, Typhoeus::Hydra.new
       is_multi = multi_request?(search)
-      Typhoeus::Config.cache = OpenFda::Cache::RequestCache.new
-      hydra = Typhoeus::Hydra.new
       reqs = create_request_queue(api_endpoint, search, count, limit, skip)
       reqs.each { |req| hydra.queue(req) }
       hydra.run
@@ -97,11 +78,9 @@ module OpenFda
     end
 
     def create_request(api_endpoint, search, count, limit, skip)
-      params_hash = {}
+      params_hash = { limit: limit, skip: skip }
       params_hash[:api_key] = api_key if api_key
       params_hash[:count] = prepare_query(count) if count
-      params_hash[:limit] = limit
-      params_hash[:skip] = skip
       Typhoeus::Request.new(connection_options(api_endpoint, search), params: params_hash)
     end
 
