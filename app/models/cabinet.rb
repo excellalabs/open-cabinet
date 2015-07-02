@@ -4,18 +4,27 @@ class Cabinet < ActiveRecord::Base
   has_many :cabinet_medicines
   has_many :medicines, through: :cabinet_medicines
 
-  def add_to_cabinet(searchable_medicine)
+  attr_accessor :primary_set_id
+
+  def add_to_cabinet(searchable_medicine) # method to call when med gets added to cabinet
     return if searchable_medicine.nil?
     med = Medicine.find_or_create_by(set_id: searchable_medicine.set_id)
     return if medicines.any? { |medicine| medicine.set_id == med.set_id }
     med.update(name: searchable_medicine.name, active_ingredient: '')
     medicines << med
     save!
-    med
+    rebuild_cabinet
+    # need to set up cabinet with information regarding primary and interaction meds
+  end
+
+  def identify_primary(med_name) # method to call when med is newly selected to become primary
+    medicine = medicines.find { |med| med.name == med_name }
+    rebuild_cabinet
+    # need to set up cabinet with information regarding primary and interaction meds
   end
 
   def find_medicine_by_name(med_name)
-    medicines.find { |medicine| medicine.name == med_name }
+    medicines.find { |med| med.name == med_name }
   end
 
   def primary_medicine(session_medicine_id)
@@ -25,7 +34,7 @@ class Cabinet < ActiveRecord::Base
     medicine
   end
 
-  def destroy_medicine(med_name)
+  def destroy_medicine(med_name) # method to call when med(s) is destroyed
     if med_name.is_a? Hash
       results = medicines.map { |medicine| medicine if med_name.values.include?(medicine.name) }
       medicines.destroy(results.compact)
@@ -33,41 +42,28 @@ class Cabinet < ActiveRecord::Base
       medicines.find { |medicine| medicine.name == med_name }.destroy
     end
     reload
+    rebuild_cabinet
+    # need to set up cabinet with information regarding primary and interaction meds
   end
 
-  def self.find_cabinet_interactions
-    all_interactions, client = {}, OpenFda::Client.new
-    client.query_for_interactions(medicines).each do |response|
-      next unless response.success?
-      set_id = fetch_string_from_response(response, 'set_id')
-      interaction_text = fetch_array_from_response(response, 'drug_interactions') # interaction text for med
-      medicine = medicines.find { |med| med.set_id == set_id }
-      all_interactions[medicine.name.to_sym] = build_interactions(set_id, interaction_text)
-      all_interactions[medicine.name.to_sym][interactions_text_key] = interaction_text unless all_interactions[medicine.name.to_sym].empty?
-    end
-    all_interactions
-  end
-
-  def self.build_bi_directional_interactions
-    cabinet_interactions = find_cabinet_interactions
-    result = cabinet_interactions.deep_dup
-    cabinet_interactions.each do |name_symbol, interactions_hash|
-      interactions_hash.each do |interaction_symbol, _data|
-        result[interaction_symbol] = {} unless result.key?(interaction_symbol)
-        next if result[interaction_symbol].key?(name_symbol)
-        result[interaction_symbol][name_symbol] = [name_symbol.to_s.downcase]
+  def rebuild_cabinet # loops through all medicines to determine counts of medicines it interacts with
+    medicines.each do |current_med|
+      interaction_count = 0
+      current_med.interaction_count = nil
+      medicines.each do |med|
+        next if med.set_id == current_med.set_id
+        interaction_count += 1 if determine_interaction(current_med, med)
       end
+      current_med.interaction_count = interaction_count
     end
-    result
   end
 
-  def self.build_interactions(primary_set_id, interaction_text)
-    data = {}
-    medicines.each do |medicine|
-      next if primary_set_id == medicine.set_id
-      keywords = [medicine.name, medicine.active_ingredient].map { |name| name.try(:downcase) }.uniq
-      data[medicine.name.to_sym] = keywords if interaction_text =~ /#{keywords.reject(&:empty?).join("|")}/
-    end
-    data
+  def determine_interaction(med_one, med_two)
+    keywords = [med_one.name, med_one.active_ingredient].map { |name| name.try(:downcase) }.uniq
+    med_two.interaction_text =~ /#{keywords.reject(&:empty?).join("|")}/ ? true : false
+  end
+
+  def num_interactions_for_primary
+    medicines.map { |med| med.is_interacted_with == true }.length
   end
 end

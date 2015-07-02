@@ -4,18 +4,17 @@ class Medicine < ActiveRecord::Base
   has_many :cabinets, through: :cabinet_medicines
   default_scope  { includes(:cabinet_medicines).order('cabinet_medicines.created_at DESC') }
 
-  attr_accessor :warnings, :dosage_and_administration, :indications_and_usage, :interactions_text
+  after_initialize :init
 
-  def fetch_information
+  attr_accessor :warnings, :dosage_and_administration, :indications_and_usage, :interactions_text,
+                :is_primary, :is_interacted_with, :interaction_count
+
+  def init
     client = OpenFda::Client.new
     response = client.query_by_set_id(set_id)
     @warnings = fetch_array_from_response(response, 'warnings')
     @dosage_and_administration = fetch_array_from_response(response, 'dosage_and_administration')
     @indications_and_usage = fetch_array_from_response(response, 'indications_and_usage')
-  end
-
-  def fetch_interactions_text
-    client = OpenFda::Client.new
     @interactions_text = fetch_array_from_response(client.query_for_interactions(self), 'drug_interactions')
   end
 end
