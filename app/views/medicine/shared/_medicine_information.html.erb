@@ -1,23 +1,98 @@
-<div class='row' style="<%= @cabinet.medicines.empty? ? '': 'display: none;'%>" id='empty-message-row'>
-  <div class='col-span-12' id='interactions'>
-    <h1 class='primary-font green'>ADD MEDICINES TO YOUR CABINET.</h1>
-    <p>We’ll compare them and let you know if there are any known interactions among them!</p>
+<!-- medicine details -->
+<div id='medicine_information' class='item view-pane'>
+  <div class='content'>
+    <% if @primary_medicine %>
+    <div class='row' id='medicine-general-info'>
+      <h2>
+        <div class='row hidden-desktop owl-navigation-cabinet back-nav'>
+          <i class="fa fa-arrow-left back-to-medicine-cabinet"></i>
+          <span class="primary-name"><%= @primary_medicine.name %></span>
+       </div>
+        <div class='title visible-desktop'>
+          <span class="primary-name"><%= @primary_medicine.name %></span>
+        </div>
+        <% num_interactions = @primary_medicine.interaction_count %>
+        <% if num_interactions > 0 %>
+          <div id="interactions-count-container" class='interactions row owl-navigation-interaction' data-type="interactions-warning">
+            <div class='col-span-11' id="potential-interactions">
+              <%= "#{pluralize(num_interactions, 'medication')} in your cabinet #{num_interactions == 1 ? 'interacts' : 'interact'} with #{@primary_medicine.name}" %>
+            </div>
+            <div class="col-span-1"><i class="fa fa-arrow-right"></i></div>
+          </div>
+        <% end %>
+      </h2>
+      <div class='medicine-details'>
+        <%= build_information_section('Description', @primary_medicine.try(:indications_and_usage)) %>
+        <%= build_information_section('Dosage', @primary_medicine.try(:dosage_and_administration)) %>
+        <%= build_information_section('Warnings', @primary_medicine.try(:warnings)) %>
+      </div>
+    </div>
+    <% else %>
+    <div class='row' id='empty-message-row'>
+      <div class='col-span-12' id='interactions'>
+        <h1 class='primary-font green'>ADD MEDICINES TO YOUR CABINET.</h1>
+        <p>We’ll compare them and let you know if there are any known interactions among them!</p>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
-<div class='row' id='medicine-general-info'>
-  <h2>
-    <div class='row hidden-desktop owl-navigation-cabinet back-nav'>
-      <i class="fa fa-arrow-left back-to-medicine-cabinet"></i><span class="primary-name"></span>
-   </div>
-    <div class='title visible-desktop'>
-      <span class="primary-name"></span>
-    </div>
+<!-- end medicine details -->
 
-    <div id="interactions-count-container" class='interactions row owl-navigation-interaction' data-type="interactions-warning" style='display: none'>
-      <div class='col-span-11' id="potential-interactions"></div>
-      <div class="col-span-1"><i class="fa fa-arrow-right"></i></div>
-    </div>
+<!-- interaction pairs list -->
+<div class='item interactions-list view-pane'>
+  <div class='back-nav visible-desktop owl-navigation-cabinet'>
+    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back to Cabinet
+  </div>
+
+  <h2 class='reaction-title hidden-desktop'>
+    <div class='row hidden-desktop owl-navigation-cabinet back-nav'>
+      <i class="back-to-medicine-information fa fa-arrow-left"></i><span class="primary-name"></span>
+   </div>
   </h2>
 
-  <div class='medicine-details'></div>
+  <div class='row'>
+    <p>
+    Click one of the tiles below to see where one of your medicines appears on the interaction label of another medicine.
+    </p>
+  </div>
+
+  <div class='row with-shadow'>
+    <ul id="interactions">
+      <li></li>
+    </ul>
+  </div>
+
+  <div class='row hidden-desktop'>
+    <section class='interaction-pair-mobile'>
+      <h3>Interaction Information</h3>
+      <p id="interactions-text-mobile"></p>
+    </section>
+  </div>
 </div>
+<!-- end interaction pairs list -->
+
+<!-- interaction details -->
+<div class='item view-pane' id="interactions-info">
+  <h2 class='reaction-title hidden-desktop'>
+    <div class='row hidden-desktop owl-navigation-cabinet back-nav'>
+      <i class="back-to-interaction-pairs fa fa-arrow-left"></i><span class="primary-name"></span>
+   </div>
+  </h2>
+  <div class='row' id='no-data-loaded-container'>
+    <h1 class='primary-font green padding-30-all'>To get started, select an interaction on the left.</h1>
+  </div>
+  <div class='row' id='interaction-data-container' style="display: none;">
+    <h3>Interaction Information</h3>
+    <section>  
+      <h4 style="font-weight: bold" class="primary-name"></h4>
+      <p id="primary-medicine-interactions-text"></p>
+    </section>
+    <section>
+      <h4 style="font-weight: bold" class="interaction-name"></h4>
+      <p id="interaction-medicine-interactions-text"></p>
+    </section>
+  </div>    
+</div>
+<!-- end medicine details -->
+

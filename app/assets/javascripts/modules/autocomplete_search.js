@@ -65,7 +65,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
 
   return {
 
-    messages: ['reload_data'],
+    messages: ['refresh_information'],
 
     init: function() {
       setup_autocomplete();

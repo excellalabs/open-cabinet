@@ -40,7 +40,8 @@ Box.Application.addModule('cabinet', function(context) {
 
   function load_data(html) {
     $(module_el).html(html);
-    get_information().done(function(primary_medicine_info) {
+    context.broadcast('refresh_information', null);
+    /*get_information().done(function(primary_medicine_info) {
 
       if(!is_tablet_and_down()) {
         $('.tooltip').tipso({
@@ -52,7 +53,7 @@ Box.Application.addModule('cabinet', function(context) {
       load_chart(primary_medicine_info);
 
       context.broadcast('reload_data', primary_medicine_info);
-    });
+    });*/
   }
 
   function delete_medicine(name_data) {

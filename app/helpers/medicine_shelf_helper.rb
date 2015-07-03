@@ -2,12 +2,12 @@ module MedicineShelfHelper
   MEDICINES_IN_ROW = 3
   NUM_IMAGES = 7
   MIN_ROWS = 3
-  def show_shelves(cabinet, primary_medicine, interactions)
+  def show_shelves(cabinet, primary_medicine)
     result = ''
     cabinet.medicines.each_with_index do |medicine, i|
       result += shelf_start_html if new_shelf?(i)
-      interaction = interaction_class_name(medicine, primary_medicine, interactions)
-      result += medicine_html(medicine, interactions, interaction)
+      interaction = interaction_class_name(medicine, primary_medicine)
+      result += medicine_html(medicine, interaction)
       result += shelf_end_html if end_shelf?(cabinet.medicines, i)
     end
     result += add_empty_shelves(cabinet.medicines)
@@ -39,9 +39,9 @@ module MedicineShelfHelper
     (index % MEDICINES_IN_ROW == (MEDICINES_IN_ROW - 1)) || (medicines.length - 1 == index)
   end
 
-  def interaction_class_name(curr_medicine, primary_medicine, interactions)
+  def interaction_class_name(curr_medicine, primary_medicine)
     return 'active' if curr_medicine == primary_medicine
-    return 'interact' if primary_medicine && interactions[medicine_key(primary_medicine)] &&
+    return 'interact' if primary_medicine && medicine.interaction? &&
                          interactions[medicine_key(primary_medicine)][medicine_key(curr_medicine)]
     'disabled'
   end
@@ -51,8 +51,7 @@ module MedicineShelfHelper
   end
 
   # rubocop:disable Metrics/MethodLength
-  def medicine_html(medicine, interactions, interaction_class_name)
-    keys = (interactions[medicine_key(medicine)] || {}).keys.delete_if { |x| x == :interaction_text }
+  def medicine_html(medicine, interaction_class_name)
     <<-eos
     <div class='pill-container #{interaction_class_name} clickable-pill-container' pill-name-text='#{medicine.name}'
          data-type='pill-bottle'>
@@ -62,8 +61,8 @@ module MedicineShelfHelper
         #{ hidden_field_tag medicine.set_id }
         <div class='pill-name'>
           <div class='pill-name-text'>#{medicine.name}</div>
-          <div class='pill-badge num-pill-interactions  #{keys.length == 0 ? 'black' : 'tooltip'}' title='#{keys.join('<br/>')}' >
-            #{keys.length} <span class='visible-mobile'>interactions</span>
+          <div class='pill-badge num-pill-interactions  #{medicine.interaction? ? 'tooltip' : 'black'}' title='#{medicine.interactions.join('<br/>')}' >
+            #{medicine.interaction_count} <span class='visible-mobile'>interactions</span>
           </div>
         </div>
       </div>

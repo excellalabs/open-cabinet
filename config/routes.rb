@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post 'add_to_cabinet', to: 'medicine#add_to_cabinet'
   delete 'destroy', to: 'medicine#destroy', as: 'destroy_medicine'
   get 'information', to: 'medicine#information'
+  get 'medicine_information', to: 'medicine#medicine_information'
   get 'about', to: 'medicine#about'
   post 'update_primary_medicine', to: 'medicine#update_primary_medicine'
 
