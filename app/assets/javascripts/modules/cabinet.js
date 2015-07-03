@@ -38,15 +38,19 @@ Box.Application.addModule('cabinet', function(context) {
     });
   }
 
-  function load_data(html) {
-    $(module_el).html(html);
-    context.broadcast('refresh_information', null);
+  function load_tooltips() {
     if(!is_tablet_and_down()) {
       $('.tooltip').tipso({
         background: '#12a3d2',
         border_color: '#0e7fa3'
       });
     }
+  }
+
+  function load_data(html) {
+    $(module_el).html(html);
+    context.broadcast('refresh_information', null);
+    load_tooltips();
   }
 
   function delete_medicine(name_data) {
@@ -101,6 +105,7 @@ Box.Application.addModule('cabinet', function(context) {
 
     init: function() {
       module_el = context.getElement();
+      load_tooltips();
     },
     onmessage: function (name, medicine_name) {
       switch (name) {

@@ -15,15 +15,13 @@
           <div class='col-span-8 medicine-name'>
             <div><%= medicine.name %> </div>
             <div class='pill-badge visible-mobile num-pill-interactions'>
-              <%= "#{(@interactions[medicine_key(medicine)] || {}).keys.length} interactions" %>
+              <%= "#{medicine.interaction_count} interactions" %>
             </div>
           </div>
           <div class='col-span-3 medicine-tray hidden-mobile'>
-          <% (@interactions[medicine_key(medicine)] || {}).each do |key, value| %>
-
-            <% next if key == MedicineInformationService.interactions_text_key %>
-            <%= pill_interaction_image(key.to_s, key.to_s == @primary_medicine.name) %>
-          <% end %>
+            <% medicine.interactions.each do |interaction| %>
+              <%= pill_interaction_image(interaction.name.to_s, interaction.name == @primary_medicine.name) %>
+            <% end %>
           </div>
         </div> 
         
