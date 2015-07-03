@@ -5,6 +5,7 @@
 //*-- base button
 button, .base-button, input[type='submit'] {
   @include border-radius(4px);
+  @include transition(all .5s);
   @extend .primary-font;
   padding: 10px 15px;
   border: 0;
@@ -12,7 +13,10 @@ button, .base-button, input[type='submit'] {
   background: $light-gray;
   cursor: pointer;
   box-shadow: 0px 3px 0px 0px darken($light-gray, 20%);
-  @include transition(all .5s);
+     
+  -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none; 
 
   &:hover, &:focus, &:active {
     text-decoration: none;
