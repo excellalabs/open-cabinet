@@ -38,6 +38,7 @@ Then(/^I should see label data$/) do
 end
 
 And(/^I click the interactions blurb$/) do
+  wait_for_ajax
   page.find('#interactions-count-container').trigger('click')
 end
 
@@ -54,5 +55,5 @@ Then(/^the first tile becomes active$/) do
 end
 
 And(/^the interacting drug "(.*?)" is highlighted in the interactions text$/) do |arg1|
-  assert_selector(".#{arg1}.highlight.neon")
+  expect(find('.highlight.neon').text.upcase).to eq(arg1.upcase)
 end

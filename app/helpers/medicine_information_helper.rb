@@ -13,4 +13,12 @@ module MedicineInformationHelper
   def default_text(text)
     text ? text : 'No information was found for this section on this medicine.'
   end
+
+  def highlight_interactions(interaction_text, medicine)
+    return 'No interaction label data is present' if interaction_text.blank?
+    medicine.keywords.each do |keyword|
+      interaction_text.gsub!(/#{keyword}/i).with_index { |m| content_tag(:span, m, class: 'neon highlight scroll-to') }
+    end
+    interaction_text.html_safe
+  end
 end

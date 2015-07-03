@@ -39,6 +39,10 @@ body {
   }
 }
 
+.not-red {
+  color: $dark-blue !important;
+}
+
 .default-padding-top {
   padding-top: 30px;
 

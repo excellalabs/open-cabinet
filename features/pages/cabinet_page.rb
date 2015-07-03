@@ -67,12 +67,12 @@ class CabinetPage
   end
 
   def select_medicine(medicine_name)
-    find('.pill-name-text', text: medicine_name, match: :prefer_exact).trigger('click')
+    find("div[pill-name-text='#{medicine_name}']").click
   end
 
   def interaction_tiles
     tiles = ''
-    within('#interactions') do
+    within('#interactions-list') do
       tiles = all('li')
     end
     tiles

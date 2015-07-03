@@ -49,8 +49,6 @@ class Medicine < ActiveRecord::Base
     medicine.drug_interactions.to_s =~ /#{keywords.reject(&:empty?).join("|")}/ ? true : false
   end
 
-  private
-
   def keywords
     [name, active_ingredient].map { |name| name.try(:downcase) }.uniq.reject(&:blank?)
   end

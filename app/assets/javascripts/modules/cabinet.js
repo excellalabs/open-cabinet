@@ -156,7 +156,7 @@ Box.Application.addModule('cabinet', function(context) {
       } else if ($ev_target.closest('.clickable-pill-container')) {  
         toggle_loader(true);      
         click_primary($ev_target.closest('.clickable-pill-container')[0]);
-      }
+      }  
     }
   }
 });
