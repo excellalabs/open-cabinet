@@ -6,17 +6,25 @@ class Medicine < ActiveRecord::Base
 
   after_initialize :init
 
-  attr_accessor :warnings, :dosage_and_administration, :indications_and_usage, :interactions_text,
-                :is_primary, :is_interacted_with, :interaction_count, :interactions
+  def self.attr_list
+    [:warnings, :dosage_and_administration, :indications_and_usage, :drug_interactions, :interactions]
+  end
+
+  attr_accessor(*attr_list)
 
   def init
     client = OpenFda::Client.new
     response = client.query_by_set_id(set_id)
+
+    Medicine.attr_list.each do |field|
+      send("#{field}=", fetch_array_from_response(response, field.to_s))
+    end
+
     @interactions ||= []
-    @warnings = fetch_array_from_response(response, 'warnings')
-    @dosage_and_administration = fetch_array_from_response(response, 'dosage_and_administration')
-    @indications_and_usage = fetch_array_from_response(response, 'indications_and_usage')
-    @interactions_text = fetch_array_from_response(client.query_for_interactions(self), 'drug_interactions')
+  end
+
+  def interaction_names
+    interactions.collect(&:name).uniq
   end
 
   def interaction_count
@@ -25,5 +33,9 @@ class Medicine < ActiveRecord::Base
 
   def interaction?
     interaction_count > 0
+  end
+
+  def interacts_with(medicine)
+    interaction_names.include? medicine.try(:name)
   end
 end

@@ -5,9 +5,9 @@ RSpec.describe MedicineInformationService do
     allow_any_instance_of(Medicine).to receive(:init) { '' }
   end
 
-  describe 'interactions_text_key' do
+  describe 'drug_interactions_key' do
     it 'should return the proper symbol' do
-      expect(MedicineInformationService.interactions_text_key).to eq(:interaction_text)
+      expect(MedicineInformationService.drug_interactions_key).to eq(:drug_interactions)
     end
   end
 
@@ -24,7 +24,7 @@ RSpec.describe MedicineInformationService do
     it 'creates a response hash with all appropriate keys' do
       response = MedicineInformationService.fetch_information('Tylenol', Cabinet.new)
 
-      %i(primary interactions_text indications_and_usage dosage_and_administration warnings interactions all_interactions).each do |key|
+      %i(primary drug_interactions indications_and_usage dosage_and_administration warnings interactions all_interactions).each do |key|
         expect(response.keys).to include(key)
       end
       expect(response[:primary]).to eq('Tylenol')

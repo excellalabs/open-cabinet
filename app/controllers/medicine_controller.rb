@@ -37,13 +37,14 @@ class MedicineController < ApplicationController
   end
 
   def medicine_information
+    @primary_medicine = @cabinet.primary_medicine(session[:primary_medicine_id])
     render 'medicine/shared/_medicine_information', layout: false
   end
 
   private
 
   def write_primary_medicine
-    session[:primary_medicine_id] = @cabinet.primary_set_id
+    session[:primary_medicine_id] = @cabinet.primary_medicine.set_id
   end
 
   def recalculate_cabinet_interactions
