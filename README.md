@@ -41,7 +41,7 @@ To understand potential customers’ needs, users were interviewed and it was di
 In order to accomplish this, several **human centered design techniques and tools** were utilized to define the prototype:
 
 * **[Personas](https://github.com/excellaco/open-cabinet/blob/master/documents/design/personas.md)** represented different user types
-* **[Short-form creative briefs](https://github.com/excellaco/open-cabinet/blob/master/documents/design/short_form_creative_brief.md)** of a persona were read aloud each stand-up to understand the target audience the application was being for
+* **[Short-form creative briefs](https://github.com/excellaco/open-cabinet/blob/master/documents/design/short_form_creative_brief.md)** of a persona were read aloud at each stand-up to understand the target audience the application was being built for
 * The **[Product Tree](https://github.com/excellaco/open-cabinet/blob/master/documents/design/product_tree.md)** was built to have a roadmap for future enhancements that would distinguish OpenCabinet and give the development team an idea of what to build for
 
 These tools allowed the team to envision a specific user who would benefit from the finalized product, and drove both the design and functionality decisions in determining the initial **[Minimal Viable Product](https://github.com/excellaco/open-cabinet/labels/MVP)** (MVP). 
