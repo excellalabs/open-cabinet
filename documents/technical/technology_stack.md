@@ -1,8 +1,9 @@
 # Table of Contents
 - [Environment](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md#environment)
 - [Continuous Integration and Deployment](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md#user-content-continuous-integrationcontinuous-deployment)
-- [Front-End](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md#front-end)
-- [Back-End](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md#back-end)
+- [Framework](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md#user-content-framework)
+ - [Front-End](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md#front-end)
+ - [Back-End](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md#back-end)
 
 
 ***
@@ -57,6 +58,7 @@ Ruby on Rails     | Web application framework
 ### Front-End
 technology        | description
 ----------        | -----------
+JQuery            | Fast, small, and feature-rich JavaScript library
 T3                | Minimalist javascript framework
 Sass              | CSS extension language
 Bourbon and Neat  | Lightweight mixin library for sass and semantic grid framework
@@ -70,4 +72,5 @@ technology        | description
 Dalli Store       | Memcache server accessor for rails
 Memcachier        | Memcache server manager and scaler
 Postgres          | Database
+Puma              | Ruby web server
 
