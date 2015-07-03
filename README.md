@@ -5,6 +5,7 @@ https://opencabi.net
 [![Test Coverage](https://codeclimate.com/repos/5582a4ef695680215a031469/badges/876970494b7eba49266f/coverage.svg)](https://codeclimate.com/repos/5582a4ef695680215a031469/coverage) 
 
 ---
+**`it began with crowdsourcing ...`**
 
 ![open-cabinet logo](https://github.com/excellaco/open-cabinet/blob/master/app/assets/images/open-cabinet.png)
 
