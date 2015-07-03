@@ -34,7 +34,6 @@ body {
 section {
   position: relative;
   border-bottom: 1px solid $bright-green;
-  margin: 30px 0;
   padding-bottom: 30px;
 
   @include media($tablet-and-down) {
@@ -55,6 +54,10 @@ section {
     background: white;
     padding: 30px;
   }
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .t-right {
