@@ -36,12 +36,13 @@ Guard                         | Automates running of Rubocop and Rspec in the ba
 Rubocop                       |  Ruby static code analysis
 
 ### Pipeline
-technology    | description
-----------    | -----------
-Travis        | Continuous integration server
-Code-Climate  | Static Code analysis including test coverage and potential security issues
-Brakeman      | Rails specific security warnings
-SauceLabs     | Cross browser testing
+technology       | description
+----------       | -----------
+Travis           | Continuous integration server
+Code-Climate     | Static Code analysis including test coverage and potential security issues
+Brakeman         | Rails specific security warnings
+SauceLabs        | Cross browser testing
+Google Anayltics | Web site user statistics
 
 ### Continuous Monitoring
 technology    | description
