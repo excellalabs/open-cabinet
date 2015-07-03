@@ -19,6 +19,14 @@ body {
   overflow: hidden;
 }
 
+.blue-text {
+  color: $dark-blue !important;
+}
+
+.cursor-none {
+  cursor: default !important;
+}
+
 .default-padding {
   padding: 30px;
 

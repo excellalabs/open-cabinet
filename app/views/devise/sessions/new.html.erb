@@ -7,7 +7,7 @@
     <%= f.email_field :email, placeholder: 'Email' %>
   </div>
 
-  <div class="field" style='margin-bottom: 30px;'>
+  <div class="field">
     <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
   </div>
 
@@ -21,8 +21,7 @@
   </div>
   <% end %>
 
-
-  <div class="field">
+  <div class="field" style='margin-top: 30px;'>
     <%= f.submit "Sign In", class: 'button-bright-green', id: 'sign_in' %>
   </div>
 
