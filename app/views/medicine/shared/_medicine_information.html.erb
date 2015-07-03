@@ -15,7 +15,7 @@
         <% if num_interactions > 0 %>
           <div id="interactions-count-container" class='interactions row owl-navigation-interaction' data-type="interactions-warning">
             <div class='col-span-11' id="potential-interactions">
-              <%= "#{pluralize(num_interactions, 'medication')} in your cabinet #{num_interactions == 1 ? 'interacts' : 'interact'} with #{@primary_medicine.name}" %>
+              <span class='fa fa-exclamation-triangle'></span><%= "#{pluralize(num_interactions, 'medication')} in your cabinet #{num_interactions == 1 ? 'interacts' : 'interact'} with #{@primary_medicine.name}" %>
             </div>
             <div class="col-span-1"><i class="fa fa-arrow-right"></i></div>
           </div>
