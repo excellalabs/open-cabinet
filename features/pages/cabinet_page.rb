@@ -7,7 +7,7 @@ class CabinetPage
 
   def type_search_characters(characters)
     fill_in('search_input', with: characters)
-    find('#search_input').trigger(:focus)
+    sauce_focus_wrapper('#search_input')
   end
 
   def autocomplete_text
@@ -16,12 +16,13 @@ class CabinetPage
   end
 
   def select_autocomplete_text(text)
-    script = %{ $('.tt-suggestion:contains("#{text}")').mouseenter().click() }
+    find('.tt-suggestion', text: text, visible: false)
+    script = %{ $(".tt-suggestion:contains('#{text}')").mouseenter().click() }
     page.execute_script(script)
   end
 
   def press_add_button
-    page.find('#add_medicine').trigger('click')
+    sauce_click_wrapper(page.find('#add_medicine'))
   end
 
   def active_pill_container
@@ -38,15 +39,6 @@ class CabinetPage
 
   def pill_name_text
     '.pill-name-text'
-  end
-
-  def add_medicine(medicine)
-    type_search_characters(medicine)
-    select_autocomplete_text(autocomplete_text)
-    press_add_button
-    wait_for_ajax
-    assert_selector '.pill-name', text: medicine
-    assert_selector '.primary-name', text: medicine
   end
 
   def med_description

@@ -1,4 +1,4 @@
-@interaction
+@interaction @selenium
 Feature: View medicine interactions in cabinet
 
 @exterior_integration

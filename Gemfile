@@ -85,7 +85,6 @@ end
 
 group :acceptance, :test, :travis do
   gem 'rspec-rails'
-  gem 'webmock'
   gem 'activerecord-nulldb-adapter'
   gem 'simplecov', :require => false
   gem "codeclimate-test-reporter", group: :test, require: nil
