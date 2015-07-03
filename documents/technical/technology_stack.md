@@ -1,8 +1,8 @@
 # Table of Contents
-- [Environment](https://github.com/excellaco/open-cabinet/wiki/Technical:-Technologies#environment)
-- [Continuous Integration and Deployment](https://github.com/excellaco/open-cabinet/wiki/Technical:-Technologies#user-content-continuous-integrationcontinuous-deployment)
-- [Front-End](https://github.com/excellaco/open-cabinet/wiki/Technical:-Technologies#front-end)
-- [Back-End](https://github.com/excellaco/open-cabinet/wiki/Technical:-Technologies#back-end)
+- [Environment](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md#environment)
+- [Continuous Integration and Deployment](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md#user-content-continuous-integrationcontinuous-deployment)
+- [Front-End](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md#front-end)
+- [Back-End](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md#back-end)
 
 
 ***
