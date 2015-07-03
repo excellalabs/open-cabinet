@@ -41,6 +41,7 @@ technology    | description
 Travis        | Continuous integration server
 Code-Climate  | Static Code analysis including test coverage and potential security issues
 Brakeman      | Rails specific security warnings
+SauceLabs     | Cross browser testing
 
 ### Continuous Monitoring
 technology    | description
