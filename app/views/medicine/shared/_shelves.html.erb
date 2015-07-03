@@ -1,6 +1,6 @@
 <% unless feature?(:alternate_cabinet) %>
   
-  <%= show_shelves(@cabinet) %>
+  <%= show_shelves(@cabinet, @primary_medicine) %>
 
 <% else %>
   <div class='alternate-cabinet'>
