@@ -16,6 +16,7 @@
 ### Software Container
 - Vagrant/Virtualbox – OS level virtualization
 - Chef – Infrastructure setup as code
+- Docker - Software container
 
 ## Continuous Integration/Continuous Deployment
 ### Test Framework
