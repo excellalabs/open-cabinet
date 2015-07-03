@@ -42,15 +42,16 @@ Travis           | Continuous integration server
 Code-Climate     | Static Code analysis including test coverage and potential security issues
 Brakeman         | Rails specific security warnings
 SauceLabs        | Cross browser testing
-Google Anayltics | Web site user statistics
 
 ### Continuous Monitoring
-technology    | description
-----------    | -----------
-New Relic     | Application monitoring in the production environment
-Log Entries   | Cloud hosted logging service
-Air Brake     | Exception handling and stack trace container for production
-Heroku Logs   | Raw production logs for Heroku server
+technology       | description
+----------       | -----------
+New Relic        | Application monitoring in the production environment
+Log Entries      | Cloud hosted logging service
+Air Brake        | Exception handling and stack trace container for production
+Heroku Logs      | Raw production logs for Heroku server
+Google Analytics | Web site user statistics
+
 
 ## Framework
 technology        | description
