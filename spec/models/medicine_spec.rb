@@ -22,7 +22,7 @@ RSpec.describe Medicine, type: :model do
       allow_any_instance_of(Medicine).to receive(:fetch_array_from_response) { 'Sample text' }
 
       med = Medicine.new
-      %w(warnings dosage_and_administration indications_and_usage interactions_text).each do |field|
+      %w(warnings dosage_and_administration indications_and_usage drug_interactions).each do |field|
         expect(med.send(field)).to eq('Sample text')
       end
     end

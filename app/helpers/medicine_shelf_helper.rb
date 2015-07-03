@@ -2,11 +2,11 @@ module MedicineShelfHelper
   MEDICINES_IN_ROW = 3
   NUM_IMAGES = 7
   MIN_ROWS = 3
-  def show_shelves(cabinet, primary_medicine)
+  def show_shelves(cabinet)
     result = ''
     cabinet.medicines.each_with_index do |medicine, i|
       result += shelf_start_html if new_shelf?(i)
-      interaction = interaction_class_name(medicine, primary_medicine)
+      interaction = interaction_class_name(medicine, cabinet.primary_medicine)
       result += medicine_html(medicine, interaction)
       result += shelf_end_html if end_shelf?(cabinet.medicines, i)
     end
@@ -40,9 +40,8 @@ module MedicineShelfHelper
   end
 
   def interaction_class_name(curr_medicine, primary_medicine)
-    return 'active' if curr_medicine == primary_medicine
-    return 'interact' if primary_medicine && medicine.interaction? &&
-                         interactions[medicine_key(primary_medicine)][medicine_key(curr_medicine)]
+    return 'active' if curr_medicine.name == primary_medicine.try(:name)
+    return 'interact' if curr_medicine.interacts_with(primary_medicine)
     'disabled'
   end
 
@@ -61,7 +60,8 @@ module MedicineShelfHelper
         #{ hidden_field_tag medicine.set_id }
         <div class='pill-name'>
           <div class='pill-name-text'>#{medicine.name}</div>
-          <div class='pill-badge num-pill-interactions  #{medicine.interaction? ? 'tooltip' : 'black'}' title='#{medicine.interactions.join('<br/>')}' >
+          <div class='pill-badge num-pill-interactions #{medicine.interaction? ? 'tooltip' : 'black'}'
+               title='#{medicine.interaction_names.join('<br>')}' >
             #{medicine.interaction_count} <span class='visible-mobile'>interactions</span>
           </div>
         </div>
@@ -72,8 +72,8 @@ module MedicineShelfHelper
     </div>
     eos
   end
-  # rubocop:enable Metrics/MethodLength
 
+  # rubocop:enable Metrics/MethodLength
   def pill_interaction_image(medicine_name, is_primary_medicine_row)
     options = { class: 'tooltip', title: medicine_name }
     options[:class] = 'active tooltip' if is_primary_medicine_row

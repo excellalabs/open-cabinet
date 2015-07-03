@@ -4,8 +4,8 @@ module MedicineInformationHelper
       content_tag(:h3, name) +
         content_tag(:div) do
           content_tag(:p, default_text(text), class: 'multiline-ellipsis ellipsis-paragraph') +
-          content_tag(:a, 'Read More', class: 'read-more ellipsis-controller', style: 'display: none;') +
-          content_tag(:a, 'Read Less', class: 'read-less ellipsis-controller', style: 'display: none;')
+            content_tag(:a, 'Read More', class: 'read-more ellipsis-controller', style: 'display: none;') +
+            content_tag(:a, 'Read Less', class: 'read-less ellipsis-controller', style: 'display: none;')
         end
     end
   end
