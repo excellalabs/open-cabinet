@@ -11,42 +11,63 @@
 ## Environment
 
 ### PaaS
-- Heroku – cloud based application platform
+
+technology | description
+---------- | -----------
+Heroku     | cloud based application platform
 
 ### Software Container
-- Vagrant/Virtualbox – OS level virtualization
-- Chef – Infrastructure setup as code
-- Docker - Software container
+technology         | description
+----------         | -----------
+Vagrant/Virtualbox | OS level virtualization
+Chef               | Infrastructure setup as code
+Docker             | Platform for distributed applications for developers and sysadmins
 
 ## Continuous Integration/Continuous Deployment
 ### Test Framework
-- Rspec – Used for unit testing of Ruby Code
-- Capybara/Cucumber/Poltergeist – Used for acceptance testing
-- Teaspoon with Mocha – Javascript testing framework
-- Guard – Automates running of Rubocop and Rspec in the background  for local enviroments
-- Rubocop – Ruby static code analysis
+
+technology                    | description
+----------                    | -----------
+Rspec                         | Used for unit testing of Ruby Code
+Capybara/Cucumber/Poltergeist | Used for acceptance testing
+Teaspoon with Mocha           | Javascript testing framework
+Guard                         | Automates running of Rubocop and Rspec in the background  for local enviroments
+Rubocop                       |  Ruby static code analysis
 
 ### Pipeline
-- Travis – Continuous integration server
-- Code-Climate – Static Code analysis including test coverage and potential security issues
-- Brakeman – Rails specific security warnings
+technology    | description
+----------    | -----------
+Travis        | Continuous integration server
+Code-Climate  | Static Code analysis including test coverage and potential security issues
+Brakeman      | Rails specific security warnings
 
 ### Continuous Monitoring
-- New Relic – Application monitoring in the production environment
-- Log Entries – Cloud hosted logging service
-- Air Brake – Exception handling and stack trace container for production
-- Heroku Logs – Raw production logs for Heroku server
+technology    | description
+----------    | -----------
+New Relic     | Application monitoring in the production environment
+Log Entries   | Cloud hosted logging service
+Air Brake     | Exception handling and stack trace container for production
+Heroku Logs   | Raw production logs for Heroku server
 
-## Front-End
-- T3 – Minimalist javascript framework
-- Sass – CSS extension language
-- Bourbon and Neat – Lightweight mixin library for sass and semantic grid framework
-- Flip - A/B testing tool
-- Twitter Typeahead – javascript library for building typeaheads
-- Auto Prefixer - add vendor prefixes to CSS rules using values from Can I Use
+## Framework
+technology        | description
+----------        | -----------
+Ruby on Rails     | Web application framework 
 
-## Back-End
-- Dalli Store – Memcache server accessor for rails
-- Memcachier – Memcache server manager and scaler
-- Postgres - Database
+### Front-End
+technology        | description
+----------        | -----------
+T3                | Minimalist javascript framework
+Sass              | CSS extension language
+Bourbon and Neat  | Lightweight mixin library for sass and semantic grid framework
+Flip              | A/B testing tool
+Twitter Typeahead | javascript library for building typeaheads
+Auto Prefixer     | Add vendor prefixes to CSS rules using values from Can I Use
+
+### Back-End
+technology        | description
+----------        | -----------
+Dalli Store       | Memcache server accessor for rails
+Memcachier        | Memcache server manager and scaler
+Postgres          | Database
 
