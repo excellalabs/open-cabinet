@@ -27,7 +27,7 @@
 - Rubocop – Ruby static code analysis
 
 ### Pipeline
-- Travis-CI – Continuous integration server
+- Travis – Continuous integration server
 - Code-Climate – Static Code analysis including test coverage and potential security issues
 - Brakeman – Rails specific security warnings
 
