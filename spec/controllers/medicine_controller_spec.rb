@@ -33,17 +33,17 @@ RSpec.describe MedicineController, type: :controller do
     end
   end
 
-  # describe 'destroy' do
-  #   it 'deletes the medicine' do
-  #     med_name = 'Tylenol'
-  #     cabinet = create_cabinet_with_one_medicine(med_name)
-  #     allow(MedicineInformationService).to receive(:find_cabinet_interactions).and_return({})
-  #     delete :destroy, medicine: cabinet.medicines.first.name, primary_name: 'some_name'
+  describe 'destroy' do
+    it 'deletes the medicine' do
+      med_name = 'Tylenol'
+      cabinet = create_cabinet_with_one_medicine(med_name)
+      allow(MedicineInformationService).to receive(:find_cabinet_interactions).and_return({})
+      delete :destroy, medicine: cabinet.medicines.first.name, primary_name: 'some_name'
 
-  #     cabinet.reload
-  #     expect(0).to eq cabinet.medicines.length
-  #   end
-  # end
+      cabinet.reload
+      expect(0).to eq cabinet.medicines.length
+    end
+  end
 
   describe 'User session' do
     before do

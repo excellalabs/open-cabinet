@@ -14,13 +14,13 @@ class Cabinet < ActiveRecord::Base
     medicines << med
     save!
     rebuild_cabinet
-    build_information_regarding_primary(med)
+    # need to set up cabinet with information regarding primary and interaction meds
   end
 
   def identify_primary(med_name) # method to call when med is newly selected to become primary
     medicine = medicines.find { |med| med.name == med_name }
     rebuild_cabinet
-    build_information_regarding_primary(medicine)
+    # need to set up cabinet with information regarding primary and interaction meds
   end
 
   def find_medicine_by_name(med_name)
@@ -34,7 +34,7 @@ class Cabinet < ActiveRecord::Base
     medicine
   end
 
-  def destroy_medicine(med_name, session_medicine_id) # method to call when med(s) is destroyed
+  def destroy_medicine(med_name) # method to call when med(s) is destroyed
     if med_name.is_a? Hash
       results = medicines.map { |medicine| medicine if med_name.values.include?(medicine.name) }
       medicines.destroy(results.compact)
@@ -43,7 +43,7 @@ class Cabinet < ActiveRecord::Base
     end
     reload
     rebuild_cabinet
-    build_information_regarding_primary(primary_medicine(session_medicine_id))
+    # need to set up cabinet with information regarding primary and interaction meds
   end
 
   def rebuild_cabinet # loops through all medicines to determine counts of medicines it interacts with
@@ -63,14 +63,7 @@ class Cabinet < ActiveRecord::Base
     med_two.interaction_text =~ /#{keywords.reject(&:empty?).join("|")}/ ? true : false
   end
 
-  def build_information_regarding_primary(primary_med)
-    primary_med.is_primary = true
-    @primary_set_id = primary_med.set_id
-    medicines.each do |med|
-      next if med.set_id == primary_med.set_id
-      me.is_primary = false
-      med.is_interacted_with = false
-      med.is_interacted_with = true if determine_interaction(primary_med, med) || determine_interaction(med, primary_med)
-    end
+  def num_interactions_for_primary
+    medicines.map { |med| med.is_interacted_with == true }.length
   end
 end

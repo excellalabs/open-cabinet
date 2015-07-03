@@ -1,7 +1,7 @@
 
 class MedicineController < ApplicationController
-  before_action :find_or_create_cabinet, except: [:autocomplete]
-  after_action :write_primary_medicine, only: [:update_primary_medicine, :add_to_cabinet, :destroy]
+  before_action :find_cabinet_interactions, except: [:autocomplete, :update_primary_medicine]
+  before_action :find_or_create_cabinet, only: [:update_primary_medicine]
 
   def autocomplete
     ary = []
@@ -20,7 +20,9 @@ class MedicineController < ApplicationController
   end
 
   def update_primary_medicine
-    @cabinet.identify_primary(params[:medicine])
+    write_primary_medicine(params[:medicine])
+    find_primary_medicine
+    find_interactions
     render 'medicine/shared/_shelves', layout: false
   end
 
@@ -28,18 +30,49 @@ class MedicineController < ApplicationController
     result = @cabinet.add_to_cabinet(SearchableMedicine.where('lower(name) = ?', params[:medicine].downcase).first)
     @error_message = "Could not find results for \'#{params[:medicine]}\', please try again." unless result
     @cabinet.reload
+    write_primary_medicine(params[:medicine])
+    find_primary_medicine
+    find_interactions
     render 'medicine/shared/_shelves', layout: false
   end
 
   def destroy
-    @cabinet.destroy_medicine(params[:medicine], session[:primary_medicine_id])
+    @cabinet.destroy_medicine(params[:medicine])
+    find_primary_medicine
+    find_interactions
     render 'medicine/shared/_shelves', layout: false
+  end
+
+  def information
+    render json: fetch_info(primary_medicine_name), status: :ok
   end
 
   private
 
-  def write_primary_medicine
-    session[:primary_medicine_id] = @cabinet.primary_set_id
+  def fetch_info(medicine)
+    return {} unless medicine
+    MedicineInformationService.fetch_information(medicine, @cabinet)
+  end
+
+  def write_primary_medicine(medicine_name)
+    medicine = @cabinet.find_medicine_by_name(medicine_name)
+    session[:primary_medicine_id] = medicine.id unless medicine.nil?
+  end
+
+  def find_primary_medicine
+    medicine = @cabinet.primary_medicine(session[:primary_medicine_id])
+    write_primary_medicine(medicine.name) unless medicine.nil?
+    @primary_medicine = medicine
+  end
+
+  def primary_medicine_name
+    @primary_medicine.try(:name)
+  end
+
+  def find_cabinet_interactions
+    find_or_create_cabinet
+    find_primary_medicine
+    find_interactions
   end
 
   def find_or_create_cabinet
@@ -51,5 +84,9 @@ class MedicineController < ApplicationController
       @cabinet = Cabinet.create!(user: user)
     end
     session[:cabinet_id] = @cabinet.id
+  end
+
+  def find_interactions
+    @interactions = MedicineInformationService.build_bi_directional_interactions(@cabinet)
   end
 end
