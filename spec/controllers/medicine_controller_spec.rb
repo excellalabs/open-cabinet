@@ -51,7 +51,6 @@ RSpec.describe MedicineController, type: :controller do
     end
 
     it 'finds the cabinet if set in the session' do
-      allow(MedicineInformationService).to receive(:find_cabinet_interactions).and_return({})
       cabinet = create_cabinet_with_one_medicine 'test'
 
       get :cabinet

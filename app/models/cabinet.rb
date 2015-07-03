@@ -32,7 +32,7 @@ class Cabinet < ActiveRecord::Base
     nil if medicines.empty?
     medicine = medicines.find { |med| med.set_id == session_medicine_id }
     medicine = medicines.first if medicine.nil?
-    medicdine
+    medicine
   end
 
   def destroy_medicine(med_name, session_medicine_id) # method to call when med(s) is destroyed
@@ -53,8 +53,8 @@ class Cabinet < ActiveRecord::Base
       medicines.each do |med|
         next if med.set_id == current_med.set_id
         if determine_interaction(current_med, med)
-          med.interactions |= [ current_med ]
-          current_med.interactions |= [ med ]
+          med.interactions |= [current_med]
+          current_med.interactions |= [med]
         end
       end
     end
