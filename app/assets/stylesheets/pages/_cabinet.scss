@@ -32,6 +32,12 @@
   padding: 30px;
 }
 
+.medicine-details {
+  section {
+    @extend .default-padding-top;
+  }
+}
+
 .cabinet {
   position: relative;
   height: 100%;

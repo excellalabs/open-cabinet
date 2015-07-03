@@ -89,6 +89,10 @@ Box.Application.addModule('autocomplete_search', function(context) {
           var medicine = $(".tt-suggestion:first-child").text();
         }
 
+        if(medicine.length == 0) {
+          medicine = $('#search_input').val();
+        }
+
         submit_typeahead(medicine);
       }
     }

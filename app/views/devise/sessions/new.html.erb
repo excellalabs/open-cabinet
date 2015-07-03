@@ -1,11 +1,13 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
+  <div class='primary-font green bold' style='font-size: 20px; margin-bottom: 30px;'>Welcome Back.</div>
+
   <div class="field">
     <%= f.email_field :email, placeholder: 'Email' %>
   </div>
 
-  <div class="field">
+  <div class="field" style='margin-bottom: 30px;'>
     <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
   </div>
 
