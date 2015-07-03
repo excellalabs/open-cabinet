@@ -86,8 +86,3 @@ Mobile App  App only allows a few searches free before you are forced to buy the
 
 _Healthtools.aarp.org/drug-interactions_  
 Useful as a quick reference but it lists all known interactions of the searched drug. Another drug can be added specifically to check for interactions but the list of all known interactions remains. User has to scroll through until he/she finds the two drugs of interest. 
-
-
-
-
-
