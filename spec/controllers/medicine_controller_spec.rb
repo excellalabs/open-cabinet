@@ -33,17 +33,38 @@ RSpec.describe MedicineController, type: :controller do
     end
   end
 
-  # describe 'destroy' do
-  #   it 'deletes the medicine' do
-  #     med_name = 'Tylenol'
-  #     cabinet = create_cabinet_with_one_medicine(med_name)
-  #     allow(MedicineInformationService).to receive(:find_cabinet_interactions).and_return({})
-  #     delete :destroy, medicine: cabinet.medicines.first.name, primary_name: 'some_name'
+  describe 'destroy' do
+    it 'deletes the medicine' do
+      med_name = 'Tylenol'
+      cabinet = create_cabinet_with_one_medicine(med_name)
+      delete :destroy, medicine: cabinet.medicines.first.name, primary_name: 'some_name'
 
-  #     cabinet.reload
-  #     expect(0).to eq cabinet.medicines.length
-  #   end
-  # end
+      cabinet.reload
+      expect(0).to eq cabinet.medicines.length
+    end
+  end
+
+  describe 'add_to_cabinet' do
+    it 'adds the medicine to the cabinet case insensitive' do
+      SearchableMedicine.create!(name: 'warfariN', set_id: 'abc')
+      med_name = 'Tylenol'
+      cabinet = create_cabinet_with_one_medicine(med_name)
+      post :add_to_cabinet, medicine: 'Warfarin'
+
+      cabinet.reload
+      expect(2).to eq cabinet.medicines.length
+    end
+  end
+
+  describe 'update_primary_medicine' do
+    it 'adds the medicine to the cabinet case insensitive' do
+      med_name = 'Tylenol'
+      create_cabinet_with_one_medicine(med_name)
+      post :update_primary_medicine, medicine: med_name
+
+      expect(assigns(:primary_medicine)).to be_a(Medicine)
+    end
+  end
 
   describe 'User session' do
     before do
@@ -84,7 +105,7 @@ RSpec.describe MedicineController, type: :controller do
   def create_cabinet_with_one_medicine(medicine_name = nil)
     cabinet = Cabinet.create
     session[:cabinet_id] = cabinet.id
-    cabinet.medicines << Medicine.create(name: medicine_name)
+    cabinet.medicines << Medicine.create(name: medicine_name, drug_interactions: medicine_name)
     cabinet
   end
 end

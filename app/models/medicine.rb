@@ -52,6 +52,6 @@ class Medicine < ActiveRecord::Base
   private
 
   def keywords
-    [name, active_ingredient].map { |name| name.try(:downcase) }.uniq
+    [name, active_ingredient].map { |name| name.try(:downcase) }.uniq.reject(&:blank?)
   end
 end
