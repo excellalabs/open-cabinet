@@ -62,6 +62,33 @@ Box.Application.addModule('navigation', function(context) {
     }).done(refresh_information);
   }
 
+  function initialize_highlight(elm) {
+    $('#interaction-data-container').show();
+    $('#no-data-loaded-container').hide();
+
+    var interaction_element = $(this).attr('data-interaction-name');
+    var primary_element = $(this).attr('data-primary-name');
+
+    if(is_mobile()) {
+      $('.scroll-to-top').show();
+    }
+
+    $('ul#interactions-list li').removeClass('active');
+    $(elm).addClass('active');
+
+    var offset_height = 80;
+
+    if(is_tablet_and_down()) {
+      offset_height = $('ul#interactions-list').height();
+    }
+    
+    if($('.scroll-to').length) {
+      $('#interactions-info').parent().animate({
+      scrollTop: ($('.scroll-to').position().top - offset_height)
+     }, 'slow');
+    }
+  }
+
   return {
     messages: ['go_to', 'refresh_information'],
     behaviors: ['navigation'],
@@ -73,6 +100,8 @@ Box.Application.addModule('navigation', function(context) {
       var target_elm = $(event.target);
       if(target_elm.hasClass('ellipsis-controller')) {
         readMoreReadLessClickHandler(target_elm);  
+      } else if (target_elm.parents('#interactions-list').length) {
+        initialize_highlight(target_elm);
       }
     },
     onmessage: function (name, data) {

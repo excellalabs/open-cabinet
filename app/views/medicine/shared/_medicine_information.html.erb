@@ -61,11 +61,11 @@
     </p>
   </div>
   <div class='row with-shadow'>
-    <ul id="interactions">
+    <ul id="interactions-list">
 
       <% if @primary_medicine.try(:interactions) %>
         <% @primary_medicine.interactions.each do |interaction| %>
-          <li data-primary-name="<%= @primary_medicine.name %>" data-interaction-name="<%= interaction.name %>" class="<%= class_name(interaction.name) %>"><%= @primary_medicine.name %> & <%= interaction.name %></li>
+          <li data-primary-name="<%= @primary_medicine.name %>" data-interaction-name="<%= interaction.name %>"><%= @primary_medicine.name %> & <%= interaction.name %></li>
         <% end %>
 
       <% end %>
@@ -91,21 +91,23 @@
   <div class='row' id='no-data-loaded-container'>
     <h1 class='primary-font green'>To get started, select an interaction on the left.</h1>
   </div>
-  <div class='row' id='interaction-data-container'>
-    <h3>Interaction Information</h3>
-    <section>
-      <h4 style="font-weight: bold" class="primary-name"><%= @primary_medicine.try(:name) %></h4>
-      <p id="primary-medicine-interactions-text"><%= @primary_medicine.try(:drug_interactions) %></p>
-    </section>
-    <section>
-      <% if @primary_medicine.try(:interactions) %>
-        <% @primary_medicine.interactions.each do |interaction| %>
-          <h4 style="font-weight: bold" class="interaction-name"><%= interaction.name %></h4>
-          <p id="interaction-medicine-interactions-text"><%= interaction.drug_interactions %></p>
-        <% end %>
+  <div class='row' id='interaction-data-container' style='display: none;'>
+    <h2>Interaction Information</h3>
+    <% if @primary_medicine %>
+      <% @primary_medicine.interactions.each do |interaction| %>
+        <div class='<%=interaction.name %> interactions-container'>
+          <section>  
+            <h3 class="primary-name primary-font green"><%= @primary_medicine.name %></h3>
+            <p class="primary-medicine-interactions-text"><%= highlight_interactions(@primary_medicine.drug_interactions, interaction) %></p>
+          </section>
+          <section>
+            <h3 class="primary-font green interaction-name"><%= interaction.name %></h3>
+            <p class="interaction-medicine-interactions-text"><%= highlight_interactions(interaction.drug_interactions, @primary_medicine) %></p>
+          </section>
+        </div>
       <% end %>
-    </section>
-  </div>
+    <% end %>
+  </div>    
 </div>
 <!-- end medicine details -->
 
