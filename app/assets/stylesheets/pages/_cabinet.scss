@@ -160,11 +160,6 @@
   }
 
   .interactions-list {
-    padding: 30px;
-
-    @include media($tablet-and-down) {
-      padding: 0;
-    }
 
     .row.with-shadow {
       @include media($tablet-and-down) {
@@ -184,7 +179,6 @@
         cursor: pointer;
         padding: 15px;
         border-bottom: 1px solid $light-gray;
-
 
         &.active {
           background: $bright-green;
