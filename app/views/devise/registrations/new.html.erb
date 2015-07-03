@@ -1,9 +1,10 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-  <%- if controller_name != 'sessions' %>
-    <div class='has-account'>Have an account?&nbsp;&nbsp;<%= link_to "Sign In", new_session_path(resource_name) %></div>
-  <% end -%>
+  <div>
+    <div class='primary-font green bold' style='font-size: 20px'>NEW CUSTOMERS</div>
+    <p style='font-size: 14px; margin-bottom: 15px;'>Create an account to save medicines in your cabinet so they are there for you the next time you log in. </p>
+  </div>
 
   <div class="field">
     <%= f.email_field :email, placeholder: 'Email' %>
@@ -19,7 +20,7 @@
 
   <%= devise_error_messages! %>
 
-  <div class="field">
+  <div class="field" style='margin-top: 15px;'>
     <%= f.submit "Sign Up", class: 'button-bright-green' %>
   </div>
 

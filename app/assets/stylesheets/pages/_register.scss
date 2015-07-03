@@ -1,5 +1,7 @@
 
 #error_explanation {
+
+  margin-top: 15px;
   h2 {
     display: none;
   }
@@ -26,9 +28,13 @@
   background-size: cover;
   height: 100%;
 
+  input, button, .link-button-bright-blue {
+    font-size: 16px;
+  }
+
   .call-to-action {
     position: relative;
-    top: 15%;
+    top: 17%;
 
     @include media($tablet-and-down) {
       @include span-columns(12);
@@ -74,7 +80,7 @@
 
   .registration-container {
     position: relative;
-    top: 15%;
+    top: 10%;
     padding: 0 30px;
 
     @include media($tablet-and-down) {
@@ -107,7 +113,16 @@
     }
 
     .field {
-      margin: 15px auto;
+      margin: 0 auto;
+
+     input[type="email"], input[type="password"] {
+        background: #efefef;
+        border: 1px solid $light-gray;
+        border-radius: 0;
+        border: 1px solid $white;
+        
+      }
+
 
       @include media($tablet-and-down) {
         margin: 0;
@@ -121,15 +136,6 @@
         width: 100%;
       }
 
-      input[type="email"], input[type="password"] {
-        background: #efefef;
-        border: 1px solid $light-gray;
-
-        @include media($tablet-and-down) {
-          border-radius: 0;
-          border: 1px solid $white;
-        }
-      }
 
       input[type='submit'] {
         text-align: center;

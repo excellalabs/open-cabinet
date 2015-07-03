@@ -6,3 +6,6 @@
   </div>
 </div>
 
+<%- if controller_name != 'sessions' %>
+  <div class='has-account' style='margin-top: 15px;'>Have an account?&nbsp;&nbsp;<%= link_to "Sign In", new_session_path(resource_name) %></div>
+<% end -%>
