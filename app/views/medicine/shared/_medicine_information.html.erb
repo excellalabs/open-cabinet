@@ -91,15 +91,19 @@
   <div class='row' id='no-data-loaded-container'>
     <h1 class='primary-font green'>To get started, select an interaction on the left.</h1>
   </div>
-  <div class='row' id='interaction-data-container' style="display: none;">
+  <div class='row' id='interaction-data-container'>
     <h3>Interaction Information</h3>
     <section>  
-      <h4 style="font-weight: bold" class="primary-name"></h4>
-      <p id="primary-medicine-interactions-text"></p>
+      <h4 style="font-weight: bold" class="primary-name"><%= @primary_medicine.name %></h4>
+      <p id="primary-medicine-interactions-text"><%= @primary_medicine.drug_interactions %></p>
     </section>
     <section>
-      <h4 style="font-weight: bold" class="interaction-name"></h4>
-      <p id="interaction-medicine-interactions-text"></p>
+      <% if @primary_medicine.try(:interactions) %>
+        <% @primary_medicine.interactions.each do |interaction| %>
+          <h4 style="font-weight: bold" class="interaction-name"><%= interaction.name %></h4>
+          <p id="interaction-medicine-interactions-text"><%= interaction.drug_interactions %></p>
+        <% end %>
+      <% end %>
     </section>
   </div>    
 </div>
