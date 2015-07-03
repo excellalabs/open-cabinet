@@ -5,6 +5,14 @@ class Cabinet < ActiveRecord::Base
   has_many :medicines, through: :cabinet_medicines
   attr_accessor :primary_medicine
 
+  def find_medicine_by_name(med_name)
+    medicines.find { |med| med.name == med_name }
+  end
+
+  def find_medicine_by_set_id(set_id)
+    medicines.find { |med| med.set_id == set_id }
+  end
+
   def add_to_cabinet(searchable_medicine) # method to call when med gets added to cabinet
     return if searchable_medicine.nil?
     med = Medicine.find_or_create_by(set_id: searchable_medicine.set_id)
@@ -18,19 +26,15 @@ class Cabinet < ActiveRecord::Base
 
   # method to call when med is newly selected to become primary
   def identify_primary(med_name)
-    medicine = medicines.find { |med| med.name == med_name }
+    medicine = find_medicine_by_name(med_name)
     medicine = medicines.first if medicine.nil?
     rebuild_cabinet
     build_information_regarding_primary(medicine)
   end
 
-  def find_medicine_by_name(med_name)
-    medicines.find { |med| med.name == med_name }
-  end
-
   def determine_primary_medicine(session_medicine_id)
     nil if medicines.empty?
-    medicine = medicines.find { |med| med.set_id == session_medicine_id }
+    medicine = find_medicine_by_set_id(session_medicine_id)
     medicine = medicines.first if medicine.nil?
     medicine
   end
@@ -40,7 +44,7 @@ class Cabinet < ActiveRecord::Base
       results = medicines.map { |medicine| medicine if med_name.values.include?(medicine.name) }
       medicines.destroy(results.compact)
     else
-      medicines.find { |medicine| medicine.name == med_name }.destroy
+      find_medicine_by_name(med_name).destroy
     end
     reload
     rebuild_cabinet

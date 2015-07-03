@@ -1,5 +1,5 @@
 class MedicineController < ApplicationController
-  before_action :find_or_create_cabinet, except: [:autocomplete]
+  before_action :find_or_create_cabinet, except: [:autocomplete, :about]
   before_action :init_cabinet, only: [:medicine_information]
   after_action :write_primary_medicine, only: [:update_primary_medicine, :add_to_cabinet, :destroy]
 
@@ -32,12 +32,13 @@ class MedicineController < ApplicationController
   end
 
   def destroy
+    inding.pry
     @cabinet.destroy_medicine(params[:medicine], session[:primary_medicine_id])
     render 'medicine/shared/_shelves', layout: false
   end
 
   def medicine_information
-    @primary_medicine = @cabinet.determine_primary_medicine(session[:primary_medicine_id])
+    @primary_medicine = @cabinet.find_medicine_by_set_id(session[:primary_medicine_id])
     render 'medicine/shared/_medicine_information', layout: false
   end
 
@@ -49,7 +50,7 @@ class MedicineController < ApplicationController
 
   def recalculate_cabinet_interactions
     @cabinet.rebuild_cabinet
-    @primary_medicine = @cabinet.determine_primary_medicine(session[:primary_medicine_id])
+    @primary_medicine = @cabinet.find_medicine_by_set_id(session[:primary_medicine_id])
   end
 
   def find_or_create_cabinet
