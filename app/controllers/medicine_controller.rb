@@ -35,7 +35,7 @@ class MedicineController < ApplicationController
 
   def destroy
     session[:primary_medicine_name] = nil if session[:primary_medicine_name] == params[:medicine]
-    @cabinet.destroy_medicine(params[:medicine], session[:primary_medicine_name])
+    @cabinet.destroy_medicine(params[:medicine])
     calculate_cabinet_interactions_and_set_primary
     render 'medicine/shared/_shelves', layout: false
   end

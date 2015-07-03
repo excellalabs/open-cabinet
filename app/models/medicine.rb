@@ -23,6 +23,12 @@ class Medicine < ActiveRecord::Base
     @interactions ||= []
   end
 
+  def self.set_interactions(med1, med2)
+    return unless med1.keywords_in_interactions_text?(med2)
+    med2.interactions |= [med1]
+    med1.interactions |= [med2]
+  end
+
   def interaction_names
     interactions.collect(&:name).uniq
   end
@@ -37,5 +43,15 @@ class Medicine < ActiveRecord::Base
 
   def interacts_with(medicine)
     interaction_names.include? medicine.try(:name)
+  end
+
+  def keywords_in_interactions_text?(medicine)
+    medicine.drug_interactions.to_s =~ /#{keywords.reject(&:empty?).join("|")}/ ? true : false
+  end
+
+  private
+
+  def keywords
+    [name, active_ingredient].map { |name| name.try(:downcase) }.uniq
   end
 end
