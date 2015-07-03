@@ -43,19 +43,11 @@ class Cabinet < ActiveRecord::Base
 
   # loops through all medicines to determine counts of medicines it interacts with
   def rebuild_cabinet
-    medicines.each do |current_med|
-      medicines.each do |med|
-        next if med.set_id == current_med.set_id
-        if determine_interaction(current_med, med)
-          med.interactions |= [current_med]
-          current_med.interactions |= [med]
-        end
+    medicines.each do |med1|
+      medicines.each do |med2|
+        next if med1.set_id == med2.set_id
+        Medicine.set_interactions(med1, med2)
       end
     end
-  end
-
-  def determine_interaction(med_one, med_two)
-    keywords = [med_one.name, med_one.active_ingredient].map { |name| name.try(:downcase) }.uniq
-    med_two.drug_interactions.to_s =~ /#{keywords.reject(&:empty?).join("|")}/ ? true : false
   end
 end
