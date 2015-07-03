@@ -27,4 +27,19 @@ RSpec.describe Medicine, type: :model do
       end
     end
   end
+
+  describe 'set_interactions' do
+    before do
+      allow_any_instance_of(Medicine).to receive(:init) { '' }
+      @med1 = Medicine.new(name: 'MED1', active_ingredient: '', interactions: [])
+      @med2 = Medicine.new(drug_interactions: 'med1 interaction', interactions: [])
+    end
+
+    it 'updates interactions for both meds if they interact' do
+      Medicine.set_interactions(@med1, @med2)
+
+      expect(@med1.interactions.include?(@med2)).to be true
+      expect(@med2.interactions.include?(@med1)).to be true
+    end
+  end
 end
