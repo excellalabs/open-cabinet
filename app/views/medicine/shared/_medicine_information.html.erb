@@ -56,10 +56,13 @@
     Click one of the tiles below to see where one of your medicines appears on the interaction label of another medicine.
     </p>
   </div>
-
   <div class='row with-shadow'>
     <ul id="interactions">
-      <li></li>
+      <% if @primary_medicine.try(:interactions) %>
+        <% @primary_medicine.interactions.each do |interaction| %>
+          <li data-primary-name="<%= @primary_medicine.name %>" data-interaction-name="<%= interaction.name %>" class="<%= class_name(interaction.name) %>"><%= @primary_medicine.name %> & <%= interaction.name %></li>
+        <% end %>
+      <% end %>
     </ul>
   </div>
 

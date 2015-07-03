@@ -37,7 +37,7 @@ class MedicineController < ApplicationController
   end
 
   def medicine_information
-    @primary_medicine = @cabinet.primary_medicine(session[:primary_medicine_id])
+    @primary_medicine = @cabinet.determine_primary_medicine(session[:primary_medicine_id])
     render 'medicine/shared/_medicine_information', layout: false
   end
 
@@ -49,7 +49,7 @@ class MedicineController < ApplicationController
 
   def recalculate_cabinet_interactions
     @cabinet.rebuild_cabinet
-    @primary_medicine = @cabinet.primary_medicine(session[:primary_medicine_id])
+    @primary_medicine = @cabinet.determine_primary_medicine(session[:primary_medicine_id])
   end
 
   def find_or_create_cabinet
