@@ -31,6 +31,14 @@ body {
   }
 }
 
+.default-padding-top {
+  padding-top: 30px;
+
+  @include media($tablet-and-down) {
+    padding-top: 15px;
+  }
+}
+
 section {
   position: relative;
   border-bottom: 1px solid $bright-green;

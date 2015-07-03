@@ -22,7 +22,6 @@ function open_cabinet() {
 
 function fix_flip() {
   $('.strategy-wrapper form').each(function(idx, elm) {
-
     var $this = $(this);
     $this.find('.onoffswitch-checkbox').attr('id', 'myonoffswitch' + idx);
     $this.find('label').attr('for', 'myonoffswitch' + idx)
@@ -31,7 +30,7 @@ function fix_flip() {
 }
 
 function toggle_responsiveness() {
-  if(is_mobile()) {
+  if(is_tablet_and_down()) {
     $('.mobile-menu .lines-button').on('click', function() {
       $(this).toggleClass('active');
       $('.mobile-side-menu').toggleClass('open');

@@ -40,17 +40,17 @@
   .links {
     line-height: 50px;
 
-    @include media($mobile) {
+    @include media($tablet-and-down) {
       font-size: 22px;
     }
 
-    @include media($tablet) { 
-     @include span-columns(8); 
-      position: relative;
-      font-size: 16px;
-      line-height: 24px;
-      top: -5px;
-    }
+    // @include media($tablet) { 
+    //  @include span-columns(8); 
+    //   position: relative;
+    //   font-size: 16px;
+    //   line-height: 24px;
+    //   top: -5px;
+    // }
 
     a {
       position: relative;
@@ -111,11 +111,11 @@
       list-style-type: none;
       text-align: right;  
 
-      @include media($mobile) {
+      @include media($tablet-and-down) {
         text-align: left;
       }
 
-      @include media($tablet-and-up) {
+      @include media($desktop) {
         li {
           display: inline;
         }

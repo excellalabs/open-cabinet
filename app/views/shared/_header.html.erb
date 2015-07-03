@@ -4,11 +4,11 @@
     </div>
 
     <div class='col-span-7 t-right links'>
-      <div class='hidden-mobile'>
+      <div class='visible-desktop'>
         <%= render :template => 'shared/_header_links', :locals => { mobile: false } -%>
       </div>
 
-      <div class='mobile-menu visible-mobile'>
+      <div class='mobile-menu hidden-desktop'>
         <button class='x lines-button' title='open all sections'><span class='lines'></span></button>
       </div>
 
