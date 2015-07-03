@@ -10,7 +10,7 @@ class Cabinet < ActiveRecord::Base
   end
 
   def find_medicine_by_set_id(set_id)
-    medicines.find { |med| med.set_id == set_id }
+    medicines.find { |med| med.set_id == set_id } || medicines.first
   end
 
   def add_to_cabinet(searchable_medicine) # method to call when med gets added to cabinet
@@ -20,6 +20,7 @@ class Cabinet < ActiveRecord::Base
     med.update(name: searchable_medicine.name, active_ingredient: '')
     medicines << med
     save!
+    reload
     rebuild_cabinet
     build_information_regarding_primary(med)
   end
@@ -32,14 +33,14 @@ class Cabinet < ActiveRecord::Base
     build_information_regarding_primary(medicine)
   end
 
-  def determine_primary_medicine(session_medicine_id)
+  def determine_primary_medicine(session_medicine_name)
     nil if medicines.empty?
-    medicine = find_medicine_by_set_id(session_medicine_id)
+    medicine = find_medicine_by_name(session_medicine_name)
     medicine = medicines.first if medicine.nil?
     medicine
   end
 
-  def destroy_medicine(med_name, session_medicine_id) # method to call when med(s) is destroyed
+  def destroy_medicine(med_name, session_medicine_name) # method to call when med(s) is destroyed
     if med_name.is_a? Hash
       results = medicines.map { |medicine| medicine if med_name.values.include?(medicine.name) }
       medicines.destroy(results.compact)
@@ -48,7 +49,7 @@ class Cabinet < ActiveRecord::Base
     end
     reload
     rebuild_cabinet
-    build_information_regarding_primary(determine_primary_medicine(session_medicine_id))
+    build_information_regarding_primary(determine_primary_medicine(session_medicine_name))
   end
 
   # loops through all medicines to determine counts of medicines it interacts with

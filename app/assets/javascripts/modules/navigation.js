@@ -38,12 +38,11 @@ Box.Application.addModule('navigation', function(context) {
   }
 
   function refresh_information(data) {
-    while(getCarousel().owl.owlItems.length > 1) {
-      getCarousel().removeItem();
-    }
     $('<div>' + data + '</div>').find('.view-pane').each(function() {
-      getCarousel().addItem($(this).html());
+      var id = $(this).attr('id');
+      $('.owl-wrapper').find('#' + id).html($(this).html());
     });
+
     readMoreReadLessVisibility();
   }
 
