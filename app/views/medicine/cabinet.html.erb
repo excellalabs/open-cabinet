@@ -1,38 +1,11 @@
 <div class='cabinet' data-module='navigation'>
-  
-  <% if feature?(:visualization) %>
-  <div class='item'>
-    <div class='row' style='margin: 30px 0; font-weight: 900; text-align: center; text-transform: uppercase;text-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);'>
-      <div class='col-offset-1 col-span-10'>
-        <h3>Cabinet Interactions</h3>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='col-offset-1 col-span-10'>
-        <canvas id="canvas" width="400" height="400"></canvas>
-      </div>
-    </div>
-  </div>
-  <% end %>
-
-  <div class='item'>
+  <!-- medicine cabinet view -->
+  <div class='item' id='medicine_cabinet'>
     <%= render :template => 'medicine/shared/_medicine_cabinet' -%>
   </div>
 
-  <div id='medicine_information' class='item' data-module="information">
-    <i class="fa fa-refresh fa-spin"></i>
-    <div class='content'>
-      <%= render :template => 'medicine/shared/_medicine_information' -%>
-    </div>
-  </div>
-
-  <div class='item interactions-list' data-module="interactions-list">
-    <%= render :template => 'medicine/shared/_interaction_pairs' -%>
-  </div>
-
-  <div class='item' data-module="interactions-info" id="interactions-info">
-    <%= render :template => 'medicine/shared/_interactions_info' -%>
-  </div>
+  <!-- interaction tiles -->
+  <%= render :template => 'medicine/shared/_medicine_information' -%>
 </div>
 
 

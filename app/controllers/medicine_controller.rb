@@ -1,4 +1,3 @@
-
 class MedicineController < ApplicationController
   before_action :find_or_create_cabinet, except: [:autocomplete]
   after_action :write_primary_medicine, only: [:update_primary_medicine, :add_to_cabinet, :destroy]
@@ -34,6 +33,12 @@ class MedicineController < ApplicationController
   def destroy
     @cabinet.destroy_medicine(params[:medicine], session[:primary_medicine_id])
     render 'medicine/shared/_shelves', layout: false
+  end
+
+  def medicine_information
+    @primary_medicine = @cabinet.primary_medicine(session[:primary_medicine_id])
+    puts session[:primary_medicine_id]
+    render 'medicine/shared/_medicine_information', layout: false
   end
 
   private
