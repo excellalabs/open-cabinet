@@ -22,9 +22,9 @@
         <% end %>
       </h2>
       <div class='medicine-details'>
-        <%= build_information_section('Description', @primary_medicine.try(:indications_and_usage)) %>
-        <%= build_information_section('Dosage', @primary_medicine.try(:dosage_and_administration)) %>
-        <%= build_information_section('Warnings', @primary_medicine.try(:warnings)) %>
+        <%= build_information_section('Description', 'indications-and-usage', @primary_medicine.try(:indications_and_usage)) %>
+        <%= build_information_section('Dosage', 'dosage-and-administration', @primary_medicine.try(:dosage_and_administration)) %>
+        <%= build_information_section('Warnings','medication-warnings', @primary_medicine.try(:warnings)) %>
       </div>
     </div>
     <% else %>

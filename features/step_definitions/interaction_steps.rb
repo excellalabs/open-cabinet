@@ -34,7 +34,7 @@ Then(/^I should see label data$/) do
   end
   expect(find('#indications-and-usage').text.length).to be > 0
   expect(find('#dosage-and-administration').text.length).to be > 0
-  expect(find('#warnings').text.length).to be > 0
+  expect(find('#medication-warnings').text.length).to be > 0
 end
 
 And(/^I click the interactions blurb$/) do
