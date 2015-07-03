@@ -27,6 +27,10 @@ module MedicineShelfHelper
     result
   end
 
+  def class_name(str)
+    str.gsub(/[\s.*]/, '-')
+  end
+
   def empty_shelf
     (shelf_start_html + '<div class="empty-shelf">&nbsp;</div>' + shelf_end_html).html_safe
   end
