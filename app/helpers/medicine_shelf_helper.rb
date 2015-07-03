@@ -2,11 +2,11 @@ module MedicineShelfHelper
   MEDICINES_IN_ROW = 3
   NUM_IMAGES = 7
   MIN_ROWS = 3
-  def show_shelves(cabinet)
+  def show_shelves(cabinet, primary_medicine)
     result = ''
     cabinet.medicines.each_with_index do |medicine, i|
       result += shelf_start_html if new_shelf?(i)
-      interaction = interaction_class_name(medicine, cabinet.primary_medicine)
+      interaction = interaction_class_name(medicine, primary_medicine)
       result += medicine_html(medicine, interaction)
       result += shelf_end_html if end_shelf?(cabinet.medicines, i)
     end

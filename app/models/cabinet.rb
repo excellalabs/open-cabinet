@@ -3,7 +3,6 @@ class Cabinet < ActiveRecord::Base
   belongs_to :user
   has_many :cabinet_medicines
   has_many :medicines, through: :cabinet_medicines
-  attr_accessor :primary_medicine
 
   def find_medicine_by_name(med_name)
     medicines.find { |med| med.name == med_name }
@@ -21,8 +20,7 @@ class Cabinet < ActiveRecord::Base
     medicines << med
     save!
     reload
-    rebuild_cabinet
-    build_information_regarding_primary(med)
+    med
   end
 
   # method to call when med is newly selected to become primary
@@ -30,17 +28,10 @@ class Cabinet < ActiveRecord::Base
     medicine = find_medicine_by_name(med_name)
     medicine = medicines.first if medicine.nil?
     rebuild_cabinet
-    build_information_regarding_primary(medicine)
-  end
-
-  def determine_primary_medicine(session_medicine_name)
-    nil if medicines.empty?
-    medicine = find_medicine_by_name(session_medicine_name)
-    medicine = medicines.first if medicine.nil?
     medicine
   end
 
-  def destroy_medicine(med_name, session_medicine_name) # method to call when med(s) is destroyed
+  def destroy_medicine(med_name) # method to call when med(s) is destroyed
     if med_name.is_a? Hash
       results = medicines.map { |medicine| medicine if med_name.values.include?(medicine.name) }
       medicines.destroy(results.compact)
@@ -48,8 +39,6 @@ class Cabinet < ActiveRecord::Base
       find_medicine_by_name(med_name).destroy
     end
     reload
-    rebuild_cabinet
-    build_information_regarding_primary(determine_primary_medicine(session_medicine_name))
   end
 
   # loops through all medicines to determine counts of medicines it interacts with
@@ -68,9 +57,5 @@ class Cabinet < ActiveRecord::Base
   def determine_interaction(med_one, med_two)
     keywords = [med_one.name, med_one.active_ingredient].map { |name| name.try(:downcase) }.uniq
     med_two.drug_interactions.to_s =~ /#{keywords.reject(&:empty?).join("|")}/ ? true : false
-  end
-
-  def build_information_regarding_primary(primary_med)
-    @primary_medicine = primary_med if primary_med
   end
 end
