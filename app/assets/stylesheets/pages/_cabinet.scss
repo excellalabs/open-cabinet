@@ -36,26 +36,6 @@
   position: relative;
   height: 100%;
 
-  //*-- global
-  .padding-30-all {
-    padding: 30px;
-
-    @include media($mobile) {
-      padding: 15px 0;
-    }
-
-    @include media($tablet) {
-      padding: 15px;
-    }
-  }
-
-  .title {
-    @extend .padding-30-all;
-
-    @include media($tablet-and-down) {
-      padding: 15px 30px;
-    }
-  }
 
   //*-- loading icon
   .fa-refresh {
@@ -77,11 +57,18 @@
     height: 100% !important;
   }
 
+  .owl-pagination {
+    display: none !important;
+  }
+
+  //*-- carousal wrapper
   .owl-item {
+    @extend .default-padding;
     overflow-y: auto;
 
     &:nth-child(odd) {
       background: $light-gray;
+      border-right: 1px solid darken($light-gray, 5%);
 
       @include media($mobile) {
         background: $white;
@@ -93,10 +80,6 @@
         background: $light-gray;
       }
     }
-  }
-
-  .owl-pagination {
-    display: none;
   }
 
   @include media($mobile) {
@@ -225,6 +208,7 @@
     }
   }
 
+  //*-- interaction link
   .interactions {
     cursor: pointer;
     border: 1px solid $dark-blue;
@@ -234,7 +218,7 @@
     font-size: 16px;
     padding: 15px;
     line-height: 18px;
-    margin: 0 30px;
+    margin: 15px 0;
 
     @include media($tablet-and-down) {
       border: 0;
@@ -255,32 +239,6 @@
     }
   }
 
-}
-
-section {
-  position: relative;
-  border-bottom: 1px solid $bright-green;
-  margin: 30px;
-  padding-bottom: 30px;
-
-  @include media($tablet-and-down) {
-    margin: 15px;
-  }
-
-  &:last-child {
-    border-bottom: 0;
-  }
-
-  h3 {
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-
-  &.interaction-pair-mobile {
-    margin: 15px;
-    background: white;
-    padding: 30px;
-  }
 }
 
 .shelves {

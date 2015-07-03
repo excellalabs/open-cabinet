@@ -10,7 +10,7 @@ class Cabinet < ActiveRecord::Base
   end
 
   def find_medicine_by_set_id(set_id)
-    medicines.find { |med| med.set_id == set_id }
+    medicines.find { |med| med.set_id == set_id } || medicines.first
   end
 
   def add_to_cabinet(searchable_medicine) # method to call when med gets added to cabinet

@@ -40,7 +40,7 @@
 <!-- end medicine details -->
 
 <!-- interaction pairs list -->
-<div class='item interactions-list view-pane'>
+<div class='item interactions-list view-pane' id='medicine-interaction-list'>
   <div class='back-nav visible-desktop owl-navigation-cabinet'>
     <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back to Cabinet
   </div>
@@ -58,10 +58,12 @@
   </div>
   <div class='row with-shadow'>
     <ul id="interactions">
+
       <% if @primary_medicine.try(:interactions) %>
         <% @primary_medicine.interactions.each do |interaction| %>
           <li data-primary-name="<%= @primary_medicine.name %>" data-interaction-name="<%= interaction.name %>" class="<%= class_name(interaction.name) %>"><%= @primary_medicine.name %> & <%= interaction.name %></li>
         <% end %>
+
       <% end %>
     </ul>
   </div>
@@ -83,7 +85,7 @@
    </div>
   </h2>
   <div class='row' id='no-data-loaded-container'>
-    <h1 class='primary-font green padding-30-all'>To get started, select an interaction on the left.</h1>
+    <h1 class='primary-font green'>To get started, select an interaction on the left.</h1>
   </div>
   <div class='row' id='interaction-data-container' style="display: none;">
     <h3>Interaction Information</h3>

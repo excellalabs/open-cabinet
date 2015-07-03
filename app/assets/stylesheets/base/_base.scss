@@ -19,6 +19,44 @@ body {
   overflow: hidden;
 }
 
+.default-padding {
+  padding: 30px;
+
+  @include media($mobile) {
+    padding: 15px 0;
+  }
+
+  @include media($tablet) {
+    padding: 15px;
+  }
+}
+
+section {
+  position: relative;
+  border-bottom: 1px solid $bright-green;
+  margin: 30px 0;
+  padding-bottom: 30px;
+
+  @include media($tablet-and-down) {
+    margin: 15px;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  h3 {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  &.interaction-pair-mobile {
+    margin: 15px;
+    background: white;
+    padding: 30px;
+  }
+}
+
 .t-right {
   text-align: right;
 }
