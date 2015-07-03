@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe MedicineShelfHelper do
+  before do
+    allow_any_instance_of(Medicine).to receive(:init) { '' }
+  end
+
   describe 'cabinet shows empty shelves' do
     it 'shows empty shelves with 0 medicines' do
       result = helper.show_shelves(Cabinet.new, nil, {})

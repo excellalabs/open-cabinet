@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe MedicineInformationService do
+  before do
+    allow_any_instance_of(Medicine).to receive(:init) { '' }
+  end
+
   describe 'interactions_text_key' do
     it 'should return the proper symbol' do
       expect(MedicineInformationService.interactions_text_key).to eq(:interaction_text)
