@@ -1,7 +1,6 @@
 class MedicineController < ApplicationController
-  before_action :find_or_create_cabinet, except: [:autocomplete, :about]
-  before_action :init_cabinet, only: [:medicine_information]
-  after_action :write_primary_medicine, only: [:update_primary_medicine, :add_to_cabinet, :destroy]
+  before_action :find_or_create_cabinet, only: [:update_primary_medicine, :add_to_cabinet, :destroy]
+  before_action :init_cabinet, only: [:medicine_information, :cabinet]
 
   def autocomplete
     ary = []
@@ -20,37 +19,36 @@ class MedicineController < ApplicationController
   end
 
   def update_primary_medicine
-    @cabinet.identify_primary(params[:medicine])
+    calculate_cabinet_interactions_and_set_primary(params[:medicine])
     render 'medicine/shared/_shelves', layout: false
   end
 
   def add_to_cabinet
     result = @cabinet.add_to_cabinet(SearchableMedicine.where('lower(name) = ?', params[:medicine].downcase).first)
-    @error_message = "Could not find results for \'#{params[:medicine]}\', please try again." unless result
-    @cabinet.reload
+    if result
+      calculate_cabinet_interactions_and_set_primary(result.name)
+    else
+      @error_message = "Could not find results for \'#{params[:medicine]}\', please try again."
+    end
     render 'medicine/shared/_shelves', layout: false
   end
 
   def destroy
-    inding.pry
-    @cabinet.destroy_medicine(params[:medicine], session[:primary_medicine_id])
+    session[:primary_medicine_name] = nil if session[:primary_medicine_name] == params[:medicine]
+    @cabinet.destroy_medicine(params[:medicine], session[:primary_medicine_name])
+    calculate_cabinet_interactions_and_set_primary
     render 'medicine/shared/_shelves', layout: false
   end
 
   def medicine_information
-    @primary_medicine = @cabinet.find_medicine_by_set_id(session[:primary_medicine_id])
     render 'medicine/shared/_medicine_information', layout: false
   end
 
   private
 
-  def write_primary_medicine
-    session[:primary_medicine_id] = @cabinet.primary_medicine.set_id
-  end
-
-  def recalculate_cabinet_interactions
-    @cabinet.rebuild_cabinet
-    @primary_medicine = @cabinet.find_medicine_by_set_id(session[:primary_medicine_id])
+  def calculate_cabinet_interactions_and_set_primary(medicine_name = session[:primary_medicine_name])
+    @primary_medicine = @cabinet.identify_primary(medicine_name)
+    session[:primary_medicine_name] = @primary_medicine.name if @primary_medicine
   end
 
   def find_or_create_cabinet
@@ -66,6 +64,6 @@ class MedicineController < ApplicationController
 
   def init_cabinet
     find_or_create_cabinet
-    recalculate_cabinet_interactions
+    calculate_cabinet_interactions_and_set_primary
   end
 end
