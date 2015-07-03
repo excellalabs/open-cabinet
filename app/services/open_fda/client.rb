@@ -22,11 +22,7 @@ module OpenFda
     end
 
     def query_for_interactions(medicine_query)
-      if multi_request?(medicine_query)
-        fda_query = [*(medicine_query.map { |medicine| "set_id:#{medicine.set_id}+AND+_exists_:drug_interactions" })]
-      else
-        fda_query = "set_id:#{medicine_query.set_id}+AND+_exists_:drug_interactions"
-      end
+      fda_query = [*(medicine_query.map { |medicine| "set_id:#{medicine.set_id}+AND+_exists_:drug_interactions" })]
       query('/drug/label.json', fda_query, nil, 100, 0)
     end
 
