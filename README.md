@@ -98,6 +98,7 @@ The MVP was completed in Sprints 3 and 4, and we began performing usability test
 
 By initially conducting usability testing with paper prototypes, an idea of what customers wanted was formulated early, before investing time on development. From each round of testing, key insights were discovered that helped drive the next round of designs and development.
 Following this human-centered design approach ensured that:
+
 1. Design was based on an explicit understanding of users, obtained from crowdsourcing and user research
 2. Users were involved throughout the design and development process, by allowing them to inform OpenCabinet's purpose, give feedback on design mockups, and interact with each version of the application
 3. Design was driven and refined by user-centered evaluation through usability testing
