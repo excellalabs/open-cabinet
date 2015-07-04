@@ -11,7 +11,7 @@ function open_cabinet() {
     debug: true
   });
 
-  if ($('.shelves').length > 0) {
+  if($('.shelves').length > 0) {
     $('.shelves').attr('data-module', 'cabinet');
     var elm = document.getElementById('shelves');
     Box.Application.start(elm);
