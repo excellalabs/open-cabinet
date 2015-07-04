@@ -29,7 +29,7 @@ The self-organized team not only fulfilled their individual roles in the design 
 
 ---
 ##Sprint 0
-The team used an internal Slack channel to **[crowdsource](https://github.com/excellaco/open-cabinet/blob/master/documents/images/crowdsourcing.png)** ideas for an application using [OpenFDA's API](https://open.fda.gov/drug/label/), then met to review the suggestions, and discuss the feasibility of delivering a product in the given timeframe from both design and development perspectives. With an initial idea of "[my medicine cabinet](https://github.com/excellaco/open-cabinet/blob/master/documents/design/brainstorming.md)" agreed upon, the team was ready to begin.  
+The team used an internal Slack channel to **[crowdsource](https://github.com/excellaco/open-cabinet/blob/master/documents/images/crowdsourcing.png)** ideas for an application using [OpenFDA's Label API](https://open.fda.gov/drug/label/), then met to review the suggestions, and discuss the feasibility of delivering a product in the given timeframe from both design and development perspectives. With an initial idea of "[my medicine cabinet](https://github.com/excellaco/open-cabinet/blob/master/documents/design/brainstorming.md)" agreed upon, the team was ready to begin.  
 
 During Sprint 0, the team achieved four goals:
  
@@ -84,7 +84,7 @@ Sprint 1 resulted in two artifacts:
 
 The mock-ups were used during usability testing. Unanimously, [users](https://github.com/excellaco/open-cabinet/blob/master/documents/design/round_1_testing.md) preferred the “cabinet” option, which is represented in the final prototype along with a mobile version.
 
-During Sprint 2, user feedback was incorporated into a [second version of mockups](https://github.com/excellaco/open-cabinet/blob/master/documents/design/design_concept_2.md). This was tested with users to learn that key elements (e.g. navigation and search) were [not well received](https://github.com/excellaco/open-cabinet/blob/master/documents/design/round_2_testing.md). The team created issues in GitHub addressing these pain points, which allowed developers to make iterative changes to the application, which were then retested in subsequent rounds of usability testing.
+During Sprint 2, user feedback was incorporated into a [second version of mock-ups](https://github.com/excellaco/open-cabinet/blob/master/documents/design/design_concept_2.md). This was tested with users to learn that key elements (e.g. navigation and search) were [not well received](https://github.com/excellaco/open-cabinet/blob/master/documents/design/round_2_testing.md). The team created issues in GitHub addressing these pain points, which allowed developers to make iterative changes to the application, which were then retested in subsequent rounds of usability testing.
 
 
 ###Development
@@ -103,7 +103,7 @@ By initially conducting usability testing with paper prototypes, the team learne
 Following this human-centered design techniques ensured that:
 
 * Design was based on an explicit understanding of users, obtained from crowdsourcing and user research
-* Users were involved throughout the design and development process, by allowing them to inform OpenCabinet's purpose, give feedback on design mockups, and interact with each version of the application
+* Users were involved throughout the design and development process, by allowing them to inform OpenCabinet's purpose, give feedback on design mock-ups, and interact with each version of the application
 * Design was driven and refined by user-centered evaluation through usability testing
 * The process was iterative with user feedback driving the next round of design and development activities.
 
