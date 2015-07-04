@@ -10,7 +10,7 @@ https://opencabi.net
 ![open-cabinet logo](https://github.com/excellaco/open-cabinet/blob/master/app/assets/images/open-cabinet.png)
 
 ##Approach 
-**Excella** followed an agile development framework to build **OpenCabinet** in an iterative, incremental manner.  The cross-functional team, comprised of analysts, designers, and developers, began with Sprint 0, followed by two-day sprints that began with a daily stand-up and ended with a quick review and retrospective.  
+**Excella Consulting** followed an agile development framework to build **OpenCabinet** in an iterative, incremental manner.  The cross-functional team, comprised of analysts, designers, and developers, began with Sprint 0, followed by two-day sprints that consisted of a daily stand-up and ended with a quick review and retrospective.  
 
 The team consisted of the following roles: 
 
@@ -29,7 +29,7 @@ The self-organized team not only fulfilled their individual roles in the design 
 
 ---
 ##Sprint 0
-The team used an internal Slack channel to **[crowdsource](https://github.com/excellaco/open-cabinet/blob/master/documents/images/crowdsourcing.png)** ideas for the application, review the suggestions, and discuss the feasibility of delivering a product in the given timeframe from both design and development perspectives. With an initial idea of "[my medicine cabinet](https://github.com/excellaco/open-cabinet/blob/master/documents/design/brainstorming.md)" agreed upon, the teams were ready to begin.  
+The team used an internal Slack channel to **[crowdsource](https://github.com/excellaco/open-cabinet/blob/master/documents/images/crowdsourcing.png)** ideas for the application, review the suggestions, and discuss the feasibility of delivering a product in the given timeframe from both design and development perspectives. With an initial idea of "[my medicine cabinet](https://github.com/excellaco/open-cabinet/blob/master/documents/design/brainstorming.md)" agreed upon, the team were ready to begin.  
 
 During Sprint 0, the team achieved four goals:
  
@@ -39,9 +39,9 @@ During Sprint 0, the team achieved four goals:
 * Set up the **development environment**
 
 ###Needs and Reactions
-The team interviewed potential users to understand their desired needs. Through this research, we discovered that users’ primary goal was to see medical interactions, which led us to modify our initial concept to focus on this feature. We created **[Personas](https://github.com/excellaco/open-cabinet/blob/master/documents/design/personas.md)** to represent different user types, and included one in our **[Short-form creative brief](https://github.com/excellaco/open-cabinet/blob/master/documents/design/short_form_creative_brief.md)**, which we read aloud each morning in stand-up. These tools informed the design and features included in the **[Minimal Viable Product](https://github.com/excellaco/open-cabinet/labels/MVP)** (MVP).
+The team interviewed potential users to understand their desired needs. Through this research, we discovered that users’ primary goal was to see medical interactions, which led us to modify our initial concept to focus on this feature. We created **[Personas](https://github.com/excellaco/open-cabinet/blob/master/documents/design/personas.md)** to represent different user types, and included one in our **[short-form creative brief](https://github.com/excellaco/open-cabinet/blob/master/documents/design/short_form_creative_brief.md)**, which we read aloud each morning in stand-up. These tools informed the design and features included in the **[Minimal Viable Product](https://github.com/excellaco/open-cabinet/labels/MVP)** (MVP).
 
-###Applications’ Value
+###Application Value
 **[Competitive analysis](https://github.com/excellaco/open-cabinet/blob/master/documents/design/market_research.md)** revealed that many applications show medical interactions, but our team decided to design and build an application that was simple, easy to use, and incorporated a pleasant user experience. A roadmap for future enhancements, indicated in our **[Product Tree](https://github.com/excellaco/open-cabinet/blob/master/documents/design/product_tree.md)** will further distinguish OpenCabinet from the current marketplace.
 
 

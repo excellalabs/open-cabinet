@@ -313,6 +313,14 @@
         font-size: 20px;
       }
 
+      .fa-trash {
+        position: relative;
+        display: block;
+        top: 22px;
+        font-size: 24px;
+        color: $dark-gray;
+      }
+
       &:hover {
         border-radius: 4px;
         @include border-bottom-radius(0px);
