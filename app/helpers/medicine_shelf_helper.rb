@@ -60,7 +60,10 @@ module MedicineShelfHelper
          data-type='pill-bottle'>
       <i class="fa fa-times pill-delete" data-set-id="#{medicine.id}"></i>
       <div class='pill-wrapper'>
-        <div class='pill-bottle'>#{pill_image(medicine.name)}</div>
+        <div class='pill-bottle'>
+          <i class="fa fa-trash pill-delete visible-mobile" data-set-id="#{medicine.id}"></i>
+          <span class='hidden-mobile'>#{pill_image(medicine.name)}</span>
+        </div>
         #{ hidden_field_tag medicine.set_id }
         <div class='pill-name'>
           <div class='pill-name-text'>#{medicine.name}</div>
