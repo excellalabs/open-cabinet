@@ -25,7 +25,7 @@ The team consisted of the following:
 * Business Analyst
 
 
-The self-organized team not only fulfilled their individual roles in the design and development process, but also helped where needed to deliver a quality product. The Product Manager lead the effort by focusing on the value delivered by the final product, which enabled the team to respond quickly to changing priorities and address usability testing feedback. Utilizing **[GitHub issues](https://github.com/excellaco/open-cabinet/issues)**, the team created and groomed a [backlog](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=label%3A%22user+story%22+), discussed [design decisions](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=+label%3Adesign+), and tracked [bugs](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=+label%3Abug+).
+The self-organized team not only fulfilled their individual roles in the design and development process, but also helped where needed to deliver a quality product. The Product Manager led the effort by focusing on the value delivered by the final product, which enabled the team to respond quickly to changing priorities and address usability testing feedback. Utilizing **[GitHub issues](https://github.com/excellaco/open-cabinet/issues)**, the team created and groomed a [backlog](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=label%3A%22user+story%22+), discussed [design decisions](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=+label%3Adesign+), and tracked [bugs](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=+label%3Abug+).
 
 ---
 ##Sprint 0
