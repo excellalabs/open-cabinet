@@ -1,7 +1,8 @@
 Box.Application.addModule('autocomplete_search', function(context) {
   'use strict';
   var $component = $(context.getElement());
-  var medicines;
+  var medicines,
+      cabinet_service;
 
   function load_medicines() {
     medicines = new Bloodhound({
@@ -53,9 +54,10 @@ Box.Application.addModule('autocomplete_search', function(context) {
       $('#error-message-container').show().html("<div class='error-message'>Could not find results for '" + medicine + "', please try again.</div>");
       return;
     }
+
     $('#error-message-container').hide();
     reset_typeahead_animation();
-    context.broadcast('medicine_added', medicine);
+    cabinet_service.add(medicine);
   }
 
   $("#add_medicine").click(function() {
@@ -69,6 +71,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
 
     init: function() {
       setup_autocomplete();
+      cabinet_service = context.getService('cabinet-service');
     },
 
     onmessage: function(name){

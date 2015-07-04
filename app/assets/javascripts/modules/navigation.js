@@ -1,7 +1,8 @@
 Box.Application.addModule('navigation', function(context) {
   'use strict';
   var $component = $(context.getElement());
-  var $owl;
+  var $owl,
+      ajax_service;
 
   function createOwlNavigation() {
     $owl = $($component);
@@ -44,6 +45,16 @@ Box.Application.addModule('navigation', function(context) {
     });
 
     readMoreReadLessVisibility();
+    load_tooltips();
+  }
+
+  function load_tooltips() {
+    if(!is_tablet_and_down()) {
+      $('.tooltip').tipso({
+        background: '#12a3d2',
+        border_color: '#0e7fa3'
+      });
+    }
   }
 
   function navigate(go_to) {
@@ -55,11 +66,7 @@ Box.Application.addModule('navigation', function(context) {
   }
 
   function get_medicine_information() {
-    return $.ajax({
-      url: '/medicine_information',
-      method: 'get',
-      dataType: 'html',
-    }).done(refresh_information);
+    return ajax_service.get('/medicine_information').done(refresh_information);
   }
 
   function initialize_highlight(elm) {
@@ -94,7 +101,8 @@ Box.Application.addModule('navigation', function(context) {
     behaviors: ['navigation'],
 
     init: function() {
-     createOwlNavigation();
+      ajax_service = context.getService('ajax-service');
+      createOwlNavigation();
     },
     onclick: function (event, element, elementType) {
       var target_elm = $(event.target);
