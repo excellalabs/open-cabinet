@@ -1,4 +1,4 @@
-# **OpenCabinet Market Research**
+# **OpenCabinet Competitive Analysis**
 
 ## **WebMD.com**
 
