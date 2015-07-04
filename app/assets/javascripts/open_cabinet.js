@@ -11,11 +11,11 @@ function open_cabinet() {
     debug: true
   });
 
-  if($('.shelves').length > 0) {
-    $('.shelves').attr('data-module', 'cabinet');
-    var elm = document.getElementById('shelves');
-    Box.Application.start(elm);
-  }
+  // if($('.shelves').length > 0) {
+  //   $('.shelves').attr('data-module', 'cabinet');
+  //   var elm = document.getElementById('shelves');
+  //   Box.Application.start(elm);
+  // }
 
    fix_flip();
 }
@@ -54,18 +54,3 @@ function is_tablet() {
 function is_tablet_and_down() {
   return $('.tablet-and-down-view').is(':visible');
 }
-
-function class_name(str) {
-  return str.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-')
-}
-
-function toggle_loader(show_loader) {
-  if(show_loader) {
-    $('#medicine_information .content').hide();
-    $('#medicine_information .fa-refresh').show();
-  } else {
-    $('#medicine_information .content').show();
-    $('#medicine_information .fa-refresh').hide();
-  }
-}
-

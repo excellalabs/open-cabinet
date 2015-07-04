@@ -8,7 +8,4 @@ class Feature < ActiveRecord::Base
 
   feature :alternate_cabinet,
           description: 'Alternative Cabinet'
-
-  feature :visualization,
-          description: 'Visualizations!'
 end

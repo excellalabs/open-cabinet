@@ -10,11 +10,11 @@
     <i class="fa fa-search"></i>
     <input type="text" id="search_input" placeholder="Type a drug name here..." />
     <button id='add_medicine' class='button-dark-blue'><i class="fa fa-plus"></i></button>
-    <button id="add_medicine_wait" style="display: none;" class='button-dark-blue'><i class="fa fa-cog fa-spin"></i></button>
+    <button id="add_medicine_wait" style="display: none;" class='button-dark-blue' disabled><i class="fa fa-cog fa-spin"></i></button>
     <span id='error-message-container' class="error-container">
     </span>
   </div>
 
-  <div id="shelves" class="shelves" data-module="cabinet">
+  <div id="shelves" class="shelves" data-module='click-bottle'>
     <%= render :template => 'medicine/shared/_shelves' -%>
   </div>
