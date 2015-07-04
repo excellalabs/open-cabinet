@@ -113,7 +113,7 @@ The team agreed on a definition of done, which prioritized code quality by inclu
 
 
 ---
-The full open source technology stack can be seen [here](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md).
+<span id='open-source'></span>The full open source technology stack can be seen [here](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md).
 
 
 
