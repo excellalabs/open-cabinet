@@ -7,6 +7,10 @@
   overflow-y: auto;
   height: 100%;
 
+  @include media($mobile) {
+    padding: 0;
+  }
+
   h2 {
     margin-bottom: 30px;
   }
