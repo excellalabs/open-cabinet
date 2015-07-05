@@ -1,0 +1,14 @@
+    <% if @primary_medicine %>
+      <% @primary_medicine.interactions.each do |interaction| %>
+        <div class='<%=interaction.name.to_s.downcase.tr(' ', '') %> interactions-container'>
+          <section>  
+            <h3 class="primary-name green-text"><%= @primary_medicine.name %></h3>
+            <p class="primary-medicine-interactions-text"><%= highlight_interactions(@primary_medicine.drug_interactions, interaction) %></p>
+          </section>
+          <section>
+            <h3 class="green-text interaction-name"><%= interaction.name %></h3>
+            <p class="interaction-medicine-interactions-text"><%= highlight_interactions(interaction.drug_interactions, @primary_medicine) %></p>
+          </section>
+        </div>
+      <% end %>
+    <% end %>

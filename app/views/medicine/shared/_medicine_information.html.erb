@@ -1,28 +1,28 @@
 <!-- medicine details -->
 <div id='medicine_information' class='item view-pane'>
-  <span class='fa fa-refresh fa-spin' style='display:none'></span>
+  <div class='loader' style='display: none'><span class='fa fa-refresh fa-spin'></span></div>
   <div class='content'>
     <% if @primary_medicine %>
     <div class='row' id='medicine-general-info'>
       <h2>
         <div class='row hidden-desktop owl-navigation-cabinet back-nav'>
           <i class="fa fa-arrow-left back-to-medicine-cabinet"></i>
-          <span class="primary-name"><%= @primary_medicine.name %></span>
+          <span class="primary-name"><%= @primary_medicine.try(:name) %></span>
        </div>
         <div class='title visible-desktop'>
-          <span class="primary-name"><%= @primary_medicine.name %></span>
+          <span class="primary-name"><%= @primary_medicine.try(:name) %></span>
         </div>
         <% num_interactions = @primary_medicine.interaction_count %>
         <% if num_interactions > 0 %>
           <div id="interactions-count-container" class='interactions row owl-navigation-interaction' data-type="interactions-warning">
             <div class='col-span-11' id="potential-interactions">
-              <span class='fa fa-exclamation-triangle'></span><%= "#{pluralize(num_interactions, 'medication')} in your cabinet #{num_interactions == 1 ? 'interacts' : 'interact'} with #{@primary_medicine.name}" %>
+              <span class='fa fa-exclamation-triangle'></span><%= "#{pluralize(num_interactions, 'medication')} in your cabinet #{num_interactions == 1 ? 'interacts' : 'interact'} with #{@primary_medicine.try(:name)}" %>
             </div>
             <div class="col-span-1"><i class="fa fa-arrow-right"></i></div>
           </div>
         <% else %>
           <div class='interactions row blue-text cursor-none'>
-            0 medicines in your cabinet interact with <%= @primary_medicine.name %>.
+            0 medicines in your cabinet interact with <%= @primary_medicine.try(:name) %>.
           </div>
         <% end %>
       </h2>
@@ -35,7 +35,7 @@
     <% else %>
     <div class='row' id='empty-message-row'>
       <div class='col-span-12' id='interactions'>
-        <h1 class='primary-font green'>ADD MEDICINES TO YOUR CABINET.</h1>
+        <h1 class='green-text'>ADD MEDICINES TO YOUR CABINET.</h1>
         <p>We’ll compare them and let you know if there are any known interactions.</p>
 
       </div>
@@ -51,13 +51,14 @@
     <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Back to Cabinet
   </div>
 
-  <h2 class='reaction-title hidden-desktop'>
-    <div class='row hidden-desktop owl-navigation-cabinet back-nav'>
-      <i class="back-to-medicine-information fa fa-arrow-left"></i><span class="primary-name"></span>
-   </div>
+  <h2>
+    <div class='hidden-desktop row owl-navigation-cabinet back-nav'>
+      <i class="back-to-medicine-information fa fa-arrow-left"></i>
+      <span class="primary-name"><%= @primary_medicine.try(:name) %></span>
+    </div>
   </h2>
 
-  <div class='row'>
+  <div class='row directions'>
     <p>
     Click one of the tiles below to see where one of your medicines appears on the interaction label of another medicine.
     </p>
@@ -67,7 +68,7 @@
 
       <% if @primary_medicine.try(:interactions) %>
         <% @primary_medicine.interactions.each do |interaction| %>
-          <li data-primary-name="<%= @primary_medicine.name %>" data-interaction-name="<%= interaction.name %>"><%= @primary_medicine.name %> & <%= interaction.name %></li>
+          <li data-primary-name="<%= @primary_medicine.try(:name).downcase.tr(' ', '') %>" data-interaction-name="<%= interaction.name.downcase.tr(' ', '') %>"><%= @primary_medicine.try(:name) %> & <%= interaction.name %></li>
         <% end %>
 
       <% end %>
@@ -76,8 +77,8 @@
 
   <div class='row hidden-desktop'>
     <section class='interaction-pair-mobile'>
-      <h3>Interaction Information</h3>
-      <p id="interactions-text-mobile"></p>
+      <h2>Interaction Information</h2>
+      <%= render :template => 'medicine/shared/_interactions_text' -%>
     </section>
   </div>
 </div>
@@ -85,30 +86,17 @@
 
 <!-- interaction details -->
 <div class='item view-pane' id="interactions-info">
-  <h2 class='reaction-title hidden-desktop'>
+  <h2 class='hidden-desktop'>
     <div class='row hidden-desktop owl-navigation-cabinet back-nav'>
       <i class="back-to-interaction-pairs fa fa-arrow-left"></i><span class="primary-name"></span>
    </div>
   </h2>
   <div class='row' id='no-data-loaded-container'>
-    <h1 class='primary-font green'>To get started, select an interaction on the left.</h1>
+    <h1 class='green-text'>To get started, select an interaction on the left.</h1>
   </div>
   <div class='row' id='interaction-data-container' style='display: none;'>
     <h2>Interaction Information</h3>
-    <% if @primary_medicine %>
-      <% @primary_medicine.interactions.each do |interaction| %>
-        <div class='<%=interaction.name %> interactions-container'>
-          <section>  
-            <h3 class="primary-name primary-font green"><%= @primary_medicine.name %></h3>
-            <p class="primary-medicine-interactions-text"><%= highlight_interactions(@primary_medicine.drug_interactions, interaction) %></p>
-          </section>
-          <section>
-            <h3 class="primary-font green interaction-name"><%= interaction.name %></h3>
-            <p class="interaction-medicine-interactions-text"><%= highlight_interactions(interaction.drug_interactions, @primary_medicine) %></p>
-          </section>
-        </div>
-      <% end %>
-    <% end %>
+    <%= render :template => 'medicine/shared/_interactions_text' -%>
   </div>    
 </div>
 <!-- end medicine details -->

@@ -24,9 +24,13 @@
 
 .registration {
   position: relative;
-  background: image-url('overview-splash.png') no-repeat;
+  background: $dark-gray image-url('overview-splash.png') no-repeat;
   background-size: cover;
   height: 100%;
+
+  &:after {
+    @extend %clearfix;
+  }
 
   input, button, .link-button-bright-blue {
     font-size: 16px;
@@ -89,6 +93,7 @@
       top: 0;
       padding: 0 15px;
       margin-top: 15px;
+      margin-bottom: 30px;
     }
 
     @include media($tablet) {
@@ -120,9 +125,7 @@
         border: 1px solid $light-gray;
         border-radius: 0;
         border: 1px solid $white;
-        
       }
-
 
       @include media($tablet-and-down) {
         margin: 0;
@@ -132,18 +135,13 @@
         }
       }
 
-      input {
+      .link-button-bright-blue, input, input[type='submit'] {
         width: 100%;
+        font-weight: normal;
       }
-
 
       input[type='submit'] {
         text-align: center;
-        font-weight: bold;
-      }
-
-      .link-button {
-        width: 100%;
       }
 
       .line-behind {

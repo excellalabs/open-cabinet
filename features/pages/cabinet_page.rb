@@ -2,7 +2,7 @@ class CabinetPage
   include Capybara::DSL, Rails.application.routes.url_helpers
 
   def visit_home_page
-    visit(cabinet_path)
+    visit(cabinet_medicine_path)
   end
 
   def type_search_characters(characters)

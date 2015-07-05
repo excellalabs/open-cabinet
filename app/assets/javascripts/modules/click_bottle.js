@@ -20,6 +20,8 @@ Box.Application.addModule('click-bottle', function(context) {
       var name = $(element).attr('pill-name-text');
 
       if($target.hasClass('pill-delete')) {
+        $target.removeClass('fa-trash').addClass('fa-refresh fa-spin');
+        $(element).addClass('deleting');
         cabinet_service.delete(name);
       } else if($(element).hasClass('clickable-pill-container')) {
 

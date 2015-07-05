@@ -48,19 +48,22 @@
   position: relative;
   height: 100%;
 
+  .loader {
+    height: 100%;
+    min-height: 400px;
 
-  //*-- loading icon
-  .fa-refresh {
-    display: none;
-    color: $light-gray;
-    font-size: 200px;
-    position: absolute;
-    left: 35%;
-    top: 35%;
+    //*-- loading icon
+    .fa-refresh {
+      position: absolute;
+      color: $light-gray;
+      font-size: 200px;
+      left: 35%;
+      top: 35%;
 
-    @include media($tablet-and-down) {
-      left: 29%;
-      top: 30%;
+      @include media($tablet-and-down) {
+        left: 29%;
+        top: 30%;
+      }
     }
   }
 
@@ -82,41 +85,49 @@
       background: $light-gray;
       border-right: 1px solid darken($light-gray, 5%);
 
-      @include media($mobile) {
+      @include media($tablet-and-down) {
         background: $white;
+        border-right: 0;
       }
     }
 
     @include media($tablet-and-down) {
+      padding: 0;
+
       &:nth-child(3n) {
         background: $light-gray;
       }
     }
   }
 
-  @include media($mobile) {
+  @include media($tablet-and-down) {
     .search-bar {
       position: relative;
       margin: 0;
-      padding: 15px;
-      background: $light-gray;
+      
+      input {
+        background: $light-gray;
+        padding: 20px;
+        font-size: 20px;
+        border-radius: 0
+      }
 
       .fa-search {
-        top: 20px;
-        left: 30px;
+        display: none;
       }
 
       button {
         right: 15px;
         top: 15px;
         padding: 8px 15px;
+        border-radius: 4px;
       }
     }
   }
 
   @include media($tablet-and-down) {
     .cabinet-directions {
-      padding: 0 15px;
+      padding: 15px;
       h3 {
         font-size: 36px;
         margin-bottom: 5px;
@@ -130,11 +141,15 @@
     text-align: center;
 
     .primary-name {
-      @include ellipsis();
+      @include ellipsis(100%);
       font-size: 20px;
       line-height: 18px;
-      display: inline;
       top: -2px;
+
+      @include media($tablet-and-down) {
+        @include ellipsis(90%);
+        display: inline-block;
+      }
     }
 
     .fa {
@@ -152,11 +167,11 @@
     padding: 5px 15px;
     text-align: left;
 
-    &.hidden-desktop {
+    @include media($tablet-and-down) {
       text-align: center;
     }
 
-    &.visible-desktop {
+    @include media($desktop) {
       background: transparent;
       color: $dark-red;
       font-size: 16px;
@@ -167,6 +182,19 @@
         margin-right: 5px;
         left: 0;
         top: 0;
+      }
+    }
+  }
+
+  h2 {
+    color: $dark-blue;
+    margin-bottom: 30px;
+
+    @include media($tablet-and-down) {
+      font-size: 36px;
+
+      .name {
+        padding: 0 15px;
       }
     }
   }
@@ -198,18 +226,33 @@
         }
       }
     }
-  }
-
-  h2 {
-    font-weight: bold;
-    color: $dark-blue;
-    margin-bottom: 30px;
 
     @include media($tablet-and-down) {
-      font-size: 36px;
+      .directions {
+        padding: 15px;
+        background: $light-gray;
+      }
 
-      .name {
-        padding: 0 15px;
+      h2 {
+        font-size: 30px;
+        margin: 0;
+        margin-bottom: 30px;
+      }
+
+      .back-nav {
+        padding-bottom: 12px;
+      }
+
+      .interaction-pair-mobile {
+        padding: 15px 0;
+
+        section {
+          margin: 15px 0;
+
+          h3 {
+            font-size: 24px;
+          }
+        }
       }
     }
   }
@@ -319,7 +362,7 @@
         font-size: 20px;
       }
 
-      .fa-trash {
+      .fa-trash, .fa-refresh {
         position: relative;
         display: block;
         top: 22px;
@@ -361,7 +404,7 @@
           img {
             position: relative;
             width: 70px;
-            bottom: -8px;
+            bottom: -4px;
 
             @include media($mobile) {
               width: auto;
@@ -459,6 +502,19 @@
           margin: 0 5px;
           padding: 2px 10px;
           font-size: 12px;
+        }
+      }
+
+      &.deleting {
+        background: $light-gray !important;
+        opacity: .3;
+
+        .pill-name {
+          background: $light-gray !important;
+        }
+
+        .fa-refresh {
+          color: $dark-red !important;  
         }
       }
 

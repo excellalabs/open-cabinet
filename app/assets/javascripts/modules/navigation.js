@@ -46,15 +46,8 @@ Box.Application.addModule('navigation', function(context) {
 
     readMoreReadLessVisibility();
     load_tooltips();
-  }
-
-  function load_tooltips() {
-    if(!is_tablet_and_down()) {
-      $('.tooltip').tipso({
-        background: '#12a3d2',
-        border_color: '#0e7fa3'
-      });
-    }
+    $('#medicine_information .content').show();
+    $('#medicine_information .loader').hide();
   }
 
   function navigate(go_to) {
@@ -62,7 +55,12 @@ Box.Application.addModule('navigation', function(context) {
   }
 
   function scroll_to_top() {
-    $('.owl-item').animate({ scrollTop: 0 }, 'slow');
+    var field = '.owl-item';
+    if(is_mobile()) {
+      field = 'html, body';
+    }
+
+    $(field).animate({ scrollTop: 0 }, 'slow');
   }
 
   function get_medicine_information() {
@@ -72,26 +70,35 @@ Box.Application.addModule('navigation', function(context) {
   function initialize_highlight(elm) {
     $('#interaction-data-container').show();
     $('#no-data-loaded-container').hide();
+    $('.interactions-container').hide();
 
-    var interaction_element = $(this).attr('data-interaction-name');
-    var primary_element = $(this).attr('data-primary-name');
+    var interaction_element = $(elm).attr('data-interaction-name');
+    var primary_element = $(elm).attr('data-primary-name');
 
     if(is_mobile()) {
       $('.scroll-to-top').show();
     }
 
+    $('.' + class_name(interaction_element)).show();
+
     $('ul#interactions-list li').removeClass('active');
     $(elm).addClass('active');
 
-    var offset_height = 80;
+    var scroll_elm = $('#interactions-info').closest('.owl-item');
+    var top = $('.scroll-to:visible').first().position().top - 80;
 
     if(is_tablet_and_down()) {
-      offset_height = $('ul#interactions-list').height();
+      var offset_height = $('ul#interactions-list').height() + 140;
+      top = $('.scroll-to:visible').first().offset().top - offset_height;
+    }
+
+    if(is_mobile()) {
+      scroll_elm = $('html, body');
     }
     
     if($('.scroll-to').length) {
-      $('#interactions-info').parent().animate({
-      scrollTop: ($('.scroll-to').position().top - offset_height)
+      scroll_elm.animate({
+        scrollTop: top
      }, 'slow');
     }
   }

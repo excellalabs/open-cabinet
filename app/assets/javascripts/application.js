@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require vendor/owl.carousel.min
 //= require vendor/tipso
-//= require vendor/Chart.min
+//= require vendor/fastclick
 //= require t3.min
 //= require typeahead.min
 //= require flip

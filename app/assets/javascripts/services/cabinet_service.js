@@ -1,5 +1,11 @@
 Box.Application.addService('cabinet-service', function(context) {
 
+  function load_data(name, action, url) {
+    show_loader();
+    ajax_service = context.getService('ajax-service');
+    window['ajax_service'][action](url, { medicine: name }).done(refresh_shelves); 
+  }
+
   function refresh_shelves(html) {
     $('#shelves').html(html);
     context.broadcast('refresh_information', null);   
@@ -8,18 +14,12 @@ Box.Application.addService('cabinet-service', function(context) {
 
   function show_loader() {
     $('#medicine_information .content').hide();
-    $('#medicine_information .fa-refresh').show();    
+    $('#medicine_information .loader').show();    
   }
 
   function hide_loader() {
     $('#medicine_information .content').show();
-    $('#medicine_information .fa-refresh').hide();    
-  }
-
-  function load_data(name, action, url) {
-    show_loader();
-    ajax_service = context.getService('ajax-service');
-    window['ajax_service'][action](url, { medicine: name }).done(refresh_shelves); 
+    $('#medicine_information .loader').hide();    
   }
 
   return {
@@ -34,6 +34,6 @@ Box.Application.addService('cabinet-service', function(context) {
     },
     update: function(name) {
       load_data(name, 'post', '/update_primary_medicine');
-    } 
+    }
   };
 });
