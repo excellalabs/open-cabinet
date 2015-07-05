@@ -1,30 +1,31 @@
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 
 html, body {
+  @extend .primary-font;
   -webkit-font-smoothing: antialiased;
-  background-repeat: repeat;
   height: 100%;
-  font-family: $primary_font;
-  font-size: 18px;
-  line-height: 24px;
   margin: 0;
   padding: 0;
-  color: $dark-gray;
 
-  @include media($tablet-and-down) {
-    font-size: 16px;
+  @include media($mobile) {
+    height: auto;
+    min-height: 100%;
   }
 }
 
 body {
   overflow: hidden;
-}
+  webkit-overflow-scrolling: touch;
 
-.blue-text {
-  color: $dark-blue !important;
+  @include media($mobile) {
+    overflow: auto;
+  }
 }
 
 .cursor-none {
-  cursor: default !important;
+  cursor: text !important;
 }
 
 .default-padding {
@@ -37,10 +38,6 @@ body {
   @include media($tablet) {
     padding: 15px;
   }
-}
-
-.not-red {
-  color: $dark-blue !important;
 }
 
 .default-padding-top {
@@ -68,16 +65,6 @@ section {
     font-weight: bold;
     margin-bottom: 15px;
   }
-
-  &.interaction-pair-mobile {
-    margin: 15px;
-    background: white;
-    padding: 30px;
-  }
-}
-
-.bold {
-  font-weight: bold;
 }
 
 .t-right {

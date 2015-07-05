@@ -5,8 +5,7 @@
 //*-- global input styles
 select, textarea, input {
   @extend .primary-font;
-  font-size: 18px;
-  color: $dark-gray;
+  -webkit-appearance: none;
   display: block;
   border-radius: 4px;
   text-align: left;

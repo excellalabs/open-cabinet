@@ -16,7 +16,7 @@ Box.Application.addModule('scroll-to-top', function(context) {
       var $ev_target = $(event.target);
 
       if (is_mobile()) {
-        $('.owl-item').animate({ scrollTop: 0 }, 'slow');
+        $('html, body').animate({ scrollTop: 0 }, 'slow');
       }
     }
   }

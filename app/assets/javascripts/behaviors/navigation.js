@@ -32,12 +32,13 @@ Box.Application.addBehavior('navigation', function(context) {
         }
         if ($(event.target).hasClass('owl-navigation-information')) {
           context.broadcast('go_to', 1);
-        }
-        if ($(event.target).hasClass('owl-navigation-interaction') || 
-            $(event.target).parent('.owl-navigation-interaction').length > 0) {
-          context.broadcast('go_to', 2);
-        }        
+        }      
       }
+      
+      if ($(event.target).hasClass('owl-navigation-interaction') || 
+          $(event.target).parent('.owl-navigation-interaction').length > 0) {
+        context.broadcast('go_to', 2);
+      }  
     }
   }
 });

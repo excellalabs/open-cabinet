@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(_user)
     session.delete(:cabinet_id)
-    cabinet_path
+    cabinet_medicine_path
   end
 
   def current_user

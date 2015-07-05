@@ -4,7 +4,6 @@
 
 .about-page {
   padding: 30px 60px 60px;
-  overflow-y: auto;
   height: 100%;
 
   @include media($mobile) {
