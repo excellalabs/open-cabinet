@@ -25,26 +25,13 @@ Box.Application.addModule('navigation', function(context) {
     return $owl.data('owlCarousel');
   }
 
-  function readMoreReadLessClickHandler(elm) {
-    $(elm).toggle();
-    $(elm).siblings('.ellipsis-controller').toggle();
-    $(elm).siblings('.ellipsis-paragraph').toggleClass('multiline-ellipsis');
-  }
-
-  function readMoreReadLessVisibility() {
-    $component.find('.ellipsis-paragraph').each(function() {
-      if($(this).height() < 115) return true;
-      $(this).siblings('.read-more').show();
-    });
-  }
-
   function refresh_information(data) {
     $('<div>' + data + '</div>').find('.view-pane').each(function() {
       var id = $(this).attr('id');
       $('.owl-wrapper').find('#' + id).html($(this).html());
     });
 
-    readMoreReadLessVisibility();
+    read_more();
     load_tooltips();
     $('#medicine_information .content').show();
     $('#medicine_information .loader').hide();
@@ -113,9 +100,7 @@ Box.Application.addModule('navigation', function(context) {
     },
     onclick: function (event, element, elementType) {
       var target_elm = $(event.target);
-      if(target_elm.hasClass('ellipsis-controller')) {
-        readMoreReadLessClickHandler(target_elm);  
-      } else if (target_elm.parents('#interactions-list').length) {
+      if (target_elm.parents('#interactions-list').length) {
         initialize_highlight(target_elm);
       }
     },
