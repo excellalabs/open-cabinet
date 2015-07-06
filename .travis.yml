@@ -13,6 +13,7 @@ rvm:
 branches:
   only:
   - master
+  - sauce_labs
 before_script:
 - rake db:create db:migrate
 - rake db:create db:migrate RAILS_ENV=travis
