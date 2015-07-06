@@ -79,7 +79,7 @@ The Front-End Web Developer established a lightweight framework that supported O
 ###Design
 Sprint 1 resulted in two artifacts: 
 
-* The Visual Designer created a Style Guide containing guidance on how to use typography, color, and address visual elements to ensure visual consistency.    
+* The Visual Designer created a **[Style Guide](https://github.com/excellaco/open-cabinet/blob/master/documents/design/style_guide.md)** containing guidance on how to use typography, color, and address visual elements to ensure visual consistency.    
 * Initial **[prototype mock-ups](https://github.com/excellaco/open-cabinet/blob/master/documents/design/design_concept_1.md)** for two different layouts, which were used for usability testing. Unanimously, [users](https://github.com/excellaco/open-cabinet/blob/master/documents/design/round_1_testing.md) preferred the “cabinet” option, which is represented in the final prototype along with a mobile version.
 
 During Sprint 2, user feedback was incorporated into a [second version of mock-ups](https://github.com/excellaco/open-cabinet/blob/master/documents/design/design_concept_2.md), which were tested with users to learn that key elements (e.g. navigation and search) were [not well received](https://github.com/excellaco/open-cabinet/blob/master/documents/design/round_2_testing.md). The team created issues in GitHub addressing these pain points, which allowed developers to make iterative changes to the application, which were then retested in subsequent rounds of usability testing.
