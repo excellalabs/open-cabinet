@@ -10,12 +10,16 @@ Sauce.config do |config|
   config[:start_local_application] = true
   config["tunnel-identifier"] = ENV['TRAVIS_JOB_NUMBER']
   config[:browsers] = [
-    ['Windows 8', 'Chrome', nil],
     ['Windows 7', 'Firefox', '20'],
-    ['OS X 10.10', 'chrome', '39.0'],
-    ['Windows 7', 'Internet Explorer', '9'],
-    ['iPhone Simulator', 'iphone'],
-    ['Windows 8.1', 'Internet Explorer', '11'],
     ['Windows 8.1', 'Internet Explorer', '11']
   ]
+
+  # config[:browsers] = [
+  #   ['Windows 8', 'Chrome', nil],
+  #   ['Windows 7', 'Firefox', '20'],
+  #   ['OS X 10.10', 'chrome', '39.0'],
+  #   ['Windows 7', 'Internet Explorer', '9'],
+  #   ['iPhone Simulator', 'iphone'],
+  #   ['Windows 8.1', 'Internet Explorer', '11']
+  # ]
 end
