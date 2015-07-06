@@ -11,7 +11,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
       identify: function(obj) { return obj.toUpperCase(); },
       prefetch: {
         ttl: 3600000, // cache requests for one hour
-        url: '/autocomplete',
+        url: '/autocomplete'
       }
     });
 
@@ -49,7 +49,6 @@ Box.Application.addModule('autocomplete_search', function(context) {
   }
 
   function submit_typeahead(){
-
     var array = $.grep($(".tt-suggestion"), function(suggestion) {
       return $(suggestion).text() == $(".tt-input").val();
     });
@@ -72,7 +71,12 @@ Box.Application.addModule('autocomplete_search', function(context) {
 
     $('#error-message-container').hide();
     reset_typeahead_animation();
-    cabinet_service.add(medicine);
+
+    if($('div[pill-name-text="' + medicine + '"]').length == 0) {
+      cabinet_service.add(medicine);
+    } else {
+      cabinet_service.update(medicine);
+    }
   }
 
   $("#add_medicine").click(function() {
