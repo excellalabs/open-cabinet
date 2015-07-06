@@ -11,28 +11,40 @@
 
 <meta http-equiv="cleartype" content="on">
 
+<meta content="OpenCabinet uses an open-source Application Program Interface (API) from openFDA to retrieve public FDA drug information. OpenFDA provides sites like OpenCabinet with easy access to public data in a way that ensures the privacy and security of public FDA data." name="description" />
+<meta content="Excella OpenCabinet OpenFDA" name="keywords" />
+<meta content="OpenCabinet" property="og:title" />
+<meta content="website" property="og:type" />
+<meta content="http://opencabi.net/" property="og:url" />
+<meta content="<%= image_path "open-cabinet.png" %>" property="og:image" />
+<meta content="OpenCabinet uses an open-source Application Program Interface (API) from openFDA to retrieve public FDA drug information. OpenFDA provides sites like OpenCabinet with easy access to public data in a way that ensures the privacy and security of public FDA data." property="og:description" />
+<meta content="OpenCabinet" property="og:site_name" />
+<meta content="summary" name="twitter:card" />
+<meta content="@excellaco" name="twitter:site" />
+<meta content="OpenCabinet" name="twitter:title" />
+<meta content="OpenCabinet uses an open-source Application Program Interface (API) from openFDA to retrieve public FDA drug information. OpenFDA provides sites like OpenCabinet with easy access to public data in a way that ensures the privacy and security of public FDA data." name="twitter:description" />
+<meta content="<%= image_path "open-cabinet.png" %>" name="twitter:image" />
+<meta content="http://opencabi.net/" name="twitter:url" />
+
 <html>
 <head>
 
   <title>OpenCabinet</title>
 
   <!-- mobile icons -->
-  <link rel="apple-touch-icon" sizes="57x57" href="<%= image_url('icons/apple-touch-icon-57x57') %>">
-  <link rel="apple-touch-icon" sizes="60x60" href="<%= image_url('icons/apple-touch-icon-60x60') %>">
-  <link rel="apple-touch-icon" sizes="72x72" href="<%= image_url('icons/apple-touch-icon-72x72') %>">
-  <link rel="apple-touch-icon" sizes="76x76" href="<%= image_url('icons/apple-touch-icon-76x76') %>">
-  <link rel="apple-touch-icon" sizes="114x114" href="<%= image_url('icons/apple-touch-icon-114x114') %>">
-  <link rel="apple-touch-icon" sizes="120x120" href="<%= image_url('icons/apple-touch-icon-120x120') %>">
-  <link rel="apple-touch-icon" sizes="144x144" href="<%= image_url('icons/apple-touch-icon-144x144') %>">
-  <link rel="apple-touch-icon" sizes="152x152" href="<%= image_url('icons/apple-touch-icon-152x152') %>">
-  <link rel="apple-touch-icon" sizes="180x180" href="<%= image_url('icons/apple-touch-icon-180x180') %>">
-  <link rel="icon" type="image/png" href="<%= image_url('icons/favicon-32x32') %>" sizes="32x32">
-  <link rel="icon" type="image/png" href="<%= image_url('icons/favicon-194x194') %>" sizes="194x194">
-  <link rel="icon" type="image/png" href="<%= image_url('icons/favicon-96x96') %>" sizes="96x96">
-  <link rel="icon" type="image/png" href="<%= image_url('icons/android-chrome-192x192') %>" sizes="192x192">
-  <link rel="icon" type="image/png" href="<%= image_url('icons/favicon-16x16') %>" sizes="16x16">
+  <% %w(57 60 72 76 114 120 144 152 180).each do |size| %>
+    <%= favicon_link_tag "icons/apple-touch-icon-#{size}x#{size}.png", rel: 'apple-touch-icon', type: 'image/png', sizes: "#{size}x#{size}" %>
+  <% end %>
 
-  <link rel="apple-touch-startup-image" href="<%= image_url('splash') %>">
+  <% %w(16 32 96 194).each do |size| %>
+    <%= favicon_link_tag "icons/favicon-#{size}x#{size}.png", rel: 'icon', type: 'image/png', sizes: "#{size}x#{size}" %>
+  <% end %>
+
+  <% %w(36 48 72 96 144 192).each do |size| %>
+    <%= favicon_link_tag "icons/android-chrome-#{size}x#{size}.png", rel: 'icon', type: 'image/png', sizes: "#{size}x#{size}" %>
+  <% end %>
+
+  <%= favicon_link_tag "splash", rel: 'apple-touch-startup-image' %>
 
   <!-- google lato font -->
   <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>

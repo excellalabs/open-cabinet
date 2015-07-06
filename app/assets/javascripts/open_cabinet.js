@@ -4,8 +4,6 @@ $(document).ready(open_cabinet);
 $(document).on('page:load', open_cabinet);
 
 function open_cabinet() {
-
-  console.log('open-cabinet');
   
   Box.Application.init({
     debug: true
