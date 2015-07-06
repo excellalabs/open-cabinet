@@ -38,7 +38,12 @@
 
   .call-to-action {
     position: relative;
+    padding-left: 60px;
     top: 17%;
+
+    .call-to-action-wrapper {
+      max-width: 600px;
+    }
 
     @include media($tablet-and-down) {
       @include span-columns(12);
@@ -85,7 +90,8 @@
   .registration-container {
     position: relative;
     top: 10%;
-    padding: 0 30px;
+    padding: 0 60px;
+    right: 0;
 
     @include media($tablet-and-down) {
       @include span-columns(12);
@@ -94,6 +100,7 @@
       padding: 0 15px;
       margin-top: 15px;
       margin-bottom: 30px;
+      
     }
 
     @include media($tablet) {
@@ -106,14 +113,22 @@
     }
 
     .registration-wrapper {
+      position: absolute;
+      right: 60px;
       background: $white;
       border: 1px solid $black;
       width: 100%;
       border-radius: 4px;
       padding: 15px 30px;
+      max-width: 400px;
 
       @include media($tablet-and-down) {
+        position: relative;
         padding: 15px;
+        left: 0;
+        max-width: 100%;
+
+
       }
     }
 
