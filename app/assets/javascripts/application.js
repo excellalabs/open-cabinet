@@ -16,6 +16,7 @@
 //= require vendor/tipso
 //= require vendor/fastclick
 //= require vendor/readmore.min
+//= require vendor/jquery.sticky-kit.min
 //= require t3.min
 //= require typeahead.min
 //= require flip

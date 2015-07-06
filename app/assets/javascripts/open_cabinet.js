@@ -42,8 +42,7 @@ function responsive_autocomplete() {
 
 function read_more() {
   $('.multiline-ellipsis').readmore({
-    lessLink: '<a href="#">Read Less</a>',
-    collapsedHeight: '210px'
+    lessLink: '<a href="#">Read Less</a>'
   });
 }
 
