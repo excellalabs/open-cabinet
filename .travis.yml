@@ -17,12 +17,12 @@ before_script:
 - rake db:create db:migrate
 - rake db:create db:migrate RAILS_ENV=travis
 script:
-- bundle exec brakeman
-- bundle exec rubocop -Dc .rubocop.yml
-- RAILS_ENV=travis bundle exec rspec
-- bundle exec rake teaspoon
-- rake cucumber:non_exterior RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE
-- rake cucumber:exterior_integration RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE
+# - bundle exec brakeman
+# - bundle exec rubocop -Dc .rubocop.yml
+# - RAILS_ENV=travis bundle exec rspec
+# - bundle exec rake teaspoon
+# - rake cucumber:non_exterior RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE
+# - rake cucumber:exterior_integration RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE
 - export SAUCE_LABS=true
 - rake cucumber:exterior_integration SAUCE_LABS=$SAUCE_LABS RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE
 deploy:
