@@ -384,6 +384,14 @@
         }
       }
 
+      @include media($tablet-and-up) {
+        .fa-times {
+          display: inline-block;
+          padding: 3px 5px;
+          z-index: 9999;
+        }
+      }
+
       .pill-wrapper {
         position: absolute;
         bottom: -30px;

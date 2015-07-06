@@ -13,7 +13,8 @@ Box.Application.addModule('navigation', function(context) {
       slideSpeed: 800,
       mouseDrag: false,
       touchDrag: false,
-      afterAction: scroll_to_top,
+      afterMove: pin_to_top,
+      scrollPerPage: true,
       itemsCustom : [
           [0, 1],
           [850, 2]
@@ -41,13 +42,13 @@ Box.Application.addModule('navigation', function(context) {
     $owl.trigger('owl.goTo', go_to);
   }
 
-  function scroll_to_top() {
+  function pin_to_top() {
     var field = '.owl-item';
     if(is_mobile()) {
       field = 'html, body';
     }
 
-    $(field).animate({ scrollTop: 0 }, 'slow');
+    $(field).animate({ scrollTop: 0 }, 0);
   }
 
   function get_medicine_information() {
