@@ -28,6 +28,7 @@ function responsive_toggle() {
   responsive_autocomplete();
   responsive_menu();
   load_tooltips();
+  read_more();
 }
 
 //*-- in mobile move input up to accomodate keyboard
@@ -39,6 +40,12 @@ function responsive_autocomplete() {
   } else {
     $('.search-bar input').off('focusin');
   }
+}
+
+function read_more() {
+  $('.multiline-ellipsis').readmore({
+    lessLink: '<a href="#">Read Less</a>'
+  });
 }
 
 //*-- in mobile + tablet show hamburger menu

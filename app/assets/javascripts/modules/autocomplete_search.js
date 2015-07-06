@@ -48,7 +48,22 @@ Box.Application.addModule('autocomplete_search', function(context) {
     return medicines.get(medicine.toUpperCase()).length > 0;
   }
 
-  function submit_typeahead(medicine){
+  function submit_typeahead(){
+
+    var array = $.grep($(".tt-suggestion"), function(suggestion) {
+      return $(suggestion).text() == $(".tt-input").val();
+    });
+
+    if (array.length) {
+      var medicine = array[0].innerText;
+    } else {
+      var medicine = $(".tt-suggestion:first-child").text();
+    }
+
+    if(medicine.length == 0) {
+      medicine = $('#search_input').val();
+    }
+    
     if(!medicine) return;
     if(!value_in_autocomplete(medicine)) {
       $('#error-message-container').show().html("<div class='error-message'>Could not find results for '" + medicine + "', please try again.</div>");
@@ -61,8 +76,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
   }
 
   $("#add_medicine").click(function() {
-    var medicine = $component.find('#search_input').val();
-    submit_typeahead(medicine);
+    submit_typeahead();
   });
 
   return {
@@ -82,21 +96,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
     onkeydown: function(event, element, elementType){
 
       if (event.keyCode == 13) {
-        var array = $.grep($(".tt-suggestion"), function(suggestion) {
-            return $(suggestion).text() == $(".tt-input").val();
-        });
-
-        if (array.length) {
-          var medicine = array[0].innerText;
-        } else {
-          var medicine = $(".tt-suggestion:first-child").text();
-        }
-
-        if(medicine.length == 0) {
-          medicine = $('#search_input').val();
-        }
-
-        submit_typeahead(medicine);
+        submit_typeahead();
       }
     }
   }

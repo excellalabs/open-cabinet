@@ -15,6 +15,7 @@
 //= require vendor/owl.carousel.min
 //= require vendor/tipso
 //= require vendor/fastclick
+//= require vendor/readmore.min
 //= require t3.min
 //= require typeahead.min
 //= require flip
