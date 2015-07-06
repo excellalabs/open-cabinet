@@ -375,7 +375,7 @@
         @include border-bottom-radius(0px);
         background: rgba(255, 255, 255, 0.4);
 
-        @include media($tablet-and-up) {
+        @include media($desktop) {
           .fa-times {
             display: inline-block;
             padding: 3px 5px;
@@ -384,7 +384,7 @@
         }
       }
 
-      @include media($tablet-and-up) {
+      @include media($tablet) {
         .fa-times {
           display: inline-block;
           padding: 3px 5px;
@@ -443,6 +443,11 @@
             @include ellipsis(100%);
             display: block;
             line-height: 30px;
+            padding: 0 15px;
+
+            @include media($mobile) {
+              padding: 0;
+            }
           }
 
           @include media($tablet-and-up) {
@@ -579,6 +584,10 @@
       }
     }
   }
+}
+
+p.multiline-ellipsis {
+  line-height: 1.3em !important;
 }
 
 .alternate-cabinet {
@@ -739,7 +748,6 @@
       color: $bright-green;
       top: -15px;
     }
-
   }
 }
 
