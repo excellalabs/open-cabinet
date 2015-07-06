@@ -8,7 +8,7 @@ Sauce.config do |config|
   # config[:application_host] = "http://#{ENV['STACK_URL']}"
   config[:start_tunnel] = ENV['SAUCE_LABS']
   config[:start_local_application] = true
-  # config['tunnel-identifier'] = ENV['TRAVIS_JOB_NUMBER']
+  config['tunnel-identifier'] = ENV['TRAVIS_JOB_NUMBER'].split('.')[0]
   config[:browsers] = [
     ['Windows 7', 'Firefox', '20'],
     ['Windows 8.1', 'Internet Explorer', '11']
