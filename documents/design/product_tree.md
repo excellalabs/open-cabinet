@@ -1,6 +1,6 @@
 # Product Tree
 
-The Product Owner met with key members of the team early in the project to create a [Product Tree](https://github.com/excellaco/open-cabinet/issues/102). The purpose of the Product Tree was to define a prioritized list of Initial Features and Product Enhancements that Open Cabinet would provide to the market in three general stages: 1) Minimal Viable Product (MVP), 2) First Iteration Enhancements, and 3) Second Iteration Enhancements. 
+The Product Manager met with key members of the team early in the project to create a [Product Tree](https://github.com/excellaco/open-cabinet/issues/102). The purpose of the Product Tree was to define a prioritized list of Initial Features and Product Enhancements that Open Cabinet would provide to the market in three general stages: 1) Minimal Viable Product (MVP), 2) First Iteration Enhancements, and 3) Second Iteration Enhancements. 
 The tree was then shared with the team as a way to clearly communicate the high-level priorities and goals for each stage of release so they could concretely envision the product outcome.
 
 Initial tree pruning focused around four key features:  
