@@ -16,6 +16,8 @@ Box.Application.addModule('click-bottle', function(context) {
     onclick: function(event, element, elementType) {
       event.preventDefault();
 
+      $('.tooltip').tipso('hide');
+
       var $target = $(event.target);
       var name = $(element).attr('pill-name-text');
 
