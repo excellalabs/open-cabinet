@@ -63,9 +63,9 @@ Against every pull request and push to the master branch, Travis automatically r
 * **Code Climate** for code quality metrics
 * **SauceLabs** for multiple browser testing
 
-![build-pipeline](https://github.com/excellaco/open-cabinet/blob/master/documents/images/build_pipeline_v3.png)
+**Travis** was also tightly integrated with GitHub. When performing code reviews on a pull request, the reviewer could see the status of those [tests](https://github.com/excellaco/open-cabinet/blob/master/documents/images/automated-testing.png) to ensure that along with a visual inspection of the code, all tests also passed. These practices instilled confidence that functional code was deployed to production.    
 
-**Travis** was also tightly integrated with GitHub. When performing code reviews on a pull request, the reviewer could see the status of those [tests](https://github.com/excellaco/open-cabinet/blob/master/documents/images/automated-testing.png) to ensure that along with a visual inspection of the code, all tests also passed. These practices instilled confidence that functional code was deployed to production.
+ ![build-pipeline-1](https://github.com/excellaco/open-cabinet/blob/master/documents/images/build_pipeline_v3.png)
 
 The final integration points were to secure the application and bring visibility to the health of the application. **TLS certificates** were acquired and set up to ensure user security. **[Slack](https://github.com/excellaco/open-cabinet/blob/master/documents/images/slack-integrations.png)**, which served as the team’s collaboration forum, was configured to automatically notify the team of changes to the repository, and denoted key checkpoints in the continuous integration process.  The GitHub repository housed **Badges**, which  provided visibility to the code’s test coverage, quality, and build status, while monitoring tools, **New Relic**, **Log Entries**, **Google Analytics**, and **Air Brake**, captured and alerted key metrics and issues with the system.
 
@@ -94,12 +94,12 @@ During Sprints 1 and 2, the development team developed the foundation of the app
 
 ---
 
-##Sprint 3 + 4
-
-![review-process](https://github.com/excellaco/open-cabinet/blob/master/documents/images/design_process.png)
+##Sprint 3 + 4  
 
 ###Design
 The team completed the MVP in Sprints 3 and 4, and began performing usability testing on a functioning application.  With the new interactions in place, the team discovered that users were confused by how medicine selection worked. The interaction visualizations were then re-evaluated and the team created alternative options to test with users through [feature toggle](https://opencabi.net/features).
+
+![review-process](https://github.com/excellaco/open-cabinet/blob/master/documents/images/design_process.png)
 
 By initially conducting usability testing with paper prototypes, the team learned what customers wanted early in the process, before investing time on development. From each round of testing, the Usability Tester discovered key insights that drove the next round of designs and development.
 
