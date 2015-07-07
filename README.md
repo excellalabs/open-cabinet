@@ -10,7 +10,7 @@ https://opencabi.net
 ![open-cabinet logo](https://github.com/excellaco/open-cabinet/blob/master/app/assets/images/open-cabinet.png)
 
 ##Concept
-OpenCabinet is a tool for the public to find interactions (eg Warfarin and Ibuprofen) between the medicine that they and their family are taking using data directly from the FDA.
+OpenCabinet is a tool for the public to find interactions (e.g. Warfarin and Ibuprofen) between the medicine that they and their family are taking using data directly from the FDA.
 
 ##Approach 
 
