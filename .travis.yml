@@ -1,8 +1,5 @@
 addons:
   postgresql: '9.4'
-  # code_climate:
-  #   repo_token:
-  #     secure: "MpGxv6PGnS7sDWT/sOCVo6/5wqeWaVyC2lIQetc9ebmM1590UMEmEaGve2xPR2OBysKvWYEW5M16bACK8lYgNRp0qo1E79VBU87MW2Nes1X4keYcG82njV+buDm2PHk+lBj5nW+nRlq+LKxSWHdLP6PPTog3+waCSg1yKNEZJ4wSmd2gI43366rKd2CaMi1TYvgPn/nJDIgxwngpbV83GV0vpSgxeGdrtZB2xkpD8UpWEaRyFKjlWoFy2cjUHSQow5887BoDteo1rmqZ8cgODWq9FnC4K9v31ywgDfwGfs3UlhcL/ORp28uKWaB0z0B7Xzb5gaDf3TD7jDslqMOB7tGoBylXe73sZhjTAnGSk9pJ3j1MrkJY7zj6darKSHr7lRMEGrTAiNnmAXJb/wO4x4TZuvdzRlJh2/s5xb0c+qMZOZ0dBf7XKCejqG8NKvwNQeHYx+DxDB3avXxIq71dwzq1gMQjtYA13bBAE0rlNGRVIJIKgwVH2jmptB7vowUtKJaqkOrG4gE9Qo3OodOEDYDTQ64+DQtgRwGMSGEmAKJO51kaKLLzAYMZQJYJ5DYhkmQucwQcoIkJdQiMcu/Lq4/DQBmS+EsBFqWPjOM7Aiuc6CjpghcHQeoi/PwEpirnbQHLC9i2LRDlznaeoYsNyzQU8a+KEs0BFiDpbP8ZVVE="
 language: ruby
 cache: bundler
 notifications:
@@ -11,7 +8,7 @@ rvm:
 - 2.2.2
 branches:
   only:
-    - master
+  - master
 before_script:
 - rake db:create db:migrate
 - rake db:create db:migrate RAILS_ENV=travis
@@ -25,9 +22,9 @@ script:
 deploy:
   provider: heroku
   run:
-    - "rake db:migrate"
-    - restart
+  - rake db:migrate
+  - restart
   app:
     master: open-cabinet
   api_key:
-    secure: Y92r08hX+/UQq0szjmiY6RXRiUU+Xq0NYLUlMRdd4K+yemFPQwwnr27EiaKASqh6npJoiyG+pzM/iZrJ/ofvaQHEnAeaVB3qy64HLQGXIVCng6g+frciYkR12gPuOsJ1EGwbXEtOQMPPpqN/ddZ8Q5yHmwJE5l2rJ40xLN1WT0vI3odA8VxfnuzSD+Q4BfrDYLOs7lVdMfW+XS4AaJ4/IYrpq26qjZ5/W6DSDQ+CSVT7a9xcQV0WFRjKyyxlRzMLaxMGLm4daA3CbLjXo9SKCEm1fHiY2P1gPewvefQc0QwcipDH/fuDf/hf3q7v0Niza7ClGrrrtGqsIVMg8dtUQpHji/C9CWm0qCZd+4bcd7uOiCTFy7wB/lqgVATG/Z7jhnq2UUtjszoPjrhIInr67KzFgAPp8NnVB5CcNx+tc3UWhnCyXifZpmw4UprZ4Uafg53cwpuBNPyBplrAuR/BY5PS4I4zXK+AF9Vuq5r3cFwU0ukM0EWelkdN+WW9TinUL/Ut3xi6WSehZSZRze/Ek3uJtcyclahX6BKk0WigJAQYoMtsDAmgPaO+wo97vi+3IPYr7igmnvzjxkvVJ8AbMTvKz4F1wacjsuN7yGZBOAUw+w6KrJu60aVOcYgwB86ZegT1L/WIVtuSZOu8bZUxiX4IYIFmNb5oQKib4LIJ86w=
+    secure: svGpW+jZ2cAbPXMHpS8eFuxDSC3Z4VEgZ+7o14vfWPYOojn1AGjs3j9z9Ft4AVgLS6WmtWSGsxEmcFISYB3ujJQE/oscFVdR2DYntLdl0FEJ0KHEM6jVdhClGQmVqjRLIOLfl1mOpUTWTIMRD+egsTTIkQq6LGqUpFOla4i3WiI6d0G7CgLf+IRLS4VwzPLjGlvRFCngPBqBi+HnEovVk8VJm03azpVSO1+cS7QHvlYTwY3GYpNWIxhHwSVpbNHB96ZPbYnYxXuyVq+t8wW4T/IGO+4UQzraLx5Fv++Ip+xcTd7MUWnFOC6meG32s+Y4c1pOVOEn/93IC5CQeFySDTSy7uDqLjT7y2JoV7zVij40x9KfOcB+87/qYUoNAjxkHpG/S1peinIYGTHdscckFfv+vjW1zh/fUU6bS++Mcv9WHhZuWAbFOwOoM0ZJuKaDioAkzqGW98WOBM5JoX+yr29XdJdle3IwvQXzDF3fGvXCqu3qTbUCIFi7j1Lo/E+sF5pu+c2hi7utG0CzXV+3lkKzsXn/vCtYnCcy20N+tqiBEhf7H+kyc1JT5ULelNcIqQv3Gki8tSXN6P2tAOL7YxWPmPbD3gCH/Kd6NAfjo2LsAUPUiTskJfWcNS9IU9oJOF+1ju161PFxGnK/JwA5Thq1Q2yFo43yV012I9vQX+o=
