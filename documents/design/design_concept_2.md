@@ -20,6 +20,6 @@ Second pane interactions page view
 ![open cabi net v37](https://cloud.githubusercontent.com/assets/12971245/8311573/189874b2-19a5-11e5-9d1d-63831ce6a636.png)
 
 Original Layout/Design issue can be found [here](https://github.com/excellaco/open-cabinet/issues/65).  
-Usability Testing notes and synthesis on these mockups can be found [here](https://github.com/excellaco/open-cabinet/tree/master/documents/Usability%20Testing_2).    
+Usability Testing notes and synthesis on these mockups can be found [here](https://github.com/excellaco/open-cabinet/tree/master/documents/design/usability_testing/round_2).    
 Key Insights and Outcomes from usability testing on these mockups can be found [here](https://github.com/excellaco/open-cabinet/wiki/Design:-Round-2-Usability-Testing).    
 Original Usability Testing issue can be found [here](https://github.com/excellaco/open-cabinet/issues/48). 
