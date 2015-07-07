@@ -1,9 +1,9 @@
 module BasicAuth
   extend ActiveSupport::Concern
 
-  included do
-    before_action :http_authenticate, :set_cookie
-  end
+  # included do
+  #   before_action :http_authenticate, :set_cookie
+  # end
 
   def http_authenticate
     return if cookie_exists?
