@@ -14,9 +14,6 @@ Sauce.config do |config|
     ['Windows 8', 'Chrome', nil],
     ['Windows 7', 'Firefox', '38'],
     ['Windows 8.1', 'Internet Explorer', '11'],
-    ['Windows 7', 'Internet Explorer', '9'],
-    ['OS X 10.10', 'safari', '8.0'],
-    ['OS X 10.10', 'iPhone', '8.2'],
-    ['Linux', 'android', '5.1']
+    ['OS X 10.10', 'iPhone', '8.2']
   ]
 end
