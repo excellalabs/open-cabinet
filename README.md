@@ -10,7 +10,7 @@ https://opencabi.net
 ![open-cabinet logo](https://github.com/excellaco/open-cabinet/blob/master/app/assets/images/open-cabinet.png)
 
 ##Approach 
-**Excella Consulting** followed an agile development framework to build **OpenCabinet** in an iterative, incremental manner.  The cross-functional team, comprised of analysts, designers, and developers, began with Sprint 0, followed by two-day sprints that started with a daily stand-up and ended with a quick review and retrospective.  
+**Excella Consulting** followed an agile development framework to build **OpenCabinet** in an iterative, incremental manner.  The cross-functional team, comprised of analysts, designers, and developers, began with Sprint 0, followed by two-day sprints. The team met for a daily stand-up and each sprint ended with a quick review and retrospective.  
 
 The team consisted of the following: 
 
@@ -113,7 +113,7 @@ Following this human-centered design techniques ensured that:
 
 
 ###Development
-The team agreed on a definition of done, which prioritized code quality by including successful execution of [unit](https://github.com/excellaco/open-cabinet/tree/master/spec), [integration](https://github.com/excellaco/open-cabinet/tree/master/spec), and [acceptance tests](https://github.com/excellaco/open-cabinet/tree/master/features) and performing a code review before it was merged into master. These practices ensured that the application was stable for usability testing and allowed for constant refactoring and improvement of the code base without the fear of breaking core functionality. Even in a dynamic and fast-paced environment, the development team reacted to user feedback and implemented feature toggles, which allowed for various views of the data to be re-mixed to support further usability testing.
+During Sprint 0, the team agreed on a [definition of done](https://github.com/excellaco/open-cabinet/blob/master/documents/images/definition-of-done.jpg), which prioritized code quality by including successful execution of [unit](https://github.com/excellaco/open-cabinet/tree/master/spec), [integration](https://github.com/excellaco/open-cabinet/tree/master/spec), and [acceptance tests](https://github.com/excellaco/open-cabinet/tree/master/features) and performing a code review before it was merged into master. These practices ensured that the application was stable for usability testing and allowed for constant refactoring and improvement of the code base without the fear of breaking core functionality. Even in a dynamic and fast-paced environment, the development team reacted to user feedback and implemented feature toggles, which allowed for various views of the data to be re-mixed to support further usability testing.
 
 **`... and ended with "Ship It"`**
 
