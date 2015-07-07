@@ -33,7 +33,7 @@ The self-organized team not only fulfilled their individual roles in the design 
 
 ---
 ##Sprint 0
-First, the team used an internal Slack channel to **[crowdsource](https://github.com/excellaco/open-cabinet/blob/master/documents/images/crowdsourcing.png)** ideas for the application using [OpenFDA's Label API](https://open.fda.gov/drug/label/). Then, the team reviewed the suggestions and discussed the feasibility of delivering a product in the given timeframe. Weighing both the design and development perspectives, the team converged on "[my medicine cabinet](https://github.com/excellaco/open-cabinet/blob/master/documents/design/brainstorming.md)" to allow customers to view all of their family's medications in one place and understand the risks and side effects of them.
+First, the team used an internal Slack channel to **[crowdsource](https://github.com/excellaco/open-cabinet/blob/master/documents/images/crowdsourcing.png)** ideas for the application using [OpenFDA's Label API](https://open.fda.gov/drug/label/). Then, the team reviewed the suggestions and discussed the feasibility of delivering a product in the given timeframe. Weighing both the design and development perspectives, the team converged on "[my medicine cabinet](https://github.com/excellaco/open-cabinet/blob/master/documents/design/brainstorming.md)" to allow customers to view all of their family's medications in one place and understand the risks and side effects.
 
 During Sprint 0, the team accomplished four objectives:
  
@@ -43,10 +43,10 @@ During Sprint 0, the team accomplished four objectives:
 * Established the **development environment**
 
 ###Needs and Reactions
-The User Researcher interviewed potential users to understand their desired needs. This research unveiled that users’ primary goal was to determine medical interactions, which caused the Product Manager to modify the initial concept to focus on this feature. The Content Designer created **[Personas](https://github.com/excellaco/open-cabinet/blob/master/documents/design/personas.md)** to represent different user types, and included one in the **[Short-Form Creative Brief](https://github.com/excellaco/open-cabinet/blob/master/documents/design/short_form_creative_brief.md)**, which was read aloud each morning in stand-up. These tools informed the design and features included in the **[Minimum Viable Product](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=label%3Amvp)** (MVP).
+The User Researcher interviewed potential users to understand their needs. This research unveiled that users’ primary goal was to determine medical interactions, which caused the Product Manager to modify the initial concept to focus on this feature. The Content Designer created **[Personas](https://github.com/excellaco/open-cabinet/blob/master/documents/design/personas.md)** to represent different user types, and included one in the **[Short-Form Creative Brief](https://github.com/excellaco/open-cabinet/blob/master/documents/design/short_form_creative_brief.md)**, which was read aloud each morning in stand-up. These tools informed the design and features included in the **[Minimum Viable Product](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=label%3Amvp)** (MVP).
 
 ###Application's Value
-The Business Analyst performed a **[Competitive Analysis](https://github.com/excellaco/open-cabinet/blob/master/documents/design/competitive_analysis.md)**, which revealed that many applications show medical interactions. However, there was a void in the market; the team decided they could differentiate themselves by designing and building an application that was simple, easy to use, and incorporated a pleasant user experience. A roadmap for future enhancements, indicated in the **[Product Tree](https://github.com/excellaco/open-cabinet/blob/master/documents/design/product_tree.md)**, will further distinguish OpenCabinet from the current marketplace.
+The Business Analyst performed a **[Competitive Analysis](https://github.com/excellaco/open-cabinet/blob/master/documents/design/competitive_analysis.md)**, which revealed that many applications show medical interactions. The team decided they could differentiate themselves by designing and building an application that was simple, easy to use, and incorporated a pleasant user experience. A roadmap for future enhancements, indicated in the **[Product Tree](https://github.com/excellaco/open-cabinet/blob/master/documents/design/product_tree.md)**, will further distinguish OpenCabinet from the current marketplace.
 
 
 ###Technologies
@@ -67,7 +67,7 @@ Against every pull request and push to the master branch, Travis automatically r
 * **SauceLabs** for multiple browser testing
 
 
-**Travis** was also tightly integrated with GitHub. Utilizing Travis, code reviewers assessed the status of pull request [tests](https://travis-ci.org/excellaco/open-cabinet) to ensure that along with a visual inspection of the code, all tests also passed. These tests and code reviews were incorporated into the team's **[Definition of Done](https://github.com/excellaco/open-cabinet/blob/master/documents/images/definition-of-done.jpg)** to demonstrate that functional code was being deployed to production and that it provided added verifiable value to the product.
+**Travis** was also tightly integrated with GitHub. Utilizing Travis, code reviewers assessed the status of pull request [tests](https://travis-ci.org/excellaco/open-cabinet) to ensure that along with a visual inspection of the code, all tests also passed. These tests and code reviews were incorporated into the team's **[Definition of Done](https://github.com/excellaco/open-cabinet/blob/master/documents/images/definition-of-done.jpg)** to demonstrate that functional code was being deployed to production and that it provided added value to the product.
 
  ![build-pipeline-1](https://github.com/excellaco/open-cabinet/blob/master/documents/images/build_pipeline_v3.png)
 
@@ -75,7 +75,7 @@ Against every pull request and push to the master branch, Travis automatically r
 The final integration points secured the application and brought visibility to the health of the application. **TLS certificates** were acquired and set up to ensure user security. **[Slack](https://github.com/excellaco/open-cabinet/blob/master/documents/images/slack-integrations.png)**, which served as the team’s collaboration forum, was configured to automatically notify the team of changes to the repository, and denoted key checkpoints in the continuous integration process.  The GitHub repository housed **Badges**, which  provided visibility to the code’s [test coverage](https://codeclimate.com/github/excellaco/open-cabinet/coverage), [quality](https://codeclimate.com/github/excellaco/open-cabinet/code), and [build status](https://travis-ci.org/excellaco/open-cabinet/builds). Monitoring tools, **New Relic**, **Log Entries**, **Google Analytics**, and **Air Brake**, captured and alerted key metrics and issues with the system.
 
 
-The Front-End Web Developer established a lightweight framework that supported OpenCabinet's design patterns and **[Style Guide](https://github.com/excellaco/open-cabinet/blob/master/documents/design/style_guide.md)**, and implemented tools that created structure, but were flexible to meet mobile-responsive design needs.
+The Front-End Web Developers established a lightweight framework that supported OpenCabinet's design patterns and **[Style Guide](https://github.com/excellaco/open-cabinet/blob/master/documents/design/style_guide.md)**, and implemented tools that created structure, but were flexible to meet mobile-responsive design needs.
 
 * For presentation, **Sass**, **Bourbon**, and **Neat** were used to lay the foundation
 * For interaction, **T3** was used as the JavaScript framework, and **Teaspoon/Mocha** was used for testing JavaScript code
@@ -105,7 +105,7 @@ During Sprints 1 and 2, the development team developed the foundation of the app
 ##Sprint 3 + 4  
 
 ###Design
-The team completed the MVP in Sprints 3 and 4, and began performing usability testing on a functioning application.  With the new interactions in place, the team discovered that users were confused by how medicine selection worked. The interaction visualizations were then re-evaluated and the team created alternative options to test with users through [feature toggle](https://opencabi.net/features).
+The team completed the MVP in Sprints 3 and 4, and began performing usability testing on a functioning application.  With the new interactions in place, the team discovered that users were confused by how medicine selection worked. The interaction visualizations were then re-evaluated and the team created alternative options to test with users through a [feature toggle](https://opencabi.net/features).
 
 ![review-process](https://github.com/excellaco/open-cabinet/blob/master/documents/images/design_process.png)
 
@@ -121,7 +121,7 @@ Following these human-centered design techniques ensured that:
 
 
 ###Development
-By using the **Definition of Done** created in Sprint 0, the team prioritized code quality by including [unit](https://github.com/excellaco/open-cabinet/tree/master/spec), [integration](https://github.com/excellaco/open-cabinet/tree/master/spec), and [acceptance tests](https://github.com/excellaco/open-cabinet/tree/master/features), and performing a code review before it was merged into master. These practices ensured that the application was stable for usability testing and allowed for constant refactoring and improvement of the code base without the fear of breaking core functionality. Even in a dynamic and fast-paced environment, the development team reacted to user feedback and implemented feature toggles, which allowed for various views of the data to be re-mixed to support further usability testing.
+By using the **Definition of Done** created in Sprint 0, the team prioritized code quality by including [unit](https://github.com/excellaco/open-cabinet/tree/master/spec), [integration](https://github.com/excellaco/open-cabinet/tree/master/spec), and [acceptance tests](https://github.com/excellaco/open-cabinet/tree/master/features), and performing a code review before it was merged into master. These practices ensured that the application was stable for usability testing and allowed for constant refactoring and improvement of the code base without the fear of breaking core functionality. Even in a dynamic and fast-paced environment, the development team reacted to user feedback and implemented feature toggles, which allowed for re-mixing various views of the data to support further usability testing.
 
 
 **`... and ended with "Ship It"`**
