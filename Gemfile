@@ -49,8 +49,6 @@ gem 'devise'
 
 # a/b testing
 gem 'flip', git: 'git://github.com/jasonblalock/flip.git'
-gem 'sauce'
-gem 'sauce_connect'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -84,6 +82,8 @@ group :acceptance, :travis do
 end
 
 group :acceptance, :test, :travis do
+  gem 'sauce'
+  gem 'sauce_connect'
   gem 'rspec-rails'
   gem 'activerecord-nulldb-adapter'
   gem 'simplecov', :require => false
