@@ -1,5 +1,4 @@
 require 'rails_helper'
-include AuthHelper
 
 RSpec.describe ApplicationController do
   controller do
@@ -8,10 +7,6 @@ RSpec.describe ApplicationController do
 
       render nothing: true
     end
-  end
-
-  before(:each) do
-    http_login
   end
 
   it 'clears the session cabinet_id' do

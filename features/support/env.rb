@@ -43,8 +43,6 @@ Capybara.default_wait_time = 60
 
 Before do
   Rails.cache.clear
-  page.driver.basic_authorize(Rails.configuration.basic_auth_user,
-                              Rails.configuration.basic_auth_pass)
 
   @cabinet_page ||= CabinetPage.new
   @login_page ||= LoginPage.new
