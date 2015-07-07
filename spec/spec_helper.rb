@@ -1,6 +1,5 @@
 require 'codeclimate-test-reporter'
 require 'simplecov'
-require_relative 'support/auth_helper'
 require_relative 'support/vcr_setup'
 SimpleCov.start 'rails'
 CodeClimate::TestReporter.start

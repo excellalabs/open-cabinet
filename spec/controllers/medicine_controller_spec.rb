@@ -1,9 +1,7 @@
 require 'rails_helper'
-include AuthHelper
 
 RSpec.describe MedicineController, type: :controller do
   before(:each) do
-    http_login
     allow_any_instance_of(Medicine).to receive(:init) { '' }
   end
 
