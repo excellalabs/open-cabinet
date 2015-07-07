@@ -4,11 +4,11 @@ class MedicineController < ApplicationController
 
   def autocomplete
     ary = []
-    #Rails.cache.fetch('autocomplete', expires_in: 6.hour) do
+    Rails.cache.fetch('autocomplete', expires_in: 6.hour) do
       SearchableMedicine.find_in_batches(batch_size: 5000) do |group|
         ary.push(*group)
       end
-    #end
+    end
     render json: ary.map(&:name)
   end
 
