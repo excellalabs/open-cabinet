@@ -1,4 +1,5 @@
 addons:
+  sauce_connect: true
   postgresql: '9.4'
 language: ruby
 cache: bundler
@@ -19,6 +20,8 @@ script:
 - bundle exec rake teaspoon
 - rake cucumber:non_exterior RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE
 - rake cucumber:exterior_integration RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE
+- 'if [[ "$TRAVIS_PULL_REQUEST" == "false" && "$TRAVIS_BRANCH" == "master" ]]; then export SAUCE_LABS=true; fi'
+- 'if [[ "$TRAVIS_PULL_REQUEST" == "false" && "$TRAVIS_BRANCH" == "master" ]]; then rake cucumber:sauce RAILS_ENV=travis secret_key_base=$SECRET_KEY_BASE; fi'
 deploy:
   provider: heroku
   run:

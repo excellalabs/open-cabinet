@@ -39,13 +39,13 @@ end
 
 And(/^I click the interactions blurb$/) do
   wait_for_ajax
-  page.find('#interactions-count-container').trigger('click')
+  sauce_click_wrapper(page.find('#interactions-count-container'))
 end
 
 And(/^I select the first interaction tile$/) do
   assert_selector('#no-data-loaded-container')
   assert_no_selector('#interaction-data-container')
-  @cabinet_page.interaction_tiles.first.trigger('click')
+  sauce_click_wrapper(@cabinet_page.interaction_tiles.first)
 end
 
 Then(/^the first tile becomes active$/) do

@@ -49,6 +49,8 @@ gem 'devise'
 
 # a/b testing
 gem 'flip', git: 'git://github.com/jasonblalock/flip.git'
+gem 'sauce'
+gem 'sauce_connect'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -78,11 +80,11 @@ group :acceptance, :travis do
   gem 'capybara-screenshot', '~> 1.0.4'
   gem 'poltergeist', '~> 1.5.1'
   gem 'launchy', '~> 2.4.2'
+  gem 'sauce-cucumber', :require => false
 end
 
 group :acceptance, :test, :travis do
   gem 'rspec-rails'
-  gem 'webmock'
   gem 'activerecord-nulldb-adapter'
   gem 'simplecov', :require => false
   gem "codeclimate-test-reporter", group: :test, require: nil

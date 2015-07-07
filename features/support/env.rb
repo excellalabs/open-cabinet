@@ -13,7 +13,6 @@ require 'rack_session_access/capybara'
 
 ActionController::Base.allow_rescue = false
 ActionController::Base.perform_caching = false
-WebMock.allow_net_connect!
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
 begin
@@ -32,12 +31,12 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new app, options
 end
 
-Capybara::Screenshot.prune_strategy = { keep: 30 }
 Capybara.javascript_driver = :poltergeist
 Capybara.default_driver = :poltergeist
 
-Capybara.raise_server_errors = false
+Capybara::Screenshot.prune_strategy = { keep: 30 }
 
+Capybara.raise_server_errors = false
 Capybara.default_selector = :css
 Capybara.default_wait_time = 60
 

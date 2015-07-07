@@ -11,16 +11,12 @@ Then(/^I should see the medication in the list$/) do
 end
 
 When(/^I select that medication$/) do
-  @cabinet_page.select_autocomplete_text(@autocomplete_text)
+  @cabinet_page.select_autocomplete_text(@cabinet_page.autocomplete_text)
   @cabinet_page.press_add_button
 end
 
 Then(/^I should see the medication in my cabinet$/) do
   assert_selector '.pill-name', text: @medication
-end
-
-When(/^I add a medicine to my cabinet$/) do
-  @cabinet_page.add_medicine(@medication)
 end
 
 Then(/^I see the medicine's description$/) do

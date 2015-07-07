@@ -8,14 +8,14 @@ class LoginPage
   def sign_in(user)
     fill_in('user_email', with: user.email)
     fill_in('user_password', with: user.password)
-    find('#sign_in').trigger('click')
+    sauce_click_wrapper(find('#sign_in'))
   end
 
   def sign_out
-    page.find('#sign-out-link').trigger('click')
+    sauce_click_wrapper(page.find('#sign-out-link'))
   end
 
   def continue_as_guest
-    page.find('#continue-as-guest-button').trigger('click')
+    sauce_click_wrapper(page.find('#continue-as-guest-button'))
   end
 end

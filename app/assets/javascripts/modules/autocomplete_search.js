@@ -54,7 +54,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
     });
 
     if (array.length) {
-      var medicine = array[0].innerText;
+      var medicine = $(array[0]).text();
     } else {
       var medicine = $(".tt-suggestion:first-child").text();
     }
@@ -62,7 +62,7 @@ Box.Application.addModule('autocomplete_search', function(context) {
     if(medicine.length == 0) {
       medicine = $('#search_input').val();
     }
-    
+
     if(!medicine) return;
     if(!value_in_autocomplete(medicine)) {
       $('#error-message-container').show().html("<div class='error-message'>Could not find results for '" + medicine + "', please try again.</div>");
