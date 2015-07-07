@@ -20,6 +20,8 @@
 //= require turbolinks
 //= require t3-testing
 //= require typeahead.min
+//= require vendor/tipso
+//= require vendor/owl.carousel.min
 //
 // Deferring execution
 // If you're using CommonJS, RequireJS or some other asynchronous library you can defer execution. Call

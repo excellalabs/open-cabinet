@@ -98,6 +98,7 @@ Box.Application.addModule('navigation', function(context) {
     init: function() {
       ajax_service = context.getService('ajax-service');
       createOwlNavigation();
+      readMoreReadLessVisibility();
     },
     onclick: function (event, element, elementType) {
       var target_elm = $(event.target);
