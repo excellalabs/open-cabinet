@@ -29,7 +29,7 @@ The team consisted of the following:
 * Business Analyst
 
 
-The self-organized team not only fulfilled their individual roles in the design and development process, but also helped where needed to deliver a quality product. The Product Manager led the effort with a focus on the value delivered by the final product, enabling the team to respond quickly to changing priorities and address feedback from usability testing. Utilizing **[GitHub issues](https://github.com/excellaco/open-cabinet/issues)**, the team created and groomed a [backlog](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=label%3A%22user+story%22+), discussed [design decisions](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=+label%3Adesign+), and tracked [bugs](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=+label%3Abug+).
+The self-organized team not only fulfilled their individual roles in the design and development process, but also helped where needed to deliver a quality product. The Product Manager led the effort with a focus on the value delivered by the final product, enabling the team to respond quickly to changing priorities and address feedback from **[usability testing](https://github.com/excellaco/open-cabinet/tree/master/documents/design/usability_testing)**. Utilizing **[GitHub issues](https://github.com/excellaco/open-cabinet/issues)**, the team created and groomed a [backlog](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=label%3A%22user+story%22+), discussed [design decisions](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=+label%3Adesign+), and tracked [bugs](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=+label%3Abug+).
 
 ---
 ##Sprint 0
@@ -54,7 +54,7 @@ The Technical Architect, Front-End, and Back-End Developers collaborated, resear
 
 ###Development Environment
 
-With the core technology agreed upon, the DevOps Engineer set up a development environment leveraging **Docker**, **Vagrant** and **Chef**. By virtualizing the operating system and providing a [living set of instructions](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/installation.md), team members quickly got their environments up in a consistent manner with a prescribed set of required infrastructure. Combined with **GitHub’s version control**, the team set the base for intuitive versioning and consistent baselines for development. The team built a continuous integration and delivery pipeline to deploy a skeleton Rails application, which was deployed onto the PaaS provider, **Heroku**, to allow for scalability. Through the use of **Travis**, the chosen continuous integration server, code was [continuously deployed](https://github.com/excellaco/open-cabinet/blob/master/documents/images/continuous-deployment.png) after passing a series of quality assurance checks.
+With the core technology agreed upon, the DevOps Engineer set up a development environment leveraging **Docker**, **Vagrant** and **Chef**. By virtualizing the operating system and providing a **[living set of installation instructions](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/installation.md)**, team members quickly got their environments up in a consistent manner with a prescribed set of required infrastructure. Combined with **GitHub’s version control**, the team set the base for intuitive versioning and consistent baselines for development. The team built a continuous integration and delivery pipeline to deploy a skeleton Rails application, which was deployed onto the PaaS provider, **Heroku**, to allow for scalability. Through the use of **Travis**, the chosen continuous integration server, code was [continuously deployed](https://github.com/excellaco/open-cabinet/blob/master/documents/images/continuous-deployment.png) after passing a series of quality assurance checks.
 
 Against every pull request and push to the master branch, Travis automatically ran:
 
@@ -67,7 +67,7 @@ Against every pull request and push to the master branch, Travis automatically r
 * **SauceLabs** for multiple browser testing
 
 
-**Travis** was also tightly integrated with GitHub. Utilizing Travis, code reviewers assessed the status of pull request [tests](https://github.com/excellaco/open-cabinet/blob/master/documents/images/automated-testing.png) to ensure that along with a visual inspection of the code, all tests also passed. These practices instilled confidence that functional code was deployed to production.
+**Travis** was also tightly integrated with GitHub. Utilizing Travis, code reviewers assessed the status of pull request [tests](https://github.com/excellaco/open-cabinet/blob/master/documents/images/automated-testing.png) to ensure that along with a visual inspection of the code, all tests also passed. These tests and code reviews were incorporated into the team's **[Definition of Done](https://github.com/excellaco/open-cabinet/blob/master/documents/images/definition-of-done.jpg)** to demonstrate that functional code was being deployed to production and that it provided added verifiable value to the product.
 
  ![build-pipeline-1](https://github.com/excellaco/open-cabinet/blob/master/documents/images/build_pipeline_v3.png)
 
@@ -89,7 +89,7 @@ The Front-End Web Developer established a lightweight framework that supported O
 Sprint 1 resulted in two artifacts created by the Visual Designer: 
 
 
-* A **[Style Guide](https://github.com/excellaco/open-cabinet/blob/master/documents/design/style_guide.md)** ensuring visual consistency by providing guidance on how to use typography, color, and address visual elements.   
+* A **Style Guide** ensuring visual consistency by providing guidance on how to use typography, color, and address visual elements.   
 * Initial **[prototype mock-ups](https://github.com/excellaco/open-cabinet/blob/master/documents/design/design_concept_1.md)** for two different layouts. During usability testing, [users](https://github.com/excellaco/open-cabinet/blob/master/documents/design/round_1_testing.md) unanimously preferred the “cabinet” option. This design is represented in the desktop and mobile versions of the final prototype.
 
 
@@ -121,7 +121,7 @@ Following these human-centered design techniques ensured that:
 
 
 ###Development
-By using the [definition of done](https://github.com/excellaco/open-cabinet/blob/master/documents/images/definition-of-done.jpg) created in Sprint 0, the team prioritized code quality by including [unit](https://github.com/excellaco/open-cabinet/tree/master/spec), [integration](https://github.com/excellaco/open-cabinet/tree/master/spec), and [acceptance tests](https://github.com/excellaco/open-cabinet/tree/master/features), and performing a code review before it was merged into master. These practices ensured that the application was stable for usability testing and allowed for constant refactoring and improvement of the code base without the fear of breaking core functionality. Even in a dynamic and fast-paced environment, the development team reacted to user feedback and implemented feature toggles, which allowed for various views of the data to be re-mixed to support further usability testing.
+By using the **Definition of Done** created in Sprint 0, the team prioritized code quality by including [unit](https://github.com/excellaco/open-cabinet/tree/master/spec), [integration](https://github.com/excellaco/open-cabinet/tree/master/spec), and [acceptance tests](https://github.com/excellaco/open-cabinet/tree/master/features), and performing a code review before it was merged into master. These practices ensured that the application was stable for usability testing and allowed for constant refactoring and improvement of the code base without the fear of breaking core functionality. Even in a dynamic and fast-paced environment, the development team reacted to user feedback and implemented feature toggles, which allowed for various views of the data to be re-mixed to support further usability testing.
 
 
 **`... and ended with "Ship It"`**
