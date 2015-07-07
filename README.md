@@ -9,6 +9,9 @@ https://opencabi.net
 
 ![open-cabinet logo](https://github.com/excellaco/open-cabinet/blob/master/app/assets/images/open-cabinet.png)
 
+##Concept
+OpenCabinet is a tool for the public to find interactions between the medicine that they and their family are taking using data directly from the FDA.
+
 ##Approach 
 **Excella Consulting** followed an agile development framework to build **OpenCabinet** in an iterative, incremental manner.  The cross-functional team, comprised of analysts, designers, and developers, began with Sprint 0, followed by two-day sprints. The team met for a daily stand-up and each sprint ended with a quick review and retrospective.  
 
