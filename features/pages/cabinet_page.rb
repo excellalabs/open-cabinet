@@ -6,6 +6,7 @@ class CabinetPage
   end
 
   def type_search_characters(characters)
+    find('#search_input')
     fill_in('search_input', with: characters)
     sauce_focus_wrapper('#search_input')
   end

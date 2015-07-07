@@ -30,13 +30,6 @@ Box.Application.addModule('autocomplete_search', function(context) {
     });
   }
 
-  function reset_typeahead() {
-    $('#search_input').blur();
-    $component.find('#search_input').val("");
-    $("#add_medicine").show();
-    $("#add_medicine_wait").hide();
-  }
-
   function reset_typeahead_animation(){
     $('#search_input').blur();
     $component.find('#search_input').val("");
@@ -49,21 +42,26 @@ Box.Application.addModule('autocomplete_search', function(context) {
   }
 
   function submit_typeahead(){
+    var medicine;
+
     var array = $.grep($(".tt-suggestion"), function(suggestion) {
       return $(suggestion).text() == $(".tt-input").val();
     });
 
     if (array.length) {
-      var medicine = $(array[0]).text();
+      medicine = $(array[0]).text();
     } else {
-      var medicine = $(".tt-suggestion:first-child").text();
+      medicine = $(".tt-suggestion:first-child").text();
     }
 
     if(medicine.length == 0) {
       medicine = $('#search_input').val();
     }
 
-    if(!medicine) return;
+    if(!medicine) {
+      return;
+    }
+
     if(!value_in_autocomplete(medicine)) {
       $('#error-message-container').show().html("<div class='error-message'>Could not find results for '" + medicine + "', please try again.</div>");
       return;
@@ -92,13 +90,12 @@ Box.Application.addModule('autocomplete_search', function(context) {
       cabinet_service = context.getService('cabinet-service');
     },
 
-    onmessage: function(name){
+    onmessage: function() {
       $("#add_medicine").show();
       $("#add_medicine_wait").hide();
     },
 
-    onkeydown: function(event, element, elementType){
-
+    onkeydown: function(event, element, elementType) {
       if (event.keyCode == 13) {
         submit_typeahead();
       }
