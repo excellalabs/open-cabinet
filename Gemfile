@@ -48,7 +48,7 @@ gem 'secure_headers'
 gem 'devise'
 
 # a/b testing
-gem 'flip', git: 'git://github.com/jasonblalock/flip.git'
+gem 'flip', git: 'https://github.com/pda/flip/'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
