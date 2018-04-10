@@ -4,7 +4,7 @@ pipeline {
       label 'ruby'
       containerTemplate {
         name 'ruby'
-        image 'ruby'
+        image 'ruby:2.2.9'
         ttyEnabled true
         command 'cat'
       }
