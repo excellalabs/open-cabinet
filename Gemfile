@@ -64,6 +64,7 @@ group :development, :test do
   gem 'teaspoon-mocha'
   gem 'chai-jquery-rails'
   gem 'brakeman'
+  gem 'therubyracer'
 end
 
 group :development do

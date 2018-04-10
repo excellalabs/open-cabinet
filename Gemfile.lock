@@ -182,6 +182,7 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    libv8 (3.16.14.19)
     listen (3.0.1)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -275,6 +276,7 @@ GEM
     rb-fsevent (0.9.5)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    ref (2.0.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rest-client (1.8.0)
@@ -382,6 +384,9 @@ GEM
     teaspoon-mocha (2.2.4)
       teaspoon (>= 1.0.0)
     terminal-table (1.5.2)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
@@ -469,6 +474,7 @@ DEPENDENCIES
   simplecov
   spring
   teaspoon-mocha
+  therubyracer
   travis
   turbolinks
   uglifier (>= 1.3.0)
