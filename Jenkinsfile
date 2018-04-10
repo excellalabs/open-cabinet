@@ -17,7 +17,7 @@ volumes: [
       container('ruby') {
         checkout scm
         sh """
-        bundle install
+        #bundle install
         #RAILS_ENV=test bundle exec rake test
         """
       }
