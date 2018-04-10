@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/jasonblalock/flip.git
-  revision: 246ae9c386cc2b6452ee71f1f3cb5fb8cc358505
-  specs:
-    flip (2.0.0)
-      activesupport (>= 3.0, < 5)
-      i18n
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -139,6 +131,9 @@ GEM
       faraday (>= 0.7.4, < 0.10)
     fastercsv (1.5.5)
     ffi (1.9.10)
+    flip (1.1.0)
+      activesupport (>= 3.0, < 5.1)
+      i18n
     formatador (0.2.5)
     gh (0.14.0)
       addressable
@@ -447,7 +442,7 @@ DEPENDENCIES
   database_cleaner (~> 1.3.0)
   devise
   faraday
-  flip!
+  flip
   guard
   guard-rspec (~> 4.5.2)
   guard-rubocop (~> 1.1.0)
@@ -480,5 +475,8 @@ DEPENDENCIES
   vcr
   web-console (~> 2.0)
 
+RUBY VERSION
+   ruby 2.2.9p480
+
 BUNDLED WITH
-   1.10.4
+   1.16.1
