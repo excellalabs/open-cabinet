@@ -10,6 +10,7 @@ volumes: [
   node('open-cabinet') {
     stage('Test') {
       container('ruby') {
+        checkout scm
         sh """
         bundle install
         bundle exec rake test
@@ -18,6 +19,7 @@ volumes: [
     }
     stage('Build') {
       container('docker') {
+        checkout scm
         sh '''
         docker build .
         #$(aws ecr get-login --no-include-email --region us-east-1)
