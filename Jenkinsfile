@@ -9,12 +9,12 @@ pipeline {
         command 'cat'
       }
     }
-    stages {
-      stage "Testing" {
-        steps {
-          sh "bundle install"
-          sh "bundle exec rake test"
-        }
+  }
+  stages {
+    stage "Testing" {
+      steps {
+        sh "bundle install"
+        sh "bundle exec rake test"
       }
     }
   }
