@@ -21,10 +21,9 @@ volumes: [
       container('docker') {
         checkout scm
         sh '''
-        docker build .
-        #$(aws ecr get-login --no-include-email --region us-east-1)
-        #docker build -t open-cabinet .
-        #docker tag open-cabinet:latest 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest)
+        $(aws ecr get-login --no-include-email --region us-east-1)
+        docker build -t open-cabinet .
+        docker tag open-cabinet:latest 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest)
         '''
       }
     }
