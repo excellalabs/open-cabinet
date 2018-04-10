@@ -19,7 +19,6 @@
 //= require vendor/jquery.sticky-kit.min
 //= require t3.min
 //= require typeahead.min
-//= require flip
 //= require open_cabinet
 //= require turbolinks
 //= require_tree .

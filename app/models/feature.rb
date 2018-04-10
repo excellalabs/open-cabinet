@@ -1,7 +1,7 @@
 class Feature < ActiveRecord::Base
   extend Flip::Declarable
 
-  strategy Flip::SessionStrategy
+  strategy Flip::CookieStrategy
   # strategy Flip::DatabaseStrategy
   # strategy Flip::DeclarationStrategy
   default false
