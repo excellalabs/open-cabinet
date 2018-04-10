@@ -64,7 +64,6 @@ group :development, :test do
   gem 'teaspoon-mocha'
   gem 'chai-jquery-rails'
   gem 'brakeman'
-  gem 'therubyracer'
 end
 
 group :development do
@@ -73,11 +72,11 @@ group :development do
   gem 'guard-rspec', '~> 4.5.2'
 end
 
-group :acceptance, :travis do
+group :acceptance, :test, :travis do
   gem 'cucumber-rails', '~> 1.4.1', :require => false
   gem 'database_cleaner', '~> 1.3.0'
   gem 'capybara-screenshot', '~> 1.0.4'
-  gem 'poltergeist', '~> 1.5.1'
+  gem 'poltergeist', '~> 1.17.0'
   gem 'launchy', '~> 2.4.2'
   gem 'sauce-cucumber', :require => false
 end
