@@ -6,25 +6,25 @@ podTemplate(label: 'open-cabinet', containers: [
 ],
 volumes: [
   hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
-])
-
-node('open-cabinet') {
-  stage('Test') {
-    container('ruby') {
-      sh """
-      bundle install
-      bundle exec rake test
-      """
+]) {
+  node('open-cabinet') {
+    stage('Test') {
+      container('ruby') {
+        sh """
+        bundle install
+        bundle exec rake test
+        """
+      }
     }
-  }
-  stage('Build') {
-    container('docker') {
-      sh '''
-      docker build .
-      #$(aws ecr get-login --no-include-email --region us-east-1)
-      #docker build -t open-cabinet .
-      #docker tag open-cabinet:latest 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest)
-      '''
+    stage('Build') {
+      container('docker') {
+        sh '''
+        docker build .
+        #$(aws ecr get-login --no-include-email --region us-east-1)
+        #docker build -t open-cabinet .
+        #docker tag open-cabinet:latest 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest)
+        '''
+      }
     }
   }
 }
