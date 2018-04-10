@@ -25,15 +25,18 @@ volumes: [
     stage('Build') {
       def ecr_login = ""
       container('aws') {
-        ecr_login = sh "aws ecr get-login --no-include-email --region us-east-1"
+        sh "aws ecr get-login --no-include-email --region us-east-1 > login.txt"
+        ecr_login = readFile('login.txt')
       }
       container('docker') {
         checkout scm
-        sh """
+        withEnv(["ecr_login=ecr_login"])  {
+          sh '''
         ${ecr_login}
         docker build -t open-cabinet .
         docker tag open-cabinet:latest 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest
-        """
+        '''
+      }
       }
     }
   }
