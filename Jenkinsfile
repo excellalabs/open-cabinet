@@ -30,10 +30,10 @@ volumes: [
       }
       container('docker') {
         checkout scm
-        withEnv(["ecr_login=ecr_login"])  {
+        withEnv(["ecr_login=${ecr_login}"])  {
           sh '''
           env
-        \${ecr_login}
+        ${ecr_login}
         docker build -t open-cabinet .
         docker tag open-cabinet:latest 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest
         '''
