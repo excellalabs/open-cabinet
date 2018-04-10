@@ -77,6 +77,7 @@ group :acceptance, :test, :travis do
   gem 'database_cleaner', '~> 1.3.0'
   gem 'capybara-screenshot', '~> 1.0.4'
   gem 'poltergeist', '~> 1.17.0'
+  gem 'phantomjs', '~> 2.1.1', :require => 'phantomjs/poltergeist'
   gem 'launchy', '~> 2.4.2'
   gem 'sauce-cucumber', :require => false
 end
