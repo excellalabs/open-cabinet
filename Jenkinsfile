@@ -11,7 +11,7 @@ pipeline {
     }
   }
   stages {
-    stage "Testing" {
+    stage("Testing") {
       steps {
         sh "bundle install"
         sh "bundle exec rake test"
