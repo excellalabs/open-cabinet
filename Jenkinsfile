@@ -13,7 +13,7 @@ volumes: [
         checkout scm
         sh """
         bundle install
-        bundle exec rake test
+        #RAILS_ENV=test bundle exec rake test
         """
       }
     }
