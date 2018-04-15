@@ -10,3 +10,6 @@ RUN bundle install
 
 ADD . /myapp
 WORKDIR /myapp
+
+# Eventually when issues are resolved, this should be here
+# RUN bundle exec rake assets:precompile

@@ -1,15 +1,22 @@
 db:
-  image: postgres
+  image: postgres:9.6-alpine
   ports:
     - "5432"
+  environment:
+    - POSTGRES_USER=someuser
+    - POSTGRES_PASSWORD=somepassword
+    - POSTGRES_DB=open_cabinet_production
 web:
   build: .
-  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  command: bundle exec rails s -p 8080 -b '0.0.0.0'
   volumes:
     - .:/myapp
   ports:
-    - "3000:3000"
+    - "8080:8080"
   links:
     - db
   environment:
-    - DOCKER=true
+    - OC_DATABASE_URL=db
+    - OC_DATABASE_PORT=5432
+    - OC_DATABASE_USER=someuser
+    - OC_DATABASE_PASSWORD=somepassword

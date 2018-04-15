@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: open-cabinet
+  labels:
+    app: open-cabinet
+  # annotations:
+  #   kubernetes.io/ingress.class: "nginx"
+  #   ingress.kubernetes.io/ssl-redirect: "false"
+  #   ingress.kubernetes.io/rewrite-target: /
+  #   ingress.kubernetes.io/force-ssl-redirect: "false"
+  #   ingress.kubernetes.io/ssl-passthrough: "false"
+  #   kubernetes.io/ingress.allow-http: "true"
+spec:
+  rules:
+    - http:
+        paths:
+        - path: /
+          backend:
+            serviceName: open-cabinet
+            servicePort: 8080

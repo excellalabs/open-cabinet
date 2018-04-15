@@ -1,0 +1,43 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: open-cabinet-setup
+  labels: 
+    app: open-cabinet
+spec:
+  template:
+    metadata:
+      name: open-cabinet-setup
+      labels: 
+        app: open-cabinet
+    spec:
+      containers:
+      - name: rails-setup
+        image: quay.io/wagoodman/open-cabinet:latest
+        command: ["/bin/bash"]
+        args: ["-c", "bundle exec rake db:create db:migrate"]
+        env:
+        - name: OC_DATABASE_NAME
+          value: "open_cabinet_production"
+        - name: OC_DATABASE_PORT
+          value: "5432"
+        - name: OC_DATABASE_URL
+          value: "postgres"
+        - name: OC_DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: "db-username"
+              key: "username"
+        - name: OC_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "db-password"
+              key: "password"
+        - name: RAILS_ENV
+          value: "production"
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: "secret-key-base"
+              key: "secret-key-base"
+      restartPolicy: Never

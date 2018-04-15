@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels: 
+    app: open-cabinet
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: open-cabinet
+    tier: database

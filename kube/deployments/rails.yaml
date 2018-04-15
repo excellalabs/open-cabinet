@@ -1,0 +1,61 @@
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: open-cabinet
+  labels:
+    app: open-cabinet
+spec:
+  replicas: 1
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1  
+  selector:
+    matchLabels: 
+      app: open-cabinet
+      tier: app
+  template:
+    metadata:
+      name: rails
+      labels:
+        app: open-cabinet
+        tier: app
+    spec:
+      containers:
+      - name: rails
+        image: quay.io/wagoodman/open-cabinet:latest
+        command: ["/bin/bash"]
+        args: ["-c", "bundle exec rails s -p 8080 -b 0.0.0.0"]
+        env:
+        - name: RAILS_LOG_TO_STDOUT
+          value: "true"
+        - name: RAILS_SERVE_STATIC_FILES
+          value: "true"
+        - name: OC_DATABASE_NAME
+          value: "open_cabinet_production"
+        - name: OC_DATABASE_PORT
+          value: "5432"
+        - name: OC_DATABASE_URL
+          value: "postgres"
+        - name: OC_DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: "db-username"
+              key: "username"
+        - name: OC_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "db-password"
+              key: "password"
+        - name: RAILS_ENV
+          value: "production"
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: "secret-key-base"
+              key: "secret-key-base"
+        ports:
+          - containerPort: 8080
