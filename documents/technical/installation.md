@@ -1,4 +1,4 @@
-### Local Environment Setup
+# Local Environment Setup
 
 ## Prerequisites
 OpenCabinet was developed on Ubuntu 14.04 using Virtualbox, an operating system virtualization tool which allows you to install a guest operating system on your workstation, and Vagrant, a wrapper for Virtualbox.

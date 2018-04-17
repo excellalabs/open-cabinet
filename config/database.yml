@@ -22,17 +22,12 @@ default: &default
   pool: 5
   username: <%= Rails.application.secrets[:DATABASE_USERNAME] %>
   password: <%= Rails.application.secrets[:DATABASE_PASSWORD] %>
-  host: <%= Rails.application.secrets[:DATABASE_IP] %>
+  host: <%= Rails.application.secrets[:DATABASE_URL] %>
   port: 5432
 
 development:
   <<: *default
   database: open_cabinet_dev
-  <% if ENV['DOCKER'] == 'true' %>
-  username: postgres
-  password:
-  host: db
-  <% end %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -67,11 +62,6 @@ development:
 test: &test
   <<: *default
   database: open_cabinet_test
-  <% if ENV['DOCKER'] == 'true' %>
-  username: postgres
-  password:
-  host: db
-  <% end %>
 
 travis:
   adapter: postgresql
@@ -81,11 +71,6 @@ travis:
 acceptance:
   <<: *default
   database: open_cabinet_acceptance
-  <% if ENV['DOCKER'] == 'true' %>
-  username: postgres
-  password:
-  host: db
-  <% end %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -108,9 +93,8 @@ acceptance:
 #
 production:
   <<: *default
-  database: open_cabinet_production
-  username: open-cabinet
-  password: <%= ENV['open_cabinet_DATABASE_PASSWORD'] %>
+  database: <%= ENV["OC_DATABASE_NAME"] %>
+  port: <%= ENV["OC_DATABASE_PORT"] %>
 
 cucumber:
   <<: *test

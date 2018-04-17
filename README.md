@@ -9,10 +9,10 @@ https://opencabi.net
 
 ![open-cabinet logo](https://github.com/excellaco/open-cabinet/blob/master/app/assets/images/open-cabinet.png)
 
-##Concept
+## Concept
 OpenCabinet is a tool for the public to find interactions between the medicine that they and their family are taking using data directly from the FDA.
 
-##Approach 
+## Approach 
 
 **Excella Consulting** followed an agile development framework to build **OpenCabinet** in an iterative, incremental manner.  The cross-functional team, comprised of analysts, designers, and developers, began with Sprint 0, followed by two-day sprints. The team met for a daily stand-up and ended with a quick review and retrospective.  
 
@@ -32,7 +32,7 @@ The team consisted of the following:
 The self-organized team not only fulfilled their individual roles in the design and development process, but also helped where needed to deliver a quality product. The Product Manager led the effort with a focus on the value delivered by the final product, enabling the team to respond quickly to changing priorities and address feedback from **[usability testing](https://github.com/excellaco/open-cabinet/tree/master/documents/design/usability_testing)**. Utilizing **[GitHub issues](https://github.com/excellaco/open-cabinet/issues)**, the team created and groomed a [backlog](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=label%3A%22user+story%22+), discussed [design decisions](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=+label%3Adesign+), and tracked [bugs](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=+label%3Abug+).
 
 ---
-##Sprint 0
+## Sprint 0
 First, the team used an internal Slack channel to **[crowdsource](https://github.com/excellaco/open-cabinet/blob/master/documents/images/crowdsourcing.png)** ideas for the application using [OpenFDA's Label API](https://open.fda.gov/drug/label/). Then, the team reviewed the suggestions and discussed the feasibility of delivering a product in the given timeframe. Weighing both the design and development perspectives, the team converged on "[my medicine cabinet](https://github.com/excellaco/open-cabinet/blob/master/documents/design/brainstorming.md)" to allow customers to view all of their family's medications in one place and understand the risks and side effects.
 
 During Sprint 0, the team accomplished four objectives:
@@ -42,17 +42,21 @@ During Sprint 0, the team accomplished four objectives:
 * Decided what **technologies** to use
 * Established the **development environment**
 
-###Needs and Reactions
+### Needs and Reactions
 The User Researcher interviewed potential users to understand their needs. This research unveiled that users’ primary goal was to determine medical interactions, which caused the Product Manager to modify the initial concept to focus on this feature. The Content Designer created **[Personas](https://github.com/excellaco/open-cabinet/blob/master/documents/design/personas.md)** to represent different user types, and included one in the **[Short-Form Creative Brief](https://github.com/excellaco/open-cabinet/blob/master/documents/design/short_form_creative_brief.md)**, which was read aloud each morning in stand-up. These tools informed the design and features included in the **[Minimum Viable Product](https://github.com/excellaco/open-cabinet/issues?utf8=%E2%9C%93&q=label%3Amvp)** (MVP).
 
-###Application's Value
+### Application's Value
 The Business Analyst performed a **[Competitive Analysis](https://github.com/excellaco/open-cabinet/blob/master/documents/design/competitive_analysis.md)**, which revealed that many applications show medical interactions. The team decided they could differentiate themselves by designing and building an application that was simple, easy to use, and incorporated a pleasant user experience. A roadmap for future enhancements, indicated in the **[Product Tree](https://github.com/excellaco/open-cabinet/blob/master/documents/design/product_tree.md)**, will further distinguish OpenCabinet from the current marketplace.
 
 
-###Technologies
+### Technologies
 The Technical Architect, Front-End, and Back-End Developers collaborated, researched, and evaluated tools to determine the best technologies to develop the prototype. With a focus on open source, rapid prototyping, and code quality, the team chose **Ruby on Rails** as the application framework. 
 
-###Development Environment
+### Production
+
+See [kubernetes installation instructions](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/kubernetes.md) to learn more about how to deploy Open Cabinet to a kubernetes cluster.
+
+### Development Environment
 
 With the core technology agreed upon, the DevOps Engineer set up a development environment leveraging **Docker**, **Vagrant** and **Chef**. By virtualizing the operating system and providing a **[living set of installation instructions](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/installation.md)**, team members quickly got their environments up in a consistent manner with a prescribed set of required infrastructure. Combined with **GitHub’s version control**, the team set the base for intuitive versioning and consistent baselines for development. The team built a continuous integration and delivery pipeline to deploy a skeleton Rails application, which was deployed onto the PaaS provider, **Heroku**, to allow for scalability. Through the use of **Travis**, the chosen continuous integration server, code was [continuously deployed](https://travis-ci.org/excellaco/open-cabinet) after passing a series of quality assurance checks.
 
@@ -83,9 +87,9 @@ The Front-End Web Developers established a lightweight framework that supported 
 * For usability testing, **Flip** implemented feature toggling to support A/B testing
 
 ---
-##Sprint 1 + 2
+## Sprint 1 + 2
 
-###Design
+### Design
 Sprint 1 resulted in two artifacts created by the Visual Designer: 
 
 
@@ -96,15 +100,15 @@ Sprint 1 resulted in two artifacts created by the Visual Designer:
 During Sprint 2, user feedback was incorporated into a [second version of mock-ups](https://github.com/excellaco/open-cabinet/blob/master/documents/design/design_concept_2.md). The Usability Tester performed additional usability tests, which revealed that certain key elements (e.g. navigation and search) were [not well received](https://github.com/excellaco/open-cabinet/blob/master/documents/design/round_2_testing.md). The team created issues in GitHub addressing these pain points. The iterative development approach allowed developers to easily make changes to the application, even when subsequent rounds of usability testing demanded additional design changes.
 
 
-###Development
+### Development
 During Sprints 1 and 2, the development team developed the foundation of the application. Following a strategy of short-lived branches and continuous integration of small features into the master branch, the team began initial implementation of the API integrations. Caching was implemeted in order to keep API requests performant and limit requests. This set the framework to get features out quickly for usability testing when the designs were complete, which ultimately allowed for constant feedback and improvements of the product.
 
 
 ---
 
-##Sprint 3 + 4  
+## Sprint 3 + 4  
 
-###Design
+### Design
 The team completed the MVP in Sprints 3 and 4, and began performing usability testing on a functioning application.  With the new interactions in place, the team discovered that users were confused by how medicine selection worked. The interaction visualizations were then re-evaluated and the team created alternative options to test with users through a [feature toggle](https://opencabi.net/features).
 
 ![review-process](https://github.com/excellaco/open-cabinet/blob/master/documents/images/design_process.png)
@@ -120,7 +124,7 @@ Following these human-centered design techniques ensured that:
 
 
 
-###Development
+### Development
 By using the **Definition of Done** created in Sprint 0, the team prioritized code quality by including [unit](https://github.com/excellaco/open-cabinet/tree/master/spec), [integration](https://github.com/excellaco/open-cabinet/tree/master/spec), and [acceptance tests](https://github.com/excellaco/open-cabinet/tree/master/features), and performing a code review before it was merged into master. These practices ensured that the application was stable for usability testing and allowed for constant refactoring and improvement of the code base without the fear of breaking core functionality. Even in a dynamic and fast-paced environment, the development team reacted to user feedback and implemented feature toggles, which allowed for re-mixing various views of the data to support further usability testing.
 
 
@@ -128,7 +132,7 @@ By using the **Definition of Done** created in Sprint 0, the team prioritized co
 
 
 ---
-######The full open source technology stack can be seen [here](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md).
+###### The full open source technology stack can be seen [here](https://github.com/excellaco/open-cabinet/blob/master/documents/technical/technology_stack.md).
 
 
 

@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: open-cabinet
+  labels:
+    app: open-cabinet
+spec:
+  ports:
+    - port: 8080
+  # type: NodePort
+  # ports:
+  # - port: 8080
+  #   targetPort: 8080
+  #   protocol: TCP
+  #   nodePort: 31111
+  selector:
+    app: open-cabinet
+    tier: app
