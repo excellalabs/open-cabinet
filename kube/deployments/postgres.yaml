@@ -43,5 +43,9 @@ spec:
         ports:
         - containerPort: 5432
         volumeMounts:
-        - mountPath: "/var/lib/postgresql/data"
+        # Note: initdb requires an empty dir, which means that the mount
+        # path must be the parent dir of the pgdata dir. This is because
+        # the root of the PV could contain the lost+found dir (which typically
+        # resides at the root of the mount)
+        - mountPath: "/var/lib/postgresql/"
           name: postgres-pv
