@@ -11,5 +11,4 @@ RUN bundle install
 ADD . /myapp
 WORKDIR /myapp
 
-# Eventually when issues are resolved, this should be here
-bundle exec rake assets:precompile
+RUN bundle exec rake assets:precompile RAILS_ENV=production SECRET_KEY_BASE=makeraketasksrun
