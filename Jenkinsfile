@@ -34,7 +34,7 @@ volumes: [
           sh '''
         ${ecr_login}
         docker build -t open-cabinet .
-        docker tag open-cabinet:${BUILD_NUMBER} 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:${BUILD_NUMBER}
+        docker tag open-cabinet 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:${BUILD_NUMBER}
         docker push 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:${BUILD_NUMBER}
         '''
         }
