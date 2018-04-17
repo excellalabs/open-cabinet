@@ -37,7 +37,16 @@ volumes: [
         docker tag open-cabinet:latest 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest
         docker push 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest
         '''
+        }
       }
+    }
+    stage('Deploy') {
+      container('kubectl') {
+        checkout scm
+        sh '''
+        kubectl get pods --namespace=oc-test
+        kubectl replace -f kube/rails.yml --namespace=oc-test
+        '''
       }
     }
   }
