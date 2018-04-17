@@ -44,7 +44,7 @@ volumes: [
       container('kubectl') {
         checkout scm
         sh '''
-        cat kube/deployments/rails.yaml | sed s/latest/${BUILD_NUMBER}/g | kubectl replace -f --namespace=oc-test -
+        cat kube/deployments/rails.yaml | sed s/latest/${BUILD_NUMBER}/g | kubectl replace --namespace=oc-test -f -
         '''
       }
     }
