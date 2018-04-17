@@ -34,8 +34,8 @@ volumes: [
           sh '''
         ${ecr_login}
         docker build -t open-cabinet .
-        docker tag open-cabinet:latest 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest
-        docker push 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest
+        docker tag open-cabinet:${BUILD_NUMBER} 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:${BUILD_NUMBER}
+        docker push 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:${BUILD_NUMBER}
         '''
         }
       }
@@ -44,8 +44,7 @@ volumes: [
       container('kubectl') {
         checkout scm
         sh '''
-        kubectl get pods --namespace=oc-test
-        kubectl replace -f kube/rails.yml --namespace=oc-test
+        cat kube/deployments/rails.yaml | sed s/latest/${BUILD_NUMBER}/g | kubectl replace -f --namespace=oc-test -
         '''
       }
     }
