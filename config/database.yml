@@ -96,6 +96,8 @@ production:
   database: <%= ENV["OC_DATABASE_NAME"] %>
   port: <%= ENV["OC_DATABASE_PORT"] %>
   host: <%= ENV["OC_DATABASE_URL"] %>
+  username: <%= ENV["OC_DATABASE_USER"] %>
+  password: <%= ENV["OC_DATABASE_PASSWORD"] %>
 
 cucumber:
   <<: *test

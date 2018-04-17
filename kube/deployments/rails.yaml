@@ -27,9 +27,12 @@ spec:
       containers:
       - name: rails
         image: 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest
+        imagePullPolicy: Always
         command: ["/bin/bash"]
         args: ["-c", "bundle exec rails s -p 8080 -b 0.0.0.0"]
         env:
+        - name: FOO
+          value: "bar"
         - name: RAILS_SERVE_STATIC_FILES
           value: "true"
         - name: OC_DATABASE_NAME
