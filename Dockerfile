@@ -11,4 +11,4 @@ RUN bundle install
 ADD . /myapp
 WORKDIR /myapp
 
-RUN bundle exec rake assets:precompile
+RUN bundle exec rake assets:precompile RAILS_ENV=production
