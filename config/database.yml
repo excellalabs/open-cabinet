@@ -95,6 +95,7 @@ production:
   <<: *default
   database: <%= ENV["OC_DATABASE_NAME"] %>
   port: <%= ENV["OC_DATABASE_PORT"] %>
+  host: <%= ENV["OC_DATABASE_URL"] %>
 
 cucumber:
   <<: *test

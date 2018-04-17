@@ -12,9 +12,9 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
-      maxUnavailable: 1  
+      maxUnavailable: 1
   selector:
-    matchLabels: 
+    matchLabels:
       app: open-cabinet
       tier: app
   template:
@@ -26,12 +26,10 @@ spec:
     spec:
       containers:
       - name: rails
-        image: quay.io/wagoodman/open-cabinet:latest
+        image: 788232951588.dkr.ecr.us-east-1.amazonaws.com/open-cabinet:latest
         command: ["/bin/bash"]
         args: ["-c", "bundle exec rails s -p 8080 -b 0.0.0.0"]
         env:
-        - name: RAILS_LOG_TO_STDOUT
-          value: "true"
         - name: RAILS_SERVE_STATIC_FILES
           value: "true"
         - name: OC_DATABASE_NAME
