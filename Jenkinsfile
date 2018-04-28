@@ -65,6 +65,7 @@ volumes: [
           // these tests are dependent on a database, which is bad. Otherwise this would be done before the build
           sh """
           bundle install
+          export SECRET_KEY_BASE=9dc0d800af4c46f1ff3881c5d5d6fd31bd2c04f90922572f5cbf940546342d5c0b1607387f14c6efad1575961dfda2b3c325234e841f3c61f6037241c11ad85f
           RAILS_ENV=test bundle exec rspec
           """
         }
