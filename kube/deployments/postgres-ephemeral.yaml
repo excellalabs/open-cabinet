@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1beta2 # for versions >= 1.9.0 use apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: open-cabinet
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: open-cabinet
+      tier: database
+  template:
+    metadata:
+      name: postgres
+      labels:
+        app: open-cabinet
+        tier: database
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:9.6-alpine
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: "db-username"
+              key: "username"
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "db-password"
+              key: "password"
+        - name: POSTGRES_DB
+          value: "open_cabinet_production"
+        - name: PGDATA
+          value: "/var/lib/postgresql/data"
+        ports:
+        - containerPort: 5432
