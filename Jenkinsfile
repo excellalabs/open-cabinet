@@ -54,7 +54,10 @@ volumes: [
           kubectl create namespace ${TEST_NAMESPACE}
           kubectl create -f kube/services/postgres.yaml --namespace=${TEST_NAMESPACE}
           kubectl create -f kube/deployments/postgres-ephemeral.yaml --namespace=${TEST_NAMESPACE}
+          kubectl create -f kube/jobs/setup.yaml --namespace=${TEST_NAMESPACE}
           cat kube/deployments/rails.yaml | sed s/latest/${BUILD_NUMBER}/g | kubectl apply --namespace=${TEST_NAMESPACE} -f -
+          kubectl create -f kube/services/rails.yaml --namespace=${TEST_NAMESPACE}
+          kubectl create -f kube/ingresses/rails.yaml --namespace=${TEST_NAMESPACE}
           '''
         }
       }
