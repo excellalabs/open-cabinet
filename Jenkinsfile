@@ -98,6 +98,9 @@ volumes: [
       container('kubectl') {
         checkout scm
         sh '''
+        kubectl apply -f kube/volumes/postgres.yaml --namespace=staging
+        kubectl apply -f kube/services/postgres.yaml --namespace=staging
+        kubectl apply -f kube/deployments/postgres.yaml --namespace=staging
         cat kube/deployments/rails.yaml | sed s/latest/${BUILD_NUMBER}/g | kubectl apply --namespace=staging -f -
         '''
       }
@@ -106,6 +109,9 @@ volumes: [
       container('kubectl') {
         checkout scm
         sh '''
+        kubectl apply -f kube/volumes/postgres.yaml --namespace=production
+        kubectl apply -f kube/services/postgres.yaml --namespace=production
+        kubectl apply -f kube/deployments/postgres.yaml --namespace=production
         cat kube/deployments/rails.yaml | sed s/latest/${BUILD_NUMBER}/g | kubectl apply --namespace=production -f -
         '''
       }
