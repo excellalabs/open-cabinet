@@ -1,9 +1,9 @@
 GIT
-  remote: git://github.com/jasonblalock/flip.git
-  revision: 246ae9c386cc2b6452ee71f1f3cb5fb8cc358505
+  remote: https://github.com/pda/flip/
+  revision: 6ac78b3161d1b8c3aca2dc0725df05b75afee4dc
   specs:
-    flip (2.0.0)
-      activesupport (>= 3.0, < 5)
+    flip (1.1.0)
+      activesupport (>= 3.0, < 5.1)
       i18n
 
 GEM
@@ -481,4 +481,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.4
+   1.10.6
